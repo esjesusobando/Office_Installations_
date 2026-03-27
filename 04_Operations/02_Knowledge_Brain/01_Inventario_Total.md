@@ -120,7 +120,7 @@ Cada skill ahora tiene:
 - Referencias cruzadas corregidas
 
 ### Documentación
-- Super Reporte en `01_Brain/07_Memory_Brain/`
+- Super Reporte en `04_Operations/04_Memory_Brain/`
 - 85+ documentos beautificados
 - Inventarios duplicados eliminados
 
@@ -130,8 +130,8 @@ Cada skill ahora tiene:
 
 | Archivo                            | Estado               | Ubicación                                  |
 |------------------------------------|----------------------|--------------------------------------------|
-| 04_Inventario.md                   | ✅ ACTIVO             | `01_Brain/07_Memory_Brain/`                |
-| 01_Inventario_Total.md             | ✅ ACTIVO             | `01_Brain/02_Knowledge_Brain/`             |
+| 04_Inventario.md                   | ✅ ACTIVO             | `04_Operations/04_Memory_Brain/`                |
+| 01_Inventario_Total.md             | ✅ ACTIVO             | `04_Operations/02_Knowledge_Brain/`             |
 
 ---
 

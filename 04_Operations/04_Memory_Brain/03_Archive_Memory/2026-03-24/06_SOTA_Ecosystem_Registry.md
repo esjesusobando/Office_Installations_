@@ -13,10 +13,10 @@
 
 | Script                        | Path                                                       | Purpose                         |
 |-------------------------------|------------------------------------------------------------|---------------------------------|
-| 14_Morning_Standup            | `04_Engine/08_Scripts_Os/14_Morning_Standup.py`            | Standup Standarizado            |
-| 56_Organize_Solutions         | `04_Engine/08_Scripts_Os/56_Organize_Solutions.py`         | Hulk Solutions                  |
-| 79_System_Guardian            | `04_Engine/08_Scripts_Os/79_System_Guardian.py`            | Validación del Sistema          |
-| 53_Structure_Auditor          | `04_Engine/08_Scripts_Os/53_Structure_Auditor.py`          | Auditoría de Estructura         |
+| 14_Morning_Standup            | `08_Scripts_Os/14_Morning_Standup.py`            | Standup Standarizado            |
+| 56_Organize_Solutions         | `08_Scripts_Os/56_Organize_Solutions.py`         | Hulk Solutions                  |
+| 79_System_Guardian            | `08_Scripts_Os/79_System_Guardian.py`            | Validación del Sistema          |
+| 53_Structure_Auditor          | `08_Scripts_Os/53_Structure_Auditor.py`          | Auditoría de Estructura         |
 
 ## 3. Intelligence Layer (AI Tools & Workflow)
 *Transformación SOTA de 05_AI_Tools.md*
@@ -34,7 +34,7 @@
 ### C. Operations & Terminal
 - **Tools:** Warp, MCP.
 - **Propósito:** Interacción con OS y servicios (Supabase, Vercel).
-- **Referencia:** `04_Engine/08_Scripts_Os/61_MCP_Health_Check.py`
+- **Referencia:** `08_Scripts_Os/61_MCP_Health_Check.py`
 
 ### D. Code Quality & Ops
 - **Tools:** Devin Review, CodeRabbit, Vercel.

@@ -430,4 +430,81 @@ Verificar contra el checklist de sección 9.
 
 ---
 
-*Documento mantenido por PersonalOS — Actualizado 2026-03-25 v5.0*
+## 🚀 Skill Creator v2.0 — Herramientas de Testing y Benchmarking
+
+### Características Principales (Skills 2.0)
+
+**Fecha**: 3 de marzo 2026 — Blog oficial: "Improving skill-creator: Test, measure, and refine Agent Skills"
+
+| Característica | Descripción | Script/Herramienta |
+|----------------|-------------|-------------------|
+| **评测系统 (Evals)** | Tests cuantitativos para verificar que las skills funcionan | `scripts/run_eval.py` |
+| **Benchmarks** | Medición de rendimiento con/sin skill | `scripts/aggregate_benchmark.py` |
+| **Multi-agent Support** | Ejecución paralela de pruebas en contexto limpio | Subagentes independientes |
+| **Description Optimization** | Optimización automática de triggers | `scripts/improve_description.py` |
+| **Viewer de Resultados** | Interfaz web para revisar outputs cualitativos | `eval-viewer/generate_review.py` |
+| **Blind Comparison** | Comparación A/B ciega entre versiones | `agents/comparator.md` |
+| **Post-hoc Analysis** | Análisis de por qué ganó una versión | `agents/analyzer.md` |
+
+### Estructura del Skill Creator Oficial
+
+```
+skill-creator/
+├── SKILL.md                    # Instrucciones principales
+├── scripts/
+│   ├── aggregate_benchmark.py  # Agregación de benchmarks
+│   ├── run_eval.py            # Ejecución de评测
+│   ├── improve_description.py # Optimización de descripciones
+│   └── package_skill.py       # Empaquetado de skills
+├── agents/
+│   ├── grader.md              # Evaluador de expectativas
+│   ├── comparator.md          # Comparador A/B ciego
+│   └── analyzer.md            # Analista post-comparación
+├── eval-viewer/
+│   └── generate_review.py     # Visor de resultados
+└── references/
+    └── schemas.md             # Esquemas JSON (evals.json, grading.json, benchmark.json)
+```
+
+### Esquemas JSON Clave
+
+1. **evals.json** - Define las评测 para una skill
+2. **grading.json** - Resultados de evaluación por expectativa
+3. **benchmark.json** - Estadísticas agregadas de rendimiento
+4. **comparison.json** - Resultados de comparación A/B ciega
+
+### Flujo de Testing Recomendado
+
+```
+1. Crear evals.json con 2-3 prompts de prueba
+2. Ejecutar pruebas con/sin skill (subagentes paralelos)
+3. Generar grading.json para cada ejecución
+4. Agregar resultados con aggregate_benchmark.py
+5. Revisar resultados en viewer web
+6. Iterar sobre la skill basado en feedback
+7. Optimizar descripción con improve_description.py
+```
+
+### Diferencias con Skill Creator v1
+
+| Aspecto | v1 (Original) | v2.0 (Skills 2.0) |
+|---------|---------------|-------------------|
+| **Testing** | Manual, subjetivo | Cuantitativo, automatizado |
+| **Benchmarks** | No existían | Pass rate, tiempo, tokens |
+| **Comparación** | Visual, no estructurada | Blind A/B con análisis post-hoc |
+| **Optimización** | Manual | Automática con train/test split |
+| **Multi-agent** | No | Ejecución paralela limpia |
+
+### Implementación en PersonalOS
+
+**Repositorio clonado**: `claude-plugins-official/plugins/skill-creator/`
+
+**Acciones Recomendadas**:
+1. **Integrar herramientas de testing** en flujo de creación de skills
+2. **Actualizar `08_Skill_Creation_SOTA.md`** con flujos de评测
+3. **Crear plantillas de evals.json** para tipos comunes de skills
+4. **Implementar benchmarks** para skills críticas del OS
+
+---
+
+*Documento mantenido por PersonalOS — Actualizado 2026-03-27 v5.1*
