@@ -27,11 +27,11 @@ Este workflow elimina esa fricción. Una sola pregunta, un destino claro.
 
 | Tipo | Destino | Ejemplo |
 |------|---------|---------|
-| **Idea / Tarea** | `00_Core/BACKLOG.md` | "Crear workflow de English practice" |
-| **Aprendizaje** | `01_Brain/Process_Notes/` | "Descubrí que ctx.resume() es necesario en iOS" |
-| **Referencia** | `03_Knowledge/Notes/` | Link, paper, concepto a profundizar |
-| **Insight de diseño** | `03_Knowledge/Writing/` | Reflexión sobre UX, AI, producto |
-| **Bug / Problema** | `00_Core/BACKLOG.md` con tag `[BUG]` | "El script 13 falla con archivos vacíos" |
+| **Idea / Tarea** | `00_Winter_is_Coming/BACKLOG.md` | "Crear workflow de English practice" |
+| **Aprendizaje** | `04_Operations/03_Process_Notes/` + **Engram** | "Descubrí que ctx.resume() es necesario en iOS" |
+| **Referencia** | `02_Knowledge/` | Link, paper, concepto a profundizar |
+| **Insight de diseño** | `04_Operations/04_Memory_Brain/` | Reflexión sobre UX, AI, producto |
+| **Bug / Problema** | `00_Winter_is_Coming/BACKLOG.md` con tag `[BUG]` | "El script 13 falla con archivos vacíos" |
 
 ### Paso 2 — Escribir en crudo
 
@@ -58,7 +58,7 @@ No proceses ahora. El triage lo hace `09_Backlog_Triage.py` cuando toque.
 Cuando el backlog tenga 10+ items o al final del día:
 
 ```bash
-python 04_Engine/09_Backlog_Triage.py
+python 08_Scripts_Os/04_Ritual_Hub.py --triage
 ```
 
 Convierte entradas brutas en tareas estructuradas con prioridad, categoría y vínculo a GOALS.
@@ -72,7 +72,7 @@ Si tienes una reunión grabada y quieres extraer aprendizajes:
 ```
 "Busca en mis reuniones de [fecha] los puntos de acción"
 → Fireflies MCP: search_meetings / get_transcript
-→ Resultado → 00_Core/BACKLOG.md o 01_Brain/Process_Notes/
+→ Resultado → 00_Winter_is_Coming/BACKLOG.md o 04_Operations/03_Process_Notes/ + **Engram**
 ```
 
 ### Captura de pantalla / UI insight
