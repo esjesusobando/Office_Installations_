@@ -36,7 +36,7 @@ description: Doble Code Review estilo Silicon Valley desde múltiples perspectiv
 ## 💾 State Persistence
 
 Guardar reviews en:
-- `01_Brain/07_Memory_Brain/00_Code_Reviews/`
+- `04_Operations/04_Memory_Brain/00_Code_Reviews/`
 - `01_Core/02_Evals/`
 
 ## PURPOSE
@@ -301,7 +301,7 @@ El sistema:
 2. Aplicará los 6 sombreros
 3. Verificará ejecución
 4. Generará el report
-5. Guardará en 01_Brain/07_Memory_Brain/00_Code_Reviews/
+5. Guardará en 04_Operations/04_Memory_Brain/00_Code_Reviews/
 
 ---
 
@@ -309,7 +309,7 @@ El sistema:
 
 Los reports se guardan en:
 ```
-01_Brain/07_Memory_Brain/00_Code_Reviews/
+04_Operations/04_Memory_Brain/00_Code_Reviews/
 ├── YYYY-MM-DD_[plan-name]_review.md
 └── index.md  (índice de todos los reviews)
 ```
