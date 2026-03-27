@@ -336,7 +336,7 @@ def subagent_solution_extractor(git_context: Dict) -> Dict[str, Any]:
 def subagent_related_docs_finder() -> Dict[str, Any]:
     """
     SUBAGENT 3: Related Docs Finder (Parallel)
-    - Searches docs/solutions/ for related documentation
+    - Searches 04_Operations/06_Solutions/ for related documentation
     - Identifies cross-references and links
     - Returns: Links and relationships
     """
@@ -422,7 +422,7 @@ def subagent_prevention_strategist(
 def subagent_category_classifier(problem_type: str, commit_msg: str) -> Dict[str, Any]:
     """
     SUBAGENT 5: Category Classifier (Parallel)
-    - Determines optimal docs/solutions/ category
+    - Determines optimal 04_Operations/06_Solutions/ category
     - Validates category against schema
     - Returns: Final path and filename
     """
@@ -738,7 +738,7 @@ def print_success_summary(result: CompoundResult, invoked_agents: List[Dict]):
         f"  [OK] Prevention Strategist: Generated {len(result.prevention_strategist.get('strategies', []))} strategies"
     )
     print(
-        f"  [OK] Category Classifier: docs/solutions/{result.category_classifier.get('category', 'unknown')}/"
+        f"  [OK] Category Classifier: 04_Operations/06_Solutions/{result.category_classifier.get('category', 'unknown')}/"
     )
     print(
         f"  [OK] Documentation Writer: {'Created' if result.documentation_writer.get('success') else 'Failed to create'} complete markdown"

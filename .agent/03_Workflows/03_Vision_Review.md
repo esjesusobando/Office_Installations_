@@ -48,7 +48,7 @@ First, I need to determine the review target type and set up the code for analys
 
 #### 🛡️ Pachamama Protocol (Backup Check)
 
-- [ ] Ejecutar `python 04_Engine/08_Ritual_Cierre.py --backup-only` para asegurar un punto de restauración antes de iniciar la revisión profunda.
+- [ ] Ejecutar `python 08_Scripts_Os/04_Ritual_Hub.py --backup-only` para asegurar un punto de restauración antes de iniciar la revisión profunda.
 
 </task_list>
 
@@ -57,8 +57,8 @@ First, I need to determine the review target type and set up the code for analys
 <protected_artifacts>
 The following paths are compound-engineering pipeline artifacts and must never be flagged for deletion, removal, or gitignore by any review agent:
 
-- `docs/plans/*.md` — Plan files created by `/workflows:plan`. These are living documents that track implementation progress (checkboxes are checked off by `/workflows:work`).
-- `docs/solutions/*.md` — Solution documents created during the pipeline.
+- `04_Operations/05_Plans/*.md` — Plan files created by `/workflows:plan`. These are living documents that track implementation progress (checkboxes are checked off by `/workflows:work`).
+- `04_Operations/06_Solutions/*.md` — Solution documents created during the pipeline.
 
 If a review agent flags any file in these directories for cleanup or removal, discard that finding during synthesis. Do not create a todo for it.
 </protected_artifacts>
@@ -220,7 +220,7 @@ Remove duplicates, prioritize by severity and impact.
 <synthesis_tasks>
 
 - [ ] Collect findings from all parallel agents
-- [ ] Discard any findings that recommend deleting or gitignoring files in `docs/plans/` or `docs/solutions/` (see Protected Artifacts above)
+- [ ] Discard any findings that recommend deleting or gitignoring files in `04_Operations/05_Plans/` or `04_Operations/06_Solutions/` (see Protected Artifacts above)
 - [ ] Categorize by type: security, performance, architecture, quality, etc.
 - [ ] Assign severity levels: 🔴 CRITICAL (P1), 🟡 IMPORTANT (P2), 🔵 NICE-TO-HAVE (P3)
 - [ ] Remove duplicate or overlapping findings

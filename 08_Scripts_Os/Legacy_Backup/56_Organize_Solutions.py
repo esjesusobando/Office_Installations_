@@ -2,7 +2,7 @@
 56_Organize_Solutions.py - Armor Layer Protected
 Organize Hulk Compound solutions to Knowledge structure.
 
-Moves files from docs/solutions/ to 03_Knowledge/01_Research_Knowledge/solutions/[category]/.
+Moves files from 04_Operations/06_Solutions/ to 02_Knowledge/ (archived solutions).
 Renames files to format: NNN_Descripcion_DD_MM_YYYY.md
 
 Usage:
@@ -211,7 +211,7 @@ def cleanup_untitled_files() -> list:
 
 
 def organize_solutions(dry_run: bool = True) -> dict:
-    """Organize solutions from docs/solutions/ to Knowledge structure."""
+    """Organize solutions from 04_Operations/06_Solutions/ to Knowledge structure."""
 
     if not SOURCE_DIR.exists():
         error(f"Source directory not found: {SOURCE_DIR}")
@@ -284,12 +284,12 @@ def organize_solutions(dry_run: bool = True) -> dict:
 
         if dry_run:
             log(f"  [DRY] Would move: {src_file.name}")
-            log(f"         From: docs/solutions/{folder_name}/")
+            log(f"         From: 04_Operations/06_Solutions/{folder_name}/")
             log(f"         To:   03_Knowledge/.../solutions/{category}/{new_filename}")
         else:
             new_content = update_internal_links(
                 content,
-                old_base=f"docs/solutions/{folder_name}",
+                old_base=f"04_Operations/06_Solutions/{folder_name}",
                 new_base=f"03_Knowledge/01_Research_Knowledge/solutions/{category}",
             )
 
@@ -299,7 +299,7 @@ def organize_solutions(dry_run: bool = True) -> dict:
                 {
                     "original": src_file.name,
                     "file": new_filename,
-                    "from": f"docs/solutions/{folder_name}/",
+                    "from": f"04_Operations/06_Solutions/{folder_name}/",
                     "to": f"solutions/{category}/",
                 }
             )
@@ -327,7 +327,7 @@ def organize_solutions(dry_run: bool = True) -> dict:
             # Eliminar SOURCE_DIR si está vacío
             if SOURCE_DIR.exists() and not any(SOURCE_DIR.iterdir()):
                 shutil.rmtree(SOURCE_DIR)
-                log(f"Removed empty directory: docs/solutions/")
+                log(f"Removed empty directory: 04_Operations/06_Solutions/")
 
         # Eliminar docs/ si está vacío
         docs_dir = PROJECT_ROOT / "docs"

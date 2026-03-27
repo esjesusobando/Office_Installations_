@@ -155,7 +155,7 @@ When the user wants structured development with specs, use the SDD methodology.
 ### SDD Skills Location
 
 - **Global:** `~/.config/opencode/skills/sdd-*`
-- **Local:** `.agent/02_Skills/01_Agent_Teams_Lite/`
+- **Local:** `01_Core/03_Skills/01_Agent_Teams_Lite/`
 - **Memory backend:** Engram MCP
 
 ---
@@ -214,7 +214,7 @@ Ideate → Brainstorm → Plan → Work → Review → Compound → Repeat
 ### CE Skills Location
 
 - **Global:** `~/.config/opencode/skills/gentleman/06_Compound_Engineering/`
-- **Local:** `.agent/02_Skills/00_Compound_Engineering/07_Skills/`
+- **Local:** `01_Core/03_Skills/00_Compound_Engineering/`
 
 ---
 

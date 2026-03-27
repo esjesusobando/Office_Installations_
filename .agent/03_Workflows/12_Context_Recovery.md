@@ -20,24 +20,26 @@ Usar cuando el contexto de la sesión está degradado: respuestas incoherentes, 
 
 ### Opción A — Reset Suave (recomendado primero)
 
-1. Ejecutar el script de reset:
+1. Ejecutar Engram reset:
 
    ```bash
-   python 04_Engine/00_Context_Reset.py
+   python 08_Scripts_Os/04_Ritual_Hub.py --reset
    ```
 
 2. Iniciar nueva sesión ejecutando `01_Iron_Man_Gen` (Workflow Génesis)
 3. Cargar solo los archivos estrictamente necesarios para la tarea actual
+4. Consultar Engram: `mem_search()` + `mem_context()`
 
 ### Opción B — Reset Manual (si el script falla)
 
-1. Abrir nueva conversación en Claude Code
+1. Abrir nueva conversación en Claude/OpenCode
 2. Ejecutar el Workflow Génesis (`01_Iron_Man_Gen.md`) completo:
-   - `.cursor/00_Rules/01_Context_Protocol.mdc`
-   - `01_Brain/Context_Memory/` (último archivo)
-   - `01_Brain/Process_Notes/` (último archivo)
-   - `01_Brain/Knowledge_Brain/01_Inventario_Total.md`
-3. Leer `CLAUDE.md` — constitución del sistema
+   - `01_Core/01_Rules/`
+   - `04_Operations/01_Context_Memory/` (último archivo)
+   - `04_Operations/03_Process_Notes/` (último archivo)
+   - `01_Core/01_Inventario_Total.md`
+   - **Engram**: `mem_search()` + `mem_context()`
+3. Leer `AGENTS.md` — constitución del sistema
 4. Reportar contexto cargado antes de continuar
 
 ### Opción C — Reset Completo del Sistema
@@ -45,27 +47,29 @@ Usar cuando el contexto de la sesión está degradado: respuestas incoherentes, 
 Solo si A y B fallan:
 
 1. Guardar manualmente notas de lo que estabas haciendo
-2. Cerrar Claude Code completamente
+2. Cerrar Claude/OpenCode completamente
 3. Reabrir y ejecutar Génesis desde cero
 
 ## Prevención
 
-- Usar subagentes (`.claude/agents/`) para tareas largas → protegen la ventana de contexto principal
-- Guardar `Process_Notes` al final de cada sesión con `11_Ritual_Cierre_Protocol`
+- Usar subagentes (`.agent/01_Agents/`) para tareas largas → protegen la ventana de contexto principal
+- Guardar `Process_Notes` al final de cada sesión con `08_Scripts_Os/04_Ritual_Hub.py`
 - Hacer commits frecuentes → el estado del repo siempre refleja el avance real
 - Si una tarea requiere leer más de 10 archivos → delegar a un subagente
+- Usar Engram (`mem_save()`) para guardar aprendizajes clave
 
-## Referencia rápida de estructura actual
+## Referencia rápida de estructura actual v6.1
 
 ```
 Think_Different/
-├── 00_Core/          # GOALS, BACKLOG, AGENTS
-├── 01_Brain/         # Context_Memory, Process_Notes, Knowledge_Brain
-├── 02_Operations/    # Tasks/
-├── 03_Knowledge/     # Examples/, Resources/, Docs/, Notes/
-├── 04_Engine/        # 38 scripts Python
-├── 05_System/        # MCP, requirements.txt
-└── 06_Archive/       # Legacy
+├── 00_Winter_is_Coming/  # GOALS, BACKLOG, AGENTS
+├── 01_Core/              # Inventario, Rules, Config
+├── 02_Knowledge/         # Examples, Resources
+├── 03_Tasks/             # Tareas activas
+├── 04_Operations/        # Context_Memory, Process_Notes, Memory_Brain, Plans, Solutions
+├── 05_Archive/           # Legacy
+├── 08_Scripts_Os/        # HUBs y scripts Python
+└── .agent/              # Skills, Workflows, Extensions
 ```
 
 ---

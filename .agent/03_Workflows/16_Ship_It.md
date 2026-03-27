@@ -124,7 +124,7 @@ Según el nivel elegido:
 ### FASE 6 — Registrar en el portfolio (5 min)
 
 ```
-→ 03_Knowledge/06_Writing_Content/portfolio.md  (o crear si no existe)
+→ 02_Knowledge/00_Examples_Personal_Os/portfolio.md  (o crear si no existe)
 
 Añadir:
 - Nombre del proyecto

@@ -40,17 +40,17 @@ Ejemplo:
 ```
 Output: Tener el script 14_Deep_Work_Timer.py funcionando
 Done: El script corre sin errores y guarda el log
-Abrir: VS Code + Claude Code + 04_Engine/
+Abrir: VS Code + Claude Code + 08_Scripts_Os/
 ```
 
 ### 2. Preparar el contexto (3 min)
 
 ```bash
-python 04_Engine/14_Morning_Standup.py   # Ver prioridades del día
+python 08_Scripts_Os/04_Ritual_Hub.py --standup  # Ver prioridades del día
 git status                                # Estado limpio antes de empezar
 ```
 
-Leer la tarea en `02_Operations/Tasks/` — entender el scope completo.
+Leer la tarea en `03_Tasks/` — entender el scope completo.
 
 ### 3. Cerrar lo que distrae
 
@@ -86,13 +86,13 @@ Al finalizar cada bloque, evaluar en 1 segundo:
 
 ### Cierre de sesión (5 min)
 
-1. **Documentar**: ¿Qué logré? ¿Qué quedó pendiente? → `01_Brain/Process_Notes/`
+1. **Documentar**: ¿Qué logré? ¿Qué quedó pendiente? → `04_Operations/03_Process_Notes/` + **Engram**
 2. **Commit**: Si hay código → commit atómico descriptivo
-3. **Actualizar tarea**: Cambiar `status` en `02_Operations/Tasks/`
+3. **Actualizar tarea**: Cambiar `status` en `03_Tasks/`
 4. **Captura de aprendizajes**: ¿Qué aprendí hoy que vale la pena guardar?
 
 ```bash
-python 04_Engine/08_Ritual_Cierre.py   # Si es fin de día
+python 08_Scripts_Os/04_Ritual_Hub.py   # Si es fin de día
 ```
 
 ## Para sesiones de aprendizaje (Python / English)
@@ -102,7 +102,7 @@ python 04_Engine/08_Ritual_Cierre.py   # Si es fin de día
 ```
 [0-5 min]   Revisar qué quiero aprender/construir hoy
 [5-35 min]  Escribir código, experimentar, romper cosas
-[35-45 min] Documentar lo aprendido en 03_Knowledge/Notes/
+[35-45 min] Documentar lo aprendido en 04_Operations/03_Process_Notes/ + **Engram**
 ```
 
 ### English Session (45 min)

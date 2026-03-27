@@ -20,17 +20,18 @@ Ejecutar al finalizar cada sesión de trabajo. Garantiza que el sistema quede en
 ### 1. Validar Estado del Sistema
 
 1. `git status` — confirmar qué archivos cambiaron
-2. Verificar que no hay referencias rotas: `grep -r "04_Engine\|05_System\|06_Archive\|03_Knowledge/Examples\|03_Knowledge/Resources" --include="*.py" --include="*.md"`
+2. Verificar que no hay referencias rotas: `grep -r "08_Scripts_Os\|05_System\|05_Archive\|04_Operations\|02_Knowledge" --include="*.py" --include="*.md"`
 3. Si hay errores → resolverlos antes de continuar
 
 ### 2. Actualizar Inventario (si aplica)
 
-1. ¿Se crearon scripts nuevos en `04_Engine/`? → Registrar en `01_Brain/02_Knowledge_Brain/01_Inventario_Total.md`
-2. ¿Se crearon Skills o Workflows nuevos? → Registrar en `01_Inventario_Total.md` + actualizar `README.md` del directorio
+1. ¿Se crearon scripts nuevos en `08_Scripts_Os/`? → Registrar en `01_Core/01_Inventario_Total.md`
+2. ¿Se crearon Skills o Workflows nuevos? → Registrar en `01_Core/01_Inventario_Total.md` + actualizar `README.md` del directorio
 
 ### 3. Guardar Notas de Proceso
 
-1. Crear o actualizar archivo en `01_Brain/03_Process_Notes/` con resumen de la sesión:
+1. Crear o actualizar archivo en `04_Operations/03_Process_Notes/` con resumen de la sesión:
+   - Ejecutar `mem_save()` para guardar aprendizajes clave en Engram (persistente)
    - Qué se hizo
    - Decisiones tomadas
    - Pendientes para la próxima sesión
@@ -39,7 +40,7 @@ Ejecutar al finalizar cada sesión de trabajo. Garantiza que el sistema quede en
 ### 4. Ejecutar Ritual Automatizado
 
 ```bash
-python 04_Engine/08_Ritual_Cierre.py
+python 08_Scripts_Os/04_Ritual_Hub.py
 ```
 
 El script ejecuta: backup + validación de reglas + sync de contexto.
@@ -70,7 +71,7 @@ Reportar en chat:
 Para ejecutar el ritual completo con un solo comando:
 
 ```bash
-python 04_Engine/08_Ritual_Cierre.py
+python 08_Scripts_Os/04_Ritual_Hub.py
 ```
 
 ---

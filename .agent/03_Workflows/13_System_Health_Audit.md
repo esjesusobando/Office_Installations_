@@ -20,7 +20,7 @@ Auditoría proactiva del PersonalOS. Verificar que todo está en orden: scripts 
 ### 1. Auditoría Automatizada
 
 ```bash
-python 04_Engine/42_Audit_Engineering.py
+python 08_Scripts_Os/01_Auditor_Hub.py
 ```
 
 Revisa: estructura de carpetas, scripts Python, referencias en `.md`, reglas `.mdc`.
@@ -28,42 +28,42 @@ Revisa: estructura de carpetas, scripts Python, referencias en `.md`, reglas `.m
 ### 2. Validar Referencias (grep global)
 
 ```bash
-grep -r "04_Engine\|05_System\|06_Archive\|03_Knowledge/Examples\|03_Knowledge/Resources" \
+grep -r "04_Engine\|01_Brain\|02_Operations\|docs/" \
   --include="*.py" --include="*.md" --include="*.mdc" \
-  | grep -v "(ex " | grep -v "fueron consolidados"
+  | grep -v "(ex " | grep -v "fueron consolidados" | grep -v "Legacy_Backup"
 ```
 
 Resultado esperado: **0 líneas**. Cualquier resultado es una referencia rota.
 
 ### 3. Verificar Estructura de Carpetas
 
-Confirmar que las 7 dimensiones existen:
+Confirmar que las carpetas v6.1 existen:
 
 ```
-00_Core / 01_Brain / 02_Operations / 03_Knowledge /
-04_Engine / 05_System / 06_Archive
+00_Winter_is_Coming / 01_Core / 02_Knowledge / 03_Tasks /
+04_Operations / 05_Archive / 08_Scripts_Os / .agent
 ```
 
-### 4. Validar Scripts de 04_Engine
+### 4. Validar Scripts de 08_Scripts_Os
 
 ```bash
-python 04_Engine/13_Validate_Stack.py
+python 08_Scripts_Os/05_Validator_Hub.py
 ```
 
-Verifica dependencias y que los 43 scripts están presentes.
+Verifica dependencias y que los scripts están presentes.
 
-### 5. Validar Reglas de Cursor
+### 5. Validar Reglas de Agent
 
 ```bash
-python 04_Engine/40_Validate_Rules.py
+python 08_Scripts_Os/05_Validator_Hub.py --rules
 ```
 
-Confirma que todos los `.mdc` en `.cursor/00_Rules/` tienen estructura válida.
+Confirma que todos los `.mdc` en `01_Core/01_Rules/` tienen estructura válida.
 
 ### 6. Revisar Inventario
 
-- Abrir `01_Brain/02_Knowledge_Brain/01_Inventario_Total.md`
-- Confirmar que el número de scripts en `04_Engine/` coincide con el inventario
+- Abrir `01_Core/01_Inventario_Total.md`
+- Confirmar que el número de scripts en `08_Scripts_Os/` coincide con el inventario
 - Confirmar que nuevas Skills/Workflows están registradas
 
 ### 7. Estado Git

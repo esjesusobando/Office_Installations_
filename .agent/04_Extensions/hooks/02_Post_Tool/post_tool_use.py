@@ -75,13 +75,17 @@ def create_backup(file_path):
 
 
 def organize_solution_if_needed(file_path):
-    """Check if file is in docs/solutions/ and organize it."""
-    if "docs" in file_path and "solutions" in file_path and file_path.endswith(".md"):
+    """Check if file is in 04_Operations/06_Solutions/ and organize it."""
+    if (
+        "04_Operations" in file_path
+        and "06_Solutions" in file_path
+        and file_path.endswith(".md")
+    ):
         try:
             script_path = (
                 PROJECT_ROOT
-                / "04_Engine"
                 / "08_Scripts_Os"
+                / "Legacy_Backup"
                 / "56_Organize_Solutions.py"
             )
             if script_path.exists():
@@ -102,9 +106,12 @@ def organize_solution_if_needed(file_path):
 
 
 def cleanup_empty_docs_dirs():
-    """Remove empty docs/ or docs/solutions/ directories."""
+    """Remove empty docs/ directories (legacy) - NOW uses 04_Operations/."""
+    # Legacy cleanup - no longer needed as we use 04_Operations/
     docs_dirs = [
         PROJECT_ROOT / "docs" / "solutions",
+        PROJECT_ROOT / "docs" / "plans",
+        PROJECT_ROOT / "docs" / "brainstorms",
         PROJECT_ROOT / "docs",
     ]
 

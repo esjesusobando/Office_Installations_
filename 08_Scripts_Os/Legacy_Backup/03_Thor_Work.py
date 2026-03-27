@@ -505,7 +505,7 @@ def main():
             f'{ERROR}Uso: python {sys.argv[0]} "[ruta del plan o descripción]"{RESET}'
         )
         print(
-            f'{INFO}Ejemplo: python {sys.argv[0]} "docs/plans/feature-auth-plan.md"{RESET}'
+            f'{INFO}Ejemplo: python {sys.argv[0]} "04_Operations/05_Plans/feature-auth-plan.md"{RESET}'
         )
         print(
             f'{INFO}Ejemplo: python {sys.argv[0]} "Implementar sistema de autenticación"{RESET}'

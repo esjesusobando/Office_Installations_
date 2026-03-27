@@ -11,19 +11,19 @@ Ejecutar al inicio de cada sesión para cargar el contexto completo del sistema:
 ## Pasos
 
 1. **Leer Reglas de Sesión**:
-   - Leer `.cursor/00_Rules/01_Context_Protocol.mdc` (protocolo de inicio, obligatorio).
-   - Leer `.cursor/00_Rules/` — revisar cualquier regla con `alwaysApply: true`.
+   - Leer `01_Core/01_Rules/` — revisar cualquier regla con `alwaysApply: true`.
 
-2. **Cargar Memoria de Largo Plazo**:
-   - Leer los archivos más recientes en `01_Brain/01_Context_Memory/`.
-   - Leer `01_Brain/07_Memory_Brain/00_MAPEOS/01_System_Map_2026-03-24.md` (mapa del sistema actualizado).
+2. **Cargar Memoria de Largo Plazo (AGENTE)**:
+   - Ejecutar `mem_search()` con project="Think_Different" para recuperar contexto previo.
+   - Leer `04_Operations/04_Memory_Brain/` — mapa del sistema actualizado.
 
-3. **Revisar Notas de Proceso**:
-   - Leer los archivos más recientes en `01_Brain/03_Process_Notes/`.
+3. **Revisar Notas de Proceso (USUARIO)**:
+   - Leer los archivos más recientes en `04_Operations/03_Process_Notes/`.
+   - Ejecutar `mem_save()` para guardar aprendizajes clave de cada sesión.
 
 4. **Sincronizar Estado de Tareas**:
-   - Leer `02_Operations/Tasks/` — identificar tareas `status: s` (en progreso) y `status: b` (bloqueadas).
-   - Leer `00_Core/GOALS.md` para alinear foco del día.
+   - Leer `03_Tasks/` — identificar tareas `status: s` (en progreso) y `status: b` (bloqueadas).
+   - Leer `00_Winter_is_Coming/GOALS.md` para alinear foco del día.
 
 5. **Verificar MCPs disponibles** (opcional):
    - Playwright MCP: disponible para navegación web y screenshots.
