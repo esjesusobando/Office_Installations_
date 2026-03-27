@@ -40,5 +40,5 @@ Archivo: [01_Brain/05_Templates/XX_Task_Template_XXX.md]
 
 Run script for more detailed analysis:
 ```bash
-python 04_Engine/08_Scripts_Os/59_Task_Classifier.py "descripcion"
+python 08_Scripts_Os/59_Task_Classifier.py "descripcion"
 ```

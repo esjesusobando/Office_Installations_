@@ -78,7 +78,7 @@ Cargar skill según necesidad:
 
 ## 📚 Scripts Relacionados
 
-En `04_Engine/08_Scripts_Os/11_Anthropic_Harness/`:
+En `08_Scripts_Os/11_Anthropic_Harness/`:
 
 | Script | Función |
 |--------|---------|
