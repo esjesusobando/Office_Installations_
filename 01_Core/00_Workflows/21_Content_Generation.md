@@ -55,9 +55,9 @@ Read relevant context based on content type:
 
 | Content Type | Context to Read |
 |--------------|-----------------|
-| Blog post | `03_Knowledge/` docs related to topic, `00_Core/GOALS.md` for positioning |
-| Email/outreach | Task file for recipient context, any related `Knowledge/` files |
-| Social media | Recent posts in `03_Knowledge/Voice_Samples/`, `00_Core/GOALS.md` for themes |
+| Blog post | `02_Knowledge/` docs related to topic, `00_Winter_is_Coming/GOALS.md` for positioning |
+| Email/outreach | Task file for recipient context, any related `02_Knowledge/` files |
+| Social media | Recent posts in `02_Knowledge/`, `00_Winter_is_Coming/GOALS.md` for themes |
 
 ### Step 4: Draft Content
 

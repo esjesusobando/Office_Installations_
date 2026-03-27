@@ -13,7 +13,7 @@ Workflow que implementa el patrón de **Three-Agent Architecture** de Anthropic:
 - **Generator**: Construye feature por feature
 - **Evaluator**: QA separado (NO self-evaluation!)
 
-Inspirado en: [01_Brain/02_Knowledge_Brain/10_Anthropic_Harness_Design.md](01_Brain/02_Knowledge_Brain/10_Anthropic_Harness_Design.md)
+Inspirado en: [Anthropic Engineering Blog](https://docs.anthropic.com)
 
 ---
 
@@ -40,7 +40,7 @@ Inspirado en: [01_Brain/02_Knowledge_Brain/10_Anthropic_Harness_Design.md](01_Br
 
 ```bash
 # Verificar que no hay riesgos
-python 04_Engine/08_Scripts_Os/11_Anthropic_Harness/00_Safety_Wrapper.py
+python 08_Scripts_Os/Legacy_Backup/11_Anthropic_Harness/00_Safety_Wrapper.py
 ```
 
 **Validaciones:**
@@ -55,7 +55,7 @@ python 04_Engine/08_Scripts_Os/11_Anthropic_Harness/00_Safety_Wrapper.py
 
 ```bash
 # Analizar contexto y decidir reset vs compaction
-python 04_Engine/08_Scripts_Os/11_Anthropic_Harness/01_Context_Manager.py
+python 08_Scripts_Os/Legacy_Backup/11_Anthropic_Harness/01_Context_Manager.py
 ```
 
 **Decisiones:**
@@ -81,7 +81,7 @@ python 04_Engine/08_Scripts_Os/11_Anthropic_Harness/01_Context_Manager.py
 ### Paso 4: SPRINT CONTRACT (para cada sprint)
 
 ```bash
-python 04_Engine/08_Scripts_Os/11_Anthropic_Harness/03_Sprint_Contract.py
+python 08_Scripts_Os/Legacy_Backup/11_Anthropic_Harness/03_Sprint_Contract.py
 ```
 
 1. Generator propone qué va a build
@@ -102,7 +102,7 @@ python 04_Engine/08_Scripts_Os/11_Anthropic_Harness/03_Sprint_Contract.py
 ### Paso 6: EVALUATOR - QA
 
 ```bash
-python 04_Engine/08_Scripts_Os/11_Anthropic_Harness/02_Evaluator_Runner.py
+python 08_Scripts_Os/Legacy_Backup/11_Anthropic_Harness/02_Evaluator_Runner.py
 ```
 
 **Criterios de Grading:**
@@ -119,7 +119,7 @@ python 04_Engine/08_Scripts_Os/11_Anthropic_Harness/02_Evaluator_Runner.py
 ### Paso 7: PLAYWRIGHT QA (opcional)
 
 ```bash
-python 04_Engine/08_Scripts_Os/11_Anthropic_Harness/04_Playwright_QA.py
+python 08_Scripts_Os/Legacy_Backup/11_Anthropic_Harness/04_Playwright_QA.py
 ```
 
 Para diseño o features que requieren testing visual/interactivo.
@@ -169,8 +169,8 @@ Para diseño o features que requieren testing visual/interactivo.
 
 ## 📚 Referencia
 
-- Artículo: `01_Brain/02_Knowledge_Brain/10_Anthropic_Harness_Design.md`
-- Scripts: `04_Engine/08_Scripts_Os/11_Anthropic_Harness/`
+- Artículo: [Anthropic Engineering Blog](https://docs.anthropic.com)
+- Scripts: `08_Scripts_Os/Legacy_Backup/11_Anthropic_Harness/` (legacy - verificar)
 - Skills: `.agent/02_Skills/14_Anthropic_Harness/`
 
 ---

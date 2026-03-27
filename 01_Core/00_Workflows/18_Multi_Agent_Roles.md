@@ -151,6 +151,6 @@ team = AgentTeam("dev-team", num_agents=16, lock_manager=manager)
 
 ## Archivos Relacionados
 
-- `04_Engine/08_Scripts_Os/11_Anthropic_Harness/07_Agent_Teams_Locks.py`
+- `08_Scripts_Os/Legacy_Backup/11_Anthropic_Harness/07_Agent_Teams_Locks.py` (legacy)
 - `.agent/02_Skills/14_Anthropic_Harness/08_Graders_Framework/`
 - `.agent/02_Skills/14_Anthropic_Harness/01_Evaluator_Pattern/`
