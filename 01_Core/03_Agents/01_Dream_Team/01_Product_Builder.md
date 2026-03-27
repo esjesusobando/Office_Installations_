@@ -27,7 +27,7 @@ Este perfil orquesta el ciclo completo de desarrollo de una feature: desde la de
 | **Generator** | Construye feature por feature | Spec | Código |
 | **Evaluator** | QA separado (NO self-evaluation!) | Running app | Bugs + grading |
 
-> **Pattern:** Inspired by Anthropic's [Harness Design](01_Brain/02_Knowledge_Brain/10_Anthropic_Harness_Design.md)
+> **Pattern:** Inspired by Anthropic's [Harness Design](https://docs.anthropic.com)
 
 ---
 
@@ -185,19 +185,19 @@ OUTPUT FINAL:
 ### Skills Anthropic
 | Skill | Ubicación | Uso |
 |-------|-----------|-----|
-| **Evaluator Pattern** | `.agent/02_Skills/14_Anthropic_Harness/01_Evaluator_Pattern/` | Cómo hacer adversarial eval |
-| **Context Management** | `.agent/02_Skills/14_Anthropic_Harness/02_Context_Management/` | Reset vs compaction |
-| **Sprint Contract** | `.agent/02_Skills/14_Anthropic_Harness/03_Sprint_Contract/` | Generator + Evaluator |
+| **Evaluator Pattern** | `01_Core/03_Skills/14_Anthropic_Harness/01_Evaluator_Pattern/` | Cómo hacer adversarial eval |
+| **Context Management** | `01_Core/03_Skills/14_Anthropic_Harness/02_Context_Management/` | Reset vs compaction |
+| **Sprint Contract** | `01_Core/03_Skills/14_Anthropic_Harness/03_Sprint_Contract/` | Generator + Evaluator |
 
 ### Workflow
-- **17_Anthropic_Harness**: `.agent/03_Workflows/17_Anthropic_Harness.md` — Workflow completo de 3 agentes
+- **17_Anthropic_Harness**: `01_Core/00_Workflows/17_Anthropic_Harness.md` — Workflow completo de 3 agentes
 
 ### Skills Base
-- `.agent/02_Skills/03_Product_Manager/` — PRD, Planning
-- `.agent/02_Skills/05_Vibe_Coding/` — React, Next, TypeScript
-- `.agent/02_Skills/06_Testing/` — TDD, E2E, Coverage
-- `.agent/02_Skills/07_DevOps/` — Vercel, Deploy
+- `01_Core/03_Skills/03_Product_Manager/` — PRD, Planning
+- `01_Core/03_Skills/05_Vibe_Coding/` — React, Next, TypeScript
+- `01_Core/03_Skills/06_Testing/` — TDD, E2E, Coverage
+- `01_Core/03_Skills/07_DevOps/` — Vercel, Deploy
 
 ### Pipeline TDD
-- Agentes #2-4 en `.agent/01_Agents/`
-- E2E Testing: `.agent/02_Skills/06_Testing/09_E2E_Testing/`
+- Agentes #2-4 en `01_Core/03_Agents/`
+- E2E Testing: `01_Core/03_Skills/06_Testing/09_E2E_Testing/`
