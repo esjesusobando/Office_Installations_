@@ -1,204 +1,118 @@
-# Task Management System with MCP Server
+# 01_Core — Think Different PersonalOS
 
-A reusable task management system for AI assistants (Claude, GPT, etc.) with intelligent deduplication and organization.
+**Versión:** 6.1  
+**Última actualización:** 2026-03-27  
+**Estado:** ✅ Activo
 
-## Core Features
-
-- **Smart Backlog Processing**: Automatically detects duplicates and ambiguous items
-- **Task Organization**: Categories, priorities, and status tracking
-- **CRM Integration**: Manage contacts alongside tasks
-- **MCP Server**: Reliable tool interface for AI assistants
-- **Configurable**: Customize categories, priorities, and workflows
-
-## Quick Start
-
-### 1. Setup
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/task-manager.git
-cd task-manager
-
-# Install dependencies
-pip install pyyaml mcp
-
-# Create directories
-mkdir Tasks CRM
-touch BACKLOG.md
-```
-
-### 2. Configure
-
-Copy `templates/AGENTS.md` to your root and customize:
-- Categories for your workflow
-- Priority definitions
-- Personal goals (optional)
-
-### 3. Start MCP Server
-
-```bash
-python manager_ai_mcp/server_core.py
-```
-
-### 4. Use with AI Assistant
-
-Tell your AI assistant:
-```
-"Read AGENTS.md for instructions on managing my tasks"
-```
-
-## System Architecture
-
-```
-task-manager/
-├── manager_ai_mcp/
-│   └── server_core.py      # MCP server with deduplication
-├── Tasks/                  # Individual task files
-├── CRM/                    # Contact files
-├── BACKLOG.md             # Unstructured notes
-├── AGENTS.md              # AI instructions (from template)
-└── config.yaml            # Optional configuration
-```
-
-## Task Format
-
-Tasks are markdown files with YAML frontmatter:
-
-```yaml
----
-title: Clear task description
-category: technical
-priority: P1
-status: n
-estimated_time: 60
 ---
 
-# Task Details
+## 📂 Estructura
 
-## Overview
-What needs to be done and why.
-
-## Next Actions
-- [ ] Step 1
-- [ ] Step 2
+```
+01_Core/
+├── README.md                    # Este archivo
+├── AGENTS.md                    # Instrucciones del agente principal
+├── CLAUDE.md                    # Configuración Claude Code
+├── Requirements.txt             # Dependencias Python
+├── 01_Rules/                    # Reglas del sistema (22 archivos .mdc)
+├── 02_Evals/                    # Evaluaciones de sesiones
+├── 03_Agents/                   # Agentes especializados
+│   ├── 01_Dream_Team/          # Agentes del Dream Team (5)
+│   └── 02_Specialists_Compound/ # Especialistas Code Review (26)
+├── 04_Integrations/            # Integraciones externas
+│   └── 02_Granola/             # Integración Granola
+├── 05_Mcp/                     # Configuración MCP
+│   ├── opencode.json           # Config OpenCode (18 agentes)
+│   ├── mcp.json                # MCP servers legacy
+│   ├── settings.local.json     # Settings locales
+│   ├── server.py               # Servidor MCP
+│   └── 00_Config_Mcp/          # Documentación MCPs
+├── templates/                   # Plantillas
+└── 09_Server/                   # Servidor backend
+    ├── Engram/                  # Skills de Engram
+    ├── mcp/                     # Server MCP
+    ├── requirements.txt         # Dependencias
+    └── templates/               # Templates
 ```
 
-## MCP Tools Available
+---
 
-| Tool | Description |
-|------|-------------|
-| `list_tasks` | Filter and view tasks |
-| `create_task` | Create new task with metadata |
-| `update_task_status` | Change task status |
-| `process_backlog_with_dedup` | Smart backlog processing |
-| `get_task_summary` | Statistics and overview |
-| `prune_completed_tasks` | Clean old completed tasks |
+## 🎯 Componentes Principales
 
-## Configuration
+### Agentes Configurados (18 total)
 
-Create `config.yaml` to customize:
+| Agente | Tipo | Propósito |
+|--------|------|-----------|
+| `gentleman` | Primary | Mentor Senior Architect |
+| `dangerous-gentleman` | All | Permisos completos |
+| `sdd-orchestrator` | All | SDD orchestrator |
+| `sdd-init` | Subagent | Bootstrap SDD |
+| `sdd-explore` | Subagent | Explorar código |
+| `sdd-propose` | Subagent | Crear propuestas |
+| `sdd-spec` | Subagent | Escribir specs |
+| `sdd-design` | Subagent | Diseño técnico |
+| `sdd-tasks` | Subagent | Descomponer tareas |
+| `sdd-apply` | Subagent | Implementar |
+| `sdd-verify` | Subagent | Verificar |
+| `sdd-archive` | Subagent | Archivar |
+| `ce-work` | Subagent | CE: Ejecutar planes |
+| `ce-review` | Subagent | CE: Code review |
+| `ce-plan` | Subagent | CE: Planificar |
+| `ce-ideate` | Subagent | CE: Idear |
+| `ce-brainstorm` | Subagent | CE: Brainstorming |
 
-```yaml
-categories:
-  - development
-  - marketing
-  - operations
-  - research
+### MCPs Activos (27 servers)
 
-priorities:
-  - P0  # Critical
-  - P1  # Important
-  - P2  # Normal
-  - P3  # Low
+| Categoría | MCPs |
+|-----------|------|
+| 🧠 Memoria | engram, aim-memory-bank, notebooklm |
+| 🔍 Búsqueda | context7, exa |
+| 📝 Notas | Notion, mcp-obsidian, obsidian-api |
+| 🌐 Browser | Playwright |
+| 🤖 AI & Código | github, task-master-ai, zai-mcp-server |
+| 📊 Datos | supabase, Amplitude, supadata |
+| 🔄 Workflow | n8n-mcp, Linear |
+| 📐 Diseño | excalidraw-yctimlin, pencil |
+| 🎯 Productivity | fireflies, Linear |
+| 🛠️ Varios | filesystem, eagle-mcp, TestSprite |
 
-deduplication:
-  similarity_threshold: 0.6
-  check_keywords: true
+---
 
-priority_limits:
-  P0: 3
-  P1: 5
-```
+## 🔧 Configuración
 
-## Deduplication Features
-
-The system automatically:
-- Detects similar tasks using fuzzy matching
-- Identifies ambiguous items that need clarification
-- Suggests appropriate categories
-- Prevents duplicate task creation
-
-## Best Practices
-
-1. **Process backlog regularly** - Weekly is recommended
-2. **Keep tasks specific** - Ambiguous tasks get flagged
-3. **Monitor priority balance** - Don't overload P0/P1
-4. **Prune completed tasks** - Auto-cleanup after 30 days
-5. **Link related items** - Connect tasks to CRM contacts
-
-## Integrations
-
-Optional integrations extend Personal OS with external tools:
-
-| Integration | Description | Setup |
-|-------------|-------------|-------|
-| [Granola](./integrations/granola/) | Sync meeting notes and transcripts | `Set up Granola integration` |
-
-See [integrations/](./integrations/) for full documentation.
-
-## Customization
-
-The system is designed to be extended:
-
-- **Categories**: Add your own in config.yaml
-- **Priorities**: Define what's urgent for you
-- **Workflows**: Modify AGENTS.md instructions
-- **Integrations**: Add external tools via [integrations/](./integrations/)
-
-## Example Workflow
+### OpenCode
 
 ```bash
-# 1. Add items to backlog
-echo "- Email John about project\n- Fix login bug\n- Research competitors" >> BACKLOG.md
-
-# 2. Tell AI to process
-"Process my backlog"
-
-# 3. AI responds:
-"Found 3 items:
-- 1 potential duplicate: 'Fix login bug' matches existing 'Fix authentication issue'
-- 1 needs clarification: 'Research competitors' - what specific questions?
-- 1 ready to create: 'Email John about project'"
-
-# 4. Resolve and create tasks
-"Skip the duplicate, create the email task, I'll clarify research later"
+# Ubicación del config
+01_Core/05_Mcp/opencode.json
 ```
 
-## Privacy & Sharing
+### Ejecución MCP Server
 
-The core system (this repo) contains:
-- Generic MCP server code
-- Template configurations
-- Example structures
+```bash
+# Servidor principal
+python 01_Core/05_Mcp/server.py
 
-Your personal data stays local:
-- Tasks/
-- CRM/
-- BACKLOG.md
-- Personal AGENTS.md
+# Servidor alternativo
+python 01_Core/09_Server/mcp/Server.py
+```
 
-## Contributing
+---
 
-Contributions welcome! The goal is a reusable system that works for different workflows:
-- Additional category templates
-- New MCP tools
-- Improved deduplication algorithms
-- Integration examples
+## 📚 Documentación
 
-## License
+- [Rules Index](./01_Rules/RULES_INDEX.md) — 22 reglas del sistema
+- [Agents README](./03_Agents/README.md) — Todos los agentes
+- [Integrations README](./04_Integrations/README.md) — Integraciones
 
-MIT - Use freely for personal or commercial projects.
+---
 
-## Credits
+## 🔄 Actualización Reciente (2026-03-27)
 
-Built for use with AI assistants like Claude, GPT, and others that support tool calling.
+- ✅ Integrados 8 agentes SDD (sdd-init a sdd-archive)
+- ✅ Integrados 5 agentes CE (ce-work, ce-review, ce-plan, ce-ideate, ce-brainstorm)
+- ✅ Total: 18 agentes activos en opencode.json
+
+---
+
+*Think Different PersonalOS v6.1 — Conectado y operando*
