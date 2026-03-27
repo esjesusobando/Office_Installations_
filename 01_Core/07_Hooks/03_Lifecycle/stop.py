@@ -108,7 +108,7 @@ def run_guardian_if_needed():
                     except Exception:
                         pass  # Linux/macOS
                     print(
-                        "\nRevisa el reporte: 04_Engine/12_Validation/04_Config_Audit/guardian_latest.md"
+                        "\nRevisa el reporte: 08_Scripts_Os/Legacy_Backup/guardian_latest.md"
                     )
                 else:
                     print("\n[GUARDIAN] Todo OK - Sin issues")

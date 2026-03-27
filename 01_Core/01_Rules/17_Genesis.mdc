@@ -16,7 +16,7 @@ Este workflow DEBE ejecutarse al inicio de cada sesión para asegurar la recuper
     - Carga TODO el sistema: estructura, agentes, scripts, MCPs, skills
 2.  **Leer Goals**: `00_Core/GOALS.md` → Norte estratégico
 3.  **Leer Backlog**: `00_Core/BACKLOG.md` → Pendientes sin estructurar
-4.  **Leer Reglas**: `.cursor/00_Rules/*.mdc` (todas las reglas activas)
+4.  **Leer Reglas**: `01_Core/01_Rules/*.mdc` (todas las reglas activas)
 5.  **Leer CLAUDE.md**: Confirmar alineación con instrucciones globales
 
 ### FASE 2: Memoria AI (Contexto Inter-sesiones)
@@ -29,7 +29,7 @@ Este workflow DEBE ejecutarse al inicio de cada sesión para asegurar la recuper
 
 ### FASE 3: Morning Standup
 
-9.  **Ejecutar Script**: `python 04_Engine/08_Scripts_Os/14_Morning_Standup.py`
+9.  **Ejecutar Script**: `python 08_Scripts_Os/14_Morning_Standup.py`
     - Plan del día, prioridades P0/P1, bloqueos
     - Si es primera sesión del día → presentar "The Big 3"
 

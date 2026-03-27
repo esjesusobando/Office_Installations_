@@ -11,7 +11,7 @@ alwaysApply: true
 ### 1. Ejecutar Script (Automático)
 
 ```bash
-python 04_Engine/08_Scripts_Os/14_Morning_Standup.py
+python 08_Scripts_Os/14_Morning_Standup.py
 ```
 
 El script internamente:

@@ -138,4 +138,63 @@ Evalúa el rendimiento del equipo. Mide calidad y eficiencia.
 
 ---
 
-*Think Different PersonalOS v6.1 — Dream Team Architecture*
+## 🚀 METODOLOGÍA 4 FANTÁSTICOS
+
+> **Patrón de ejecución paralela + auditoría para tareas multi-carpeta**
+
+### El Flujo
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    1️⃣ AGENTE TRABAJO (Swarm)                    │
+│   Múltiples agentes paralelos, cada uno con UNA carpeta        │
+│   └─ Objetivo: Procesar carpeta por carpeta rápido             │
+└─────────────────────────────────────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    2️⃣ AUDITOR (Verificador)                     │
+│   Revisa Plan vs Real - detecta qué falta                       │
+│   └─ Objetivo: Calidad post-ejecución                           │
+└─────────────────────────────────────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    3️⃣ ENGRAM (Memoria)                          │
+│   Guarda progreso, decisiones, descubrimientos                   │
+│   └─ Objetivo: Persistencia cross-session                       │
+└─────────────────────────────────────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    4️⃣ DREAM_TEAM (Docs)                         │
+│   Actualiza metodología documentada                             │
+│   └─ Objetivo: Knowledge compound                                │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Cuándo usar
+
+- Cuando hay **3+ carpetas** para procesar
+- Cuando la tarea es **repetitiva** (migrar rutas, buscar patrones, etc.)
+- Cuando necesitamos **auditoría** (Plan vs Real)
+
+### Ejemplo real: Migración de Rutas v6.1
+
+| Paso | Acción | Resultado |
+|------|--------|-----------|
+| 1 | Agentes paralelos (3) | 3 carpetas en paralelo |
+| 2 | Auditor | Encontró 10+ rutas más |
+| 3 | Engram | Progreso guardado |
+| 4 | Dream_Team | Metodología actualizada ✅ |
+
+### Reglas
+
+1. **Contexto completo + tarea** = El orchestrator da TODO el contexto al agente
+2. **Una carpeta por agente** = Sin conflictos
+3. **Auditor siempre** = No confiamos, verificamos
+4. **Engram SIEMPRE** = Antes de compactar
+
+---
+
+*Think Different PersonalOS v6.1 — Dream Team Architecture + 4 Fantásticos*
