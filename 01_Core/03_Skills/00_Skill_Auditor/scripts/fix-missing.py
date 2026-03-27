@@ -41,9 +41,21 @@ GOTCHAS_TEMPLATE = """
 
 > Common mistakes and edge cases to watch for when using this skill.
 
-- **[ERROR]**: Add common error here
-  - **Por qué**: Explanation of why it's an error
-  - **Solución**: How to fix or avoid it
+- **[ERROR]**: No verificar triggers semánticos en la descripción
+  - **Por qué**: Sin triggers, la skill no se activa cuando el usuario la necesita
+  - **Solución**: Incluir "triggers on:" con keywords que el usuario usa realmente
+
+- **[ERROR]**: No verificar Gotchas al crear una skill
+  - **Por qué**: Sin gotchas documentadas, los errores se repiten
+  - **Solución**: Agregar mínimo 3 errores comunes con "Por qué" y "Solución"
+
+- **[ERROR]**: SKILL.md excede 200 líneas
+  - **Por qué**: Satura el context window y empeora el rendimiento
+  - **Solución**: Mover contenido a references/ para progressive disclosure
+
+- **[ERROR]**: No verificar esencia original
+  - **Por qué**: La skill puede perder su propósito con el tiempo
+  - **Solución**: Documentar "## Esencia Original" al inicio
 
 """
 

@@ -23,6 +23,12 @@ triggers:
 
 # SEO SOTA Master
 
+## Esencia Original
+
+> Original purpose of this skill. This section preserves WHY this skill exists.
+
+
+
 > **Level**: TOP TOP — Silicon Valley Grade SEO
 
 This skill combines technical auditing, content strategy, and data-driven optimization. Every recommendation is backed by data, testing, and measurable outcomes.
@@ -666,3 +672,13 @@ This skill makes you a **Silicon Valley-grade SEO expert**:
 *Author: sebas@thinkdifferent*
 *Framework: Anthropic Skill Creator v2.0*
 *Level: TOP TOP — SEO Master*
+
+
+## ⚠️ Gotchas (Errores Comunes a Evitar)
+
+> Common mistakes and edge cases to watch for when using this skill.
+
+- **[ERROR]**: Add common error here
+  - **Por qué**: Explanation of why it's an error
+  - **Solución**: How to fix or avoid it
+
