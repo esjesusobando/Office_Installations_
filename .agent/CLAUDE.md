@@ -11,7 +11,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working in this
 Al iniciar una nueva sesión, ejecutar esta secuencia antes de responder:
 
 0. Leer `00_Core/AGENTS.md` — Fundación del Proyecto, todo Gobernado por este Archivo
-1. Leer `.cursor/00_Rules/01_Context_Protocol.mdc` — Reglas de sesión
+1. Leer `01_Core/01_Rules/01_Context_Protocol.mdc` — Reglas de sesión
 2. Leer `01_Brain/01_Context_Memory/` Y `01_Brain\07_Memory_Brain\` — Último contexto guardado
 3. Ejecutar `mem_context(limit=10)` — Últimas 10 sesiones de Engram
 4. Ejecutar `mem_session_summary()` — Recuperar estado si hubo compaction
@@ -317,19 +317,19 @@ bash 01_Brain/07_Template/setup.sh
 
 ---
 
-## 🔧 Scripts del Motor (`04_Engine/`)
+## 🔧 Scripts del Motor (`08_Scripts_Os/`)
 
 ```bash
 # Workflows
-python 04_Engine/08_Scripts_Os/14_Morning_Standup.py
-python 04_Engine/08_Scripts_Os/09_Backlog_Triage.py
-python 04_Engine/08_Scripts_Os/13_Validate_Stack.py
-python 04_Engine/08_Scripts_Os/08_Ritual_Cierre.py
+python 08_Scripts_Os/14_Morning_Standup.py
+python 08_Scripts_Os/09_Backlog_Triage.py
+python 08_Scripts_Os/13_Validate_Stack.py
+python 08_Scripts_Os/08_Ritual_Cierre.py
 
 # Porteros (protección de commits)
-python 04_Engine/08_Scripts_Os/52_Safe_Commit.py -m "feat: description"
-python 04_Engine/08_Scripts_Os/53_Structure_Auditor.py
-python 04_Engine/08_Scripts_Os/54_Commit_Guard.py -m "feat: description"
+python 08_Scripts_Os/52_Safe_Commit.py -m "feat: description"
+python 08_Scripts_Os/53_Structure_Auditor.py
+python 08_Scripts_Os/54_Commit_Guard.py -m "feat: description"
 ```
 
 ---
