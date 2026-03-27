@@ -1,6 +1,6 @@
 ---
 name: silicon-valley-data-analyst
-description: Advanced data analysis skill that transforms raw data into executive-level insights, strategic recommendations, and predictive models. Follows Silicon Valley best practices for data storytelling, cohort analysis, and actionable intelligence. Use when analyzing business metrics, user behavior, revenue trends, or any dataset that requires strategic interpretation.
+description: Advanced data analysis skill that transforms raw data into executive-level insights. Triggers on: analyze data, data analysis, cohort analysis, revenue metrics, business intelligence, generate insights. Follows Silicon Valley best practices for data storytelling, cohort analysis, and actionable intelligence.
 author: sebas@thinkdifferent
 version: 1.0.0
 tags: [data-analysis, analytics, business-intelligence, metrics, insights, cohorts, predictive, executive-reporting]

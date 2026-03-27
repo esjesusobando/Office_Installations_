@@ -2,7 +2,7 @@
 name: system-master
 description: >
   Master orchestrator for Think Different AI ecosystem.
-  TRIGGERS: "gentleman o compound", "qué usar", "cómo lo hago",
+  Triggers on: "gentleman o compound", "qué usar", "cómo lo hago",
   "workflow", "sistema", "que skill", "empezar proyecto",
   "code review", "idear", "planear", "diseñar", "deploy",
   "testear", "documentar", "investigar", "feature", "bug",
