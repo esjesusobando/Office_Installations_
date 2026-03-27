@@ -207,6 +207,25 @@ Evalúa el rendimiento del equipo. Mide calidad y eficiencia.
 2. **Una carpeta por agente** = Sin conflictos
 3. **Auditor siempre** = No confiamos, verificamos
 4. **Engram SIEMPRE** = Antes de compactar
+5. **Auditor rounds múltiples** = Si encuentra más trabajo → nuevo batch de agentes
+
+### Ejemplo real: Migración de Rutas v6.1
+
+| Fase | Acción | Resultado |
+|------|--------|-----------|
+| 1️⃣ | Agentes paralelos (swarm) | ~10 carpetas procesadas |
+| 2️⃣ | Auditor Round 1 | Encontró +10 rutas en otros directorios |
+| 3️⃣ | Agentes Round 2 | Corrigieron rutas encontradas |
+| 4️⃣ | Auditor Round 2 | Encontró +30 rutas en .agent/02_Skills/ |
+| 5️⃣ | Agentes Round 3 | Corrigieron rutas finales |
+| 6️⃣ | Auditor FINAL | ✅ PASS - 0 rutas obsoletas |
+| 7️⃣ | Engram | Progreso guardado |
+| 8️⃣ | Dream_Team | Metodología documentada |
+
+#### Resultado Final Migración Rutas v6.1
+- **14 commits** de migración
+- **0 rutas obsoletas** en archivos activos
+- **~73 rutas** en Legacy/Archive (aceptables - históricos)
 
 ---
 

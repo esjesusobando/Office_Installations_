@@ -94,7 +94,7 @@ def trigger_evaluation():
     if analysis["should_eval"]:
         print(f"\n   ⚠️  Recommendation: Run Evaluator!")
         print(
-            f"   Command: python 04_Engine/08_Scripts_Os/11_Anthropic_Harness/02_Evaluator_Runner.py"
+            f"   Command: python 08_Scripts_Os/11_Anthropic_Harness/02_Evaluator_Runner.py"
         )
     else:
         print(f"\n   ✅ No evaluation needed")

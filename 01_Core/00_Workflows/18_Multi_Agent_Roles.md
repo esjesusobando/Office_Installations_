@@ -91,9 +91,10 @@ pipeline:
 ### Python API
 
 ```python
-from 04_Engine.scripts.Os.11_Anthropic_Harness.multi_agent_pipeline import (
-    PipelineBuilder, AgentRole
-)
+# Legacy - API anterior a v6.1
+# from 08_Scripts_Os.11_Anthropic_Harness.multi_agent_pipeline import (
+#     PipelineBuilder, AgentRole
+# )
 
 # Crear pipeline
 pipeline = (
@@ -126,7 +127,8 @@ Este workflow se complementa con `07_Agent_Teams_Locks.py`:
 - **Multi-Agent Roles**: Define roles especializados y flujos
 
 ```python
-from 04_Engine.scripts.Os.11_Anthropic_Harness.07_Agent_Teams_Locks import AgentTeam, GitLockManager
+# Legacy - API anterior a v6.1
+# from 08_Scripts_Os.11_Anthropic_Harness.07_Agent_Teams_Locks import AgentTeam, GitLockManager
 
 # Crear equipo con locks
 manager = GitLockManager()

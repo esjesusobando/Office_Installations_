@@ -357,7 +357,7 @@ from config_paths import TASKS_DIR, EVALS_DIR, SERVER_DIR, MATRIX_DIR
 
 ---
 
-## 8. SYSTEM GUARDIAN
+## 9. SYSTEM GUARDIAN
 
 Validates project structure with automatic validation + 3 agents:
 
