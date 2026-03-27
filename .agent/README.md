@@ -83,11 +83,11 @@ Este directorio contiene la configuración de agentes, skills y hooks de Persona
 
 ## 🔗 Related
 
-- **Rules:** See `.cursor/00_Rules/` for active rules
+- **Rules:** See `01_Core/01_Rules/` for active rules
 - **Skills:** See `.cursor/02_Skills/05_Gentleman/` for Gentleman skills
 - **Taste-Skills:** See `.cursor/02_Skills/11_Taste_Skills/`
 - **CLAUDE.md:** See `./CLAUDE.md` for agent instructions
-- **Session Summary:** See `01_Brain/07_Memory_Brain/SESION_SUMMARY_2026-03-24_HIPERDETALLADO.md`
+- **Session Summary:** See `04_Operations/04_Memory_Brain/SESION_SUMMARY_2026-03-24_HIPERDETALLADO.md`
 
 ---
 

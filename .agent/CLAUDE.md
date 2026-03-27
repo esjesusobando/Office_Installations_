@@ -289,7 +289,7 @@ Code Review con IA integrado.
 2. **FASE 2**: 6 Sombreros — Information🔵, Emotions🔴, Benefits🟡, Risks🟢, Meta🟣, Process⚪
 3. **FASE 3**: Verification — Execution, Completeness, Quality, Lessons Learned
 
-Reports se guardan en: `01_Brain/07_Memory_Brain/00_Code_Reviews/`
+Reports se guardan en: `04_Operations/04_Memory_Brain/00_Code_Reviews/`
 
 ### TASTE-SKILLS (PRIORIDAD ALTA PARA FRONTEND)
 

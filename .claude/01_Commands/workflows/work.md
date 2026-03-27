@@ -10,7 +10,7 @@ Ejecuta un plan de trabajo eficientemente manteniendo calidad y terminando featu
 
 ## Usage
 ```
-/workflows:work docs/plans/2026-03-10-feature-plan.md
+/workflows:work 04_Operations/05_Plans/2026-03-10-feature-plan.md
 /workflows:work @current-todo
 ```
 

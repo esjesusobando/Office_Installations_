@@ -271,7 +271,46 @@ Code review con IA.
 
 ---
 
-## 6. MCP SERVERS — Active (36 Servers)
+## 6. PLUGINS INSTALADOS
+
+### Skill Creator v2.0 (Anthropic Official)
+
+**Estado**: ✅ Instalado (2026-03-27)  
+**Fuente**: `anthropics/claude-plugins-official`  
+**Versión**: Skill Creator v2.0 (Skills 2.0)
+
+#### Ubicaciones
+- **Plugin**: `01_Core/08_Plugins/skill-creator/`
+- **Skill**: `01_Core/03_Skills/15_Skill_Creator_Official/`
+
+#### Características v2.0
+- **评测系统**: `scripts/run_eval.py` - Tests cuantitativos automatizados
+- **Benchmarks**: `scripts/aggregate_benchmark.py` - Métricas de rendimiento
+- **Description Optimization**: `scripts/improve_description.py` - Optimización de triggers
+- **Multi-agent Support**: Ejecución paralela en contexto limpio
+- **Blind Comparison**: `agents/comparator.md` - Comparación A/B ciega
+- **Post-hoc Analysis**: `agents/analyzer.md` - Análisis de resultados
+- **Viewer Web**: `eval-viewer/generate_review.py` - Interfaz de revisión
+
+#### Uso
+```bash
+# Para crear skills con testing
+Usar skill en 01_Core/03_Skills/15_Skill_Creator_Official/
+
+# Para benchmarking
+python 01_Core/08_Plugins/skill-creator/skills/skill-creator/scripts/aggregate_benchmark.py <directorio>
+```
+
+#### Instalación Global (Opcional)
+Para instalación global via marketplace:
+```
+/plugin install skill-creator@claude-plugins-official
+```
+(Requiere login a Claude Code)
+
+---
+
+## 7. MCP SERVERS — Active (36 Servers)
 
 Configured in `.mcp.json`:
 
@@ -291,7 +330,7 @@ Configured in `.mcp.json`:
 
 ---
 
-## 7. HUB SCRIPTS
+## 8. HUB SCRIPTS
 
 Centralized HUBs in `08_Scripts_Os/`:
 
@@ -413,6 +452,146 @@ Dumbledor_Silver: feat: initialize Think Different PersonalOS
 
 ---
 
+## 13. SUBAGENT PROTOCOL (OBLIGATORIO)
+
+### Contexto Inicial Requerido para TODOS los Subagentes
+
+**REGLA IMPERATIVA**: Cada subagente DEBE activar el Workflow Genesis y obtener contexto completo del proyecto ANTES de recibir cualquier tarea específica.
+
+#### Pasos Obligatorios al Iniciar Subagente:
+
+1. **Activar Workflow Genesis**:
+   - Leer `.agent/03_Workflows/00_Genesis_Workflow.md` (si existe)
+   - Alternativamente: seguir protocolo de inicialización abajo
+
+2. **Leer Contexto Estratégico** (en este orden):
+   - `00_Winter_is_Coming/GOALS.md` → Objetivos estratégicos
+   - `00_Winter_is_Coming/BACKLOG.md` → Tareas pendientes
+   - `01_Core/` → Estructura de skills, agents, MCPs
+   - `04_Operations/02_Knowledge_Brain/` → Base de conocimiento
+
+3. **Entender Estructura del Proyecto**:
+   - Revisar `AGENTS.md` (este archivo) para reglas del sistema
+   - Verificar `03_Tasks/` para tareas activas
+   - Consultar `02_Knowledge/` para contexto relevante
+
+4. **Esperar Instrucción del Orquestador**:
+   - Solo después de tener contexto completo
+   - Recibir tarea específica del Agente principal
+   - Ejecutar con alineación a objetivos estratégicos
+
+#### Prompt Template para Lanzamiento de Subagentes:
+
+```
+**SUBAGENTE — CONTEXTO COMPLETO REQUERIDO**
+
+Antes de cualquier acción, debes:
+
+1. ACTIVAR WORKFLOW GENESIS:
+   - Leer 00_Winter_is_Coming/GOALS.md (objetivos estratégicos)
+   - Leer 00_Winter_is_Coming/BACKLOG.md (tareas pendientes)
+   - Explorar estructura del proyecto (01_Core/, 04_Operations/)
+
+2. ENTENDER EL PROYECTO:
+   - PersonalOS v6.1 — Sistema de productividad personal
+   - Objetivos: Product Designer & AI Strategist
+   - Filosofía: Contexto > Código, Agentes > Scripts manuales
+
+3. ESPERAR INSTRUCCIÓN:
+   - Orquestador te asignará tarea específica
+   - Debes estar listo con contexto completo
+   - Ejecutar con alineación a GOALS.md
+
+**TAREA ASIGNADA**: [Aquí va la instrucción específica]
+```
+
+### Auditor Protocol (EXTENDED CONTEXT)
+
+**REGLA ESPECIAL PARA AUDITORES**: Los auditores (agentes de evaluación, revisión, control de calidad) requieren contexto AÚN MÁS DETALLADO que los subagentes regulares, porque son los que evalúan el trabajo y reportan resultados al Orquestador.
+
+#### Contexto Extendido para Auditores:
+
+Además de los pasos normales, los auditores DEBEN:
+
+1. **Estándares de Calidad**:
+   - Leer `04_Operations/02_Knowledge_Brain/08_Skill_Creation_SOTA.md`
+   - Revisar `04_Operations/02_Knowledge_Brain/03_Anthropic_Skills_Framework.md`
+   - Consultar checklist de calidad en `01_Core/03_Skills/`
+
+2. **Criterios de Evaluación**:
+   - Entender objetivos específicos de la evaluación
+   - Revisar patrones de éxito/fallo previos
+   - Consultar métricas de calidad definidas
+
+3. **Contexto Histórico**:
+   - Revisar `04_Operations/02_Knowledge_Brain/` para decisiones pasadas
+   - Entender evolución del proyecto (archivos `*_Evolution.md`)
+   - Consultar `02_Knowledge/` para contexto específico del dominio
+
+4. **Reporte al Orquestador**:
+   - Estructura clara de hallazgos
+   - Evidencia concreta (citas, referencias)
+   - Recomendaciones accionables
+   - Severidad/clasificación de issues
+
+#### Prompt Template para Auditores:
+
+```
+**AUDITOR — CONTEXTO EXTENDIDO REQUERIDO**
+
+Antes de evaluar cualquier trabajo, debes:
+
+1. ACTIVAR WORKFLOW GENESIS + CONTEXTO EXTENDIDO:
+   - Leer objetivos estratégicos (00_Winter_is_Coming/GOALS.md)
+   - Leer estándares de calidad (04_Operations/02_Knowledge_Brain/08_Skill_Creation_SOTA.md)
+   - Revisar frameworks de evaluación (04_Operations/02_Knowledge_Brain/03_Anthropic_Skills_Framework.md)
+   - Explorar conocimiento relevante (02_Knowledge/)
+
+2. ENTENDER CRITERIOS DE EVALUACIÓN:
+   - Objetivos específicos de la auditoría
+   - Estándares de calidad del proyecto
+   - Patrones de éxito/fallo previos
+   - Métricas de calidad definidas
+
+3. PREPARAR REPORTE:
+   - Estructura: Hallazgos → Evidencia → Recomendaciones
+   - Severidad: Crítico/Alto/Medio/Bajo
+   - Referencias específicas a documentos/archivos
+   - Acciones concretas sugeridas
+
+**TRABAJO A EVALUAR**: [Aquí va el trabajo específico]
+**CONTEXTO DE EVALUACIÓN**: [Qué se evalúa y por qué]
+```
+
+#### Workflow Genesis Alternativo (si no existe archivo):
+
+```bash
+# 1. Leer objetivos
+cat 00_Winter_is_Coming/GOALS.md
+
+# 2. Leer backlog
+cat 00_Winter_is_Coming/BACKLOG.md
+
+# 3. Explorar estructura
+ls -la 01_Core/
+ls -la 04_Operations/02_Knowledge_Brain/
+
+# 4. Leer reglas del sistema
+head -50 AGENTS.md
+
+# 5. Listar tareas activas
+ls -la 03_Tasks/
+```
+
+#### Beneficios de Este Protocolo:
+
+- **Alineación Estratégica**: Subagentes trabajan hacia objetivos reales
+- **Consistencia**: Mismos fundamentos, diferentes tareas
+- **Eficiente**: No reinventar contexto en cada subagente
+- **Escalable**: Nuevos subagentes heredan conocimiento acumulado
+
+---
+
 ## Quick Reference
 
 | Category | Command/Tool |
@@ -424,6 +603,7 @@ Dumbledor_Silver: feat: initialize Think Different PersonalOS
 | **Document** | `/ce:compound` |
 | **Validate** | `gr` or `01_Auditor_Hub.py` |
 | **Memory** | `engram save <title> <msg>` |
+| **Subagent** | Protocolo 13 — Contexto completo obligatorio |
 
 ---
 

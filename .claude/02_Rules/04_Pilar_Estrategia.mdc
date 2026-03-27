@@ -16,7 +16,7 @@ Mantiene los estándares de razonamiento transparente (CoT), eficiencia de token
 
 1.  **Contexto Atómico**: Una Tarea = Un Chat. Resetear el contexto al cambiar de objetivo para evitar la degradación y el ruido.
 2.  **Ciclo de Tarea**: Triage -> Plan -> Ejecución (Progreso 10%) -> Verificación (Walkthrough) -> Aprendizaje (Reglas).
-3.  **The Golden Loop**: Cada error debe inyectarse en las reglas. Las Notas de Proceso (`01_Brain/Process_Notes/`) son la memoria persistente del sistema.
+3.  **The Golden Loop**: Cada error debe inyectarse en las reglas. Las Notas de Proceso (`04_Operations/02_Process_Notes/`) son la memoria persistente del sistema.
 4.  **Ingesta de Contexto**: Todo workflow DEBE comenzar obligando al asistente a leer las reglas vigentes.
 5.  **Observabilidad CoT**: El razonamiento (`thought_process`) debe ser transparente y documentado.
 6.  **Eficiencia de Tokens**: Monitorear el ratio `CoT / Response`.
