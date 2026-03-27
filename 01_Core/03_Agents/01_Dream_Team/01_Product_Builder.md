@@ -105,7 +105,7 @@ Este perfil orquesta el ciclo completo de desarrollo de una feature: desde la de
 - [ ] **QA passed** — Evaluador no encontró bugs críticos
 - [ ] **Deploy exitoso** — URL responds correctly
 - [ ] **SEO verificado** — Lighthouse score >90
-- [ ] **Documentación actualizada** — README o docs/
+- [ ] **Documentación actualizada** — README o actualizar en `01_Core/01_Inventario_Total.md`
 
 ---
 

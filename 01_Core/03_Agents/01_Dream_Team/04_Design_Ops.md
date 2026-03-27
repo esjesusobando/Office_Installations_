@@ -167,18 +167,18 @@ Este perfil construye sistemas de diseño escalables: desde brand guidelines has
 ### Skills Anthropic
 | Skill | Ubicación | Uso |
 |-------|-----------|-----|
-| **Evaluator Pattern** | `.agent/02_Skills/14_Anthropic_Harness/01_Evaluator_Pattern/` | Cómo hacer adversarial eval |
-| **Context Management** | `.agent/02_Skills/14_Anthropic_Harness/02_Context_Management/` | Reset vs compaction |
-| **Sprint Contract** | `.agent/02_Skills/14_Anthropic_Harness/03_Sprint_Contract/` | Generator + Evaluator |
+| **Evaluator Pattern** | `01_Core/03_Skills/14_Anthropic_Harness/01_Evaluator_Pattern/` | Cómo hacer adversarial eval |
+| **Context Management** | `01_Core/03_Skills/14_Anthropic_Harness/02_Context_Management/` | Reset vs compaction |
+| **Sprint Contract** | `01_Core/03_Skills/14_Anthropic_Harness/03_Sprint_Contract/` | Generator + Evaluator |
 
 ### Workflow
-- **17_Anthropic_Harness**: `.agent/03_Workflows/17_Anthropic_Harness.md` — Workflow completo de 3 agentes
+- **17_Anthropic_Harness**: `01_Core/00_Workflows/17_Anthropic_Harness.md` — Workflow completo de 3 agentes
 
 ### Skills Base (Design)
-- `.agent/02_Skills/04_Product_Design/` — 11 skills de diseño
-- `.agent/02_Skills/07_DevOps/01_Vercel_Deploy/` — Deploy
-- `.agent/02_Skills/06_Testing/09_E2E_Testing/` — Playwright para screenshots
+- `01_Core/03_Skills/04_Product_Design/` — 11 skills de diseño
+- `01_Core/03_Skills/07_DevOps/01_Vercel_Deploy/` — Deploy
+- `01_Core/03_Skills/06_Testing/09_E2E_Testing/` — Playwright para screenshots
 
 ### Specialists
-- `.agent/01_Agents/Specialists/Figma-Design-Sync.md`
-- `.agent/01_Agents/Specialists/Design-Implementation-Reviewer.md`
+- `01_Core/03_Agents/02_Specialists_Compound/Figma-Design-Sync.md`
+- `01_Core/03_Agents/02_Specialists_Compound/Design-Implementation-Reviewer.md`
