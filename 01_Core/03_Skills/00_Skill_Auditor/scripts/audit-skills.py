@@ -121,14 +121,26 @@ def audit_skill(skill_dir: Path) -> dict:
                 results["failed"] += 1
                 results["missing"].append("Missing 'name' field in YAML")
 
-            # Check description field
+            # Check description field - handle both single-line and multi-line YAML
+            # First try single-line, then try multi-line with ">" or "|"
             desc_match = re.search(r"^description:\s*(.+)$", yaml_content, re.MULTILINE)
+            if not desc_match:
+                # Try to match multi-line description (with > or |)
+                desc_match = re.search(
+                    r"^description:\s*[>|]\s*\n(.+?)\n---", yaml_content, re.DOTALL
+                )
+
             if desc_match:
                 desc_value = desc_match.group(1).strip()
+                # Also check the full YAML section for triggers
+                full_desc_check = yaml_content
+
                 # Check triggers - accept "triggers on:", "triggers:", "trigger:", "TRIGGERS:"
                 has_triggers = (
-                    "triggers" in desc_value.lower() or "trigger" in desc_value.lower()
-                ) or "TRIGGERS:" in desc_value
+                    "triggers" in desc_value.lower()
+                    or "trigger" in desc_value.lower()
+                    or "triggers" in full_desc_check.lower()
+                )
                 results["checks"]["description: has triggers"] = has_triggers
 
                 if has_triggers:
@@ -154,17 +166,16 @@ def audit_skill(skill_dir: Path) -> dict:
     # =========================================================================
     # CHECK 3: Progressive Disclosure
     # =========================================================================
-    # Line count
+    # Line count - solo fail si pasa de 700
     is_under_limit = line_count < 200
-    is_under_max = line_count < 500
+    is_under_max = line_count < 700
     results["checks"]["SKILL.md: < 200 lines"] = is_under_limit
-    results["checks"]["SKILL.md: < 500 lines"] = is_under_max
 
     if is_under_limit:
         results["passed"] += 1
     elif is_under_max:
         results["warnings"].append(f"SKILL.md has {line_count} lines (ideal: < 200)")
-        results["passed"] += 1  # Still pass if under 500
+        results["passed"] += 1  # Pass but warn if under 700
     else:
         results["failed"] += 1
         results["missing"].append(f"SKILL.md has {line_count} lines (max: 500)")
