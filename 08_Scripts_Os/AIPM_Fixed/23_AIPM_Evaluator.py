@@ -7,11 +7,23 @@ from colorama import init, Fore, Style
 
 init()
 
-sys.path.insert(0, str(Path(__file__).parent))
-from config_paths import PROJECT_ROOT, SYSTEM_DIR
-
+# Agregar paths necesarios
 SCRIPT_DIR = Path(__file__).resolve().parent
-AIPM_CORE = SYSTEM_DIR / "01_Core" / "AIPM"  # Ruta real del sistema (05_System/01_Core/AIPM)
+PROJECT_ROOT = SCRIPT_DIR.parent.parent
+CONFIG_PATHS = PROJECT_ROOT / "08_Scripts_Os"
+
+sys.path.insert(0, str(CONFIG_PATHS))
+sys.path.insert(0, str(PROJECT_ROOT))
+
+try:
+    from config_paths import PROJECT_ROOT as _PR, SYSTEM_DIR as _SD
+
+    PROJECT_ROOT = _PR
+    SYSTEM_DIR = _SD
+except:
+    SYSTEM_DIR = PROJECT_ROOT / "01_Core"
+
+AIPM_CORE = SYSTEM_DIR / "AIPM"
 
 # Fix Windows console encoding
 if sys.platform == "win32":
