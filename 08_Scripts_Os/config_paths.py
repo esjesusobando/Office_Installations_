@@ -41,51 +41,51 @@ if not ROOT_DIR or not ROOT_DIR.exists():
         "Define la variable 'PERSONAL_OS_ROOT' o asegúrate de que existe 01_Core."
     )
 
-# 7 Dimensiones del OS
-CORE_DIR = ROOT_DIR / "00_Core"
-BRAIN_DIR = ROOT_DIR / "01_Brain"
-OPERATIONS_DIR = ROOT_DIR / "02_Operations"
-KNOWLEDGE_DIR = ROOT_DIR / "03_Knowledge"
-ENGINE_DIR = ROOT_DIR / "04_Engine"
-SYSTEM_DIR = ROOT_DIR / "05_System"
-ARCHIVE_DIR = ROOT_DIR / "06_Archive"
+# 8 Dimensiones del OS (estructura v6.1)
+CORE_DIR = ROOT_DIR / "01_Core"
+BRAIN_DIR = ROOT_DIR / "04_Operations"
+OPERATIONS_DIR = ROOT_DIR / "04_Operations"
+KNOWLEDGE_DIR = ROOT_DIR / "02_Knowledge"
+ENGINE_DIR = ROOT_DIR / "08_Scripts_Os"
+SYSTEM_DIR = ROOT_DIR / "01_Core"
+ARCHIVE_DIR = ROOT_DIR / "05_Archive"
 PROJECTS_DIR = ROOT_DIR / "07_Projects"
+PLAYGROUND_DIR = ROOT_DIR / "06_Playgraound"
 
 # =============================================================================
-# SUBDIRECTORIOS BRAIN
+# SUBDIRECTORIOS BRAIN/OPERATIONS (v6.1)
 # =============================================================================
 
 BRAIN_MEMORY_DIR = BRAIN_DIR / "01_Context_Memory"
 BRAIN_KNOWLEDGE_DIR = BRAIN_DIR / "02_Knowledge_Brain"
 BRAIN_NOTES_DIR = BRAIN_DIR / "03_Process_Notes"
-BRAIN_RULES_DIR = BRAIN_DIR / "04_Rules"
-BRAIN_TEMPLATE_DIR = BRAIN_DIR / "05_Templates"
+BRAIN_RULES_DIR = BRAIN_DIR / "04_Memory_Brain"
 
 # =============================================================================
-# SUBDIRECTORIOS OPERATIONS
+# SUBDIRECTORIOS OPERATIONS (v6.1)
 # =============================================================================
 
-OPERATIONS_TASKS_DIR = OPERATIONS_DIR / "01_Active_Tasks"
-OPERATIONS_EVALS_DIR = OPERATIONS_DIR / "02_Evals"
-OPERATIONS_ANALYTICS_DIR = OPERATIONS_DIR / "03_Analytics"
+OPERATIONS_TASKS_DIR = ROOT_DIR / "03_Tasks"
+OPERATIONS_EVALS_DIR = ROOT_DIR / "01_Core" / "02_Evals"
+OPERATIONS_ANALYTICS_DIR = BRAIN_DIR / "03_Process_Notes"
 
 # =============================================================================
-# SUBDIRECTORIOS ENGINE
+# SUBDIRECTORIOS ENGINE/SCRIPTS (v6.1)
 # =============================================================================
 
-ENGINE_SCRIPTS_DIR = ENGINE_DIR / "08_Scripts_Os"
-ENGINE_TESTS_DIR = ENGINE_DIR / "06_Tests"
-ENGINE_COMPOUND_DIR = ENGINE_DIR / "03_Compound_Engine"
+ENGINE_SCRIPTS_DIR = ENGINE_DIR  # Ya está en 08_Scripts_Os
+ENGINE_TESTS_DIR = ENGINE_DIR / "Legacy_Backup"
+ENGINE_COMPOUND_DIR = ROOT_DIR / "01_Core" / "03_Skills" / "00_Compound_Engineering"
 
 # =============================================================================
-# SUBDIRECTORIOS KNOWLEDGE
+# SUBDIRECTORIOS KNOWLEDGE (v6.1)
 # =============================================================================
 
-KNOWLEDGE_RESEARCH_DIR = KNOWLEDGE_DIR / "01_Research_Knowledge"
-KNOWLEDGE_NOTES_DIR = KNOWLEDGE_DIR / "02_Notes_Brain"
-KNOWLEDGE_RESOURCES_DIR = KNOWLEDGE_DIR / "03_Resources_External"
-KNOWLEDGE_EXAMPLES_DIR = KNOWLEDGE_DIR / "04_Examples_Guide"
-KNOWLEDGE_PLANS_DIR = KNOWLEDGE_DIR / "09_Strategic_Plans"
+KNOWLEDGE_RESEARCH_DIR = KNOWLEDGE_DIR / "01_Research_Os"
+KNOWLEDGE_NOTES_DIR = BRAIN_DIR / "02_Knowledge_Brain"
+KNOWLEDGE_RESOURCES_DIR = KNOWLEDGE_DIR / "03_Resources"
+KNOWLEDGE_EXAMPLES_DIR = KNOWLEDGE_DIR / "04_Examples"
+KNOWLEDGE_PLANS_DIR = BRAIN_DIR / "04_Memory_Brain"
 
 # Alias para scripts que usan PLANS_DIR
 PLANS_DIR = KNOWLEDGE_PLANS_DIR
