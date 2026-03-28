@@ -8,7 +8,11 @@ import sys
 import re
 
 Skills_ROOT = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".agent", "02_Skills"
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    "..",
+    "..",
+    "01_Core",
+    "03_Skills",
 )
 CATEGORIES = ["01_Core", "02_High_Value", "03_Utilities"]
 
