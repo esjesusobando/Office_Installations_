@@ -22,6 +22,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working in this
 - ✅ Usar: `powershell -ExecutionPolicy Bypass -File ".agent/04_Extensions/hooks/04_Sound/task-complete-sound.ps1"`
 - ✅ O usar función `speak()` para confirmación por voz
 
+**📋 REPORTE OBLIGATORIO (cada beep = reporte):**
+- ✅ Porcentaje de avance completado
+- ✅ Qué tarea terminé
+- ✅ En qué tarea estoy
+- ✅ Cuál es la próxima tarea
+
 ---
 
 Al iniciar una nueva sesión, ejecutar esta secuencia antes de responder:
