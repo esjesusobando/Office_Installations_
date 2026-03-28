@@ -73,9 +73,9 @@ Antes de responder al usuario o ejecutar cualquier código, el asistente debe re
 
 1.  **USO MANDATORIO DE AGENT TEAMS**: Para todas las Tareas (Investigación, Codificación Modular, Auditorías), el agente principal **DEBE** delegar en sub-agentes para proteger la ventana de contexto del orquestador.
     - **Claude Code nativo** (`.claude/agents/`): `lfg`, `aipm-judge`, `workflow-orchestrator`
-    - **Framework extendido** (`01_Core/03_Agents/`): 13 agentes especializados (TDD, Security, Git, etc.)
+    - **Framework extendido** (`01_Core/04_Agents/`): 13 agentes especializados (TDD, Security, Git, etc.)
 
-2.  **BIBLIOTECA DE REGLAS**: Todo sub-agente o tarea delegada DEBE cargar y priorizar `01_Core/01_Rules/`, `01_Core/03_Agents/`, `01_Core/03_Skills/`, `01_Core/00_Workflows/`, `.agent/04_Extensions/`, `CLAUDE.md` y `00_Winter_is_Coming/AGENTS.md` para garantizar consistencia operativa.
+2.  **BIBLIOTECA DE REGLAS**: Todo sub-agente o tarea delegada DEBE cargar y priorizar `01_Core/01_Rules/`, `01_Core/04_Agents/`, `01_Core/03_Skills/`, `01_Core/00_Workflows/`, `.agent/04_Extensions/`, `CLAUDE.md` y `00_Winter_is_Coming/AGENTS.md` para garantizar consistencia operativa.
 
 3.  **OBJETIVO DE VENTANA**: Reservar la ventana de contexto del agente principal para el razonamiento estratégico, dejando que el `agent-team` maneje la implementación táctica y el "trabajo pesado". Las acciones de todo los planificado lo realizaran los Subagentes, siempre repostando cada 10% Avance y cual es el siguiente paso (Indispensable)
 

@@ -161,5 +161,5 @@ Este perfil construye la infraestructura y herramientas que hacen posible el des
 - `01_Core/03_Skills/05_Vibe_Coding/16_MCP_Client/` — Integraciones MCP
 
 ### Specialists
-- `01_Core/03_Agents/02_Specialists_Compound/Performance-Oracle.md`
-- `01_Core/03_Agents/02_Specialists_Compound/Security-Sentinel.md`
+- `01_Core/04_Agents/02_Specialists_Compound/Performance-Oracle.md`
+- `01_Core/04_Agents/02_Specialists_Compound/Security-Sentinel.md`

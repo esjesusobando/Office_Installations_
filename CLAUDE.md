@@ -8,6 +8,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working in this
 
 ## 🔴 REGLA 00: Protocolo Génesis (OBLIGATORIO)
 
+**IDIOMA:** 
+- ✅ **SIEMPRE** Español en chat (es mi idioma natal)
+- ✅ Usar español rioplatense: laburo, ponete las piedras, boludo, quilombo, bancá, dale, etc.
+
+**SONIDO AL FINALIZAR TAREA:**
+- ✅ Ejecutar beep/sound al completar cualquier tarea importante
+- ✅ Usar: `powershell -ExecutionPolicy Bypass -File ".agent/04_Extensions/hooks/04_Sound/task-complete-sound.ps1"`
+- ✅ O usar función `speak()` para confirmación por voz
+
+---
+
 Al iniciar una nueva sesión, ejecutar esta secuencia antes de responder:
 
 0. Leer `00_Winter_is_Coming/AGENTS.md` y SIEMPRE Comunicarte en Español en Chat — TU MATRIX, la fuente de verdad completa

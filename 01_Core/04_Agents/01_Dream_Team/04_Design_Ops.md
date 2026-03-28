@@ -180,5 +180,5 @@ Este perfil construye sistemas de diseño escalables: desde brand guidelines has
 - `01_Core/03_Skills/06_Testing/09_E2E_Testing/` — Playwright para screenshots
 
 ### Specialists
-- `01_Core/03_Agents/02_Specialists_Compound/Figma-Design-Sync.md`
-- `01_Core/03_Agents/02_Specialists_Compound/Design-Implementation-Reviewer.md`
+- `01_Core/04_Agents/02_Specialists_Compound/Figma-Design-Sync.md`
+- `01_Core/04_Agents/02_Specialists_Compound/Design-Implementation-Reviewer.md`

@@ -184,4 +184,4 @@ Este perfil construye estrategias de marketing técnico: SEO, paid ads, contenid
 - `01_Core/03_Skills/05_Vibe_Coding/18_Firecrawl/` — Web scraping
 
 ### Specialists
-- `01_Core/03_Agents/02_Specialists_Compound/Best-Practices-Researcher.md`
+- `01_Core/04_Agents/02_Specialists_Compound/Best-Practices-Researcher.md`
