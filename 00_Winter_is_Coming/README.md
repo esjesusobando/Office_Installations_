@@ -1,6 +1,6 @@
 # 00_Winter_is_Coming — Núcleo del PersonalOS
 
-**Versión:** 6.1  
+**Versión:** 1.0
 **Última actualización:** 2026-03-27  
 **Estado:** ✅ Activo
 
