@@ -1,6 +1,6 @@
 # Plan: Instalación y Actualización de Gentleman Skills
 
-> **Fecha:** 2026-03-25  
+> **Fecha:** 2026-03-25
 > **Objetivo:** Descargar, instalar y sincronizar las skills de Gentleman Programming
 > **Estado:** ✅ COMPLETO
 

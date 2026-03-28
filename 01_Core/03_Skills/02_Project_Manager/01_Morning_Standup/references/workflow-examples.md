@@ -26,7 +26,7 @@
 - Task: "Integrate Stripe payments"
   - Blocker: "Waiting for API keys from Finance"
   - Action: Ping @finance-team in Slack
-  
+
 - Task: "Fix login bug on iOS"
   - Blocker: "Can't reproduce on simulator"
   - Action: Schedule sync with Mobile team
@@ -39,7 +39,7 @@
 
 - Goal: "Launch user authentication"
   → Tasks: 1, 2 (above)
-  
+
 - Goal: "Improve code coverage to 80%"
   → Tasks: Writing tests for user auth
 ```

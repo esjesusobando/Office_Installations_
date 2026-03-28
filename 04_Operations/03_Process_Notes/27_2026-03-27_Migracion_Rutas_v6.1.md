@@ -51,12 +51,12 @@ Se está actualizando todas las referencias a carpetas obsoletas en el PersonalO
 Think_Different/
 ├── 00_Winter_is_Coming/  # GOALS, BACKLOG
 ├── 01_Core/              # Fuente de la verdad
-├── 02_Knowledge/         
-├── 03_Tasks/             
+├── 02_Knowledge/
+├── 03_Tasks/
 ├── 04_Operations/        # Context, Notes, Plans, Solutions
-├── 05_Archive/          
-├── 08_Scripts_Os/        
-└── .agent/              
+├── 05_Archive/
+├── 08_Scripts_Os/
+└── .agent/
 ```
 
 ## Notas Importantes

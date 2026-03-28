@@ -1,7 +1,7 @@
 # Feature List JSON Generator Skill
 
-**CATEGORÍA:** Anthropic Harness Patterns  
-**SUBCATEGORÍA:** Feature List JSON  
+**CATEGORÍA:** Anthropic Harness Patterns
+**SUBCATEGORÍA:** Feature List JSON
 **VERSIÓN:** 1.0
 
 ---

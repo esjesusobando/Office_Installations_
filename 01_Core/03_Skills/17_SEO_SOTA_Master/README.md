@@ -11,7 +11,7 @@ Elite SEO skill que combina auditing técnico, estrategia de contenido, SEO prog
 ```python
 # Usage triggers:
 # - "SEO audit"
-# - "technical SEO"  
+# - "technical SEO"
 # - "programmatic SEO"
 # - "improve ranking"
 # - "content strategy"

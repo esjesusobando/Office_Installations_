@@ -38,7 +38,7 @@ Trigger with:
 
 See `SKILL.md` for full prompt examples:
 - Revenue Analysis
-- Churn Analysis  
+- Churn Analysis
 - A/B Test Analysis
 
 ## Requirements

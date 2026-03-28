@@ -5,10 +5,10 @@
 > **Flujo:** Escanear directorio → Parsear archivos → Consolidar resultados → Generar reporte único
 
 
-> **Sistema:** PersonalOS  
-> **Categoría:** 11_Doc_Processing  
-> **Skill:** 02/03  
-> **Versión:** 2.0  
+> **Sistema:** PersonalOS
+> **Categoría:** 11_Doc_Processing
+> **Skill:** 02/03
+> **Versión:** 2.0
 > **Última actualización:** 2026-03-23
 
 ## Overview

@@ -106,7 +106,7 @@ Based on your goals and current tasks, here's a suggested focus:
 
 **Time budget:**
 - Deep work available: ~15 hours
-- Meetings: ~10 hours  
+- Meetings: ~10 hours
 - Buffer for urgent items: ~5 hours
 
 Does this feel right, or should we adjust priorities?

@@ -7,4 +7,3 @@ class AIPMEvaluator:
 class AIPMControlCenter:
     def __init__(self):
         pass
-

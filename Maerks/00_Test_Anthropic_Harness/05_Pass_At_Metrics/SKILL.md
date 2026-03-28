@@ -1,7 +1,7 @@
 # Pass@k Metrics Skill
 
-**CATEGORÍA:** Anthropic Harness Patterns  
-**SUBCATEGORÍA:** pass@k Metrics  
+**CATEGORÍA:** Anthropic Harness Patterns
+**SUBCATEGORÍA:** pass@k Metrics
 **VERSIÓN:** 1.0
 
 ---

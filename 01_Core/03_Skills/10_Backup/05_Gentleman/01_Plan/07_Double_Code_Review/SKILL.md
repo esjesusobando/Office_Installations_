@@ -198,7 +198,7 @@ El review genera un documento estructurado:
 ### 🔵 Sombrero Azul
 [Hallazgos de información]
 
-### 🔴 Sombrero Rojo  
+### 🔴 Sombrero Rojo
 [Hallazgos emocionales/intuitivos]
 
 ### 🟡 Sombrero Amarillo
@@ -281,11 +281,11 @@ El review genera un documento estructurado:
 
 ## ANTI-PATTERNS — Qué NO hacer
 
-❌ **No saltarse hats** — cada sombrero existe por una razón  
-❌ **No unificar perspectives** — el punto es ver desde ángulos distintos  
-❌ **No rush** — el review rápido es review malo  
-❌ **No solo negative** — el 🟡 Sombrero Amarillo es crítico  
-❌ **No skip verification** — el segundo review NO es opcional  
+❌ **No saltarse hats** — cada sombrero existe por una razón
+❌ **No unificar perspectives** — el punto es ver desde ángulos distintos
+❌ **No rush** — el review rápido es review malo
+❌ **No solo negative** — el 🟡 Sombrero Amarillo es crítico
+❌ **No skip verification** — el segundo review NO es opcional
 
 ---
 

@@ -215,4 +215,3 @@ Antes del push final, es RECOMENDABLE ejecutar el script de integridad para vali
 Guardar en:
 -  — Evaluaciones
 -  — Documentación
-

@@ -5,10 +5,10 @@
 > **Flujo:** Escanear recursivamente → Extraer contenido → Generar resúmenes → Consolidar reporte
 
 
-> **Sistema:** PersonalOS  
-> **Categoría:** 11_Doc_Processing  
-> **Skill:** 03/03  
-> **Versión:** 2.0  
+> **Sistema:** PersonalOS
+> **Categoría:** 11_Doc_Processing
+> **Skill:** 03/03
+> **Versión:** 2.0
 > **Última actualización:** 2026-03-23
 
 ## Overview

@@ -7,4 +7,3 @@ Add Python scripts here to automate tasks.
 ```bash
 python scripts/your-script.py
 ```
-

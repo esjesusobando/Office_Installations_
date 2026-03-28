@@ -166,9 +166,9 @@ import AxeBuilder from '@axe-core/playwright';
 async function auditPage(url) {
   const browser = await puppeteer.launch({ headless: 'new' });
   const page = await browser.newPage();
-  
+
   await page.goto(url, { waitUntil: 'networkidle0' });
-  
+
   // Get Core Web Vitals via CDP
   const metrics = await page.metrics();
   const cwv = await page.evaluate(() => {
@@ -183,14 +183,14 @@ async function auditPage(url) {
       }).observe({ entryTypes: ['largest-contentful-paint', 'layout-shift'] });
     });
   });
-  
+
   // Accessibility audit
   const accessibilityResults = await new AxeBuilder({ page })
     .withTags(['wcag2a', 'wcag2aa'])
     .analyze();
-  
+
   await browser.close();
-  
+
   return { metrics, cwv, accessibility: accessibilityResults };
 }
 ```
@@ -208,10 +208,10 @@ async function crawlAndAudit(baseUrl) {
     viewport: { width: 1920, height: 1080 },
     userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
   });
-  
+
   const page = await context.newPage();
   const results = { pages: [], errors: [] };
-  
+
   // Set up interception para collect failed requests
   page.on('requestfailed', request => {
     results.errors.push({
@@ -219,7 +219,7 @@ async function crawlAndAudit(baseUrl) {
       failure: request.failure()?.errorText
     });
   });
-  
+
   // Collect all links
   const links = new Set();
   page.on('response', response => {
@@ -227,27 +227,27 @@ async function crawlAndAudit(baseUrl) {
       links.add(response.url());
     }
   });
-  
+
   // Start crawling
   await page.goto(baseUrl, { waitUntil: 'domcontentloaded' });
-  
+
   // Get all internal links
-  const internalLinks = await page.$$eval('a[href]', anchors => 
+  const internalLinks = await page.$$eval('a[href]', anchors =>
     anchors
       .map(a => a.href)
       .filter(h => h.startsWith(baseUrl))
       .filter((v, i, a) => a.indexOf(v) === i)
   );
-  
+
   // Audit each page
   for (const link of internalLinks.slice(0, 50)) { // Limit para demo
     try {
       await page.goto(link, { waitUntil: 'networkidle' });
-      
+
       const audit = await page.evaluate(() => {
         const getMeta = (name) => document.querySelector(`meta[name="${name}"]`)?.content;
         const getOG = (prop) => document.querySelector(`meta[property="og:${prop}"]`)?.content;
-        
+
         return {
           title: document.title,
           h1: document.querySelector('h1')?.textContent?.trim(),
@@ -263,13 +263,13 @@ async function crawlAndAudit(baseUrl) {
             .filter(a => a.href.startsWith(window.location.origin)).length,
         };
       });
-      
+
       results.pages.push({ url: link, ...audit });
     } catch (e) {
       results.errors.push({ url: link, error: e.message });
     }
   }
-  
+
   await browser.close();
   return results;
 }
@@ -441,10 +441,10 @@ async function getSearchAnalytics(siteUrl) {
     credentials: JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT),
     scopes: ['https://www.googleapis.com/auth/webmasters.readonly']
   });
-  
+
   const client = await auth.getClient();
   google.options({ auth: client });
-  
+
   const response = await searchconsole.searchanalytics.query({
     siteUrl: siteUrl,
     requestBody: {
@@ -455,7 +455,7 @@ async function getSearchAnalytics(siteUrl) {
       aggregationType: 'byPage'
     }
   });
-  
+
   return response.data.rows.map(row => ({
     query: row.keys[0],
     page: row.keys[1],
@@ -536,7 +536,7 @@ Proporciona:
 5. Entidades detectadas para Schema markup`
     }]
   });
-  
+
   return message.content;
 }
 ```
@@ -561,7 +561,7 @@ Genera:
 Formato: JSON con structure para keyword mapping en CMS`
     }]
   });
-  
+
   return JSON.parse(message.content[0].text);
 }
 ```

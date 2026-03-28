@@ -1,6 +1,6 @@
 # ⚔️ PLAN MAQUINA DE GUERRA — Think Different AI
 
-> **Fecha:** 2026-03-26  
+> **Fecha:** 2026-03-26
 > **Objetivo:** Convertir Think Different en una máquina de guerra SOTA
 
 ---
@@ -223,19 +223,19 @@ agents:
   - name: generator
     role: feature_development
     prompt: "Eres un генератор. Construye features una a la vez..."
-    
+
   - name: qa
     role: testing
     prompt: "Eres un QA agent. Testea lo que el generator hizo..."
-    
+
   - name: code_reviewer
     role: code_quality
     prompt: "Eres un code reviewer. Revisa calidad del código..."
-    
+
   - name: docs
     role: documentation
     prompt: "Eres un docs agent. Mantén la documentación..."
-    
+
   - name: performance
     role: optimization
     prompt: "Eres un performance agent. Optimiza donde sea necesario..."
@@ -275,7 +275,7 @@ from graders import CodeGrader, ModelGrader, HumanGrader
 task = Task(type="unit_tests", files=["auth_test.py"])
 result = CodeGrader.evaluate(task)
 
-# Diseño subjetivo → ModelGrader  
+# Diseño subjetivo → ModelGrader
 task = Task(type="design_review", files=["design.png"])
 result = ModelGrader.evaluate(task, rubric="design_quality.md")
 

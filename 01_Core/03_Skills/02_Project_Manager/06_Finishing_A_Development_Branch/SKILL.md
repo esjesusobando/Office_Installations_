@@ -231,4 +231,3 @@ Guardar estado en:
 - **[ERROR]**: Add common error here
   - **Por qué**: Explanation of why it's an error
   - **Solución**: How to fix or avoid it
-

@@ -7,7 +7,7 @@
 
 ## 8. Effective Harnesses for Long-Running Agents
 
-**Fecha:** Nov 26, 2025  
+**Fecha:** Nov 26, 2025
 **Autor:** Justin Young
 
 ### Resumen
@@ -52,7 +52,7 @@ Agents still face challenges working across many context windows. Inspirado en i
 
 ## 9. Introducing Advanced Tool Use on Claude Developer Platform
 
-**Fecha:** Nov 24, 2025  
+**Fecha:** Nov 24, 2025
 **Autor:** Anthropic Team
 
 ### Resumen
@@ -69,7 +69,7 @@ Advanced tool use capabilities en Claude Developer Platform. Nuevas features par
 
 ## 10. Code Execution with MCP: Building More Efficient Agents
 
-**Fecha:** Nov 04, 2025  
+**Fecha:** Nov 04, 2025
 **Autor:** Anthropic Team
 
 ### Resumen
@@ -86,7 +86,7 @@ Cómo usar code execution con MCP para build agents más eficientes.
 
 ## 11. Beyond Permission Prompts: Making Claude Code More Secure and Autonomous
 
-**Fecha:** Oct 20, 2025  
+**Fecha:** Oct 20, 2025
 **Autor:** Anthropic Team
 
 ### Resumen
@@ -103,7 +103,7 @@ Evolución de la seguridad en Claude Code. De permission prompts a sandboxing y 
 
 ## 12. Effective Context Engineering for AI Agents
 
-**Fecha:** Sep 29, 2025  
+**Fecha:** Sep 29, 2025
 **Autor:** Anthropic Team
 
 ### Resumen
@@ -121,7 +121,7 @@ Técnicas para managear contexto efectivamente en AI agents.
 
 ## 13. A Postmortem of Three Recent Issues
 
-**Fecha:** Sep 17, 2025  
+**Fecha:** Sep 17, 2025
 **Autor:** Anthropic Team
 
 ### Resumen

@@ -1,4 +1,3 @@
-
 ## Esencia Original
 > **Propósito:** Propósito del skill aquí Triggers on: 04_Angular, patterns, coding.
 > **Flujo:** Pasos principales del flujo

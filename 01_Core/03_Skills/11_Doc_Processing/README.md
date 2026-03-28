@@ -1,6 +1,6 @@
 # 📄 11 — Doc Processing
 
-> **Skills de extracción y procesamiento documental.**  
+> **Skills de extracción y procesamiento documental.**
 > **Última actualización:** 2026-03-23
 
 ---

@@ -1,8 +1,8 @@
 # 🛠️ 02_Skills — Sistema SOTA de Skills
 
-**Versión:** 4.0  
-**Última actualización:** 2026-03-26  
-**Source of Truth:** `01_Core/03_Skills/`  
+**Versión:** 4.0
+**Última actualización:** 2026-03-26
+**Source of Truth:** `01_Core/03_Skills/`
 **Sync Target:** `.cursor/02_Skills/`
 
 ---

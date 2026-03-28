@@ -1,7 +1,7 @@
 # 04_Operations — Memoria y Procesos
 
-**Versión:** 6.1  
-**Última actualización:** 2026-03-27  
+**Versión:** 6.1
+**Última actualización:** 2026-03-27
 **Estado:** ✅ Activo
 
 ---

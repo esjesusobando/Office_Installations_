@@ -1,7 +1,7 @@
 # Auto Mode Security Skill
 
-**CATEGORÍA:** Anthropic Harness Patterns  
-**SUBCATEGORÍA:** Auto Mode Security  
+**CATEGORÍA:** Anthropic Harness Patterns
+**SUBCATEGORÍA:** Auto Mode Security
 **VERSIÓN:** 1.0
 
 ---
@@ -36,7 +36,7 @@ def scan_for_prompt_injection(tool_output: str) -> bool:
         "<|system|>",
         "[SYSTEM]"
     ]
-    
+
     for pattern in INJECTION_PATTERNS:
         if pattern.lower() in tool_output.lower():
             return True
@@ -121,12 +121,12 @@ print(decision)
 def evaluate_action(tool_name, tool_input):
     security = AutoModeSecurity()
     decision = security.evaluate(tool_name, tool_input)
-    
+
     if decision.level == "CRITICAL":
         return {"blocked": True, "reason": decision.reason}
     elif decision.level == "HIGH":
         return {"confirm": True, "message": decision.reason}
-    
+
     return {"approved": True}
 ```
 

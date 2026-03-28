@@ -33,7 +33,7 @@ If duplicate found:
 
 1. **Same task, different wording**
    - "Follow up with James" vs "Message James about API"
-   
+
 2. **Parent task and sub-task**
    - "Build login" vs "Create login form UI"
 

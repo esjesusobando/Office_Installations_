@@ -1,7 +1,7 @@
 # Context Management Skill
 
-**CATEGORÍA:** Anthropic Harness Patterns  
-**SUBCATEGORÍA:** Context Management  
+**CATEGORÍA:** Anthropic Harness Patterns
+**SUBCATEGORÍA:** Context Management
 **VERSIÓN:** 1.0
 
 ---
@@ -14,8 +14,8 @@ Gestiona la decisión entre **Context Reset** vs **Context Compaction** según e
 
 ## Contexto (del artículo de Anthropic)
 
-> "Context anxiety: models start wrapping up the conversation prematurely"  
-> "Sonnet 4.5 showed context anxiety - needed context reset"  
+> "Context anxiety: models start wrapping up the conversation prematurely"
+> "Sonnet 4.5 showed context anxiety - needed context reset"
 > "Opus 4.6 didn't need reset at all - just compaction"
 
 ---

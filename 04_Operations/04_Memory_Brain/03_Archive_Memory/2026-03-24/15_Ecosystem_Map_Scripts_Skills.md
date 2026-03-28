@@ -1,7 +1,7 @@
 # 🗺️ Mapeo Exhaustivo del Ecosistema PersonalOS
 
-**Fecha:** 2026-03-25  
-**Auditor:** Opencode Agent  
+**Fecha:** 2026-03-25
+**Auditor:** Opencode Agent
 **Propósito:** Documentar la relación entre Skills (`.agent/02_Skills/08_Personal_Os/`) y Scripts (`08_Scripts_Os/`) con workflows correspondientes.
 
 ---
@@ -133,8 +133,8 @@
 | `09_Backlog_Triage.py`    | `00_Backlog_Processing.md`     | ✅ Sincronizado |
 | `14_Morning_Standup.py`   | `00_Morning_Standup.md`        | ✅ Sincronizado |
 
-**Total scripts con workflow:** 8  
-**Total scripts sin workflow:** ~77 (de 88)  
+**Total scripts con workflow:** 8
+**Total scripts sin workflow:** ~77 (de 88)
 
 ### 3.2 Workflows sin Script Correspondiente
 
@@ -153,9 +153,9 @@
 | `classify_task.md`          | `59_Task_Classifier.py`           | ✅ Existe        |
 | `01_Iron_Man_Gen.md`        | —                                 | ❌ Sin script    |
 
-**Total workflows con script:** 9  
-**Total workflows sin script:** 4  
-**Total workflows:** 25  
+**Total workflows con script:** 9
+**Total workflows sin script:** 4
+**Total workflows:** 25
 
 ### 3.3 Skills sin Script ni Workflow
 
@@ -218,5 +218,5 @@
 
 ---
 
-**Fin del reporte.**  
+**Fin del reporte.**
 *Generado por Opencode Agent - 2026-03-25*

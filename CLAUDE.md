@@ -14,7 +14,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working in this
 - ✅ Antes de responder: ejecutar `engram_mem_context(limit=10)`
 - ✅ Si hay session_summary previo, cargarlo
 
-**IDIOMA:** 
+**IDIOMA:**
 - ✅ **SIEMPRE** Español en chat (es mi idioma natal)
 - ✅ Usar español rioplatense: laburo, ponete las piedras, boludo, quilombo, bancá, dale, etc.
 
@@ -72,7 +72,7 @@ Al iniciar una nueva sesión, ejecutar esta secuencia antes de responder:
 ### REGLA 2: ENUMERACIÓN CORRECTA (SIEMPRE)
 
 - **Carpetas:** `XX_Nombre_Carpeta/` (número 2 dígitos, Mayúscula Inicial, Guiones Bajos)
-- **Archivos:** `XX_Nombre_Archivo.ext` 
+- **Archivos:** `XX_Nombre_Archivo.ext`
 - **ANTES** de crear/mover: Verificar secuencia Existente
 - **NUNCA** dejar archivos sueltos sin numerar
 - **NUNCA** crear duplicados de numeración

@@ -5,10 +5,10 @@
 > **Flujo:** Detectar formato → Parsear contenido → Extraer datos → Generar Markdown estructurado
 
 
-> **Sistema:** PersonalOS  
-> **Categoría:** 11_Doc_Processing  
-> **Skill:** 01/03  
-> **Versión:** 2.0  
+> **Sistema:** PersonalOS
+> **Categoría:** 11_Doc_Processing
+> **Skill:** 01/03
+> **Versión:** 2.0
 > **Última actualización:** 2026-03-23
 
 ## Overview

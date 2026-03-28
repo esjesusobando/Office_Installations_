@@ -106,21 +106,21 @@ class EvaluationResult:
 class AgentEvaluator:
     def __init__(self, agent: Callable):
         self.agent = agent
-    
+
     def evaluate(
         self,
         test_cases: list[dict],
         metrics: list[str]
     ) -> list[EvaluationResult]:
         results = []
-        
+
         for test_case in test_cases:
             start = time.perf_counter()
-            
+
             try:
                 output = self.agent(test_case['input'])
                 latency = (time.perf_counter() - start) * 1000
-                
+
                 for metric in metrics:
                     score = self._calculate_metric(
                         metric,
@@ -140,9 +140,9 @@ class AgentEvaluator:
                     latency_ms=latency,
                     metadata={'error': str(e)}
                 ))
-        
+
         return results
-    
+
     def _calculate_metric(self, metric: str, output: str, expected: str) -> float:
         if metric == 'exact_match':
             return float(output.strip() == expected.strip())
@@ -171,13 +171,13 @@ class BenchmarkResult:
 
 def benchmark(fn: Callable, iterations: int = 1000) -> BenchmarkResult:
     times = []
-    
+
     for _ in range(iterations):
         start = time.perf_counter()
         fn()
         elapsed = (time.perf_counter() - start) * 1000
         times.append(elapsed)
-    
+
     return BenchmarkResult(
         name=fn.__name__,
         iterations=iterations,

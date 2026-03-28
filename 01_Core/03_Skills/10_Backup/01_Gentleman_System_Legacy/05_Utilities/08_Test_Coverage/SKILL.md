@@ -58,7 +58,7 @@ metadata:
 # Never test these - ignore in coverage reports
 if __debug__:  # pragma: no cover
     # Debug only code
-    
+
 if TYPE_CHECKING:  # pragma: no cover
     # Type hints only
 
@@ -90,14 +90,14 @@ class CoverageAnalysis:
 def analyze_coverage(coverage_file: str) -> CoverageAnalysis:
     cov = coverage.Coverage()
     cov.load(coverage_file)
-    
+
     analysis = cov.analysis2()
     covered = set(analysis[1])
     missed = set(analysis[2])
-    
+
     total = covered | missed
     coverage_pct = len(covered) / len(total) * 100 if total else 0
-    
+
     return CoverageAnalysis(
         total_statements=len(total),
         covered_statements=len(covered),
@@ -111,13 +111,13 @@ def find_coverage_gaps(
 ) -> dict[str, list[str]]:
     """Identify files and functions with low coverage."""
     gaps = {}
-    
+
     for file_path in analysis.missed_statements:
         rel_path = Path(file_path).relative_to(source_dir)
         if rel_path not in gaps:
             gaps[str(rel_path)] = []
         gaps[str(rel_path)].append(file_path)
-    
+
     return gaps
 ```
 

@@ -11,7 +11,7 @@ This is an example of a knowledge document that tasks can reference. Store any p
 - Deployment procedures
 - Architecture decisions
 
-### Process Documentation  
+### Process Documentation
 - How to submit expenses
 - Code review process
 - Meeting templates

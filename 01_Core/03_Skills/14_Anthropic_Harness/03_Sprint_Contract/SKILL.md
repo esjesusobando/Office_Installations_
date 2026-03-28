@@ -1,7 +1,7 @@
 # Sprint Contract Skill
 
-**CATEGORÍA:** Anthropic Harness Patterns  
-**SUBCATEGORÍA:** Sprint Contract  
+**CATEGORÍA:** Anthropic Harness Patterns
+**SUBCATEGORÍA:** Sprint Contract
 **VERSIÓN:** 1.0
 
 ---
@@ -17,7 +17,7 @@ Implementa el patrón de Sprint Contract de Anthropic:
 
 ## Contexto (del artículo de Anthropic)
 
-> "It was defining the definition of done up front before it actually started building anything"  
+> "It was defining the definition of done up front before it actually started building anything"
 > "So that way, the generator agent couldn't move the goalpost halfway through the build to say, 'Ah, it's done'"
 
 ---

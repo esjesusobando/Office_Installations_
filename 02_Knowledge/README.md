@@ -1,7 +1,7 @@
 # 02_Knowledge — Base de Conocimiento
 
-**Versión:** 6.1  
-**Última actualización:** 2026-03-27  
+**Versión:** 6.1
+**Última actualización:** 2026-03-27
 **Estado:** ✅ Activo
 
 ---

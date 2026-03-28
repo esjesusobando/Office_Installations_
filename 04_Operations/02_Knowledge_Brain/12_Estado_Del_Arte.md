@@ -1,7 +1,7 @@
 # 🏛️ ESTADO DEL ARTE — Think Different PersonalOS
 
-> **Versión:** 6.0 (SOTA + Anthropic Integration)  
-> **Fecha:** 2026-03-26  
+> **Versión:** 6.0 (SOTA + Anthropic Integration)
+> **Fecha:** 2026-03-26
 > **Estado:** ✅ Active | **Python:** 3.14+ | **Skills:** 128+ auditadas
 
 ---

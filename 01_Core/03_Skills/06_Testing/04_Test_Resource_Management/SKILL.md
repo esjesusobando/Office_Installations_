@@ -44,4 +44,3 @@ Referirse a `.cursor/rules/10_testing-resource-management.mdc` para la aplicaci�
 Guardar en:
 -  — Evaluaciones
 -  — Documentación
-

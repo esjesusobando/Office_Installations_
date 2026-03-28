@@ -55,7 +55,7 @@ def parse_yaml_frontmatter(content: str) -> tuple[dict, str]:
     """Parse YAML frontmatter from markdown content"""
     if not content.startswith('---'):
         return {}, content
-    
+
     try:
         parts = content.split('---', 2)[1:]
         if len(parts) >= 1:
@@ -71,7 +71,7 @@ def get_all_tasks() -> List[Dict[str, Any]]:
     tasks = []
     if not TASKS_DIR.exists():
         return tasks
-    
+
     for task_file in TASKS_DIR.glob('*.md'):
         try:
             with open(task_file, 'r') as f:
@@ -83,7 +83,7 @@ def get_all_tasks() -> List[Dict[str, Any]]:
                     tasks.append(metadata)
         except Exception as e:
             logger.error(f"Error reading {task_file}: {e}")
-    
+
     return tasks
 
 def calculate_similarity(text1: str, text2: str) -> float:
@@ -101,26 +101,26 @@ def find_similar_tasks(item: str, existing_tasks: List[Dict[str, Any]], config: 
     """Find tasks similar to the given item"""
     similar = []
     item_keywords = extract_keywords(item)
-    
+
     for task in existing_tasks:
         # Skip completed tasks
         if task.get('status') == 'd':
             continue
-            
+
         # Calculate title similarity
         title = task.get('title', '')
         title_similarity = calculate_similarity(item, title)
-        
+
         # Calculate keyword overlap
         task_keywords = extract_keywords(title)
         if item_keywords and task_keywords:
             keyword_overlap = len(item_keywords & task_keywords) / len(item_keywords | task_keywords)
         else:
             keyword_overlap = 0
-        
+
         # Combined score
         similarity_score = (title_similarity * 0.7) + (keyword_overlap * 0.3)
-        
+
         # Check if it's a potential duplicate
         if similarity_score >= config['similarity_threshold']:
             similar.append({
@@ -130,7 +130,7 @@ def find_similar_tasks(item: str, existing_tasks: List[Dict[str, Any]], config: 
                 'status': task.get('status', ''),
                 'similarity_score': round(similarity_score, 2)
             })
-    
+
     # Sort by similarity score
     similar.sort(key=lambda x: x['similarity_score'], reverse=True)
     return similar[:3]  # Return top 3 matches
@@ -143,56 +143,56 @@ def is_ambiguous(item: str) -> bool:
         r'^(follow up|reach out|contact|email)$',  # Missing who/what
         r'^(investigate|research|explore)\s*\w{0,20}$',  # Too broad
     ]
-    
+
     item_lower = item.lower().strip()
-    
+
     # Check if too short
     if len(item_lower.split()) <= 2:
         return True
-    
+
     # Check vague patterns
     for pattern in vague_patterns:
         if re.match(pattern, item_lower):
             return True
-    
+
     return False
 
 def generate_clarification_questions(item: str) -> List[str]:
     """Generate clarification questions for ambiguous items"""
     questions = []
     item_lower = item.lower()
-    
+
     # Technical ambiguity
     if any(word in item_lower for word in ['fix', 'bug', 'error', 'issue']):
         questions.append("Which specific bug or error? Can you provide more details or error messages?")
         questions.append("What component or feature is affected?")
-    
+
     # Scope ambiguity
     if any(word in item_lower for word in ['update', 'improve', 'refactor']):
         questions.append("What specific aspects need updating/improvement?")
         questions.append("What's the success criteria for this task?")
-    
+
     # Missing target
     if any(word in item_lower for word in ['email', 'contact', 'reach out', 'follow up']):
         questions.append("Who should be contacted?")
         questions.append("What's the purpose or goal of this outreach?")
-    
+
     # Missing context
     if any(word in item_lower for word in ['research', 'investigate', 'explore']):
         questions.append("What specific questions need to be answered?")
         questions.append("What decisions will this research inform?")
-    
+
     # Generic catch-all
     if not questions:
         questions.append("Can you provide more specific details about what needs to be done?")
         questions.append("What's the expected outcome or deliverable?")
-    
+
     return questions
 
 def guess_category(item: str) -> str:
     """Guess the category based on item text"""
     item_lower = item.lower()
-    
+
     # Check for category indicators
     if any(word in item_lower for word in ['email', 'contact', 'reach out', 'follow up', 'meeting', 'call']):
         return 'outreach'
@@ -211,7 +211,7 @@ def guess_category(item: str) -> str:
 
 def generate_task_content(item: str, category: str) -> str:
     """Generate rich task content based on item and category"""
-    
+
     # Base structure that all tasks get
     base_content = f"""## Overview
 {get_task_overview(item, category)}
@@ -223,7 +223,7 @@ def generate_task_content(item: str, category: str) -> str:
 - Task created from backlog processing
 - Category: {category}
 """
-    
+
     # Add category-specific sections
     if category == 'outreach':
         base_content += """
@@ -278,13 +278,13 @@ def generate_task_content(item: str, category: str) -> str:
 ## Draft Post
 [Initial draft of marketing content]
 """
-        
+
     return base_content
 
 def get_task_overview(item: str, category: str) -> str:
     """Generate a contextual overview based on the task"""
     item_lower = item.lower()
-    
+
     # Provide smarter overviews based on keywords
     if 'proposal' in item_lower:
         return f"Create and submit a comprehensive proposal for {item}. Research requirements, draft content, and prepare supporting materials."
@@ -302,10 +302,10 @@ def get_task_overview(item: str, category: str) -> str:
 def get_next_actions(item: str, category: str) -> str:
     """Generate smart next actions based on task type"""
     actions = []
-    
+
     # Universal first steps
     actions.append("- [ ] Review related context and existing work")
-    
+
     # Category-specific actions
     if category == 'outreach':
         actions.extend([
@@ -348,7 +348,7 @@ def get_next_actions(item: str, category: str) -> str:
             "- [ ] Execute plan",
             "- [ ] Verify completion"
         ])
-    
+
     return '\n'.join(actions)
 
 def update_file_frontmatter(filepath: Path, updates: dict) -> bool:
@@ -356,17 +356,17 @@ def update_file_frontmatter(filepath: Path, updates: dict) -> bool:
     try:
         with open(filepath, 'r') as f:
             content = f.read()
-        
+
         metadata, body = parse_yaml_frontmatter(content)
         metadata.update(updates)
-        
+
         # Reconstruct file
         yaml_str = yaml.dump(metadata, default_flow_style=False, sort_keys=False)
         new_content = f"---\n{yaml_str}---\n{body}"
-        
+
         with open(filepath, 'w') as f:
             f.write(new_content)
-        
+
         return True
     except Exception as e:
         logger.error(f"Error updating {filepath}: {e}")
@@ -521,48 +521,48 @@ async def handle_call_tool(
     name: str, arguments: dict | None
 ) -> list[types.TextContent | types.ImageContent | types.EmbeddedResource]:
     """Handle tool calls"""
-    
+
     if name == "list_tasks":
         tasks = get_all_tasks()
-        
+
         # Apply filters
         if arguments:
             if not arguments.get('include_done', False):
                 tasks = [t for t in tasks if t.get('status') != 'd']
-            
+
             if arguments.get('category'):
                 categories = [c.strip() for c in arguments['category'].split(',')]
                 tasks = [t for t in tasks if t.get('category') in categories]
-            
+
             if arguments.get('priority'):
                 priorities = [p.strip() for p in arguments['priority'].split(',')]
                 tasks = [t for t in tasks if t.get('priority') in priorities]
-            
+
             if arguments.get('status'):
                 statuses = [s.strip() for s in arguments['status'].split(',')]
                 tasks = [t for t in tasks if t.get('status') in statuses]
         else:
             # Default: exclude done tasks
             tasks = [t for t in tasks if t.get('status') != 'd']
-        
+
         result = {
             "tasks": tasks,
             "count": len(tasks),
             "filters_applied": arguments or {}
         }
         return [types.TextContent(type="text", text=json.dumps(result, indent=2, cls=DateTimeEncoder))]
-    
+
     elif name == "create_task":
         title = arguments['title']
         category = arguments.get('category', 'other')
         priority = arguments.get('priority', 'P2')
         estimated_time = arguments.get('estimated_time', 30)
         content = arguments.get('content', '')
-        
+
         # Create filename
         filename = title.replace('/', '_').replace('\\', '_') + '.md'
         filepath = TASKS_DIR / filename
-        
+
         # Create task metadata
         metadata = {
             'title': title,
@@ -571,15 +571,15 @@ async def handle_call_tool(
             'status': 'n',
             'estimated_time': estimated_time
         }
-        
+
         # Create file content
         yaml_str = yaml.dump(metadata, default_flow_style=False, sort_keys=False)
         file_content = f"---\n{yaml_str}---\n\n# {title}\n\n{content}"
-        
+
         try:
             with open(filepath, 'w') as f:
                 f.write(file_content)
-            
+
             result = {
                 "success": True,
                 "filename": filename,
@@ -590,16 +590,16 @@ async def handle_call_tool(
                 "success": False,
                 "error": str(e)
             }
-        
+
         return [types.TextContent(type="text", text=json.dumps(result, indent=2, cls=DateTimeEncoder))]
-    
+
     elif name == "update_task_status":
         task_file = arguments['task_file']
         status = arguments['status']
-        
+
         if not task_file.endswith('.md'):
             task_file += '.md'
-        
+
         filepath = TASKS_DIR / task_file
         if not filepath.exists():
             result = {
@@ -614,17 +614,17 @@ async def handle_call_tool(
                 "task_file": task_file,
                 "new_status": status_names.get(status, status)
             }
-        
+
         return [types.TextContent(type="text", text=json.dumps(result, indent=2, cls=DateTimeEncoder))]
-    
+
     elif name == "get_task_summary":
         tasks = get_all_tasks()
         active_tasks = [t for t in tasks if t.get('status') != 'd']
-        
+
         by_priority = Counter(t.get('priority', 'P2') for t in active_tasks)
         by_category = Counter(t.get('category', 'other') for t in active_tasks)
         by_status = Counter(t.get('status', 'n') for t in tasks)
-        
+
         # Calculate time estimates
         time_by_priority = {}
         for priority in ['P0', 'P1', 'P2', 'P3']:
@@ -634,7 +634,7 @@ async def handle_call_tool(
                 'total_minutes': total_time,
                 'total_hours': round(total_time / 60, 1)
             }
-        
+
         result = {
             "total_tasks": len(tasks),
             "active_tasks": len(active_tasks),
@@ -643,27 +643,27 @@ async def handle_call_tool(
             "by_status": dict(by_status),
             "time_by_priority": time_by_priority
         }
-        
+
         return [types.TextContent(type="text", text=json.dumps(result, indent=2, cls=DateTimeEncoder))]
-    
+
     elif name == "check_priority_limits":
         tasks = [t for t in get_all_tasks() if t.get('status') != 'd']
         by_priority = Counter(t.get('priority', 'P2') for t in tasks)
-        
+
         thresholds = {'P0': 3, 'P1': 5, 'P2': 10}
         alerts = []
-        
+
         for priority, threshold in thresholds.items():
             count = by_priority.get(priority, 0)
             if count > threshold:
                 alerts.append(f"{priority} has {count} tasks (limit: {threshold})")
-        
+
         result = {
             "priority_counts": dict(by_priority),
             "alerts": alerts,
             "balanced": len(alerts) == 0
         }
-        
+
         return [types.TextContent(type="text", text=json.dumps(result, indent=2, cls=DateTimeEncoder))]
 
     elif name == "get_system_status":
@@ -705,12 +705,12 @@ async def handle_call_tool(
             "time_insights": time_insights,
             "timestamp": now.isoformat()
         }
-        
+
         return [types.TextContent(type="text", text=json.dumps(result, indent=2, cls=DateTimeEncoder))]
-    
+
     elif name == "process_backlog":
         backlog_file = BASE_DIR / 'BACKLOG.md'
-        
+
         if not backlog_file.exists():
             result = {
                 "success": False,
@@ -719,7 +719,7 @@ async def handle_call_tool(
         else:
             with open(backlog_file, 'r') as f:
                 content = f.read().strip()
-            
+
             if not content or content == 'all done!':
                 result = {
                     "success": True,
@@ -731,7 +731,7 @@ async def handle_call_tool(
                 lines = content.split('\n')
                 items = []
                 current_item = None
-                
+
                 for line in lines:
                     stripped = line.strip()
                     if stripped.startswith('- '):
@@ -743,26 +743,26 @@ async def handle_call_tool(
                         }
                     elif stripped.startswith('  - ') and current_item:
                         current_item['subitems'].append(stripped[4:])
-                
+
                 if current_item:
                     items.append(current_item)
-                
+
                 result = {
                     "success": True,
                     "content": content,
                     "parsed_items": items,
                     "count": len(items)
                 }
-        
+
         return [types.TextContent(type="text", text=json.dumps(result, indent=2, cls=DateTimeEncoder))]
-    
+
     elif name == "clear_backlog":
         backlog_file = BASE_DIR / 'BACKLOG.md'
-        
+
         try:
             with open(backlog_file, 'w') as f:
                 f.write("all done!")
-            
+
             result = {
                 "success": True,
                 "message": "Backlog cleared successfully"
@@ -772,14 +772,14 @@ async def handle_call_tool(
                 "success": False,
                 "error": str(e)
             }
-        
+
         return [types.TextContent(type="text", text=json.dumps(result, indent=2, cls=DateTimeEncoder))]
-    
+
     elif name == "prune_completed_tasks":
         days = arguments.get('days', 30) if arguments else 30
         cutoff_date = datetime.now() - timedelta(days=days)
         deleted = []
-        
+
         for task_file in TASKS_DIR.glob('*.md'):
             try:
                 mtime = datetime.fromtimestamp(task_file.stat().st_mtime)
@@ -792,20 +792,20 @@ async def handle_call_tool(
                             deleted.append(task_file.name)
             except Exception as e:
                 logger.error(f"Error processing {task_file}: {e}")
-        
+
         result = {
             "success": True,
             "deleted_count": len(deleted),
             "deleted_files": deleted,
             "message": f"Deleted {len(deleted)} tasks older than {days} days"
         }
-        
+
         return [types.TextContent(type="text", text=json.dumps(result, indent=2, cls=DateTimeEncoder))]
-    
+
     elif name == "process_backlog_with_dedup":
         items = arguments.get('items', [])
         auto_create = arguments.get('auto_create', False)
-        
+
         if not items:
             return [types.TextContent(type="text", text=json.dumps({
                 "error": "No items provided to process"
@@ -820,11 +820,11 @@ async def handle_call_tool(
             "auto_created": [],
             "summary": {}
         }
-        
+
         for item in items:
             # Check for duplicates
             similar_tasks = find_similar_tasks(item, existing_tasks)
-            
+
             if similar_tasks:
                 result["potential_duplicates"].append({
                     "item": item,
@@ -849,14 +849,14 @@ async def handle_call_tool(
                     "suggested_priority": "P2",  # Default priority
                     "ready_to_create": True
                 })
-                
+
                 # Auto-create if requested
                 if auto_create:
                     # Create the task file
                     safe_filename = re.sub(r'[^\w\s-]', '', item).strip()
                     safe_filename = re.sub(r'[-\s]+', ' ', safe_filename)
                     task_file = TASKS_DIR / f"{safe_filename}.md"
-                    
+
                     metadata = {
                         "title": item,
                         "category": guess_category(item),
@@ -864,18 +864,18 @@ async def handle_call_tool(
                         "status": "n",
                         "estimated_time": 60
                     }
-                    
+
                     yaml_str = yaml.dump(metadata, default_flow_style=False, sort_keys=False)
-                    
+
                     # Generate richer task content based on category
                     task_content = generate_task_content(item, metadata['category'])
                     content = f"---\n{yaml_str}---\n\n# {item}\n\n{task_content}"
-                    
+
                     with open(task_file, 'w') as f:
                         f.write(content)
-                    
+
                     result["auto_created"].append(safe_filename + ".md")
-        
+
         # Add summary
         result["summary"] = {
             "total_items": len(items),
@@ -885,23 +885,23 @@ async def handle_call_tool(
             "auto_created": len(result["auto_created"]),
             "recommendations": []
         }
-        
+
         # Add recommendations
         if result["potential_duplicates"]:
             result["summary"]["recommendations"].append(
                 f"Review {len(result['potential_duplicates'])} potential duplicates before creating tasks"
             )
-        
+
         if result["needs_clarification"]:
             result["summary"]["recommendations"].append(
                 f"Clarify {len(result['needs_clarification'])} ambiguous items for better task definition"
             )
-        
+
         if result["new_tasks"] and not auto_create:
             result["summary"]["recommendations"].append(
                 f"Ready to create {len(result['new_tasks'])} new tasks - use auto_create=true or create manually"
             )
-        
+
         return [types.TextContent(type="text", text=json.dumps(result, indent=2, cls=DateTimeEncoder))]
 
     elif name == "list_evals":
@@ -1019,7 +1019,7 @@ async def main():
     logger.info(f"Starting Manager AI MCP Server")
     logger.info(f"Working directory: {BASE_DIR}")
     logger.info(f"Tasks directory: {TASKS_DIR}")
-    
+
     async with mcp.server.stdio.stdio_server() as (read_stream, write_stream):
         await app.run(
             read_stream,

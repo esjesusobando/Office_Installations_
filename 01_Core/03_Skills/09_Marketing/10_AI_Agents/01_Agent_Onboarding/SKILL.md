@@ -131,24 +131,24 @@ cat > ".agent-context/$AGENT_NAME/README.md" << 'EOF'
 [What problem does this agent solve?]
 
 ## Responsibilities
-- 
+-
 
 ## Success Metrics
-- 
+-
 
 ## Context Provided
-- 
+-
 
 ## Communication
-- Check-in frequency: 
-- Escalation triggers: 
-- Format: 
+- Check-in frequency:
+- Escalation triggers:
+- Format:
 
 ## Quality Bar
-- 
+-
 
 ## Known Limitations
-- 
+-
 EOF
 
 echo "Created .agent-context/$AGENT_NAME/"

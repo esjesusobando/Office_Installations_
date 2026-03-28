@@ -1,5 +1,6 @@
 import sys
 from pathlib import Path
+
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 """
@@ -21,8 +22,15 @@ from colorama import init, Fore, Style
 
 init(autoreset=True)
 
-sys.path.insert(0, str(Path(__file__).parent))
-from config_paths import PROJECT_ROOT
+# Armor Layer: Config paths inline
+_SCRIPT_DIR = Path(__file__).resolve().parent
+_PROJECT_ROOT = _SCRIPT_DIR.parent.parent
+sys.path.insert(0, str(_PROJECT_ROOT))
+sys.path.insert(0, str(_SCRIPT_DIR.parent))
+try:
+    from config_paths import PROJECT_ROOT
+except:
+    PROJECT_ROOT = _PROJECT_ROOT
 
 REQUIRED_DIRS = [
     "00_Core",

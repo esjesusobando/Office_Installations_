@@ -98,18 +98,18 @@ No `.component`, `.service`, `.model` suffixes. The folder tells you what it is.
 export class UserProfileComponent {
   // 1. Injected dependencies
   private readonly userService = inject(UserService);
-  
+
   // 2. Inputs/Outputs
   readonly userId = input.required<string>();
   readonly userSaved = output<User>();
-  
+
   // 3. Internal state
   private readonly _loading = signal(false);
   readonly loading = this._loading.asReadonly();
-  
+
   // 4. Computed
   protected readonly displayName = computed(() => ...);
-  
+
   // 5. Methods
   save(): void { ... }
 }
@@ -133,7 +133,7 @@ ng new my-app --style=scss --ssr=false
 # Component in feature
 ng g c features/products/components/product-card --flat
 
-# Service in feature  
+# Service in feature
 ng g s features/products/services/product --flat
 
 # Guard in core

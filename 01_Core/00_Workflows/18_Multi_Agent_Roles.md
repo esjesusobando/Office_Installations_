@@ -1,6 +1,6 @@
 # 18 Multi-Agent Roles Pipeline
 
-> **Fecha:** 2026-03-26  
+> **Fecha:** 2026-03-26
 > **Inspirado en:** "Scaling Agentic Systems" article (Feb 25, 2026)
 
 ---

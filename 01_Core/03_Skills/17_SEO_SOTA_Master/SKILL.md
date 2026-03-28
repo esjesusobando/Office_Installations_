@@ -106,7 +106,7 @@ Aggregate rankings lie. Segment by:
 def technical_seo_audit(url: str) -> dict:
     """
     Comprehensive technical SEO audit.
-    
+
     Returns:
         - Crawlability score
         - Core Web Vitals status
@@ -116,30 +116,30 @@ def technical_seo_audit(url: str) -> dict:
     """
     import requests
     from bs4 import BeautifulSoup
-    
+
     response = requests.get(url, timeout=10)
     soup = BeautifulSoup(response.content, 'html.parser')
-    
+
     issues = []
-    
+
     # Check Core Web Vitals (simulated)
     # In production, use PageSpeed Insights API
-    
+
     # Check rendering
     if soup.find('noscript'):
         issues.append("Noscript detected - check JS rendering")
-    
+
     # Check meta tags
     if not soup.find('meta', {'name': 'description'}):
         issues.append("Missing meta description")
-    
+
     # Check canonical
     if not soup.find('link', {'rel': 'canonical'}):
         issues.append("Missing canonical URL")
-    
+
     # Check schema
     schemas = soup.find_all('script', {'type': 'application/ld+json'})
-    
+
     return {
         "url": url,
         "status_code": response.status_code,
@@ -154,7 +154,7 @@ def technical_seo_audit(url: str) -> dict:
 ### Phase 2: Keyword Research
 
 ```python
-def keyword_opportunities(df: pd.DataFrame, 
+def keyword_opportunities(df: pd.DataFrame,
                        target_domain: str) -> pd.DataFrame:
     """
     Find keyword opportunities by analyzing:
@@ -164,16 +164,16 @@ def keyword_opportunities(df: pd.DataFrame,
     - Content gaps
     """
     # Quick wins: ranking 4-20, high volume
-    quick_wins = df[(df['position'] >= 4) & 
+    quick_wins = df[(df['position'] >= 4) &
                    (df['position'] <= 20) &
                    (df['search_volume'] > 1000)]
-    
+
     # Content gaps: ranking < 30 but not ranking
     content_gaps = df[df['clicks'] < 100]['keyword'].tolist()
-    
+
     # Featured snippet opportunities
     featured_snippets = df[df['position'] == 0]
-    
+
     return {
         "quick_wins": quick_wins.sort_values('search_volume', ascending=False),
         "content_gaps": content_gaps[:20],
@@ -187,7 +187,7 @@ def keyword_opportunities(df: pd.DataFrame,
 def content_audit(urls: list[str]) -> pd.DataFrame:
     """
     Audit content for SEO health.
-    
+
     Score each page on:
     - Relevance (keyword in title, h1, url)
     - Freshness (date, content updates)
@@ -195,29 +195,29 @@ def content_audit(urls: list[str]) -> pd.DataFrame:
     - Technical (links, images, schema)
     """
     results = []
-    
+
     for url in urls:
         score = 0
         issues = []
-        
+
         # Fetch and analyze
         response = requests.get(url)
         soup = BeautifulSoup(response.content, 'html.parser')
-        
+
         # Title check
         title = soup.title.string if soup.title else ""
         if 30 <= len(title) <= 60:
             score += 20
         else:
             issues.append(f"Title length: {len(title)} (ideal: 30-60)")
-        
+
         # H1 check
         h1s = soup.find_all('h1')
         if len(h1s) == 1:
             score += 20
         elif len(h1s) == 0:
             issues.append("No H1 found")
-        
+
         # Content length
         text = soup.get_text()
         word_count = len(text.split())
@@ -225,28 +225,28 @@ def content_audit(urls: list[str]) -> pd.DataFrame:
             score += 20
         else:
             issues.append(f"Low word count: {word_count}")
-        
+
         # Internal links
-        internal_links = [a for a in soup.find_all('a') 
+        internal_links = [a for a in soup.find_all('a')
                          if target_domain in a.get('href', '')]
         if len(internal_links) >= 3:
             score += 20
         else:
             issues.append(f"Few internal links: {len(internal_links)}")
-        
+
         # Images
         images = soup.find_all('img')
         missing_alt = [img for img in images if not img.get('alt')]
         if missing_alt:
             issues.append(f"Images missing alt: {len(missing_alt)}")
-        
+
         # Schema
         schemas = soup.find_all('script', {'type': 'application/ld+json'})
         if schemas:
             score += 20
         else:
             issues.append("No schema markup")
-        
+
         results.append({
             "url": url,
             "score": score,
@@ -255,40 +255,40 @@ def content_audit(urls: list[str]) -> pd.DataFrame:
             "internal_links": len(internal_links),
             "images": len(images)
         })
-    
+
     return pd.DataFrame(results)
 ```
 
 ### Phase 4: Programmatic SEO
 
 ```python
-def programmatic_seo_builder(template: str, 
+def programmatic_seo_builder(template: str,
                             data: pd.DataFrame,
                             base_url: str) -> list[dict]:
     """
     Generate SEO-optimized pages at scale.
-    
+
     Args:
         template: Page template with placeholders
         data: DataFrame with page-specific data
         base_url: Base URL for the site
-    
+
     Returns:
         List of page configs ready to generate
     """
     pages = []
-    
+
     for _, row in data.iterrows():
         # Generate slug
         slug = slugify(row['keyword'])
-        
+
         # Generate meta
         title = f"{row['primary_keyword']} - {row['brand']}"
         description = row['meta_description'] or generate_description(row)
-        
+
         # Generate schema
         schema = generate_schema(row)
-        
+
         pages.append({
             "url": f"{base_url}/{slug}",
             "title": title[:60],
@@ -299,7 +299,7 @@ def programmatic_seo_builder(template: str,
             "canonical": f"{base_url}/{slug}",
             "keywords": [row['primary_keyword']] + row.get('secondary_keywords', [])
         })
-    
+
     return pages
 
 
@@ -311,27 +311,27 @@ def generate_schema(row: pd.Series) -> dict:
         "faq": {"@context": "https://schema.org/", "@type": "FAQPage"},
         "local": {"@context": "https://schema.org/", "@type": "LocalBusiness"}
     }
-    
+
     schema = schema_types.get(row.get('type', 'article'), schema_types['article'])
-    
+
     if row.get('name'):
         schema['name'] = row['name']
     if row.get('description'):
         schema['description'] = row['description']
     if row.get('url'):
         schema['url'] = row['url']
-        
+
     return schema
 ```
 
 ### Phase 5: Ranking Prediction
 
 ```python
-def predict_ranking_impact(changes: dict, 
+def predict_ranking_impact(changes: dict,
                          current_rankings: pd.DataFrame) -> dict:
     """
     Predict ranking impact of SEO changes.
-    
+
     Uses historical data to estimate impact.
     """
     # Factors and their typical impact
@@ -345,17 +345,17 @@ def predict_ranking_impact(changes: dict,
         "mobile_optimization": 4.5,
         "backlinks_gained": 7.2
     }
-    
+
     predicted_impact = 0
-    
+
     for change, applied in changes.items():
         if applied:
             predicted_impact += factor_impacts.get(change, 0)
-    
+
     # Calculate projected traffic increase
     current_traffic = current_rankings['clicks'].sum()
     projected_traffic = current_traffic * (1 + predicted_impact * 0.05)
-    
+
     return {
         "predicted_position_change": predicted_impact,
         "current_traffic": current_traffic,
@@ -418,7 +418,7 @@ def predict_ranking_impact(changes: dict,
 1. **[Core Topic]**
    - Pillar: /topic-guide
    - Supporting: /topic-1, /topic-2, /topic-3
-   
+
 2. **[Core Topic 2]**
    - Pillar: /topic-2-guide
    - Supporting: ...
@@ -697,4 +697,3 @@ This skill makes you a **Silicon Valley-grade SEO expert**:
 - **[ERROR]**: Add common error here
   - **Por qué**: Explanation of why it's an error
   - **Solución**: How to fix or avoid it
-

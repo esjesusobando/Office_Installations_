@@ -76,25 +76,25 @@ class EdgeCase:
 class EdgeCaseAnalyzer:
     def analyze_function(self, func: Callable) -> list[EdgeCase]:
         cases = []
-        
+
         # Introspection
         sig = inspect.signature(func)
-        
+
         for param_name, param in sig.parameters.items():
             cases.extend(self._analyze_parameter(param_name, param))
-        
+
         # Add common temporal edge cases
         cases.extend(self._temporal_edge_cases())
-        
+
         # Add system edge cases
         cases.extend(self._system_edge_cases())
-        
+
         return cases
-    
+
     def _analyze_parameter(self, name: str, param) -> list[EdgeCase]:
         cases = []
         param_type = param.annotation
-        
+
         if param_type == int:
             cases.extend([
                 EdgeCase(f"{name}_zero", f"{name} = 0", 0, "handle gracefully", "medium"),
@@ -108,7 +108,7 @@ class EdgeCaseAnalyzer:
                 EdgeCase(f"{name}_unicode", f"{name} = '日本語'", "日本語", "encoding safe", "high"),
                 EdgeCase(f"{name}_sql_injection", f"{name} = \"'; DROP TABLE\"", "'; DROP TABLE", "sanitize", "critical"),
             ])
-        
+
         return cases
 ```
 
@@ -127,7 +127,7 @@ from hypothesis import given, strategies as st, settings
 def test_truncate_edge_cases(text: str, max_length: int):
     """Hypothesis finds unexpected edge cases."""
     result = truncate(text, max_length)
-    
+
     # Properties
     assert len(result) <= max_length
     assert result.endswith("...") == (len(text) > max_length)
@@ -139,7 +139,7 @@ def test_truncate_edge_cases(text: str, max_length: int):
 def test_email_validation(email: str):
     """Fuzz email validation with valid and invalid formats."""
     is_valid = validate_email(email)
-    
+
     # Known invalid patterns should fail
     if "@@" in email or not "@" in email:
         assert not is_valid, f"Should reject: {email}"
@@ -151,7 +151,7 @@ def test_email_validation(email: str):
 def safe_divide(a: float, b: float) -> float:
     """
     Divide with comprehensive edge case handling.
-    
+
     Edge cases:
     - Division by zero → return infinity or raise
     - Both zero → undefined behavior
@@ -163,7 +163,7 @@ def safe_divide(a: float, b: float) -> float:
         if a == 0:
             raise ValueError("0/0 is undefined")
         raise ZeroDivisionError("Division by zero")
-    
+
     # Check for overflow/underflow
     try:
         result = a / b
@@ -183,19 +183,19 @@ def process_user_input(data: dict) -> User:
     missing = [f for f in required if f not in data]
     if missing:
         raise ValidationError(f"Missing fields: {missing}")
-    
+
     # Validate email format
     email = data["email"].strip().lower()
     if not re.match(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", email):
         raise ValidationError(f"Invalid email: {email}")
-    
+
     # Validate name
     name = data["name"].strip()
     if len(name) < 1:
         raise ValidationError("Name cannot be empty")
     if len(name) > 255:
         raise ValidationError("Name too long (max 255 chars)")
-    
+
     # Sanitize inputs
     return User(
         email=sanitize(email),
@@ -226,7 +226,7 @@ def handle_error(error: Exception, context: str) -> Response:
         (error_type, context),
         ERROR_HANDLING_MATRIX.get((error_type, "Any"), "Internal error")
     )
-    
+
     if "Retry" in response:
         return retry_with_backoff(error)
     elif "Redirect" in response:

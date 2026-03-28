@@ -70,7 +70,7 @@ Cargar skill según necesidad:
 
 ```
 /load_skill anthropic_harness/evaluator_pattern
-/load_skill anthropic_harness/context_management  
+/load_skill anthropic_harness/context_management
 /load_skill anthropic_harness/sprint_contract
 ```
 

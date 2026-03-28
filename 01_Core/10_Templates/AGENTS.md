@@ -237,7 +237,7 @@ Never use these false dichotomy patterns:
 - "That's not X. That's Y."
 
 **Other clichéd phrases to avoid:**
-- "The key insight..." 
+- "The key insight..."
 - "Remember... the goal is not to X but Y"
 - "It's not X, it's Y" constructions
 - "This is where X gets interesting/powerful"
@@ -249,7 +249,7 @@ Never use these false dichotomy patterns:
 - Overuse of bullet points or emojis in emails/posts
 
 **Common patterns to avoid:**
-- "When I asked X to do Y, it didn't just Z. It [list]" 
+- "When I asked X to do Y, it didn't just Z. It [list]"
 - "The difference? [Answer]" as rhetorical device
 - "Those [thing]? They're [explanation]" rhetorical questions
 - "They didn't X. They Y" false contrast patterns

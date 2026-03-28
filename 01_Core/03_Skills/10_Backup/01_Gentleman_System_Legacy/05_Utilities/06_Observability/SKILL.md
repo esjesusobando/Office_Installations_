@@ -138,12 +138,12 @@ tracer = trace.get_tracer(__name__)
 def process_order(order_id: str):
     current_span = trace.get_current_span()
     current_span.set_attribute("order.id", order_id)
-    
+
     with tracer.start_as_current_span("validate_order") as span:
         span.set_attribute("order.status", "validating")
         # validation logic
         pass
-    
+
     with tracer.start_as_current_span("process_payment") as span:
         span.set_attribute("payment.method", "stripe")
         # payment logic

@@ -100,7 +100,7 @@ For context that belongs to a specific task, put it in the task file:
 ## Tips for Better Memory
 
 1. **Be specific in AGENTS.md** - Vague instructions get vague results
-2. **Update GOALS.md regularly** - Stale goals lead to wrong priorities  
+2. **Update GOALS.md regularly** - Stale goals lead to wrong priorities
 3. **Use Knowledge/ for reference** - Don't repeat context in every task
 4. **Link related files** - Help your agent find relevant context
 

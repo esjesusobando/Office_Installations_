@@ -1,7 +1,7 @@
 # 17_Anthropic_Harness — Three-Agent Workflow
 
-**TIPO**: Workflow de Harness para Agentes de Larga Duración  
-**VERSIÓN**: 1.0  
+**TIPO**: Workflow de Harness para Agentes de Larga Duración
+**VERSIÓN**: 1.0
 **FILOSOFÍA**: "No te traiciones, no te abandones" — Siempre lo correcto
 
 ---

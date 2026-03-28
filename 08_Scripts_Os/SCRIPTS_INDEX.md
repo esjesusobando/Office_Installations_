@@ -1,6 +1,6 @@
 # Scripts Index — PersonalOS Think Different v6.1
 
-> **Total Scripts:** 89+ (HUBs + Legacy) 
+> **Total Scripts:** 89+ (HUBs + Legacy)
 > **Last Updated:** 2026-03-28
 > **Validation:** Auditorías PASANDO - Sistema OPERATIVO
 

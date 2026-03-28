@@ -1,7 +1,7 @@
 # 📋 AUDITORÍA DE SKILLS — Resumen Ejecutivo
 
-> **Fecha:** 2026-03-24  
-> **Sesión:** Skills Audit + Documentation Reorganization  
+> **Fecha:** 2026-03-24
+> **Sesión:** Skills Audit + Documentation Reorganization
 > **Resultado:** ✅ COMPLETADO
 
 ---
@@ -138,7 +138,7 @@ a7724af chore: reorganize scripts and reenumerate context memory
 
 ---
 
-**Estado:** ✅ COMPLETADO  
+**Estado:** ✅ COMPLETADO
 **Fecha:** 2026-03-24
 
 © 2026 PersonalOS | Skills Audit Summary

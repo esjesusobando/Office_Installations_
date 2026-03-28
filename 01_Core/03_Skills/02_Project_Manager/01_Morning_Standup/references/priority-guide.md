@@ -26,19 +26,19 @@
 ```
 Is it blocking someone?
   YES → P0
-  
+
 NO → Is it breaking production?
   YES → P0
-  
+
 NO → Is deadline today?
   YES → P0
-  
+
 NO → Does it affect >50% of users?
   YES → P1
-  
+
 NO → Is it core to current goal?
   YES → P1
-  
+
 NO → P2/P3
 ```
 

@@ -90,9 +90,9 @@ def test_external_api_mock():
         json={"id": 123, "name": "Test User"},
         status=200
     )
-    
+
     response = get("https://api.example.com/users/123")
-    
+
     assert response.status_code == 200
     assert response.json()["name"] == "Test User"
 
@@ -105,10 +105,10 @@ def test_api_error_handling():
         json={"error": "Internal Error"},
         status=500
     )
-    
+
     with pytest.raises(APIError) as exc_info:
         fetch_user(123)
-    
+
     assert exc_info.value.status_code == 500
 ```
 
@@ -135,12 +135,12 @@ async def test_create_user_integration():
         )
         assert response.status_code == 201
         user_id = response.json()["id"]
-        
+
         # Retrieve user
         response = await client.get(f"/api/users/{user_id}")
         assert response.status_code == 200
         assert response.json()["email"] == "test@example.com"
-        
+
         # Verify in database
         user = await db.users.get(user_id)
         assert user.email == "test@example.com"
@@ -161,7 +161,7 @@ def pact():
 
 def test_user_contract(pact):
     consumer, provider = pact
-    
+
     (consumer
      .having_interaction(
          "GET user by ID",
@@ -190,19 +190,19 @@ from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 async def db_engine():
     """Create test database with migrations."""
     engine = create_async_engine("sqlite+aiosqlite:///:memory:")
-    
+
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
-    
+
     yield engine
-    
+
     await engine.dispose()
 
 @pytest.fixture
 async def db_session(db_engine):
     """Async session for tests."""
     async_session = async_sessionmaker(db_engine, expire_on_commit=False)
-    
+
     async with async_session() as session:
         yield session
         await session.rollback()
@@ -211,21 +211,21 @@ async def db_session(db_engine):
 async def test_user_repository_crud(db_session):
     """Test UserRepository with real database."""
     from app.repositories import UserRepository
-    
+
     repo = UserRepository(db_session)
-    
+
     # Create
     user = await repo.create(User(name="Test", email="test@example.com"))
     assert user.id is not None
-    
+
     # Read
     retrieved = await repo.get(user.id)
     assert retrieved.name == "Test"
-    
+
     # Update
     retrieved.name = "Updated"
     await repo.update(retrieved)
-    
+
     # Delete
     await repo.delete(user.id)
     assert await repo.get(user.id) is None

@@ -1,7 +1,7 @@
 # 🗺️ MAPA COMPLETO DEL SISTEMA THINK DIFFERENT AI
 
-> **Fecha:** 2026-03-26  
-> **Versión:** 1.0  
+> **Fecha:** 2026-03-26
+> **Versión:** 1.0
 > **Propósito:** Mapeo integral de agentes, skills, scripts, hooks, workflows y MCPs
 
 ---

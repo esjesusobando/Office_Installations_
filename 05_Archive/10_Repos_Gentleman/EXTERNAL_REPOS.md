@@ -1,7 +1,7 @@
 # 📦 REPOS EXTERNOS CLONADOS
 
 > **Lista de repos clonados que NO están en git (agregados a .gitignore)**
-> 
+>
 > Para clonar en otra máquina, ejecutar los comandos desde la raíz del proyecto.
 
 ---

@@ -115,7 +115,7 @@ def load_data(path: str) -> pd.DataFrame:
         df = pd.read_json(path)
     else:
         raise ValueError(f"Unsupported format: {path}")
-    
+
     # Auto-clean
     df.columns = df.columns.str.strip().str.lower().str.replace(' ', '_')
     return df
@@ -131,7 +131,7 @@ def quick_analysis(df: pd.DataFrame) -> dict:
         "columns": df.dtypes.to_dict(),
         "missing": df.isnull().sum().to_dict(),
         "numeric_summary": df.describe().to_dict(),
-        "categorical_counts": {col: df[col].nunique() 
+        "categorical_counts": {col: df[col].nunique()
                                for col in df.select_dtypes(include='object').columns}
     }
 ```
@@ -139,13 +139,13 @@ def quick_analysis(df: pd.DataFrame) -> dict:
 ### Phase 3: Cohort Analysis
 
 ```python
-def cohort_retention(df: pd.DataFrame, 
-                     cohort_col: str, 
+def cohort_retention(df: pd.DataFrame,
+                     cohort_col: str,
                      period_col: str,
                      user_col: str) -> pd.DataFrame:
     """
     Build retention cohort matrix.
-    
+
     Args:
         df: DataFrame
         cohort_col: Column with cohort identifier (e.g., 'signup_date')
@@ -153,17 +153,17 @@ def cohort_retention(df: pd.DataFrame,
         user_col: Unique user identifier
     """
     # Create period buckets
-    df['cohort_period'] = (pd.to_datetime(df[period_col]).dt.to_period('M') - 
+    df['cohort_period'] = (pd.to_datetime(df[period_col]).dt.to_period('M') -
                            pd.to_datetime(df[cohort_col]).dt.to_period('M')).apply(lambda x: x.n)
-    
+
     # Group by cohort and period
     cohort_data = df.groupby(['cohort_period', user_col]).size().reset_index(name='activity')
     cohort_counts = cohort_data.groupby('cohort_period')[user_col].apply(lambda x: x.nunique()).unstack()
-    
+
     # Calculate retention
     cohort_sizes = cohort_counts.iloc[:, 0]
     retention = cohort_counts.divide(cohort_sizes, axis=0) * 100
-    
+
     return retention.round(2)
 ```
 
@@ -172,12 +172,12 @@ def cohort_retention(df: pd.DataFrame,
 ```python
 from scipy import stats
 
-def significant_difference(group_a: pd.Series, 
+def significant_difference(group_a: pd.Series,
                           group_b: pd.Series,
                           alpha: float = 0.05) -> dict:
     """Test if difference is statistically significant."""
     t_stat, p_value = stats.ttest_ind(group_a, group_b)
-    
+
     return {
         "significant": p_value < alpha,
         "p_value": round(p_value, 4),
@@ -194,22 +194,22 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 
-def predict_outcome(df: pd.DataFrame, 
-                    target_col: str, 
+def predict_outcome(df: pd.DataFrame,
+                    target_col: str,
                     feature_cols: list) -> dict:
     """Build predictive model for target outcome."""
     X = df[feature_cols].fillna(0)
     y = df[target_col]
-    
+
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=42
     )
-    
+
     model = RandomForestClassifier(n_estimators=100, random_state=42)
     model.fit(X_train, y_train)
-    
+
     predictions = model.predict(X_test)
-    
+
     return {
         "accuracy": model.score(X_test, y_test),
         "feature_importance": dict(zip(feature_cols, model.feature_importances_)),
@@ -402,14 +402,14 @@ gradio         # ML demos
 ```sql
 -- Cohort query
 WITH cohorts AS (
-    SELECT 
+    SELECT
         DATE_TRUNC('month', created_at) AS cohort_month,
         user_id,
         MIN(DATE_TRUNC('month', event_date)) AS first_activity
     FROM events
     GROUP BY 1, 2
 )
-SELECT 
+SELECT
     cohort_month,
     DATE_TRUNC('month', first_activity) AS cohort_period,
     COUNT(DISTINCT user_id) AS users
@@ -424,7 +424,7 @@ ORDER BY 1, 2
 
 ### Example 1: Revenue Analysis
 ```
-Analyze the revenue data in data/revenue.csv. 
+Analyze the revenue data in data/revenue.csv.
 Show me:
 1. Monthly trend with YoY comparison
 2. Top 20% customers contributing X% of revenue (Pareto)
@@ -492,7 +492,7 @@ For understanding which channels drive conversions:
 # First-touch attribution
 first_touch = df.groupby('first_channel')['converted'].mean()
 
-# Last-touch attribution  
+# Last-touch attribution
 last_touch = df.groupby('last_channel')['converted'].mean()
 
 # Linear attribution
@@ -532,4 +532,3 @@ This skill transforms you into a **Silicon Valley-grade data analyst**:
 *Author: sebas@thinkdifferent*
 *Framework: Anthropic Skill Creator v2.0*
 *Level: TOP TOP — Executive Grade*
-

@@ -89,7 +89,7 @@ Cada skill ahora tiene:
 
 ---
 
-**Última actualización**: 2026-03-24  
+**Última actualización**: 2026-03-24
 **Estado**: ✅ Post-Audit completado
 
 © 2026 PersonalOS | Inventario v6.0

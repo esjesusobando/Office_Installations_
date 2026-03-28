@@ -36,7 +36,7 @@ TONE_OF_VOICE = """# Tone of Voice
 
 ## Voice Attributes
 - **Formal/Casual:** [Choose one]
-- **Technical/Accessible:** [Choose one]  
+- **Technical/Accessible:** [Choose one]
 - **Serious/Playful:** [Choose one]
 
 ## Writing Guidelines

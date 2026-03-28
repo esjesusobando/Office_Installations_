@@ -1,7 +1,7 @@
 # Graders Framework Skill
 
-**CATEGORÍA:** Anthropic Harness Patterns  
-**SUBCATEGORÍA:** Graders Framework  
+**CATEGORÍA:** Anthropic Harness Patterns
+**SUBCATEGORÍA:** Graders Framework
 **VERSIÓN:** 1.0
 
 ---
@@ -67,7 +67,7 @@ result = mux.evaluate(task)
 ```python
 class CodeGrader:
     """Grader basado en código para verificaciones objetivas."""
-    
+
     def evaluate(self, task: Task) -> GraderResult:
         # Binary tests: pass/fail
         # Static analysis: lint, type check
@@ -82,7 +82,7 @@ class CodeGrader:
 ```python
 class ModelGrader:
     """Grader basado en LLM para evaluaciones subjetivas."""
-    
+
     def evaluate(self, task: Task, rubric: str) -> GraderResult:
         # Rubric-based scoring
         # Natural language assertions
@@ -97,7 +97,7 @@ class ModelGrader:
 ```python
 class HumanGrader:
     """Grader humano para gold standard."""
-    
+
     def create_task(self, task: Task) -> HumanReviewTask:
         # Genera tarea para SME review
         # Incluye rúbrica y ejemplos

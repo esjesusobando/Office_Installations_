@@ -1,7 +1,7 @@
 # 📋 PLAN DE MEJORAS — Skills UltraThink (Post-Anthropic Audit)
 
-> **Fecha:** 2026-03-24  
-> **Basado en:** Lecciones de Anthropic (Thariq Shihipar)  
+> **Fecha:** 2026-03-24
+> **Basado en:** Lecciones de Anthropic (Thariq Shihipar)
 > **Objetivo:** Elevar las skills al estándar de Anthropic
 
 ---

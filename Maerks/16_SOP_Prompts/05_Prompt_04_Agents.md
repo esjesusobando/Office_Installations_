@@ -51,7 +51,7 @@ model_recommendation: "[modelo recomendado]"
 
 ## 🛠️ Kit de Herramientas Principal
 - **Skill principal:** `[ruta a skill]`
-- **Skills secundarias:** 
+- **Skills secundarias:**
   - `[skill 1]`
   - `[skill 2]`
 

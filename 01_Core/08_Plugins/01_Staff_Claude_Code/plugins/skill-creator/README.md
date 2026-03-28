@@ -1,7 +1,7 @@
 # Skill Creator Plugin - Instalado
 
-**Estado**: ✅ Instalado (2026-03-27)  
-**Fuente**: `anthropics/claude-plugins-official`  
+**Estado**: ✅ Instalado (2026-03-27)
+**Fuente**: `anthropics/claude-plugins-official`
 **Versión**: Skill Creator v2.0 (Skills 2.0)
 
 ## 📦 Contenido del Plugin
