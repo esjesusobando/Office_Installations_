@@ -112,3 +112,5 @@ Revisar_Analizar/
 # Skill Creator Official (Anthropic) - clonar con: git clone <url>
 claude-plugins-official/
 01_Core/08_Plugins/01_Claude-Plugins_Official/
+01_Core/05_Mcp/mcp.json
+01_Core/05_Mcp/opencode.json
