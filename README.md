@@ -93,7 +93,7 @@ Think_Different/
 ├── 07_Projects/                  # Proyectos activos
 ├── 08_Scripts_Os/                # Scripts del sistema (Hubs, auditorías, utilidades)
 ├── 01_Report_Status.md           # Reporte de estado del sistema
-└── README.md                     # Este archivoThink_Different/
+└── README.md                     # Este archivo
 
 ```
 
@@ -118,7 +118,7 @@ Think_Different/
 
 ## For Contributors
 
-The `core/` directory contains the reusable system. Contributions should:
+The `01_Core/` directory contains the reusable system. Contributions should:
 
 - Not include personal information
 - Be generic and configurable

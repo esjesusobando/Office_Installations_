@@ -913,22 +913,24 @@ steps:
 
 ### FASE 1: Fundación (Semana 1)
 - [x] Diseñar arquitectura
-- [ ] Crear estructura de carpetas `Auto_Learn/`
-- [ ] Implementar `detector.py` básico
-- [ ] Implementar `rules_engine.py` básico
-- [ ] Crear `auto_learn_hub.py` stub
+- [x] Crear estructura de carpetas `04_Operations/01_Auto_Improvement/`
+- [x] Implementar `detector.py` básico
+- [x] Implementar `analyzer.py` (diagnóstico)
+- [x] Implementar `executor.py` (repairer)
+- [x] Implementar `learner.py`
+- [x] Crear `recursive_improvement_engine.py`
+- [x] Crear `11_Auto_Learn_Hub.py`
+- [x] Crear `auto_fix_rules.json`
 - [ ] Tests básicos
 
 ### FASE 2: Motor (Semana 2)
-- [ ] Implementar `diagnostic.py`
-- [ ] Implementar `repairer.py` (safe fixes)
 - [ ] Integrar con `config_paths.py`
 - [ ] Integrar con System Guardian
 - [ ] Tests de integración
+- [ ] Crear `metrics_tracker.py`
+- [ ] Crear `rules_engine.py`
 
 ### FASE 3: Aprendizaje (Semana 3)
-- [ ] Implementar `learner.py`
-- [ ] Implementar `metrics_tracker.py`
 - [ ] Crear `knowledge_base.json` inicial
 - [ ] Implementar feedback loop
 - [ ] Tests de aprendizaje
