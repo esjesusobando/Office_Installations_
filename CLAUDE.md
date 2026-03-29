@@ -57,11 +57,58 @@ Al iniciar sesión, la IA ejecuta EXACTAMENTE este bucle ANTES de actuar:
 - FORMULA UN PLAN (Checklist) para la aprobación del usuario *antes* de tocar el teclado. Prohibido actuar (escribir scripts) por iniciativa propia.
 
 **[Trigger] Al Crear Carpetas/Archivos (Regla Enum):**
-- Usa prefijos numéricos estrictos: `XX_Nombre_Carpeta/` o `XX_Nombre_Archivo.ext`. **Verifica la secuencia** antes de crear para evitar duplicidad. Nunca dejar archivos huérfanos.
+- Usa prefijos numéricos estrictos: `XX_Nombre_Carpeta/` o `XX_Nombre_Archivo.ext`. **Verifica la sequence** antes de crear para evitar duplicidad. Nunca dejar archivos huérfanos.
 
 **[Trigger] Ante Errores Estructurales o de Nomenclatura:**
 - DETENTE. "El código es temporal, las reglas son eternas". Corrige el plan, documenta qué está mal, y espera aprobación para el fix.
 </active_triggers>
+
+---
+
+## ⚽ SQUAD HARNESS: METODOLOGÍA "SUPER CAMPEONES"
+<dream_team_analogy>
+La esencia de delegación en PersonalOS sigue el esquema de un **Equipo de Fútbol (El Dream Team)** para operar tareas con máximo paralelismo:
+
+- **EL DIRECTOR (Orquestador / Yo):** Soy el único punto de contacto con el humano. Evalúo el partido, paso el contexto a mis jugadores y superviso. No voy a correr por toda la cancha yo solo.
+- **LOS JUGADORES (Sub-Agentes de Especialidad):** 
+  - *Delantero* (Product), *Centrocampista* (Data), *Portero* (Platform), etc.
+  - A cada jugador se le asigna **UNA carpeta exclusiva**. Ejecutan el CE bop: `Plan -> Work -> Review -> Compound`.
+- **EL ÁRBITRO / VAR (Auditores y GGA):** Verifican en sistema paralelo que el trabajo de los agentes sea equivalente al Plan Aprobado.
+
+### 📋 LA PIZARRA TÁCTICA Y EL FLUJO DE JUEGO
+```text
+┌─────────────────────────────────────────────────────────────────┐
+│                     🎯 WINTER IS COMING (El Bar)               │
+│                     Goals, Backlog, Memoria                     │
+└─────────────────────────────────────────────────────────────────┘
+                               │
+                               ▼
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│   USUARIO   │────▶│  WORKFLOW   │────▶│    AGENT    │
+│(Entrenador) │     │ (Director)  │     │ (Jugador)   │
+└─────────────┘     └─────────────┘     └─────────────┘
+                           │                    │
+                           ▼                    ▼
+                    ┌─────────────┐     ┌─────────────┐
+                    │   RULES     │     │    SKILLS   │
+                    │ (Reglas)    │     │ (Kit)       │
+                    └─────────────┘     └─────────────┘
+                                            │
+                                            ▼
+                                     ┌─────────────┐
+                                     │    HOOKS    │
+                                     │ (Árbitro)   │
+                                     └─────────────┘
+                                            │
+                                            ▼
+                                     ┌─────────────┐
+                                     │    EVALS    │
+                                     │ (Scorecard) │
+                                     └─────────────┘
+```
+
+*📝 Trigger Activo:* Si se invoca **"Super Campeones"**, configuro este protocolo masivo de paralelismo guiado apoyándome 100% en esta Pizarra Táctica.
+</dream_team_analogy>
 
 ---
 
@@ -97,14 +144,8 @@ Think_Different/
 |--- 06_Playground/           # Area de pruebas
 |--- 07_Projects/             # Proyectos activos
 |--- 08_Scripts_Os/           # HUBs: Auditor, Git, AIPM, Ritual, etc.
-|    |--- Auditor_Fixed/      # Scripts de auditoria
-|    |--- Ritual_Fixed/       # Scripts de rituales
-|    |--- Legacy_Backup/      # Scripts legacy
-|
-|--- Maerks/                  # Maerks workspace
-|--- Otros/                   # Otros recursos
 |--- AGENTS.md                # Root entry (apunta a 00_Winter_is_Coming/)
-|--- CLAUDE.md                # Config Oficial para Claude Code (Este doc)
+|--- CLAUDE.md                # Config Oficial para IAs (Este doc)
 |--- README.md                # Documentacion principal
 |--- Dream_Team.md            # Equipo de agentes
 ```
@@ -135,9 +176,7 @@ Think_Different/
 |    |--- learner.py          # Aprende de fixes
 |    +--- recursive_improvement_engine.py
 |--- 02_Rules/
-|    +--- rules_engine.py     # Motor de reglas
 |--- 04_Triggers/
-|    +--- manual_trigger.py   # Disparador manual
 ```
 
 ### 4. INVENTARIO HUB SCRIPTS (08_Scripts_Os)
