@@ -1,7 +1,7 @@
 # Scripts Index — PersonalOS Think Different v6.1
 
 > **Total Scripts:** 89+ (HUBs + Legacy)
-> **Last Updated:** 2026-03-28
+> **Last Updated:** 2026-03-29
 > **Validation:** Auditorías PASANDO - Sistema OPERATIVO
 
 ---
@@ -133,4 +133,44 @@ Scripts legacy en `08_Scripts_Os/Legacy_Backup/` — referensiados por números:
 
 ---
 
-*Actualizado: 2026-03-28 — Post-Auditoría Super Campeones*
+## 🔗 Scripts → Skills Mapping (2026-03-29)
+
+Scripts en Ritual_Fixed con sus skills asociadas:
+
+| Script | Skill | Estado |
+|--------|-------|--------|
+| `09_Backlog_Triage.py` | backlog-processing | ✅ Existe |
+| `14_Morning_Standup.py` | morning-standup | ✅ Creado |
+| `15_Weekly_Review.py` | weekly-review | ✅ Creado |
+| `08_Ritual_Cierre.py` | ritual-cierre | ✅ Creado |
+| `11_Sync_Notes.py` | sync-notes | ✅ Creado |
+| `13_Validate_Stack.py` | validate-stack | ✅ Creado |
+| `12_Update_Links.py` | update-links | ✅ Creado |
+| `16_Clean_System.py` | clean-system | ✅ Creado |
+| `17_Ritual_Dominical.py` | ritual-dominical | ✅ Creado |
+| `57_Repo_Sync_Auditor.py` | repo-sync | ✅ Creado |
+| `50_System_Health_Monitor.py` | system-guardian | ✅ Existe |
+
+---
+
+## 📁 Scripts por Carpeta (Ritual_Fixed)
+
+| Script | Función |
+|--------|---------|
+| `08_Ritual_Cierre.py` | Cierre de sesión |
+| `09_Backlog_Triage.py` | Procesa backlog |
+| `11_Sync_Notes.py` | Sincroniza notas |
+| `12_Update_Links.py` | Actualiza enlaces |
+| `13_Validate_Stack.py` | Valida stack tech |
+| `14_Morning_Standup.py` | Daily standup |
+| `15_Weekly_Review.py` | Weekly review |
+| `16_Clean_System.py` | Limpia sistema |
+| `17_Ritual_Dominical.py` | Ritual dominical |
+| `18_Generacion_Contenido.py` | Generación contenido |
+| `19_Generate_Progress.py` | Dashboard progreso |
+| `50_System_Health_Monitor.py` | Health monitor |
+| `57_Repo_Sync_Auditor.py` | Repo sync |
+
+---
+
+*Actualizado: 2026-03-29 — Scripts y Skills integrados*

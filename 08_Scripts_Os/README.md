@@ -1,7 +1,7 @@
 # 08_Scripts_Os — Motor de Automatización
 
 **Versión:** 6.1
-**Última actualizada:** 2026-03-27
+**Última actualización:** 2026-03-29
 **Estado:** ✅ Activo
 
 ---
@@ -12,73 +12,91 @@
 08_Scripts_Os/
 ├── README.md                    # Este archivo
 ├── SCRIPTS_INDEX.md             # Índice de scripts
-├── config_paths.py             # Configuración de rutas
+├── config_paths.py              # Configuración de rutas centralizadas
 ├── qmd.sh                      # Script QMD
 ├── testsprite_failover.sh      # Failover para TestSprite
-├── 01_Auditor_Hub.py           # Auditor principal
-├── 02_Git_Hub.py               # Operaciones Git
-├── 03_AIPM_Hub.py              # AIPM logging
-├── 04_Ritual_Hub.py            # Ritual de cierre
-├── 05_Validator_Hub.py        # Validador
-├── 06_Tool_Hub.py              # Herramientas
-├── 07_Integration_Hub.py        # Integraciones
-├── 08_Workflow_Hub.py          # Workflows
-├── 09_Data_Hub.py             # Datos
-├── 10_General_Hub.py           # General
-├── 11_Anthropic_Harness/       # Anthropic patterns
-├── Legacy_Backup/              # Scripts deprecated (60+)
-└── Analytics_Output/          # Output de analíticas
+├── 01_Auditor_Hub.py           # Auditor principal del sistema
+├── 02_Git_Hub.py              # Operaciones Git automatizadas
+├── 03_AIPM_Hub.py             # AIPM logging y tracking
+├── 04_Ritual_Hub.py           # Orquestador de rituales
+├── 05_Validator_Hub.py         # Validador de reglas
+├── 06_Tool_Hub.py             # Herramientas varias
+├── 07_Integration_Hub.py       # Integraciones MCP
+├── 08_Workflow_Hub.py         # Workflows SOTA
+├── 09_Data_Hub.py             # Datos y sincronización
+├── 10_General_Hub.py          # Utilidades generales
+├── 11_Anthropic_Harness/     # Anthropic patterns
+├── Auditor_Fixed/             # Scripts de auditoría funcionando
+├── Ritual_Fixed/              # Rituales funcionando (13 scripts)
+├── Tool_Fixed/                # Herramientas funcionando
+├── Validator_Fixed/           # Validadores funcionando
+├── Workflow_Fixed/            # Workflows funcionando
+└── Legacy_Backup/             # Scripts legacy (referencia)
 ```
 
 ---
 
 ## 🎯 Propósito
 
-El **motor de automatización** del PersonalOS - scripts Python para operaciones, auditorías, workflows y más.
-
----
-
-## 🔧 Scripts Principales
-
-| Script | Función |
-|--------|---------|
-| `01_Auditor_Hub.py` | Auditor principal del sistema |
-| `02_Git_Hub.py` | Operaciones Git automatizadas |
-| `03_AIPM_Hub.py` | AIPM logging y tracking |
-| `04_Ritual_Hub.py` | Ritual de cierre de sesión |
-| `SCRIPTS_INDEX.md` | Índice completo de scripts |
+El **motor de automatización** del PersonalOS - scripts Python para operaciones, auditorías, workflows y rituales diarios.
 
 ---
 
 ## 📊 Estadísticas
 
-| Área | Cantidad |
-|------|----------|
-| Scripts principales | 10 |
-| Scripts en Legacy_Backup | 60+ |
-| Scripts totales | 70+ |
+| Área | Cantidad | Estado |
+|------|----------|--------|
+| Scripts en _Fixed | 26 | ✅ Funcionando |
+| Scripts en Legacy_Backup | 60+ | ⚠️ Legacy |
+| HUBs principales | 10 | ✅ Activos |
 
 ---
 
-## 🔄 Uso
+## 🔧 Scripts Principales (Ritual_Fixed)
+
+| Script | Función | Skill Asociada |
+|--------|---------|----------------|
+| `09_Backlog_Triage.py` | Procesa backlog | backlog-processing |
+| `14_Morning_Standup.py` | Daily standup | morning-standup |
+| `15_Weekly_Review.py` | Revisión semanal | weekly-review |
+| `08_Ritual_Cierre.py` | Cierre de sesión | ritual-cierre |
+| `11_Sync_Notes.py` | Sincroniza notas | sync-notes |
+| `13_Validate_Stack.py` | Valida stack | validate-stack |
+| `19_Generate_Progress.py` | Dashboard progreso | - |
+
+---
+
+## 🚀 Uso
 
 ```bash
-# Ejecutar auditor
-python 08_Scripts_Os/01_Auditor_Hub.py
+# Ejecutar Morning Standup
+python 08_Scripts_Os/Ritual_Fixed/14_Morning_Standup.py
 
-# Ritual de cierre
-python 08_Scripts_Os/04_Ritual_Hub.py
+# Ejecutar Weekly Review
+python 08_Scripts_Os/Ritual_Fixed/15_Weekly_Review.py
 
-# Git operations
-python 08_Scripts_Os/02_Git_Hub.py
+# Ejecutar Ritual de Cierre
+python 08_Scripts_Os/Ritual_Fixed/08_Ritual_Cierre.py
+
+# Ver índice completo
+cat 08_Scripts_Os/SCRIPTS_INDEX.md
 ```
 
 ---
 
 ## 📚 Recursos
 
-- [SCRIPTS_INDEX.md](./SCRIPTS_INDEX.md) — Índice completo
-- [Legacy_Backup](./Legacy_Backup/) — Scripts deprecated
+- [SCRIPTS_INDEX.md](./SCRIPTS_INDEX.md) — Índice completo de scripts
+- [Legacy_Backup](./Legacy_Backup/) — Scripts legacy (referencia)
+- [01_Core/03_Skills/08_Personal_Os/](../01_Core/03_Skills/08_Personal_Os/) — Skills asociadas
+
+---
+
+## ✅ Notas Importantes (2026-03-29)
+
+- Scripts en carpetas `_Fixed` están funcionando y probados
+- Cada script tiene una skill asociada en `08_Personal_Os`
+- Los scripts legacy en Legacy_Backup pueden tener rutas obsoletas
 
 ---
 
