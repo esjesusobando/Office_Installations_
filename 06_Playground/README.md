@@ -28,8 +28,9 @@ Think_Different/
 
 ```
 06_Playground/
-├── 00_Context/                 # Contextos de prueba
-└── 01_Projects_Lab/            # Proyectos de laboratorio
+├── README.md                   # Este archivo
+├── Focus_Now_Lab/             # Laboratorio de enfoque actual
+└── Revisar_Analizar/          # Revisiones y análisis
 ```
 
 ---
