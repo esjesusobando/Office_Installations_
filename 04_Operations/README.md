@@ -33,7 +33,7 @@ Think_Different/
 ├── GOVERNANCE.md                    # Gobernanza
 ├── RUNBOOK.md                       # Manual de operaciones
 ├── 01_Auto_Improvement/            # Auto-mejora del sistema
-├── 01_Context_Memory/               # Memoria de contexto (sesiones)
+├── 00_Context_Memory/               # Memoria de contexto (sesiones)
 │   ├── _jsons/                     # JSONs de validación
 │   ├── CTX_AUTO_Intelligence_*.md
 │   └── CTX_00*.md
