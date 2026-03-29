@@ -1,6 +1,6 @@
 # 18 Multi-Agent Roles Pipeline
 
-> **Fecha:** 2026-03-26  
+> **Fecha:** 2026-03-26
 > **Inspirado en:** "Scaling Agentic Systems" article (Feb 25, 2026)
 
 ---
@@ -91,9 +91,10 @@ pipeline:
 ### Python API
 
 ```python
-from 04_Engine.scripts.Os.11_Anthropic_Harness.multi_agent_pipeline import (
-    PipelineBuilder, AgentRole
-)
+# Legacy - API anterior a v6.1
+# from 08_Scripts_Os.11_Anthropic_Harness.multi_agent_pipeline import (
+#     PipelineBuilder, AgentRole
+# )
 
 # Crear pipeline
 pipeline = (
@@ -126,7 +127,8 @@ Este workflow se complementa con `07_Agent_Teams_Locks.py`:
 - **Multi-Agent Roles**: Define roles especializados y flujos
 
 ```python
-from 04_Engine.scripts.Os.11_Anthropic_Harness.07_Agent_Teams_Locks import AgentTeam, GitLockManager
+# Legacy - API anterior a v6.1
+# from 08_Scripts_Os.11_Anthropic_Harness.07_Agent_Teams_Locks import AgentTeam, GitLockManager
 
 # Crear equipo con locks
 manager = GitLockManager()
@@ -151,6 +153,6 @@ team = AgentTeam("dev-team", num_agents=16, lock_manager=manager)
 
 ## Archivos Relacionados
 
-- `08_Scripts_Os/Legacy_Backup/11_Anthropic_Harness/07_Agent_Teams_Locks.py` (legacy - verificar existencia)
-- `.agent/02_Skills/14_Anthropic_Harness/08_Graders_Framework/`
-- `.agent/02_Skills/14_Anthropic_Harness/01_Evaluator_Pattern/`
+- `08_Scripts_Os/Legacy_Backup/11_Anthropic_Harness/07_Agent_Teams_Locks.py` (legacy)
+- `01_Core/03_Skills/14_Anthropic_Harness/08_Graders_Framework/`
+- `01_Core/03_Skills/14_Anthropic_Harness/01_Evaluator_Pattern/`

@@ -1,6 +1,6 @@
 ---
 description: PILAR 07: Estándares de Observabilidad, CoT y Eficiencia para el Desarrollo de Agentes (AIPM-Grade)
-globs: [".agent/01_Agents/*.md", ".claude/agents/*.md", "04_ENGINE/*.py"]
+globs: ["01_Core/04_Agents/**/*.md", ".claude/04_Agents/*.md", "08_Scripts_Os/**/*.py"]
 alwaysApply: true
 ---
 

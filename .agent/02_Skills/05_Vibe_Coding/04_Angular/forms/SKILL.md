@@ -38,10 +38,10 @@ export class LoginComponent {
     email: ['', [required, email]],
     password: ['', required]
   });
-  
+
   readonly emailField = this.loginForm.controls.email;
   readonly passwordField = this.loginForm.controls.password;
-  
+
   submit() {
     if (this.loginForm.valid()) {
       const values = this.loginForm.value();
@@ -80,7 +80,7 @@ export class LoginComponent {
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8)]],
   });
-  
+
   submit() {
     if (this.form.valid) {
       const { email, password } = this.form.getRawValue();

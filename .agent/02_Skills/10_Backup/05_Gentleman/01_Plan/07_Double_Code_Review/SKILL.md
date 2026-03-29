@@ -36,8 +36,8 @@ description: Doble Code Review estilo Silicon Valley desde múltiples perspectiv
 ## 💾 State Persistence
 
 Guardar reviews en:
-- `01_Brain/07_Memory_Brain/00_Code_Reviews/`
-- `02_Operations/02_Evals/`
+- `04_Operations/04_Memory_Brain/00_Code_Reviews/`
+- `01_Core/02_Evals/`
 
 ## PURPOSE
 
@@ -198,7 +198,7 @@ El review genera un documento estructurado:
 ### 🔵 Sombrero Azul
 [Hallazgos de información]
 
-### 🔴 Sombrero Rojo  
+### 🔴 Sombrero Rojo
 [Hallazgos emocionales/intuitivos]
 
 ### 🟡 Sombrero Amarillo
@@ -281,11 +281,11 @@ El review genera un documento estructurado:
 
 ## ANTI-PATTERNS — Qué NO hacer
 
-❌ **No saltarse hats** — cada sombrero existe por una razón  
-❌ **No unificar perspectives** — el punto es ver desde ángulos distintos  
-❌ **No rush** — el review rápido es review malo  
-❌ **No solo negative** — el 🟡 Sombrero Amarillo es crítico  
-❌ **No skip verification** — el segundo review NO es opcional  
+❌ **No saltarse hats** — cada sombrero existe por una razón
+❌ **No unificar perspectives** — el punto es ver desde ángulos distintos
+❌ **No rush** — el review rápido es review malo
+❌ **No solo negative** — el 🟡 Sombrero Amarillo es crítico
+❌ **No skip verification** — el segundo review NO es opcional
 
 ---
 
@@ -301,7 +301,7 @@ El sistema:
 2. Aplicará los 6 sombreros
 3. Verificará ejecución
 4. Generará el report
-5. Guardará en 01_Brain/07_Memory_Brain/00_Code_Reviews/
+5. Guardará en 04_Operations/04_Memory_Brain/00_Code_Reviews/
 
 ---
 
@@ -309,7 +309,7 @@ El sistema:
 
 Los reports se guardan en:
 ```
-01_Brain/07_Memory_Brain/00_Code_Reviews/
+04_Operations/04_Memory_Brain/00_Code_Reviews/
 ├── YYYY-MM-DD_[plan-name]_review.md
 └── index.md  (índice de todos los reviews)
 ```

@@ -18,7 +18,7 @@ Este documento es el registro histórico de todas las mejoras, cambios y evoluci
 |---------|-------|
 | Versión actual | v6.1 |
 | Fecha de inicio | 2026-03-29 |
-| Total de mejoras | 3 |
+| Total de mejoras | 4 |
 | Autonomía actual | MANUAL (Nivel 0) |
 | Health Score | - (baseline) |
 
@@ -147,6 +147,38 @@ improvement:
   status: "✅ COMPLETADO"
 ```
 
+#### Mejora #004: Corrección Autónoma de Imports Obsoletos
+
+```yaml
+improvement:
+  id: "EV-2026-0329-004"
+  title: "Corrección autónoma de imports obsoletos en test suite"
+  category: "optimization"
+  
+  trigger:
+    - "Solicitud de corrección autónoma"
+    - "Detección de import Legacy_Backup obsoleto"
+  
+  changes:
+    - "Eliminado import 'Legacy_Backup' de Maerks/test/broken_import.py"
+    - "Renombrado archivo a '01_Broken_Import.py' con prefijo numérico"
+  
+  rationale:
+    - "Import legacy no se usaba y causaba potenciales errores"
+    - "Prefijo numérico mejora ordenamiento y consistencia"
+  
+  impact:
+    - files_modified: 1
+    - files_renamed: 1
+    - autonomy_change: "Ejecución autónoma activa"
+    - risk_reduction: "Bajo"
+  
+  artifacts:
+    - "Maerks/test/01_Broken_Import.py"
+  
+  status: "✅ COMPLETADO"
+```
+
 ---
 
 ## 📈 Métricas de Evolución
@@ -161,17 +193,17 @@ improvement:
 
 | Categoría | Cantidad | Porcentaje |
 |-----------|----------|-------------|
-| foundation | 1 | 33% |
-| resilience | 1 | 33% |
-| governance | 1 | 33% |
-| optimization | 0 | 0% |
+| foundation | 1 | 25% |
+| resilience | 1 | 25% |
+| governance | 1 | 25% |
+| optimization | 1 | 25% |
 | automation | 0 | 0% |
 
 ### Tasa de Éxito
 
 | Métrica | Valor |
 |---------|-------|
-| Mejoras completadas | 3 |
+| Mejoras completadas | 4 |
 | Mejoras revertidas | 0 |
 | Rollbacks necesarios | 0 |
 | Éxito overall | 100% |

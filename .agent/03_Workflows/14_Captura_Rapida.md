@@ -79,7 +79,7 @@ Si tienes una reunión grabada y quieres extraer aprendizajes:
 
 ```
 → Playwright MCP: screenshot de la referencia
-→ Guardar en 02_Knowledge/ con descripción
+→ Guardar en 03_Knowledge/Resources/ con descripción
 ```
 
 ---

@@ -63,7 +63,7 @@ Antes de generar código:
 ## Ubicación de Skills
 
 ```
-.agent/02_Skills/04_Product_Design/
+01_Core/03_Skills/04_Product_Design/
 ├── taste-skill/SKILL.md       # Diseño premium desde cero
 ├── soft-skill/SKILL.md        # Look premium/lujoso
 ├── minimalist-skill/SKILL.md    # Estilo Notion/Linear

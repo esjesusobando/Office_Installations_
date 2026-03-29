@@ -20,7 +20,7 @@ Usar cuando el contexto de la sesión está degradado: respuestas incoherentes, 
 
 ### Opción A — Reset Suave (recomendado primero)
 
-1. Ejecutar Engram reset:
+1. Ejecutar el script de reset:
 
    ```bash
    python 08_Scripts_Os/04_Ritual_Hub.py --reset
@@ -47,16 +47,15 @@ Usar cuando el contexto de la sesión está degradado: respuestas incoherentes, 
 Solo si A y B fallan:
 
 1. Guardar manualmente notas de lo que estabas haciendo
-2. Cerrar Claude/OpenCode completamente
+2. Cerrar Claude Code completamente
 3. Reabrir y ejecutar Génesis desde cero
 
 ## Prevención
 
-- Usar subagentes (`.agent/01_Agents/`) para tareas largas → protegen la ventana de contexto principal
-- Guardar `Process_Notes` al final de cada sesión con `08_Scripts_Os/04_Ritual_Hub.py`
+- Usar subagentes (`.claude/agents/`) para tareas largas → protegen la ventana de contexto principal
+- Guardar `Process_Notes` al final de cada sesión con `11_Ritual_Cierre_Protocol`
 - Hacer commits frecuentes → el estado del repo siempre refleja el avance real
 - Si una tarea requiere leer más de 10 archivos → delegar a un subagente
-- Usar Engram (`mem_save()`) para guardar aprendizajes clave
 
 ## Referencia rápida de estructura actual v6.1
 

@@ -40,7 +40,7 @@ description: Forces complete output without truncation or placeholders. Triggers
 ## 💾 State Persistence
 
 Tracking de outputs en:
-- `02_Operations/01_Active_Tasks/` — Tasks en progreso
+- `03_Tasks/` — Tasks en progreso
 
 ## Baseline
 

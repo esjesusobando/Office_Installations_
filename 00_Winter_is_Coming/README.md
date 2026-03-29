@@ -1,7 +1,7 @@
 # 00_Winter_is_Coming — Núcleo del PersonalOS
 
-**Versión:** 1.0
-**Última actualización:** 2026-03-27
+**Versión:** 6.1
+**Última actualización:** 2026-03-29
 **Estado:** ✅ Activo
 
 ---
@@ -45,7 +45,9 @@ Esta carpeta contiene el **ADN del sistema** - los archivos fundamentales que go
 
 - **Backlog:** items pendientes de procesar
 - **Goals:** Configurados para Q1-Q2 2026
-- **Última sesión:** 2026-03-27
+- **Última sesión:** 2026-03-29
+- **Integraciones nuevas:** Tool Shed, Skill Harmonizer, Notifier
+- **Skills:** 18 carpetas en 01_Core/03_Skills/
 
 ---
 

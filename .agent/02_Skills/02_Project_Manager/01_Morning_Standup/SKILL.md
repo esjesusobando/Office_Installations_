@@ -18,7 +18,7 @@ description: Daily focus session. Triggers on: morning routine, daily priorities
 
 ## Workflow (Original)
 
-1. **Read Context**: Read `GOALS.md`, `BACKLOG.md`, and active tasks in `02_Operations/01_Active_Tasks/`.
+1. **Read Context**: Read `GOALS.md`, `BACKLOG.md`, and active tasks in `03_Tasks/`.
 2. **Analyze Priorities**: Identify top 3 priorities based on deadlines and alignment with goals.
 3. **Propose Schedule**: Suggest a realistic plan for the day, highlighting deep work vs. quick wins.
 4. **Check Blockers**: Identify any blocked tasks and propose next steps to unblock.

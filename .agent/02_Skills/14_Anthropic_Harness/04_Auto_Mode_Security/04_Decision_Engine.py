@@ -40,10 +40,10 @@ class AutoModeSecurity:
     - Stage 1 Fast Filter
     - Stage 2 CoT Reasoning
     """
-    
+
     def __init__(self, config: Optional[Dict] = None):
         self.config = config or {}
-        
+
         # Initialize components - try relative first, fallback to absolute
         try:
             from .00_Prompt_Injection_Probe import PromptInjectionProbe
@@ -53,40 +53,40 @@ class AutoModeSecurity:
         except ImportError:
             # Fallback to absolute imports for standalone use
             import importlib.util
-            
+
             base_path = os.path.dirname(os.path.abspath(__file__))
-            
+
             spec = importlib.util.spec_from_file_location("probe", os.path.join(base_path, "00_Prompt_Injection_Probe.py"))
             probe_module = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(probe_module)
-            
+
             spec = importlib.util.spec_from_file_location("classifier", os.path.join(base_path, "01_Transcript_Classifier.py"))
             classifier_module = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(classifier_module)
-            
+
             spec = importlib.util.spec_from_file_location("filter", os.path.join(base_path, "02_Stage1_Fast_Filter.py"))
             filter_module = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(filter_module)
-            
+
             spec = importlib.util.spec_from_file_location("cot", os.path.join(base_path, "03_Stage2_CoT_Reasoning.py"))
             cot_module = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(cot_module)
-            
+
             PromptInjectionProbe = probe_module.PromptInjectionProbe
             TranscriptClassifier = classifier_module.TranscriptClassifier
             RiskLevel = classifier_module.RiskLevel
             Stage1FastFilter = filter_module.Stage1FastFilter
             Stage2CoTReasoning = cot_module.Stage2CoTReasoning
-        
+
         self.injection_probe = PromptInjectionProbe()
         self.classifier = TranscriptClassifier()
         self.fast_filter = Stage1FastFilter()
         self.cot_reasoning = Stage2CoTReasoning()
-        
+
         # Setup logging
         self.logger = logging.getLogger("AutoModeSecurity")
         self.logger.setLevel(logging.INFO)
-        
+
         # Metrics
         self.metrics = {
             "total_decisions": 0,
@@ -95,27 +95,27 @@ class AutoModeSecurity:
             "blocked": 0,
             "confirmations": 0,
         }
-    
-    def evaluate(self, 
-                 tool_name: str, 
+
+    def evaluate(self,
+                 tool_name: str,
                  tool_input: Dict[str, Any],
                  tool_output: Optional[str] = None,
                  context: Optional[Dict] = None) -> SecurityDecision:
         """
         Evalúa una acción completa.
-        
+
         Args:
             tool_name: Nombre de la tool
             tool_input: Input de la tool
             tool_output: Output de la tool (para scan de injection)
             context: Contexto adicional
-            
+
         Returns:
             SecurityDecision con la decisión final
         """
         self.metrics["total_decisions"] += 1
         context = context or {}
-        
+
         # Layer 1: Check for prompt injection in output
         if tool_output:
             injection_result = self.injection_probe.scan(tool_output)
@@ -129,10 +129,10 @@ class AutoModeSecurity:
                     reason="Prompt injection detected",
                     details={"injection": injection_result.pattern}
                 )
-        
+
         # Layer 2: Fast filter (Stage 1)
         fast_result = self.fast_filter.evaluate(tool_name, json.dumps(tool_input))
-        
+
         if fast_result.should_block:
             self.logger.warning(f"Stage 1 blocked: {fast_result.reason}")
             self.metrics["blocked"] += 1
@@ -143,11 +143,11 @@ class AutoModeSecurity:
                 reason=fast_result.reason,
                 details={"stage": 1}
             )
-        
+
         if fast_result.should_confirm:
             # Stage 2: CoT reasoning for confirmation decisions
             cot_result = self.cot_reasoning.reason(tool_name, tool_input, context)
-            
+
             if cot_result.decision == "deny":
                 self.metrics["denied"] += 1
                 return SecurityDecision(
@@ -157,7 +157,7 @@ class AutoModeSecurity:
                     reason="Denied by Stage 2 reasoning",
                     details={"risk_score": cot_result.risk_score, "reasoning": cot_result.reasoning}
                 )
-            
+
             self.metrics["confirmations"] += 1
             return SecurityDecision(
                 decision=Decision.CONFIRM,
@@ -166,7 +166,7 @@ class AutoModeSecurity:
                 reason="Confirmation required after Stage 2 review",
                 details={"risk_score": cot_result.risk_score}
             )
-        
+
         # Low risk - Auto approve
         self.metrics["approved"] += 1
         return SecurityDecision(
@@ -176,7 +176,7 @@ class AutoModeSecurity:
             reason=fast_result.reason,
             details={"stage": 1}
         )
-    
+
     def evaluate_batch(self, actions: List[Dict]) -> List[SecurityDecision]:
         """Evalúa múltiples acciones."""
         return [
@@ -188,13 +188,13 @@ class AutoModeSecurity:
             )
             for action in actions
         ]
-    
+
     def get_metrics(self) -> Dict[str, Any]:
         """Get metrics dashboard."""
         total = self.metrics["total_decisions"]
         if total == 0:
             return self.metrics
-        
+
         return {
             **self.metrics,
             "approval_rate": self.metrics["approved"] / total,
@@ -202,7 +202,7 @@ class AutoModeSecurity:
             "block_rate": self.metrics["blocked"] / total,
             "confirmation_rate": self.metrics["confirmations"] / total,
         }
-    
+
     def reset_metrics(self):
         """Reset metrics."""
         self.metrics = {
@@ -218,7 +218,7 @@ class AutoModeSecurity:
 def check_safety(tool_name: str, tool_input: Dict, **kwargs) -> SecurityDecision:
     """
     Función convenience para verificar seguridad de una acción.
-    
+
     Usage:
         decision = check_safety("rm", {"path": "/tmp/file.txt"})
         if decision.decision == Decision.BLOCK:
@@ -231,15 +231,15 @@ def check_safety(tool_name: str, tool_input: Dict, **kwargs) -> SecurityDecision
 # Ejemplo de uso
 if __name__ == "__main__":
     import sys
-    
+
     # Configure logging
     logging.basicConfig(
         level=logging.INFO,
         format='%(name)s - %(levelname)s - %(message)s'
     )
-    
+
     security = AutoModeSecurity()
-    
+
     # Test cases
     test_cases = [
         {
@@ -248,7 +248,7 @@ if __name__ == "__main__":
             "description": "Read system file"
         },
         {
-            "tool": "bash", 
+            "tool": "bash",
             "input": {"command": "rm -rf /"},
             "description": "Destructive command"
         },
@@ -263,25 +263,25 @@ if __name__ == "__main__":
             "description": "Suspicious curl pipe sh"
         },
     ]
-    
+
     print("=" * 60)
     print("Auto Mode Security - Decision Engine Test")
     print("=" * 60)
-    
+
     for case in test_cases:
         decision = security.evaluate(
             case["tool"],
             case["input"],
             context={"is_test": False}
         )
-        
+
         print(f"\nTest: {case['description']}")
         print(f"  Tool: {case['tool']}")
         print(f"  Decision: {decision.decision.value}")
         print(f"  Level: {decision.level}")
         print(f"  Reason: {decision.reason}")
         print(f"  Confidence: {decision.confidence:.2f}")
-    
+
     print("\n" + "=" * 60)
     print("Metrics")
     print("=" * 60)

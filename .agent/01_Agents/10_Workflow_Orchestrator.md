@@ -52,6 +52,6 @@ git commit -m "feat(a11y): improve WCAG compliance"     # FASE 7 (si aplica)
 - Rollback automático si refactor rompe tests
 
 ## Contexto del Sistema
-- Este orquestador coordina los agentes 01-07 de `.agent/01_Agents/`
+- Este orquestador coordina los agentes 01-07 de `01_Core/04_Agents/`
 - Reglas del proyecto: `01_Core/01_Rules/`
 - Ritual de validación: `python 08_Scripts_Os/04_Ritual_Hub.py`

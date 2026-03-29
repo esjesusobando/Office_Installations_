@@ -20,7 +20,7 @@ Generated: {date}
 
 ### Layout
 - Header: [header description]
-- Sidebar: [sidebar description]  
+- Sidebar: [sidebar description]
 - Main Content: [main content description]
 - Footer: [footer description]
 

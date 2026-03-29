@@ -104,12 +104,12 @@ export function SalesChart({ data: chartData = data, className }: SalesChartProp
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={chartData}>
             <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-            <XAxis 
-              dataKey="month" 
+            <XAxis
+              dataKey="month"
               className="text-xs"
               tick={{ fill: 'hsl(var(--muted-foreground))' }}
             />
-            <YAxis 
+            <YAxis
               className="text-xs"
               tick={{ fill: 'hsl(var(--muted-foreground))' }}
               tickFormatter={(value) => `$${value / 1000}k`}
@@ -611,7 +611,7 @@ export function SalesDashboard() {
   return (
     <div className="p-8 space-y-6">
       <Title>Sales Dashboard</Title>
-      
+
       <TabGroup>
         <TabList>
           <Tab>Overview</Tab>

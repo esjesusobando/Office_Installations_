@@ -38,7 +38,7 @@ description: Ejecuta un plan de acción previamente escrito, manteniendo la traz
 ## 💾 State Persistence
 
 Seguimiento de ejecución en:
-- `02_Operations/01_Active_Tasks/` — Tasks en progreso
+- `03_Tasks/` — Tasks en progreso
 - Checkpoint reports entre batches
 
 # Executing Plans

@@ -102,7 +102,7 @@ python 08_Scripts_Os/04_Ritual_Hub.py   # Si es fin de día
 ```
 [0-5 min]   Revisar qué quiero aprender/construir hoy
 [5-35 min]  Escribir código, experimentar, romper cosas
-[35-45 min] Documentar lo aprendido en 04_Operations/03_Process_Notes/ + **Engram**
+[35-45 min] Documentar lo aprendido en 03_Knowledge/Notes/
 ```
 
 ### English Session (45 min)

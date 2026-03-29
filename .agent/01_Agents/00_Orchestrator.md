@@ -16,9 +16,9 @@ Este orquestador es el guardián de la coherencia del sistema Invictus. Mantiene
 
 ### 1. Jerarquía Estructural (01-10)
 
-1.  **01_Knowledge**: Objetivos (`00_Core/GOALS.md`), Perfiles y Base de Datos.
+1.  **01_Knowledge**: Objetivos (`00_Winter_is_Coming/GOALS.md`), Perfiles y Base de Datos.
 2.  **02_Core**: Integraciones lógicas.
-3.  **03_Task**: Gestión de tareas (`00_Core/BACKLOG.md`).
+3.  **03_Task**: Gestión de tareas (`00_Winter_is_Coming/BACKLOG.md`).
 4.  **04_Docs**: Planes y Changelog.
 5.  **05_Examples**: Inspiración y Demos.
 6.  **06_Agentes**: El ELENCO (numerados 00-10 por flujo).
@@ -74,4 +74,4 @@ El orquestador utiliza y supervisa la ejecución de:
 
 - [Índice Maestro](./README.md)
 - [Mapa de Raíz](./Instrucciones.md)
-- [Objetivos Estratégicos](./00_Core/GOALS.md)
+- [Objetivos Estratégicos](./00_Winter_is_Coming/GOALS.md)

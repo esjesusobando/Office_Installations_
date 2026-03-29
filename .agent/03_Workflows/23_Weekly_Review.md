@@ -132,4 +132,4 @@ Quick weekly review: What did I finish, what's blocked, what's most important ne
 - Block 30 minutes on your calendar for this
 - Do it in a quiet space, not between meetings
 - Be honest about what's stalled - it's data, not judgment
-- Update `00_Winter_is_Coming/GOALS.md` if priorities have shifted
+- Update GOALS.md if priorities have shifted

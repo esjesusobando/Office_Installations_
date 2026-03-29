@@ -10,12 +10,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working in this
 
 Al iniciar una nueva sesión, ejecutar esta secuencia antes de responder:
 
-0. Leer `00_Core/AGENTS.md` — Fundación del Proyecto, todo Gobernado por este Archivo
-1. Leer `01_Core/01_Rules/01_Context_Protocol.mdc` — Reglas de sesión
-2. Leer `01_Brain/01_Context_Memory/` Y `01_Brain\07_Memory_Brain\` — Último contexto guardado
+0. Leer `00_Winter_is_Coming/AGENTS.md` — Fundación del Proyecto, todo Gobernado por este Archivo
+1. Leer `01_Core/01_Rules/` — Reglas de sesión actualizadas
+2. Leer `01_Core/02_Dream_Team.md` y `01_Core/00_Comandos_Workflows.md` — Estado del sistema
 3. Ejecutar `mem_context(limit=10)` — Últimas 10 sesiones de Engram
 4. Ejecutar `mem_session_summary()` — Recuperar estado si hubo compaction
-5. Leer Completo cada carpeta de `.agent\` y Leer todo el Proyecto 00-07
+5. Leer `.agent/CLAUDE.md` y `.agent/README.md` — Configuración del agente
 6. **Reportar en el chat** un resumen del contexto cargado antes de actuar
 
 ---
@@ -63,40 +63,35 @@ Al iniciar una nueva sesión, ejecutar esta secuencia antes de responder:
 
 ---
 
-## 🏗️ Arquitectura del Sistema (8 Dimensiones)
+## 🏗️ Arquitectura del Sistema v6.1
 
 ```
-Think_Different_AI/
-├── 00_Core/                    # ADN: Configuración central, metas y backlog
-│   ├── AGENTS.md              # Instrucciones del agente (29KB)
-│   ├── GOALS.md               # Metas, prioridades, estrategia Q1 2026
-│   ├── BACKLOG.md             # Bandeja de entrada de tareas
-│   ├── PROGRESS.md            # Dashboard (68.1% completado)
-│   ├── 01_Architecture_Overview.md
-│   ├── 02_Operational_Guide.md
-│   ├── 03_Slash_Commands.md
-│   ├── 04_Architecture_Map.md
-│   ├── README.md
-│   └── 00_Skills/             # Skills propias del agente
-│       ├── Second_Brain/
-│       └── security.md
-├── 01_Brain/                   # Cerebro: Memoria, Conocimiento y Procesos
-│   ├── 01_Context_Memory/       # Memoria a largo plazo (JSON + MD)
-│   ├── 02_Knowledge_Brain/     # Base de conocimiento técnico
-│   ├── 03_Process_Notes/       # Notas de sesiones (18 archivos)
-│   ├── 04_Rules/              # Reglas del sistema (8 archivos)
-│   ├── 05_Templates/          # Plantillas para tareas
-│   ├── 06_Backup_Central/     # Backups centrales
-│   ├── 07_Memory_Brain/       # Mapeos y análisis
-│   ├── 08_Audit_Sota/        # Auditorías SOTA
-│   └── 09_Momentum_Os/       # Proyectos de referencia
-├── 02_Operations/              # Manos: Tasks, Evals, Progress
-│   ├── 01_Active_Tasks/
-│   ├── 02_Evals/
-│   ├── 03_Analytics/
-│   └── 04_Progress/
-├── 03_Knowledge/               # Memoria: Research, Notes, Resources
-│   ├── 01_Research_Knowledge/
+Think_Different/
+├── 00_Winter_is_Coming/       # Goals, Backlog, Memoria (ESTRATÉGICO)
+│   ├── AGENTS.md              # Fundación del Proyecto
+│   ├── 01_Goals/
+│   ├── 02_Backlog/
+│   └── README.md
+├── 01_Core/                    # MOTOR: Skills, Agents, MCPs, Workflows (FUENTE DE VERDAD)
+│   ├── 00_Workflows/          # 26+ workflows
+│   ├── 01_Rules/               # 22+ reglas
+│   ├── 02_Dream_Team.md       # Equipo de agentes
+│   ├── 03_Skills/             # 160+ skills (FUENTE DE VERDAD)
+│   ├── 04_Agents/             # Agentes configurados
+│   ├── 05_Mcp/                # 20+ MCPs
+│   ├── 06_Integrations/
+│   ├── 07_Hooks/
+│   ├── 08_Plugins/
+│   ├── 09_Server/
+│   └── 10_Templates/
+├── 02_Evals/                   # Métricas y evaluaciones
+├── 03_Knowledge/               # Documentación, Research, Notas
+├── 04_Docs/                    # Planes estratégicos
+├── 05_Archive/                 # Legacy archivado
+├── 08_Scripts_Os/              # Scripts operativos
+│   ├── Ritual_Fixed/           # Scripts funcionando
+│   └── Tool_Fixed/             # Herramientas (Tool Shed, etc)
+└── .agent/                      # BACKUP ESTRATÉGICO (sincronizado con 01_Core)
 │   ├── 02_Notes_Brain/
 │   ├── 03_Resources_External/
 │   ├── 04_Examples_Guide/

@@ -221,7 +221,7 @@ git worktree remove <worktree-path>
 ## 💾 State Persistence
 
 Guardar estado en:
-- `02_Operations/01_Active_Tasks/` — Tasks completadas
+- `03_Tasks/` — Tasks completadas
 - Git log — Historial de merges/PRs
 
 ## ⚠️ Gotchas (Errores Comunes a Evitar)
@@ -231,4 +231,3 @@ Guardar estado en:
 - **[ERROR]**: Add common error here
   - **Por qué**: Explanation of why it's an error
   - **Solución**: How to fix or avoid it
-

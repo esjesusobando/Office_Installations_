@@ -558,7 +558,7 @@ Deno.serve(async (req) => {
     // Store summary in database
     await supabaseClient
       .from('documents')
-      .update({ 
+      .update({
         metadata: { ...document.metadata, summary, summarized_at: new Date().toISOString() }
       })
       .eq('id', documentId)
@@ -916,8 +916,8 @@ export class ThinkDifferentRAG {
     const messages: OpenAI.Chat.ChatCompletionMessageParam[] = [
       {
         role: 'system',
-        content: `You are an AI assistant integrated with Think Different AI system. 
-Use the provided context to answer questions accurately. If the context doesn't contain 
+        content: `You are an AI assistant integrated with Think Different AI system.
+Use the provided context to answer questions accurately. If the context doesn't contain
 relevant information, say so rather than hallucinating.
 
 Context:

@@ -19,11 +19,11 @@ description: Organizes notes into tasks. Triggers on: process backlog, triage no
 
 ## Workflow (Original)
 
-1. **Read Backlog**: Scan `00_Core/BACKLOG.md` for new entries.
+1. **Read Backlog**: Scan `00_Winter_is_Coming/BACKLOG.md` for new entries.
 2. **Categorize**: Assign items to categories (P0, P1, P2 or Archive).
-3. **Deduplicate**: Check for existing tasks in `02_Operations/01_Active_Tasks/` to avoid redundancy.
-4. **Draft Tasks**: For P0 and P1 items, create task files in `02_Operations/01_Active_Tasks/`.
-5. **Clean Up**: Clear the processed items from `00_Core/BACKLOG.md`.
+3. **Deduplicate**: Check for existing tasks in `03_Tasks/` to avoid redundancy.
+4. **Draft Tasks**: For P0 and P1 items, create task files in `03_Tasks/`.
+5. **Clean Up**: Clear the processed items from `00_Winter_is_Coming/BACKLOG.md`.
 
 ## ⚠️ Gotchas (Errores Comunes a Evitar)
 

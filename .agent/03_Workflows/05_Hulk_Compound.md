@@ -216,9 +216,8 @@ Based on problem type, these agents can enhance documentation:
 
 - **Fecha**: 2026-03-21
 - **Problema**: 225+ Enlaces rotos debido a rutas absolutas hardcodeadas en Windows (`C:\Users\sebas\...`) y archivos no normalizados según taxonomía `XX_`.
-- **Solución**: 
+- **Solución**:
   1. Implementación de script de sanación `39_Repair_Corruption.py` con mapeo de rutas.
   2. Refactorización de `System Guardian` para usar `Path.relative_to(PROJECT_ROOT)`.
   3. Establecimiento de `22_Path_Integrity.mdc` como regla de oro.
 - **Resultado**: Sistema en estado `Pure Green` y 100% portable.
-

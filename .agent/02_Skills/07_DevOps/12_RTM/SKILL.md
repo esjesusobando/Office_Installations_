@@ -96,20 +96,20 @@ class Requirement:
     description: str
     priority: str              # P0, P1, P2, P3
     status: RequirementStatus
-    
+
     # Traceability links
     parent_id: Optional[str] = None
     design_refs: list[str] = field(default_factory=list)
     code_refs: list[str] = field(default_factory=list)
     test_refs: list[str] = field(default_factory=list)
     doc_refs: list[str] = field(default_factory=list)
-    
+
     # Metadata
     created_at: datetime = field(default_factory=datetime.now)
     updated_at: datetime = field(default_factory=datetime.now)
     owner: str = ""
     version: str = "1.0"
-    
+
     def get_traceability_links(self) -> dict[TraceabilityType, list[str]]:
         return {
             TraceabilityType.PARENT: [self.parent_id] if self.parent_id else [],
@@ -118,12 +118,12 @@ class Requirement:
             TraceabilityType.TEST: self.test_refs,
             TraceabilityType.DOCUMENTATION: self.doc_refs,
         }
-    
+
     def get_coverage_percentage(self) -> float:
         """Calculate test coverage for this requirement."""
         if not self.code_refs:
             return 0.0
-        
+
         # Calculate based on test_refs / code_refs ratio
         return min(len(self.test_refs) / max(len(self.code_refs), 1) * 100, 100.0)
 ```
@@ -147,39 +147,39 @@ class TraceabilityReport:
 class RTMGenerator:
     def __init__(self, project_root: Path):
         self.project_root = project_root
-    
+
     def scan_project(self) -> TraceabilityReport:
         """Scan project and generate RTM."""
         requirements = self._find_requirements()
         test_files = self._find_test_files()
         code_files = self._find_code_files()
-        
+
         # Link requirements to tests
         for req in requirements:
             req.test_refs = self._find_tests_for_requirement(req)
             req.code_refs = self._find_code_for_requirement(req)
-        
+
         # Generate report
         uncovered = [r for r in requirements if not r.test_refs]
         low_coverage = [r for r in requirements if r.get_coverage_percentage() < 80]
-        
+
         total_coverage = sum(
             r.get_coverage_percentage() for r in requirements
         ) / len(requirements) if requirements else 0
-        
+
         return TraceabilityReport(
             requirements=requirements,
             uncovered_requirements=uncovered,
             low_coverage_requirements=low_coverage,
             total_coverage=total_coverage
         )
-    
+
     def _find_tests_for_requirement(self, req: Requirement) -> list[str]:
         """Find test files that cover this requirement."""
         # Look for test files matching requirement ID
         pattern = f"**/test**{req.id}*.py"
         return [str(p) for p in self.project_root.glob(pattern)]
-    
+
     def generate_markdown(self, report: TraceabilityReport) -> str:
         """Generate Markdown RTM report."""
         lines = [
@@ -194,7 +194,7 @@ class RTMGenerator:
             "| ID | Description | Priority | Test Coverage | Status |",
             "|----|-------------|----------|---------------|--------|",
         ]
-        
+
         for req in sorted(report.requirements, key=lambda r: r.priority):
             coverage = req.get_coverage_percentage()
             status_icon = {
@@ -203,12 +203,12 @@ class RTMGenerator:
                 "approved": "📋",
                 "draft": "📝",
             }.get(req.status.value, "❓")
-            
+
             lines.append(
                 f"| {req.id} | {req.title} | {req.priority} | "
                 f"{coverage:.0f}% | {status_icon} |"
             )
-        
+
         return "\n".join(lines)
 ```
 
@@ -223,25 +223,25 @@ T = TypeVar('T')
 def traceable(func: Callable[T]) -> Callable[T]:
     """
     Decorator that automatically links tests to requirements.
-    
+
     Usage:
         @traceable
         def test_req_001_user_login():
             '''Requirement: REQ-001 User authentication'''
             ...
-    
+
     This will:
     1. Extract requirement ID from docstring
     2. Record test execution against requirement
     3. Update RTM with pass/fail status
     """
     import re
-    
+
     def wrapper(*args, **kwargs):
         # Extract requirement ID from docstring
         req_match = re.search(r'Requirement:\s*(REQ-\d+)', func.__doc__ or "")
         req_id = req_match.group(1) if req_match else None
-        
+
         # Track execution
         start = datetime.now()
         try:
@@ -261,9 +261,9 @@ def traceable(func: Callable[T]) -> Callable[T]:
                     error=error,
                     duration_ms=(datetime.now() - start).total_seconds() * 1000
                 )
-        
+
         return result
-    
+
     return wrapper
 
 # Usage
@@ -293,20 +293,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Generate RTM Report
         run: |
           python -m rtm.generator \
             --format=markdown \
             --output=RTM_REPORT.md \
             --fail-under=80
-      
+
       - name: Upload RTM Report
         uses: actions/upload-artifact@v4
         with:
           name: rtm-report
           path: RTM_REPORT.md
-      
+
       - name: Comment on PR
         uses: actions/github-script@v7
         with:

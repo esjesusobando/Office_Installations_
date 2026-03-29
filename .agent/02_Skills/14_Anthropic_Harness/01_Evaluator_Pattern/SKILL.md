@@ -1,7 +1,7 @@
 # Evaluator Pattern Skill
 
-**CATEGORÍA:** Anthropic Harness Patterns  
-**SUBCATEGORÍA:** Evaluator Pattern  
+**CATEGORÍA:** Anthropic Harness Patterns
+**SUBCATEGORÍA:** Evaluator Pattern
 **VERSIÓN:** 1.0
 
 ---
@@ -17,8 +17,8 @@ Implementa el patrón de Adversarial Evaluation (GAN-inspired) de Anthropic:
 
 ## Contexto (del artículo de Anthropic)
 
-> "Out of the box, Claude is a poor QA agent"  
-> "Claude identified legitimate issues and then talked itself into deciding they weren't a big deal"  
+> "Out of the box, Claude is a poor QA agent"
+> "Claude identified legitimate issues and then talked itself into deciding they weren't a big deal"
 > "It also tended to test superficially rather than probing edge cases"
 
 ---

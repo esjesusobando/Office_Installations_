@@ -1,7 +1,7 @@
 # 17_Anthropic_Harness — Three-Agent Workflow
 
-**TIPO**: Workflow de Harness para Agentes de Larga Duración  
-**VERSIÓN**: 1.0  
+**TIPO**: Workflow de Harness para Agentes de Larga Duración
+**VERSIÓN**: 1.0
 **FILOSOFÍA**: "No te traiciones, no te abandones" — Siempre lo correcto
 
 ---
@@ -13,7 +13,7 @@ Workflow que implementa el patrón de **Three-Agent Architecture** de Anthropic:
 - **Generator**: Construye feature por feature
 - **Evaluator**: QA separado (NO self-evaluation!)
 
-Inspirado en: [02_Knowledge/](./02_Knowledge/10_Anthropic_Harness_Design.md) (verificar existencia)
+Inspirado en: [Anthropic Engineering Blog](https://docs.anthropic.com)
 
 ---
 
@@ -169,9 +169,9 @@ Para diseño o features que requieren testing visual/interactivo.
 
 ## 📚 Referencia
 
-- Artículo: `02_Knowledge/` (verificar existencia)
+- Artículo: [Anthropic Engineering Blog](https://docs.anthropic.com)
 - Scripts: `08_Scripts_Os/Legacy_Backup/11_Anthropic_Harness/` (legacy - verificar)
-- Skills: `.agent/02_Skills/14_Anthropic_Harness/`
+- Skills: `01_Core/03_Skills/14_Anthropic_Harness/`
 
 ---
 

@@ -25,7 +25,7 @@ metadata:
 <type>(<scope>): <short description>
 
 feat     New feature
-fix      Bug fix  
+fix      Bug fix
 docs     Documentation
 refactor Code refactoring
 test     Adding tests
@@ -183,7 +183,7 @@ gh pr create --title "fix(auth): prevent session timeout"
 --body "## Summary
 - What you did and why
 
-## Changes  
+## Changes
 - Specific changes
 
 Closes #123"

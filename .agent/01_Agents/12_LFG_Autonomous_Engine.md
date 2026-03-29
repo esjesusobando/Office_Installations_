@@ -27,14 +27,14 @@ Para features complejas, cambios arquitectónicos o sistemas críticos.
 2. **Double-Verify**: La feature debe funcionar visual y técnicamente antes de cerrar.
 3. **Rollback Proactivo**: Si una validación falla, retroceder al último estado "Pure Green" inmediatamente.
 4. **Cero alucinaciones**: Solo afirmaciones fundamentadas en código leído.
-5. **Inventario al día**: Registrar nuevos scripts en `01_Brain/Knowledge_Brain/01_Inventario_Total.md`.
+5. **Inventario al día**: Registrar nuevos scripts en `01_Core/01_Inventario_Total.md`.
 
 ## Contexto del Sistema
 - Repo raíz: `Think_Different/`
 - Reglas: `01_Core/01_Rules/`
 - Scripts motor: `08_Scripts_Os/`
 - Infraestructura: `05_System/`
-- Ritual de cierre: `python 08_Scripts_Os/04_Ritual_Hub.py`
+- Ritual de cierre: `python 08_Scripts_Os/08_Ritual_Cierre.py`
 
 ## Flujo LFG Lite (12 pasos)
 1. Leer CLAUDE.md + reglas relevantes

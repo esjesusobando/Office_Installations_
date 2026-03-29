@@ -59,23 +59,23 @@ from dataclasses import dataclass
 @dataclass
 class LoginPage:
     page: Page
-    
+
     @property
     def email_input(self) -> Locator:
         return self.page.get_by_label("Email")
-    
+
     @property
     def password_input(self) -> Locator:
         return self.page.get_by_label("Password")
-    
+
     @property
     def submit_button(self) -> Locator:
         return self.page.get_by_role("button", name="Sign In")
-    
+
     @property
     def error_message(self) -> Locator:
         return self.page.get_by_role("alert")
-    
+
     def login(self, email: str, password: str) -> "DashboardPage":
         self.email_input.fill(email)
         self.password_input.fill(password)
@@ -85,11 +85,11 @@ class LoginPage:
 @dataclass
 class DashboardPage:
     page: Page
-    
+
     @property
     def greeting(self) -> Locator:
         return self.page.get_by_role("heading", name=lambda t: "Welcome")
-    
+
     @property
     def user_menu(self) -> Locator:
         return self.page.get_by_role("button", name="User Menu")
@@ -177,16 +177,16 @@ import pytest
 def test_visual_regression(page: Page):
     """Compare screenshot against baseline."""
     page.goto("https://example.com/dashboard")
-    
+
     # Wait for animations to complete
     page.wait_for_load_state("networkidle")
-    
+
     # Take full page screenshot
     screenshot = page.screenshot(
         full_page=True,
         animations="disabled"
     )
-    
+
     # Compare with baseline
     assert screenshot == page.screenshot_from_path(
         "tests/visual/baseline/dashboard.png"
@@ -195,10 +195,10 @@ def test_visual_regression(page: Page):
 def test_component_visual(page: Page):
     """Test individual component visuals."""
     page.goto("https://example.com")
-    
+
     # Test specific component
     component = page.locator(".pricing-card")
-    
+
     expect(component).toHaveScreenshot("pricing-card.png")
 ```
 
@@ -208,14 +208,14 @@ def test_component_visual(page: Page):
 def test_accessibility(page: Page):
     """Automated accessibility checks with axe."""
     page.goto("https://example.com/pricing")
-    
+
     # Run axe-core accessibility test
     results = page.run_and_get_axe_results()
-    
+
     # Filter critical violations
-    critical = [v for v in results.violations 
+    critical = [v for v in results.violations
                 if v.impact in ("critical", "serious")]
-    
+
     assert len(critical) == 0, (
         f"Found {len(critical)} critical accessibility issues: "
         f"{[v.id for v in critical]}"
@@ -224,14 +224,14 @@ def test_accessibility(page: Page):
 def test_keyboard_navigation(page: Page):
     """Test keyboard-only navigation."""
     page.goto("https://example.com")
-    
+
     # Tab through interactive elements
     page.keyboard.press("Tab")  # Focus first element
     assert page.evaluate("document.activeElement.tagName") == "BUTTON"
-    
+
     page.keyboard.press("Tab")  # Next element
     assert page.evaluate("document.activeElement.tagName") == "INPUT"
-    
+
     # Test focus trap in modal
     page.locator("[aria-haspopup='dialog']").click()
     modal = page.locator('[role="dialog"]')

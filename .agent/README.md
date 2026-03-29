@@ -4,20 +4,34 @@
 
 Este directorio contiene la configuración de agentes, skills y hooks de PersonalOS.
 
-> **NOTE:** `.agent/` y `.cursor/` están sincronizados. `.cursor/` es la config activa para Cursor IDE.
+> **NOTE:** `.agent/` es **BACKUP ESTRATÉGICO** sincronizado con `01_Core/`. La fuente de verdad es `01_Core/`.
 
 ---
 
-## 📂 Estructura
+## 📂 Estructura (v6.1 - Sincronizado con 01_Core/)
 
-| Directorio | Contenido |
-|------------|-----------|
-| **01_Agents/** | 40+ agent definitions + 24 specialists + 5 perfiles |
-| **02_Skills/** | **160+ skills** con Esencia Original auditada |
-| **03_Workflows/** | 23 predefined workflows |
-| **04_Extensions/** | Hooks system (7 active hooks) |
-| **05_GGA/** | Gentleman Guardian Angel (Code Review) |
-| **14_Anthropic_Harness/** | Patterns + 4 Claude Code Plugins |
+| Directorio | Contenido | Fuente |
+|------------|-----------|--------|
+| **00_Rules/** | Reglas del sistema | `01_Core/01_Rules/` |
+| **01_Agents/** | Agentes configurados | `01_Core/04_Agents/` |
+| **02_Skills/** | **160+ skills** | `01_Core/03_Skills/` |
+| **03_Workflows/** | 26+ workflows | `01_Core/00_Workflows/` |
+| **04_Extensions/** | Hooks system (7 active hooks) | Local |
+| **05_GGA/** | Gentleman Guardian Angel (Code Review) | Local |
+
+---
+
+## 📂 Estructura Principal (FUENTE DE VERDAD)
+
+| Carpeta | Contenido |
+|---------|-----------|
+| **00_Winter_is_Coming/** | Goals, Backlog, Memoria |
+| **01_Core/** | Motor: Skills, Agents, MCPs, Workflows |
+| **02_Evals/** | Métricas |
+| **03_Knowledge/** | Documentación |
+| **04_Docs/** | Planes estratégicos |
+| **05_Archive/** | Legacy archivado |
+| **08_Scripts_Os/** | Scripts operativos |
 
 ---
 

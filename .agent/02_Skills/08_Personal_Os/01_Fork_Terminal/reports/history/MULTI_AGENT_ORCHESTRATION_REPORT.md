@@ -261,7 +261,7 @@ These skills are **REQUIRED** in specific scenarios:
 **Trigger:** Starting ANY creative work
 **Purpose:** Explores user intent and requirements before implementation
 **Use:** REQUIRED before building features/components/functionality
-**Output:** Design document in `docs/plans/`
+**Output:** Design document in `04_Operations/05_Plans/`
 
 ### brand-identity
 
@@ -356,7 +356,7 @@ These skills are **REQUIRED** in specific scenarios:
 
 **Trigger:** Have spec/requirements for multi-step task
 **Purpose:** Creates comprehensive implementation plan
-**Output:** `docs/plans/YYYY-MM-DD-<feature>.md`
+**Output:** `04_Operations/05_Plans/YYYY-MM-DD-<feature>.md`
 **Format:** Bite-sized tasks (2-5 min each), DRY, YAGNI, TDD
 **Execution options:**
 

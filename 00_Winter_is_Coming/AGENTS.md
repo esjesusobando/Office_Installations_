@@ -6,29 +6,65 @@
 
 ## 🚀 MÁQUINA DE GUERRA — Think Different v6.1
 
-Integrated stack: PersonalOS + SDD + Compound Engineering + Gentleman Skills + GGA + Engram
+Integrated stack: PersonalOS + SDD + Compound Engineering + Gentleman Skills + GGA + Engram + Tool Shed + Skill Harmonizer
+
+---
+
+## 🛠️ HERRAMIENTAS NUEVAS v6.1 (2026-03-29)
+
+| Herramienta | Ubicación | Función |
+|-------------|-----------|---------|
+| **Tool Shed** | `08_Scripts_Os/Tool_Fixed/62_Tool_Shed.py` | Auto-detecta contexto y sugiere MCPs |
+| **Skill Harmonizer** | `08_Scripts_Os/Tool_Fixed/63_Skill_Harmonizer.py` | Valida paridad de skills (20/20) |
+| **Notifier** | `08_Scripts_Os/Tool_Fixed/00_Notifier.py` | Sonido al completar tareas |
+
+### Scripts Reparados (Ritual_Fixed)
+- 08, 11, 12, 13, 16, 17, 19, 50, 57 — todos funcionando
+
+---
+
+## 💾 .agent — BACKUP ESTRATÉGICO
+
+> **.agent/** es el backup estratégico de 01_Core/. La fuente de verdad es **01_Core/**.
+
+| Contenido Sincronizado | Origen (Fuente) |
+|------------------------|-----------------|
+| `.agent/00_Rules/` | `01_Core/01_Rules/` |
+| `.agent/01_Agents/` | `01_Core/04_Agents/` |
+| `.agent/02_Skills/` | `01_Core/03_Skills/` |
+| `.agent/03_Workflows/` | `01_Core/00_Workflows/` |
+
+**Última sincronización:** 2026-03-29
 
 ---
 
 ## 1. PERSONAL OS METHODOLOGY
 
-### Workspace Shape (ACTUAL - 2026-03-27)
+### Workspace Shape (ACTUAL - 2026-03-29)
 
 ```
 Think_Different/
-├── 00_Winter_is_Coming/     # 🔮 MATRIX: Goals, Backlog, Agentes
-├── 01_Core/                 # 🧠 CORE: Skills, Agents, Evals, MCP, Server
-│   ├── 03_Agents/          # Agent definitions
-│   ├── 03_Skills/          # Skills (local)
-│   ├── 02_Evals/           # Evaluations
-│   ├── 05_Mcp/             # MCP servers config
-│   └── 09_Server/          # Python MCP server
-├── 02_Knowledge/            # 📚 Knowledge base
-├── 03_Tasks/               # ✅ Active tasks (YAML frontmatter)
-├── 04_Operations/           # ⚙️ Operations: Memory, Brain, Notes
-├── 05_Archive/             # 📦 Archive: Repos, legacy
-├── 07_Projects/            # 💼 Projects
-└── 08_Scripts_Os/          # 🔧 HUBs: Auditor, Git, AIPM, Ritual, etc.
+├── 00_Winter_is_Coming/     # 🔮 ESTRATÉGICO: Goals, Backlog, Memoria
+├── 01_Core/                 # 🧠 MOTOR: Skills, Agents, MCPs, Workflows (FUENTE DE VERDAD)
+│   ├── 00_Workflows/       # 26+ workflows
+│   ├── 01_Rules/           # 22+ reglas
+│   ├── 02_Dream_Team.md   # Equipo de agentes
+│   ├── 03_Skills/         # 160+ skills (FUENTE DE VERDAD)
+│   ├── 04_Agents/         # Agentes configurados
+│   ├── 05_Mcp/            # 20+ MCPs
+│   ├── 06_Integrations/
+│   ├── 07_Hooks/
+│   ├── 08_Plugins/
+│   ├── 09_Server/
+│   └── 10_Templates/
+├── 02_Evals/                # 📊 Métricas y evaluaciones
+├── 03_Knowledge/            # 📚 Documentación, Research
+├── 04_Docs/                 # 📋 Planes estratégicos
+├── 05_Archive/              # 📦 Legacy archivado
+├── 08_Scripts_Os/           # 🔧 Scripts operativos
+│   ├── Ritual_Fixed/        # 12 scripts funcionando
+│   └── Tool_Fixed/          # Herramientas (Tool Shed, Skill Harmonizer, Notifier)
+└── .agent/                  # 💾 BACKUP ESTRATÉGICO (sincronizado con 01_Core/)
 ```
 
 ### Backlog Flow

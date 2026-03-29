@@ -406,7 +406,7 @@ description: [3rd-person description with triggers]
 - [Listado de dependencias o complementos]
 ````
 
---- 
+---
 © 2026 PersonalOS | Evolución SOTA v2.0
 
 ## Esencia Original

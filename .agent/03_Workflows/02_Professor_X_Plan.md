@@ -24,10 +24,10 @@ Do not proceed until you have a clear feature description from the user.
 
 **Check for brainstorm output first:**
 
-Before asking questions, look for recent brainstorm documents in `04_Operations/02_Knowledge_Brain/` that match this feature:
+Before asking questions, look for recent brainstorm documents in `04_Operations/07_Brain_Storming/` that match this feature:
 
 ```bash
-ls -la 04_Operations/02_Knowledge_Brain/*.md 2>/dev/null | head -10
+ls -la 04_Operations/07_Brain_Storming/*.md 2>/dev/null | head -10
 ```
 
 **Relevance criteria:** A brainstorm is relevant if:

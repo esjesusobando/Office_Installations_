@@ -20,7 +20,7 @@ Ejecutar al finalizar cada sesión de trabajo. Garantiza que el sistema quede en
 ### 1. Validar Estado del Sistema
 
 1. `git status` — confirmar qué archivos cambiaron
-2. Verificar que no hay referencias rotas: `grep -r "08_Scripts_Os\|05_System\|05_Archive\|04_Operations\|02_Knowledge" --include="*.py" --include="*.md"`
+2. Verificar que no hay referencias rotas: `grep -r "04_Engine\|01_Brain\|02_Operations\|docs/" --include="*.py" --include="*.md"`
 3. Si hay errores → resolverlos antes de continuar
 
 ### 2. Actualizar Inventario (si aplica)
@@ -30,8 +30,7 @@ Ejecutar al finalizar cada sesión de trabajo. Garantiza que el sistema quede en
 
 ### 3. Guardar Notas de Proceso
 
-1. Crear o actualizar archivo en `04_Operations/03_Process_Notes/` con resumen de la sesión:
-   - Ejecutar `mem_save()` para guardar aprendizajes clave en Engram (persistente)
+1. Crear o actualizar archivo en `04_Operations/03_Process_Notes/` con resumen de la sesión + ejecutar `mem_save()` en Engram:
    - Qué se hizo
    - Decisiones tomadas
    - Pendientes para la próxima sesión
