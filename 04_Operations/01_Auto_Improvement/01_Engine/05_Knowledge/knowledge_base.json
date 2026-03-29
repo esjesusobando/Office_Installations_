@@ -1,0 +1,48 @@
+{
+  "version": "1.0.0",
+  "patterns": [],
+  "evolution_log": [
+    {
+      "timestamp": "2026-03-29T00:56:56.629056",
+      "issues_processed": 1325,
+      "fixes_applied": 0,
+      "patterns_learned": 0,
+      "new_patterns": [
+        {
+          "pattern": "broken_import",
+          "occurrences": 57,
+          "suggestion": "Crear regla autom\u00e1tica para broken_import",
+          "auto_fixable": true
+        },
+        {
+          "pattern": "naming_inconsistency",
+          "occurrences": 1268,
+          "suggestion": "Crear regla autom\u00e1tica para naming_inconsistency",
+          "auto_fixable": false
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-03-29T01:28:06.982705",
+      "issues_processed": 1325,
+      "fixes_applied": 0,
+      "patterns_learned": 0,
+      "new_patterns": [
+        {
+          "pattern": "broken_import",
+          "occurrences": 57,
+          "suggestion": "Crear regla autom\u00e1tica para broken_import",
+          "auto_fixable": true
+        },
+        {
+          "pattern": "naming_inconsistency",
+          "occurrences": 1268,
+          "suggestion": "Crear regla autom\u00e1tica para naming_inconsistency",
+          "auto_fixable": false
+        }
+      ]
+    }
+  ],
+  "performance_baseline": {},
+  "learned_improvements": []
+}

@@ -191,7 +191,7 @@ class RecursiveImprovementEngine:
         with open(metrics_file, "w") as f:
             json.dump(metrics, f, indent=2)
 
-        print(f"\n📈 Métricas guardadas en {metrics_file.name}")
+        print(f"\n[METRICS] Metricas guardadas en {metrics_file.name}")
 
 
 def main():
