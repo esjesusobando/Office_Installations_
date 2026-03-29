@@ -10,16 +10,16 @@
 Think_Different/
 ├── 00_Winter_is_Coming/    # Goals, Backlog, Memoria (ESTRATÉGICO)
 ├── 01_Core/               # Motor: Skills, Agents, MCPs, Workflows 💾
-├── 02_Evals/              # Métricas y evaluaciones
-├── 03_Knowledge/          # Documentación, Research, Notas
-├── 04_Docs/               # Planes estratégicos
+├── 02_Knowledge/          # Documentación, Research, Notas
+├── 03_Tasks/             # Tareas activas (YAML frontmatter)
+├── 04_Operations/        # Operaciones: Memory, Brain, Notes
 ├── 05_Archive/            # Legacy archivado
-├── 06_Archive/            # Backups centrales
-├── 07_Projects/           # Proyectos
+├── 06_Playground/        # Pruebas y experimentos
+├── 07_Projects/          # Proyectos activos
 ├── 08_Scripts_Os/         # Scripts operativos
 │   ├── Ritual_Fixed/      # 12 scripts funcionando
 │   └── Tool_Fixed/        # Herramientas
-└── Maerks/               # Tests, planes legacy
+└── Maerks/               # Tests legacy, planes
 ```
 
 ---
@@ -53,11 +53,11 @@ Think_Different/
 |---|---------|-----------|--------|
 | 01 | **00_Winter_is_Coming/** | Goals, Backlog, Memoria | ✅ |
 | 02 | **01_Core/** | Skills (160+), Agents, MCPs (20+), Workflows (26+) | ✅ |
-| 03 | **02_Evals/** | Métricas del sistema | ✅ |
-| 04 | **03_Knowledge/** | Documentación, Research | ✅ |
-| 05 | **04_Docs/** | Planes estratégicos | ✅ |
+| 03 | **02_Knowledge/** | Documentación, Research, Notas | ✅ |
+| 04 | **03_Tasks/** | Tareas activas (YAML frontmatter) | ✅ |
+| 05 | **04_Operations/** | Memory, Brain, Notes | ✅ |
 | 06 | **05_Archive/** | Legacy archivado | 📦 |
-| 07 | **06_Archive/** | Backups centrales | 📦 |
+| 07 | **06_Playground/** | Pruebas y experimentos | ✅ |
 | 08 | **07_Projects/** | Proyectos activos | ✅ |
 | 09 | **08_Scripts_Os/** | Scripts operativos | ✅ |
 | 10 | **Maerks/** | Tests legacy, planes | 📦 |

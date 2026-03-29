@@ -1,39 +1,64 @@
 # 02_Knowledge — Base de Conocimiento
 
 **Versión:** 6.1
-**Última actualización:** 2026-03-27
+**Última actualización:** 2026-03-29
 **Estado:** ✅ Activo
 
 ---
 
-## 📂 Estructura
+## 📂 Estructura (Workspace)
+
+```
+Think_Different/
+├── 00_Winter_is_Coming/    # Goals, Backlog, Memoria (ESTRATÉGICO)
+├── 01_Core/               # Motor: Skills, Agents, MCPs, Workflows 💾
+├── 02_Knowledge/          # Documentación, Research, Notas 📚
+├── 03_Tasks/             # Tareas activas (YAML frontmatter)
+├── 04_Operations/        # Operaciones: Memory, Brain, Notes
+├── 05_Archive/           # Legacy archivado
+├── 06_Playground/       # Pruebas y experimentos
+├── 07_Projects/         # Proyectos activos
+├── 08_Scripts_Os/       # Scripts operativos
+└── Maerks/             # Tests legacy, planes
+```
+
+---
+
+## 📂 Estructura 02_Knowledge
 
 ```
 02_Knowledge/
-├── README.md                    # Este archivo
-├── .gitkeep                     # Preserva la carpeta en git
-└── 00_Examples_Personal_Os/    # Ejemplos del PersonalOS
-    ├── README.md
-    ├── Example_Files/
-    │   ├── 01_BACKLOG_Example.md
-    │   ├── 02_Example_Knowledge.md
-    │   └── 03_Example_Task.md
-    ├── Tutorials/
-    │   ├── README.md
-    │   ├── 01_Build_Your_Personal_Os.md
-    │   ├── 02_Markdown_and_Structure.md
-    │   ├── 03_Mcp_Server_Implementation.md
-    │   ├── 04_Memory.md
-    │   ├── 05_Session_Evals.md
-    │   ├── 06_Subagents.md
-    │   ├── 07_Tool_Calling.md
-    │   └── 08_Voice_Training.md
-    └── Workflows/
-        ├── README.md
-        ├── 01_Backlog_Processing.md
-        ├── 02_Morning_Standup.md
-        ├── 03_Content_Generation.md
-        └── 04_Weekly_Review.md
+├── README.md                         # Este archivo
+├── .gitkeep                         # Preserva la carpeta en git
+├── 00_Examples_Personal_Os/       # Ejemplos del PersonalOS
+│   ├── Example_Files/
+│   │   ├── 01_BACKLOG_Example.md
+│   │   ├── 02_Example_Knowledge.md
+│   │   └── 03_Example_Task.md
+│   ├── Tutorials/
+│   │   ├── 01_Build_Your_Personal_Os.md
+│   │   ├── 02_Markdown_and_Structure.md
+│   │   ├── 03_Mcp_Server_Implementation.md
+│   │   ├── 04_Memory.md
+│   │   ├── 05_Session_Evals.md
+│   │   ├── 06_Subagents.md
+│   │   ├── 07_Tool_Calling.md
+│   │   └── 08_Voice_Training.md
+│   └── Workflows/
+│       ├── 01_Backlog_Processing.md
+│       ├── 02_Morning_Standup.md
+│       ├── 03_Content_Generation.md
+│       └── 04_Weekly_Review.md
+├── 01_Research_Os/                 # Investigación del OS
+│   ├── Skills_TOP_Rankings.md
+│   └── Claude_AI_Announcements_2026.md
+├── 02_Perfiles_Team/              # Perfiles del equipo
+├── 03_Writing_Content/            # Contenido escrito
+│   ├── 00_Zinking_Tone.md
+│   ├── 01_Reflexiones_Insights_Diseno.md
+│   └── 02_El_Diseno_Invisible.md
+├── 04_Docs/                       # Documentos varios
+└── Skill_Creator_v2_Analysis.md  # Análisis de skill creator
 ```
 
 ---
