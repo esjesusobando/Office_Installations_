@@ -34,16 +34,11 @@ Think_Different/
 │   ├── 01_PRDs/                # Product Requirements Docs
 │   ├── 05_Strategy/            # Estrategia y roadmap
 │   └── 06_Tech/                # Diagramas técnicos
-├── 01_Projects_Lab/             # Laboratorios de proyectos
-│   ├── 01_Efrain_World/        # Proyecto Efraín (invitación)
-│   └── 03_Macano_Rest/         # Restaurant Macano (SDD)
-│       ├── APP/                # App completa
-│       ├── SPEC.md             # Especificación
-│       ├── PROPUESTA_SDD.md    # Propuesta SDD
-│       └── CLAUDE.md          # Config agente
-├── 02_Test_Env/                # Entorno de pruebas
-├── 03_Momentum_Ws/             # Momentum workspace
-└── Safe_Backup/                # Backups seguros
+└── 01_Projects_Lab/             # Laboratorios de proyectos
+    ├── 01_Efrain_World/        # Proyecto Efraín
+    ├── 02_Cassette/            # Cassette project
+    ├── 03_Side_Project_Backup/ # Backup de proyectos
+    └── 04_Macano_Rest/         # Restaurant Macano (SDD)
 ```
 
 ---
