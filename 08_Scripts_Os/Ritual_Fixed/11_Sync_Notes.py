@@ -1,25 +1,58 @@
-import sys
-from pathlib import Path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
-import sys
-from pathlib import Path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+Sync Notes - PersonalOS v6.1
+Sincroniza notas del Brain.
+"""
+
 import os
 import sys
 import subprocess
 import glob
 from datetime import datetime
 from pathlib import Path
-from colorama import init, Fore, Style
 
-init()
+# === SETUP PATHS ===
+SCRIPT_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = SCRIPT_DIR.parent.parent
+sys.path.insert(0, str(PROJECT_ROOT))
 
-sys.path.insert(0, str(Path(__file__).parent))
-from config_paths import (ROOT_DIR, BRAIN_DIR, BRAIN_RULES_DIR, COMPOUND_ENGINE_DIR, ENGINE_DIR)
+# === IMPORTS ===
+try:
+    from config_paths import (
+        ROOT_DIR,
+        BRAIN_DIR,
+        BRAIN_RULES_DIR,
+        COMPOUND_ENGINE_DIR,
+        ENGINE_DIR,
+        BRAIN_NOTES_DIR,
+    )
+except ImportError:
+    ROOT_DIR = PROJECT_ROOT
+    BRAIN_DIR = PROJECT_ROOT / "04_Operations"
+    BRAIN_NOTES_DIR = BRAIN_DIR / "03_Process_Notes"
+    BRAIN_RULES_DIR = BRAIN_DIR / "04_Memory_Brain"
+    COMPOUND_ENGINE_DIR = (
+        PROJECT_ROOT / "01_Core" / "03_Skills" / "00_Compound_Engineering"
+    )
+    ENGINE_DIR = PROJECT_ROOT / "08_Scripts_Os"
 
 SESSIONS_DIR = BRAIN_NOTES_DIR
+
+# === COLOR SETUP ===
+try:
+    from colorama import init, Fore, Style
+
+    init(autoreset=True)
+except ImportError:
+
+    class Fore:
+        CYAN = GREEN = RED = YELLOW = MAGENTA = ""
+
+    class Style:
+        RESET_ALL = ""
+
 
 # Fix Windows console encoding
 if sys.platform == "win32":

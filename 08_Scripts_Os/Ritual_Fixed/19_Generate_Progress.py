@@ -1,26 +1,9 @@
-import sys
-from pathlib import Path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
-import sys
-from pathlib import Path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 """
-PersonalOS PROGRESS DASHBOARD v2.0 (SUPER UNIFIED EDITION)
-================================================================
+PersonalOS PROGRESS DASHBOARD v6.1
 Genera una vista consolidada del estado de todas las tareas.
-Fusiona features de 19_Generate_Progress + 70_Progress_Update.
-
-Features:
-- Detecta Task_End como completadas
-- Parsea frontmatter YAML
-- Orden por prioridad P0-P3, H1-H4, T1-T4
-- Voice/speak para notificaciones
-- Barras visuales Unicode
-- Escaneo recursivo de subdirectorios
-
-Última actualización: 2026-03-23
 """
 
 import os
@@ -28,16 +11,42 @@ import sys
 import io
 import re
 import glob
+from pathlib import Path
+
+# === SETUP PATHS ===
+SCRIPT_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = SCRIPT_DIR.parent.parent
+sys.path.insert(0, str(PROJECT_ROOT))
+
 import importlib.util
 from datetime import datetime
-from pathlib import Path
 from typing import Dict, List, Tuple, Optional
 
 # --- CONFIGURACIÓN ARMOR LAYER ---
 if sys.stdout.encoding != "utf-8":
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
-from config_paths import (ROOT_DIR, BRAIN_DIR, BRAIN_RULES_DIR, COMPOUND_ENGINE_DIR, ENGINE_DIR)
+# === IMPORTS ===
+try:
+    from config_paths import (
+        ROOT_DIR,
+        BRAIN_DIR,
+        BRAIN_RULES_DIR,
+        COMPOUND_ENGINE_DIR,
+        ENGINE_DIR,
+        TASKS_DIR,
+        BASE_DIR,
+    )
+except ImportError:
+    ROOT_DIR = PROJECT_ROOT
+    BASE_DIR = PROJECT_ROOT
+    BRAIN_DIR = PROJECT_ROOT / "04_Operations"
+    BRAIN_RULES_DIR = BRAIN_DIR / "04_Memory_Brain"
+    COMPOUND_ENGINE_DIR = (
+        PROJECT_ROOT / "01_Core" / "03_Skills" / "00_Compound_Engineering"
+    )
+    ENGINE_DIR = PROJECT_ROOT / "08_Scripts_Os"
+    TASKS_DIR = PROJECT_ROOT / "03_Tasks"
 
 # Importar sistema de progreso
 templates_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "templates")
@@ -69,9 +78,14 @@ except ImportError:
     SUCCESS = INFO = WARNING = ERROR = BRIGHT = RESET = ""
 
 # --- CONSTANTES ---
-TASKS_DIR = os.path.join(BASE_DIR, "02_Operations", "01_Active_Tasks")
-TASK_END_DIR = os.path.join(TASKS_DIR, "Task_End")
-PROGRESS_FILE = os.path.join(BASE_DIR, "00_Core", "PROGRESS.md")
+# Usar las rutas de config_paths o fallback
+if isinstance(TASKS_DIR, str):
+    TASKS_DIR = Path(TASKS_DIR)
+if isinstance(BASE_DIR, str):
+    BASE_DIR = Path(BASE_DIR)
+
+TASK_END_DIR = TASKS_DIR / "Task_End"
+PROGRESS_FILE = ROOT_DIR / "00_Winter_is_Coming" / "PROGRESS.md"
 
 # Orden de prioridad
 PRIORITY_ORDER = [

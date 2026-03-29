@@ -1,15 +1,20 @@
-import sys
-from pathlib import Path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
-import sys
-from pathlib import Path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+Repo Sync Auditor - PersonalOS v6.1
+Sincroniza repositorios.
+"""
+
 import os
 import subprocess
 import sys
+from pathlib import Path
+
+# === SETUP PATHS ===
+SCRIPT_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = SCRIPT_DIR.parent.parent
+sys.path.insert(0, str(PROJECT_ROOT))
 
 
 def sync_repo(repo_path):

@@ -1,41 +1,55 @@
-import sys
-from pathlib import Path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
-import sys
-from pathlib import Path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+Clean System - PersonalOS v6.1
+Limpia el sistema de archivos temporales.
+"""
+
 import os
 import sys
 import io
 import subprocess
 import glob
-from colorama import init, Fore, Style
+from pathlib import Path
 
-# Initialize Colorama
-init()
+# === SETUP PATHS ===
+SCRIPT_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = SCRIPT_DIR.parent.parent
+sys.path.insert(0, str(PROJECT_ROOT))
 
-# =============================================================================
-# ARMOR LAYER - PATH RESOLUTION (3-LEVEL)
-# =============================================================================
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
+# === COLOR SETUP ===
+try:
+    from colorama import init, Fore, Style
+
+    init(autoreset=True)
+except ImportError:
+
+    class Fore:
+        CYAN = GREEN = RED = YELLOW = MAGENTA = ""
+
+    class Style:
+        RESET_ALL = ""
+
 
 # Fix Windows console encoding
 if sys.platform == "win32":
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
+
 def dynamic_speak(text):
     """Interfaz de Voz SOTA v2.2"""
     print(f"{Fore.MAGENTA}🔊 [VOICE]: {text}{Style.RESET_ALL}")
     if sys.platform == "win32":
         try:
-            cmd = f'PowerShell -Command "Add-Type -AssemblyName System.Speech; (New-Object System.Speech.Synthesis.SpeechSynthesizer).Speak(\'{text}\')"'
-            subprocess.Popen(cmd, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            cmd = f"PowerShell -Command \"Add-Type -AssemblyName System.Speech; (New-Object System.Speech.Synthesis.SpeechSynthesizer).Speak('{text}')\""
+            subprocess.Popen(
+                cmd, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
+            )
         except:
             pass
+
 
 def print_banner():
     banner = rf"""
@@ -53,6 +67,7 @@ def print_banner():
     ###########################################################################{Style.RESET_ALL}
 """
     print(banner)
+
 
 ROOT_DIR = PROJECT_ROOT
 

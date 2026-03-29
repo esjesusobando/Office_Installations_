@@ -1,18 +1,43 @@
-import sys
-from pathlib import Path
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
-import sys
-from pathlib import Path
+"""
+System Health Monitor - PersonalOS v6.1
+Monitorea la salud del sistema.
+"""
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
 import os
 import sys
+from pathlib import Path
 
+# === SETUP PATHS ===
+SCRIPT_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = SCRIPT_DIR.parent.parent
+sys.path.insert(0, str(PROJECT_ROOT))
+
+# === IMPORTS ===
+try:
+    from config_paths import (
+        ROOT_DIR,
+        BRAIN_DIR,
+        BRAIN_RULES_DIR,
+        COMPOUND_ENGINE_DIR,
+        ENGINE_DIR,
+    )
+except ImportError:
+    ROOT_DIR = PROJECT_ROOT
+    BRAIN_DIR = PROJECT_ROOT / "04_Operations"
+    BRAIN_RULES_DIR = BRAIN_DIR / "04_Memory_Brain"
+    COMPOUND_ENGINE_DIR = (
+        PROJECT_ROOT / "01_Core" / "03_Skills" / "00_Compound_Engineering"
+    )
+    ENGINE_DIR = PROJECT_ROOT / "08_Scripts_Os"
+
+# === COLOR SETUP ===
 try:
     from colorama import Fore, Style, init
+
+    init(autoreset=True)
 except ImportError:
 
     class Fore:
@@ -23,19 +48,6 @@ except ImportError:
 
     def init(**kw):
         pass
-
-
-# Add ROOT_DIR to path for imports
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
-from config_paths import (
-    ROOT_DIR,
-    BRAIN_DIR,
-    BRAIN_RULES_DIR,
-    COMPOUND_ENGINE_DIR,
-    ENGINE_DIR,
-)
-
-init(autoreset=True)
 
 
 def check_directory_structure():

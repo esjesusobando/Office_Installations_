@@ -1,21 +1,23 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+Ritual de Cierre - PersonalOS v6.1
+Orquesta el cierre seguro de sesión.
+"""
+
+import os
 import sys
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
-import sys
-from pathlib import Path
-
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
-import sys
-from pathlib import Path
-
+# === SETUP PATHS ===
 SCRIPT_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = SCRIPT_DIR.parent
+PROJECT_ROOT = (
+    SCRIPT_DIR.parent.parent
+)  # Ritual_Fixed → 08_Scripts_Os → Think_Different
 sys.path.insert(0, str(PROJECT_ROOT))
 
-# Ajuste de imports
+# === IMPORTS ===
 try:
     from config_paths import (
         ROOT_DIR,
@@ -24,24 +26,18 @@ try:
         COMPOUND_ENGINE_DIR,
         ENGINE_DIR,
     )
-except:
-    # Fallback
+except ImportError:
     ROOT_DIR = PROJECT_ROOT
     BRAIN_DIR = PROJECT_ROOT / "04_Operations"
-    BRAIN_RULES_DIR = PROJECT_ROOT / "01_Core" / "01_Rules"
-    COMPOUND_ENGINE_DIR = PROJECT_ROOT / "01_Core" / "03_Skills"
+    BRAIN_RULES_DIR = PROJECT_ROOT / "04_Operations" / "04_Memory_Brain"
+    COMPOUND_ENGINE_DIR = (
+        PROJECT_ROOT / "01_Core" / "03_Skills" / "00_Compound_Engineering"
+    )
     ENGINE_DIR = PROJECT_ROOT / "08_Scripts_Os"
 
-"""
-RITUAL MAESTRO DE CIERRE - PersonalOS v1.0
-Este script orquesta el cierre seguro de la sesión de trabajo siguiendo estándares Silicon Valley.
-"""
-
 import subprocess
-import sys
 import datetime
 import importlib.util
-import os
 import io
 
 # --- CONFIGURACIÓN ARMOR LAYER ---

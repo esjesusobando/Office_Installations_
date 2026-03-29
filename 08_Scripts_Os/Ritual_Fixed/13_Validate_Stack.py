@@ -1,26 +1,37 @@
-import sys
-from pathlib import Path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
-import sys
-from pathlib import Path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+Validate Stack - PersonalOS v6.1
+Valida el stack tecnológico.
+"""
+
 import subprocess
 import sys
 import os
 import io
-from colorama import init, Fore, Style
+from pathlib import Path
 
-# Initialize Colorama
-init()
+# === SETUP PATHS ===
+SCRIPT_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = (
+    SCRIPT_DIR.parent.parent
+)  # Ritual_Fixed → 08_Scripts_Os → Think_Different
+sys.path.insert(0, str(PROJECT_ROOT))
 
-# =============================================================================
-# ARMOR LAYER - PATH RESOLUTION (3-LEVEL)
-# =============================================================================
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-# Fix: go up 3 levels from Legacy_Backup/08_Scripts_Os/04_Engine/ to root
-PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(SCRIPT_DIR)))
+# === COLOR SETUP ===
+try:
+    from colorama import init, Fore, Style
+
+    init(autoreset=True)
+except ImportError:
+
+    class Fore:
+        CYAN = GREEN = RED = YELLOW = MAGENTA = ""
+
+    class Style:
+        RESET_ALL = ""
+
 
 # Fix Windows console encoding
 if sys.platform == "win32":
