@@ -97,6 +97,17 @@ OPERATIONS_MEMORY_MAP_DIR = OPERATIONS_DIR / "04_Memory_Brain"
 # Alias legacy
 OPERATIONS_TASKS_DIR = TASKS_DIR  # Compatibilidad
 OPERATIONS_EVALS_DIR = CORE_EVALS_DIR  # Compatibilidad
+OPERATIONS_ANALYTICS_DIR = OPERATIONS_DIR / "03_Process_Notes"  # Analytics
+
+# Subdirectorios Knowledge
+KNOWLEDGE_RESEARCH_DIR = KNOWLEDGE_DIR / "01_Research_Os"
+KNOWLEDGE_NOTES_DIR = OPERATIONS_DIR / "02_Knowledge_Brain"
+KNOWLEDGE_RESOURCES_DIR = KNOWLEDGE_DIR / "03_Resources"
+KNOWLEDGE_EXAMPLES_DIR = KNOWLEDGE_DIR / "04_Examples"
+KNOWLEDGE_PLANS_DIR = OPERATIONS_DIR / "04_Memory_Brain"
+
+# Alias legacy
+PLANS_DIR = KNOWLEDGE_PLANS_DIR  # Compatibilidad
 
 # =============================================================================
 # ALIAS PARA COMPATIBILIDAD (scripts legacy)
@@ -105,6 +116,16 @@ OPERATIONS_EVALS_DIR = CORE_EVALS_DIR  # Compatibilidad
 BASE_DIR = ROOT_DIR  # Alias para scripts que usan BASE_DIR
 PROJECT_ROOT = ROOT_DIR  # Alias para scripts que usan PROJECT_ROOT
 BRAIN_DIR = OPERATIONS_DIR  # Alias legacy (Operations ahora es el Brain)
+BRAIN_MEMORY_DIR = OPERATIONS_DIR / "01_Context_Memory"
+BRAIN_KNOWLEDGE_DIR = OPERATIONS_DIR / "02_Knowledge_Brain"
+BRAIN_NOTES_DIR = OPERATIONS_DIR / "03_Process_Notes"
+BRAIN_RULES_DIR = OPERATIONS_DIR / "04_Memory_Brain"
+
+# Engine scripts
+ENGINE_SCRIPTS_DIR = ENGINE_DIR
+
+# Compound Engine
+COMPOUND_ENGINE_DIR = ROOT_DIR / "01_Core" / "03_Skills" / "00_Compound_Engineering"
 
 # =============================================================================
 # VERIFICACIÓN (para debugging)
