@@ -21,21 +21,22 @@ if sys.platform == "win32":
 
 
 def play_sound_windows(sound_type="Asterisk"):
-    """Reproducir sonido en Windows"""
+    """Reproducir sonido del sistema Windows."""
     try:
         import winsound
-
-        sounds = {
-            "Asterisk": winsound.SND_ALIAS,
-            "Beep": winsound.SND_ALIAS,
-            "Exclamation": winsound.SND_EXCLAMATION,
-            "Hand": winsound.SND_HAND,
-            "Question": winsound.SND_QUESTION,
-            "Success": winsound.SND_ALIAS,
+        # FIX: Mapear a los nombres de alias correctos de Windows
+        # winsound.PlaySound necesita el STRING del alias, no el flag
+        alias_map = {
+            "Asterisk":    "SystemAsterisk",
+            "Exclamation": "SystemExclamation",
+            "Hand":        "SystemHand",
+            "Question":    "SystemQuestion",
+            "Success":     "SystemAsterisk",
         }
-        winsound.PlaySound(sounds.get(sound_type, "SystemAsterisk"), winsound.SND_ALIAS)
+        alias = alias_map.get(sound_type, "SystemAsterisk")
+        winsound.PlaySound(alias, winsound.SND_ALIAS | winsound.SND_ASYNC)
         return True
-    except Exception as e:
+    except Exception:
         return False
 
 
@@ -59,18 +60,24 @@ def play_sound_beep(frequency=800, duration=150):
 
 
 def task_complete_sound():
-    """Sonido de tarea completada"""
-    print("🔔 [Task Complete] Reproduciendo sonido...")
+    """Sonido de tarea completada - garantizado con doble beep fallback."""
+    print("[Sound] Task Complete...")
 
-    # Intentar sonido primero
     if sys.platform == "win32":
-        if not play_sound_windows("Asterisk"):
-            play_sound_beep(800, 150)
-            play_sound_beep(1000, 150)  # Doble beep
+        # Intentar sonido del sistema primero
+        success = play_sound_windows("Asterisk")
+        if not success:
+            # FIX: Fallback garantizado - doble beep ascendente
+            try:
+                import winsound
+                winsound.Beep(800, 150)
+                winsound.Beep(1100, 200)
+            except Exception:
+                pass
     else:
-        os.system('echo -e "\\a"')
+        os.system('printf "\\a"')
 
-    print("✅ Sonido reproducido")
+    print("[OK] Sonido reproducido")
 
 
 def success_sound():
