@@ -6,7 +6,7 @@
 - **PersonalOS v6.1** - Workspace reorganization
 - **Anthropic SOTA Practices** (2026): CLAUDE.md, Plan then Execute, Custom Tools, Git Workflows, Specific Prompting, Context Management, Headless Mode + Hooks
 - **Anthropic 9 Skill Categories**: Library/API, Product Verification, Data Fetching, Business Process, Code Scaffolding, Code Quality, CI/CD, Runbooks, Infrastructure Ops
-- **Sound Notifications**: Configured hooks for task completion (.claude/settings.local.json)
+- **Sound Notifications**: OpenCode notify plugin (kdco/notify) + configured hooks for Claude Code (.claude/settings.local.json)
 - **22 Rules Updated** with XML format from 02_Pilar_Base.mdc
 
 ### Fixed
