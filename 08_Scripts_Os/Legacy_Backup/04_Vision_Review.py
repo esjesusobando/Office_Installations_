@@ -22,7 +22,7 @@ REQUIRED_DIRS = [
     "01_Brain",
     "02_Operations",
     "03_Knowledge",
-    "04_Engine",
+    "08_Scripts_Os",
     "05_System",
     "06_Archive",
 ]
@@ -128,7 +128,7 @@ def is_personalos_project(root_dir):
         "01_Brain",
         "02_Operations",
         "03_Knowledge",
-        "04_Engine",
+        "08_Scripts_Os",
         "05_System",
         "06_Archive",
     ]
