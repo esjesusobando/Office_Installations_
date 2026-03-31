@@ -13,7 +13,7 @@ Integrated stack: PersonalOS + SDD + Compound Engineering + Gentleman Skills + G
 ## 🛠️ HERRAMIENTAS NUEVAS v6.1 (2026-03-29)
 
 | Herramienta          | Ubicación                                         | Función                              |
-| -------------------- | ------------------------------------------------- | ------------------------------------ |
+|----------------------|---------------------------------------------------|--------------------------------------|
 | **Tool Shed**        | `08_Scripts_Os/Tool_Fixed/62_Tool_Shed.py`        | Auto-detecta contexto y sugiere MCPs |
 | **Skill Harmonizer** | `08_Scripts_Os/Tool_Fixed/63_Skill_Harmonizer.py` | Valida paridad de skills (20/20)     |
 | **Notifier**         | `08_Scripts_Os/Tool_Fixed/00_Notifier.py`         | Sonido al completar tareas           |
@@ -59,7 +59,7 @@ After each task completion, save to Engram:
 > **.agent/** es el backup estratégico de 01_Core/. La fuente de verdad es **01_Core/**.
 
 | Contenido Sincronizado | Origen (Fuente)         |
-| ---------------------- | ----------------------- |
+|------------------------|-------------------------|
 | `.agent/00_Rules/`     | `01_Core/01_Rules/`     |
 | `.agent/01_Agents/`    | `01_Core/04_Agents/`    |
 | `.agent/02_Skills/`    | `01_Core/03_Skills/`    |
@@ -165,7 +165,7 @@ Tie to goals and reference material.
 For complex tasks, delegate to workflow files in `.agent/03_Workflows/`.
 
 | Trigger            | Workflow                                       | When to Use        |
-| ------------------ | ---------------------------------------------- | ------------------ |
+|--------------------|------------------------------------------------|--------------------|
 | Content generation | `.agent/03_Workflows/21_Content_Generation.md` | Writing, marketing |
 | Morning planning   | `.agent/03_Workflows/22_Morning_Standup.md`    | Daily focus        |
 | Processing backlog | `.agent/03_Workflows/20_Backlog_Processing.md` | Backlog flow       |
@@ -209,7 +209,7 @@ When the user wants structured development with specs, use the SDD methodology.
 **Workflow:** `explore → propose → spec → design → tasks → apply → verify → archive`
 
 | Command        | Skill         | Purpose                           |
-| -------------- | ------------- | --------------------------------- |
+|----------------|---------------|-----------------------------------|
 | `/sdd:init`    | `sdd-init`    | Initialize context + persistencia |
 | `/sdd:explore` | `sdd-explore` | Investigar código/ideas           |
 | `/sdd:new`     | `sdd-propose` | Create proposal                   |
@@ -254,7 +254,7 @@ Ideate → Brainstorm → Plan → Work → Review → Compound → Repeat
 ### CE Commands
 
 | Command                | Purpose                           |
-| ---------------------- | --------------------------------- |
+|------------------------|-----------------------------------|
 | `/ce:ideate`           | Discover high-impact improvements |
 | `/ce:brainstorm`       | Explore requirements              |
 | `/ce:plan`             | Detailed implementation plans     |
@@ -266,14 +266,14 @@ Ideate → Brainstorm → Plan → Work → Review → Compound → Repeat
 ### Autonomous Workflows
 
 | Command | Purpose                                     |
-| ------- | ------------------------------------------- |
+|---------|---------------------------------------------|
 | `/lfg`  | Full: plan → deepen → work → review → video |
 | `/slfg` | Swarm with parallel agents                  |
 
 ### Git Workflow Skills
 
 | Skill                     | Purpose                                |
-| ------------------------- | -------------------------------------- |
+|---------------------------|----------------------------------------|
 | `git-clean-gone-branches` | Clean local branches without remote    |
 | `git-commit`              | Commit with descriptive message        |
 | `git-commit-push-pr`      | Commit + push + PR                     |
@@ -297,7 +297,7 @@ Complete framework for frontend, backend, and quality.
 ### Categories
 
 | Category      | Skills                                                                                                              |
-| ------------- | ------------------------------------------------------------------------------------------------------------------- |
+|---------------|---------------------------------------------------------------------------------------------------------------------|
 | **Plan**      | project-structure, docs-alignment, issue-creation, branch-pr, brainstorming, writing-plans, jira-epic, jira-task    |
 | **Work**      | react-19, nextjs-15, tailwind-4, zod-4, zustand-5, ai-sdk-5, angular, typescript, django-drf, pytest, playwright    |
 | **Review**    | technical-review, pr-review, testing-coverage, commit-hygiene, tui-quality, ui-elements, go-testing, pr-review-deep |
@@ -309,7 +309,7 @@ Complete framework for frontend, backend, and quality.
 **OBLIGATORIAS** para frontend: webs, landing pages, invitaciones, formularios, dashboards.
 
 | Skill                | Purpose                  | When to Use           |
-| -------------------- | ------------------------ | --------------------- |
+|----------------------|--------------------------|-----------------------|
 | **taste-skill**      | Diseño principal premium | Desde cero            |
 | **soft-skill**       | Look expensive           | Premium, invitaciones |
 | **minimalist-skill** | Notion/Linear style      | Dashboards            |
@@ -331,7 +331,7 @@ VISUAL_DENSITY (1-10): Densidad de contenido
 Code review con IA.
 
 | Command                         | Purpose                 |
-| ------------------------------- | ----------------------- |
+|---------------------------------|-------------------------|
 | `.agent/05_GGA/bin/gga run`     | Review staged files     |
 | `.agent/05_GGA/bin/gga install` | Install pre-commit hook |
 | `.agent/05_GGA/bin/gga --help`  | All commands            |
@@ -345,18 +345,18 @@ Code review con IA.
 Configured in `.mcp.json`:
 
 | Category         | MCPs                                                                   |
-| ---------------- | ---------------------------------------------------------------------- |
-| 🔍 Search        | exa, brave-search, stackoverflow                                       |
-| 🧠 Memory        | engram, aim-memory-bank, notebooklm                                    |
-| 📝 Notes         | Notion, mcp-obsidian, obsidian-api                                     |
-| 🌐 Browser       | Playwright, chrome-devtools                                            |
-| 🤖 AI & Code     | context7, zai-mcp-server, github, task-master-ai, mcp-server-anthropic |
-| 📊 Data          | supabase, postgres, sqlite, Amplitude, supadata                        |
-| 🔄 Workflow      | n8n-mcp, Linear, atlassian, jira-extended                              |
-| 💬 Communication | fireflies, slack                                                       |
-| 📐 Design        | excalidraw-yctimlin, pencil                                            |
+|------------------|------------------------------------------------------------------------|
+| 🔍 Search         | exa, brave-search, stackoverflow                                       |
+| 🧠 Memory         | engram, aim-memory-bank, notebooklm                                    |
+| 📝 Notes          | Notion, mcp-obsidian, obsidian-api                                     |
+| 🌐 Browser        | Playwright, chrome-devtools                                            |
+| 🤖 AI & Code      | context7, zai-mcp-server, github, task-master-ai, mcp-server-anthropic |
+| 📊 Data           | supabase, postgres, sqlite, Amplitude, supadata                        |
+| 🔄 Workflow       | n8n-mcp, Linear, atlassian, jira-extended                              |
+| 💬 Communication  | fireflies, slack                                                       |
+| 📐 Design         | excalidraw-yctimlin, pencil                                            |
 | 🛠️ DevOps        | docker, sentry                                                         |
-| 🎨 Others        | magicuidesign, eagle-mcp, filesystem, TestSprite, google-workspace     |
+| 🎨 Others         | magicuidesign, eagle-mcp, filesystem, TestSprite, google-workspace     |
 
 ---
 
@@ -365,7 +365,7 @@ Configured in `.mcp.json`:
 Centralized HUBs in `08_Scripts_Os/`:
 
 | Hub                       | Purpose                                             |
-| ------------------------- | --------------------------------------------------- |
+|---------------------------|-----------------------------------------------------|
 | **01_Auditor_Hub.py**     | System validation: structure, links, skills, health |
 | **02_Git_Hub.py**         | Git operations + structure audits                   |
 | **03_AIPM_Hub.py**        | AI Performance Monitoring                           |
@@ -431,7 +431,7 @@ gr --agents    # Solo 3 agents
 ## 9. SLASH COMMANDS
 
 | Command  | Description                                           |
-| -------- | ----------------------------------------------------- |
+|----------|-------------------------------------------------------|
 | `/gr`    | System Guardian - Valida estructura                   |
 | `/doc`   | Documentation Updater                                 |
 | `/sdd:*` | SDD Workflow (init, explore, new, etc.)               |
@@ -446,7 +446,7 @@ gr --agents    # Solo 3 agents
 Cross-session memory with context and search.
 
 | Command                     | Purpose           |
-| --------------------------- | ----------------- |
+|-----------------------------|-------------------|
 | `engram search <query>`     | Search memories   |
 | `engram save <title> <msg>` | Save memory       |
 | `engram context`            | Recent context    |
@@ -458,7 +458,7 @@ Cross-session memory with context and search.
 Hybrid local search: BM25 + embeddings + LLM reranking.
 
 | Command               | Purpose                 |
-| --------------------- | ----------------------- |
+|-----------------------|-------------------------|
 | `qmd query <query>`   | Hybrid search (best)    |
 | `qmd search <query>`  | Full-text search (BM25) |
 | `qmd vsearch <query>` | Vector semantic search  |
@@ -495,10 +495,10 @@ Dumbledor_Silver: feat: initialize Think Different PersonalOS
 ### Ubicaciones
 
 | Tipo                   | Ruta                                                                        | Estado    |
-| ---------------------- | --------------------------------------------------------------------------- | --------- |
-| **⭐ PRIMARY Plugin**  | `01_Core/08_Plugins/01_Staff_Claude_Code/plugins/skill-creator/`            | ✅ Activo |
-| **⭐ PRIMARY Skill**   | `01_Core/08_Plugins/01_Staff_Claude_Code/skills/15_Skill_Creator_Official/` | ✅ Activo |
-| Plugin Think Different | `01_Core/08_Plugins/02_Personal_Os/`                                        | ✅        |
+|------------------------|-----------------------------------------------------------------------------|-----------|
+| **⭐ PRIMARY Plugin**   | `01_Core/08_Plugins/01_Staff_Claude_Code/plugins/skill-creator/`            | ✅ Activo  |
+| **⭐ PRIMARY Skill**    | `01_Core/08_Plugins/01_Staff_Claude_Code/skills/15_Skill_Creator_Official/` | ✅ Activo  |
+| Plugin Think Different | `01_Core/08_Plugins/02_Personal_Os/`                                        | ✅         |
 
 ### Características v2.0
 
@@ -574,7 +574,7 @@ matplotlib, seaborn, plotly
 ## 9. SLASH COMMANDS
 
 | Command  | Description                                           |
-| -------- | ----------------------------------------------------- |
+|----------|-------------------------------------------------------|
 | `/gr`    | System Guardian - Valida estructura                   |
 | `/doc`   | Documentation Updater                                 |
 | `/sdd:*` | SDD Workflow (init, explore, new, etc.)               |
@@ -589,7 +589,7 @@ matplotlib, seaborn, plotly
 Cross-session memory with context and search.
 
 | Command                     | Purpose           |
-| --------------------------- | ----------------- |
+|-----------------------------|-------------------|
 | `engram search <query>`     | Search memories   |
 | `engram save <title> <msg>` | Save memory       |
 | `engram context`            | Recent context    |
@@ -599,7 +599,7 @@ Cross-session memory with context and search.
 ### QMD — Knowledge Search Engine
 
 | Command               | Purpose                 |
-| --------------------- | ----------------------- |
+|-----------------------|-------------------------|
 | `qmd query <query>`   | Hybrid search (best)    |
 | `qmd search <query>`  | Full-text search (BM25) |
 | `qmd vsearch <query>` | Vector semantic search  |
@@ -657,7 +657,7 @@ Dumbledor_Silver: feat: initialize Think Different PersonalOS
 ## Quick Reference
 
 | Category         | Command/Tool                                  |
-| ---------------- | --------------------------------------------- |
+|------------------|-----------------------------------------------|
 | **Daily**        | "What should I work on?" / "Clear my backlog" |
 | **Plan Feature** | `/ce:brainstorm` or `/sdd:new`                |
 | **Execute**      | `/ce:work` or `/sdd:apply`                    |

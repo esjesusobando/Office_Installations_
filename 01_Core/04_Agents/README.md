@@ -31,23 +31,23 @@ Este directorio contiene los agentes especializados del sistema Think Different 
 
 ### Agentes Principales
 
-| #  | Agente                 | Dominio        | Prioridad | Estado |
-| -- | ---------------------- | -------------- | --------- | ------ |
-| 01 | Scope Rule Architect   | Arquitectura   | CRÍTICA   | ✅      |
-| 02 | TDD Test-First         | Tests (RED)    | ALTA      | ✅      |
-| 03 | React Test Implementer | Código (GREEN) | ALTA      | ✅      |
-| 04 | React Mentor           | Refactor       | MEDIA     | ✅      |
-| 05 | Security Auditor       | Seguridad      | CRÍTICA   | ✅      |
-| 06 | Git Workflow Manager   | Pull Request   | ALTA      | ✅      |
-| 07 | Accessibility Auditor  | Accesibilidad  | MEDIA     | ✅      |
-| 08 | PRD Dashboard Template | Producto       | BAJA      | ✅      |
-| 09 | Design SOP Document    | Producto       | BAJA      | ✅      |
-| 10 | Workflow Orchestrator  | Orquestación   | CRÍTICA   | ✅      |
+| #   | Agente                 | Dominio        | Prioridad | Estado |
+|-----|------------------------|----------------|-----------|--------|
+| 01  | Scope Rule Architect   | Arquitectura   | CRÍTICA   | ✅      |
+| 02  | TDD Test-First         | Tests (RED)    | ALTA      | ✅      |
+| 03  | React Test Implementer | Código (GREEN) | ALTA      | ✅      |
+| 04  | React Mentor           | Refactor       | MEDIA     | ✅      |
+| 05  | Security Auditor       | Seguridad      | CRÍTICA   | ✅      |
+| 06  | Git Workflow Manager   | Pull Request   | ALTA      | ✅      |
+| 07  | Accessibility Auditor  | Accesibilidad  | MEDIA     | ✅      |
+| 08  | PRD Dashboard Template | Producto       | BAJA      | ✅      |
+| 09  | Design SOP Document    | Producto       | BAJA      | ✅      |
+| 10  | Workflow Orchestrator  | Orquestación   | CRÍTICA   | ✅      |
 
 ### Specialists Squad
 
 | Especialidad  | Agente              | Función                       | Estado   |
-| ------------- | ------------------- | ----------------------------- | -------- |
+|---------------|---------------------|-------------------------------|----------|
 | TDD           | TDD_Specialist      | Dominio profundo de testing   | ✅        |
 | Seguridad     | Security_Specialist | Auditorías OWASP              | ✅        |
 | Git           | Git_Specialist      | Gestión avanzada de versiones | ✅        |
@@ -77,15 +77,15 @@ FASE 7: ACCESIBILIDAD (opcional)
 
 ### Duración Estimada por Fase
 
-| Fase   | Duración   | Output                    |
-| ------ | ---------- | ------------------------- |
-| FASE 1 | 30-60 min  | Documento de arquitectura |
-| FASE 2 | 1-2 horas  | Suite de tests (RED)      |
-| FASE 3 | 2-4 horas  | Código funcional (GREEN)  |
-| FASE 4 | 1-2 horas  | Código refactorizado      |
-| FASE 5 | 30-60 min  | Reporte de seguridad      |
-| FASE 6 | 30 min     | PR completo               |
-| FASE 7 | 30-60 min  | Reporte accesibilidad     |
+| Fase      | Duración       | Output                    |
+|-----------|----------------|---------------------------|
+| FASE 1    | 30-60 min      | Documento de arquitectura |
+| FASE 2    | 1-2 horas      | Suite de tests (RED)      |
+| FASE 3    | 2-4 horas      | Código funcional (GREEN)  |
+| FASE 4    | 1-2 horas      | Código refactorizado      |
+| FASE 5    | 30-60 min      | Reporte de seguridad      |
+| FASE 6    | 30 min         | PR completo               |
+| FASE 7    | 30-60 min      | Reporte accesibilidad     |
 | **Total** | **6-11 horas** | Feature completa          |
 
 ---
@@ -135,7 +135,7 @@ Agente #07: "Audita accesibilidad de [feature]"
 ## 📊 Métricas de Éxito
 
 | Agente            | Métrica Clave                        | Target   |
-| ----------------- | ------------------------------------ | -------- |
+|-------------------|--------------------------------------|----------|
 | #01 Architect     | Decisiones GLOBAL/LOCAL documentadas | 100%     |
 | #02 TDD Test      | Coverage                             | ≥80%     |
 | #03 Implementer   | Tests pasando                        | 100%     |
@@ -148,12 +148,12 @@ Agente #07: "Audita accesibilidad de [feature]"
 
 ## 🔗 Integración con el Sistema
 
-| Componente           | Relación                              |
-| -------------------- | ------------------------------------- |
-| `01_Core/03_Skills/`  | 160+ skills que potencian a los agentes |
-| `01_Core/00_Workflows/` | 26 workflows que invocan agentes      |
-| `08_Scripts_Os/`         | Scripts de automatización             |
-| `.agent/01_Agents/`    | 3 subagentes nativos de Claude Code   |
+| Componente              | Relación                                |
+|-------------------------|-----------------------------------------|
+| `01_Core/03_Skills/`    | 160+ skills que potencian a los agentes |
+| `01_Core/00_Workflows/` | 26 workflows que invocan agentes        |
+| `08_Scripts_Os/`        | Scripts de automatización               |
+| `.agent/01_Agents/`     | 3 subagentes nativos de Claude Code     |
 
 ---
 
@@ -172,7 +172,7 @@ Agente #07: "Audita accesibilidad de [feature]"
 ## ✅ Estado del Sistema
 
 | Componente          | Cantidad   | Estado   |
-| ------------------- | ---------- | -------- |
+|---------------------|------------|----------|
 | Agentes Principales | 10         | ✅        |
 | Specialists Squad   | 4          | ✅        |
 | Total Agentes       | 14         | ✅        |

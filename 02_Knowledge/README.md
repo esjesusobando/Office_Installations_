@@ -77,13 +77,13 @@ Almacena **documentación de referencia, investigación, specs, notas de reunion
 
 ## 📚 Contenido
 
-| Tipo | Ejemplos |
-|------|----------|
-| Specs & briefs | Requisitos de proyecto, specs de features |
-| Meeting notes | Decisiones, action items, asistentes |
-| Research | Análisis de mercado, hallazgos técnicos |
-| Process docs | How-tos, checklists, runbooks |
-| References | Links, contactos, credenciales (encriptadas) |
+| Tipo           | Ejemplos                                     |
+|----------------|----------------------------------------------|
+| Specs & briefs | Requisitos de proyecto, specs de features    |
+| Meeting notes  | Decisiones, action items, asistentes         |
+| Research       | Análisis de mercado, hallazgos técnicos      |
+| Process docs   | How-tos, checklists, runbooks                |
+| References     | Links, contactos, credenciales (encriptadas) |
 
 ---
 

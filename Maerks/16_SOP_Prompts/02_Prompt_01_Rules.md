@@ -74,8 +74,8 @@ priority: [1-10]
 - **Qué validar:** [lista de checks]
 
 ## 🔄 Historial de Cambios
-| Fecha | Cambio | Autor |
-|-------|--------|-------|
+| Fecha      | Cambio           | Autor    |
+|------------|------------------|----------|
 | YYYY-MM-DD | Creación inicial | [Nombre] |
 ```
 

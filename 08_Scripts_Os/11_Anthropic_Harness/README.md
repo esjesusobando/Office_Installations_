@@ -8,13 +8,13 @@ Scripts para implementar el patrón de Anthropic para agentes de larga duración
 
 ## 📦 Scripts
 
-| # | Script | Propósito |
-|---|--------|-----------|
-| 00 | `00_Safety_Wrapper.py` | Check de no-regresión antes de ejecutar |
-| 01 | `01_Context_Manager.py` | Reset vs Compaction según modelo |
-| 02 | `02_Evaluator_Runner.py` | QA Agent separado (GAN pattern) |
-| 03 | `03_Sprint_Contract.py` | Negotiate "done" antes de build |
-| 04 | `04_Playwright_QA.py` | Testing interactivo para Evaluator |
+| #   | Script                   | Propósito                               |
+|-----|--------------------------|-----------------------------------------|
+| 00  | `00_Safety_Wrapper.py`   | Check de no-regresión antes de ejecutar |
+| 01  | `01_Context_Manager.py`  | Reset vs Compaction según modelo        |
+| 02  | `02_Evaluator_Runner.py` | QA Agent separado (GAN pattern)         |
+| 03  | `03_Sprint_Contract.py`  | Negotiate "done" antes de build         |
+| 04  | `04_Playwright_QA.py`    | Testing interactivo para Evaluator      |
 
 ---
 

@@ -118,108 +118,108 @@ La esencia de delegación en PersonalOS sigue el esquema de un **Equipo de Fútb
 ### 1. ESTRUCTURA BASE (Think_Different)
 ```text
 Think_Different/
-|--- 00_Winter_is_Coming/     # MATRIX: Goals, Backlog, AGENTS.md
-|--- 01_Core/                 # CORE: Skills, Agents, MCP, Rules
-|    |--- 01_Rules/           # 23 reglas del sistema
-|    |--- 03_Skills/          # 160+ skills (19 categorías)
-|    |--- 05_Mcp/             # MCP servers config
-|    +--- 07_Hooks/           # Hooks del sistema
+| --- 00_Winter_is_Coming/     # MATRIX: Goals, Backlog, AGENTS.md      |
+| --- 01_Core/                 # CORE: Skills, Agents, MCP, Rules       |
+|                                                                       | --- 01_Rules/           # 23 reglas del sistema       |
+|                                                                       | --- 03_Skills/          # 160+ skills (19 categorías) |
+|                                                                       | --- 05_Mcp/             # MCP servers config          |
+| +--- 07_Hooks/           # Hooks del sistema                          |
 |
-|--- 02_Knowledge/            # Documentación
-|    +--- 04_Docs/           # Docs del sistema, SDD Registry
+| --- 02_Knowledge/            # Documentación                          |
+| +--- 04_Docs/           # Docs del sistema, SDD Registry              |
 |
-|--- 03_Tasks/                # Tareas activas
-|--- 04_Operations/           # Auto Improvement, Scripts
-|    +--- 01_Auto_Improvement/ # Motor de automejora
-|--- 05_Archive/              # Archivo: Repos, legacy
-|--- 06_Playground/           # Area de pruebas
-|--- 07_Projects/             # Proyectos activos
-|--- 08_Scripts_Os/           # HUBs: Auditor, Git, AIPM, Ritual, etc.
-|    +--- Validator_Fixed/    # skill_validator.py, skill_security_scan.py
-|--- .agent/                   # Backup estratégico
-|--- .atl/                    # SDD Registry
-|--- .gga                     # Guardian Angel (Code Review)
-|--- AGENTS.md                # Root entry
-|--- CLAUDE.md                # Config Oficial para IAs
-|--- README.md                # Documentacion principal
+| --- 03_Tasks/                # Tareas activas                         |
+| --- 04_Operations/           # Auto Improvement, Scripts              |
+| +--- 01_Auto_Improvement/ # Motor de automejora                       |
+| --- 05_Archive/              # Archivo: Repos, legacy                 |
+| --- 06_Playground/           # Area de pruebas                        |
+| --- 07_Projects/             # Proyectos activos                      |
+| --- 08_Scripts_Os/           # HUBs: Auditor, Git, AIPM, Ritual, etc. |
+| +--- Validator_Fixed/    # skill_validator.py, skill_security_scan.py |
+| --- .agent/                   # Backup estratégico                    |
+| --- .atl/                    # SDD Registry                           |
+| --- .gga                     # Guardian Angel (Code Review)           |
+| --- AGENTS.md                # Root entry                             |
+| --- CLAUDE.md                # Config Oficial para IAs                |
+| --- README.md                # Documentacion principal                |
 ```
 
 ### 2. CONFIGURACIÓN IA (.agent/)
 ```text
 .agent/
-|--- 00_Rules/                # Reglas del agente
-|--- 01_Agents/               # Agentes externos configurados
-|--- 02_Skills/               # Skills organizadas (legacy backup)
-|--- 03_Skills/               # Skills PRINCIPALES (01_Core/03_Skills/)
-|--- 04_Extensions/           # Hooks del sistema
-|    +--- hooks/              # Hooks activos
-|        |--- 01_Pre_Tool/    # PreToolUse: battery, security
-|        |--- 02_Post_Tool/   # PostToolUse: backup, voice
-|        |--- 03_Lifecycle/   # Stop, SubagentStop
-|        +--- 04_Sound/       # Notifications, sounds
-|--- 05_GGA/                  # Gentleman Guardian Angel (Code Review)
+| --- 00_Rules/                # Reglas del agente                       |
+| --- 01_Agents/               # Agentes externos configurados           |
+| --- 02_Skills/               # Skills organizadas (legacy backup)      |
+| --- 03_Skills/               # Skills PRINCIPALES (01_Core/03_Skills/) |
+| --- 04_Extensions/           # Hooks del sistema                       |
+| +--- hooks/              # Hooks activos                               |
+|                                                                        | --- 01_Pre_Tool/    # PreToolUse: battery, security |
+|                                                                        | --- 02_Post_Tool/   # PostToolUse: backup, voice    |
+|                                                                        | --- 03_Lifecycle/   # Stop, SubagentStop            |
+| +--- 04_Sound/       # Notifications, sounds                           |
+| --- 05_GGA/                  # Gentleman Guardian Angel (Code Review)  |
 ```
 
 ### 3. SISTEMA AUTO-MEJORA (04_Operations/01_Auto_Improvement)
 ```text
 01_Auto_Improvement/
-|--- 01_Engine/
-|    |--- detector.py         # Detecta issues criticos
-|    |--- analyzer.py         # Analiza y clasifica
-|    |--- executor.py         # Aplica fixes
-|    |--- learner.py          # Aprende de fixes
-|    +--- recursive_improvement_engine.py
-|--- 02_Rules/
-|--- 04_Triggers/
+| --- 01_Engine/                       |
+|                                      | --- detector.py         # Detecta issues criticos |
+|                                      | --- analyzer.py         # Analiza y clasifica     |
+|                                      | --- executor.py         # Aplica fixes            |
+|                                      | --- learner.py          # Aprende de fixes        |
+| +--- recursive_improvement_engine.py |
+| --- 02_Rules/                        |
+| --- 04_Triggers/                     |
 ```
 
 ### 4. INVENTARIO HUB SCRIPTS (08_Scripts_Os)
-| Hub | Script | Proposito |
-|-----|--------|-----------|
-| **Auditor** | `01_Auditor_Hub.py` | System validation: structure, links, skills, health |
-| **Git** | `02_Git_Hub.py` | Git operations + structure audits |
-| **AIPM** | `03_AIPM_Hub.py` | AI Performance Monitoring |
-| **Ritual** | `04_Ritual_Hub.py` | Session rituals: open, close, recovery |
-| **Validator** | `05_Validator_Hub.py` | Code validation: rules, stack, patterns |
-| **Tool** | `06_Tool_Hub.py` | Tool integration and management |
-| **Integration** | `07_Integration_Hub.py` | MCP and external integrations |
-| **Workflow** | `08_Workflow_Hub.py` | Workflow automation |
-| **Data** | `09_Data_Hub.py` | Data processing and analytics |
-| **General** | `10_General_Hub.py` | General utilities |
+| Hub             | Script                  | Proposito                                           |
+|-----------------|-------------------------|-----------------------------------------------------|
+| **Auditor**     | `01_Auditor_Hub.py`     | System validation: structure, links, skills, health |
+| **Git**         | `02_Git_Hub.py`         | Git operations + structure audits                   |
+| **AIPM**        | `03_AIPM_Hub.py`        | AI Performance Monitoring                           |
+| **Ritual**      | `04_Ritual_Hub.py`      | Session rituals: open, close, recovery              |
+| **Validator**   | `05_Validator_Hub.py`   | Code validation: rules, stack, patterns             |
+| **Tool**        | `06_Tool_Hub.py`        | Tool integration and management                     |
+| **Integration** | `07_Integration_Hub.py` | MCP and external integrations                       |
+| **Workflow**    | `08_Workflow_Hub.py`    | Workflow automation                                 |
+| **Data**        | `09_Data_Hub.py`        | Data processing and analytics                       |
+| **General**     | `10_General_Hub.py`     | General utilities                                   |
 
 ### 📚 Documentación del Sistema
 
-| Documento | Ubicación |
-|-----------|-----------|
+| Documento                | Ubicación                                           |
+|--------------------------|-----------------------------------------------------|
 | **OS Integration Audit** | `02_Knowledge/04_Docs/OS_Integration_Audit_v6.1.md` |
-| **Edge Cases Analysis** | `02_Knowledge/04_Docs/OS_Edge_Cases_Analysis.md` |
-| **SDD Registry** | `02_Knowledge/04_Docs/99_ATL/skill-registry.md` |
-| **Rules Index** | `01_Core/01_Rules/RULES_INDEX.md` |
-| **Skills Index** | `01_Core/03_Skills/README.md` |
+| **Edge Cases Analysis**  | `02_Knowledge/04_Docs/OS_Edge_Cases_Analysis.md`    |
+| **SDD Registry**         | `02_Knowledge/04_Docs/99_ATL/skill-registry.md`     |
+| **Rules Index**          | `01_Core/01_Rules/RULES_INDEX.md`                   |
+| **Skills Index**         | `01_Core/03_Skills/README.md`                       |
 
 ### 5. SKILLS DISPONIBLES (19 Categorías en 01_Core/03_Skills/)
-| Categoria | Skills | Ubicacion |
-|-----------|--------|-----------|
-| **00_Compound_Engineering** | 8 | `00_Compound_Engineering/` |
-| **00_Personal_Os_Stack** | Core OS | `00_Personal_Os_Stack/` |
-| **00_Skill_Auditor** | Auditor | `00_Skill_Auditor/` |
-| **01_Agent_Teams_Lite** | SDD Workflows | `01_Agent_Teams_Lite/` |
-| **02_Project_Manager** | Project | `02_Project_Manager/` |
-| **03_Product_Manager** | Product | `03_Product_Manager/` |
-| **04_Product_Design** | Design | `04_Product_Design/` |
-| **05_Vibe_Coding** | Frameworks | `05_Vibe_Coding/` |
-| **06_Testing** | Testing | `06_Testing/` |
-| **07_DevOps** | DevOps | `07_DevOps/` |
-| **08_Personal_Os** | OS skills | `08_Personal_Os/` |
-| **09_Marketing** | Marketing | `09_Marketing/` |
-| **10_Backup** | Backup/Legacy | `10_Backup/` |
-| **11_Doc_Processing** | Docs | `11_Doc_Processing/` |
-| **12_N8N** | N8N | `12_N8N/` |
-| **13_System_Master** | Master | `13_System_Master/` |
-| **14_Anthropic_Harness** | Evaluators | `14_Anthropic_Harness/` |
-| **15_Skill_Creator_Oficial** | Creator v2 | `15_Skill_Creator_Oficial/` |
-| **16_SV_Data_Analyst** | Analyst | `16_Silicon_Valley_Data_Analyst/` |
-| **17_SEO_SOTA_Master** | SEO | `17_SEO_SOTA_Master/` |
+| Categoria                    | Skills        | Ubicacion                         |
+|------------------------------|---------------|-----------------------------------|
+| **00_Compound_Engineering**  | 8             | `00_Compound_Engineering/`        |
+| **00_Personal_Os_Stack**     | Core OS       | `00_Personal_Os_Stack/`           |
+| **00_Skill_Auditor**         | Auditor       | `00_Skill_Auditor/`               |
+| **01_Agent_Teams_Lite**      | SDD Workflows | `01_Agent_Teams_Lite/`            |
+| **02_Project_Manager**       | Project       | `02_Project_Manager/`             |
+| **03_Product_Manager**       | Product       | `03_Product_Manager/`             |
+| **04_Product_Design**        | Design        | `04_Product_Design/`              |
+| **05_Vibe_Coding**           | Frameworks    | `05_Vibe_Coding/`                 |
+| **06_Testing**               | Testing       | `06_Testing/`                     |
+| **07_DevOps**                | DevOps        | `07_DevOps/`                      |
+| **08_Personal_Os**           | OS skills     | `08_Personal_Os/`                 |
+| **09_Marketing**             | Marketing     | `09_Marketing/`                   |
+| **10_Backup**                | Backup/Legacy | `10_Backup/`                      |
+| **11_Doc_Processing**        | Docs          | `11_Doc_Processing/`              |
+| **12_N8N**                   | N8N           | `12_N8N/`                         |
+| **13_System_Master**         | Master        | `13_System_Master/`               |
+| **14_Anthropic_Harness**     | Evaluators    | `14_Anthropic_Harness/`           |
+| **15_Skill_Creator_Oficial** | Creator v2    | `15_Skill_Creator_Oficial/`       |
+| **16_SV_Data_Analyst**       | Analyst       | `16_Silicon_Valley_Data_Analyst/` |
+| **17_SEO_SOTA_Master**       | SEO           | `17_SEO_SOTA_Master/`             |
 </architecture_routing>
 
 ---
@@ -249,16 +249,16 @@ Think_Different/
 
 ## 📊 ESTADO DEL SISTEMA
 <system_state_snapshot>
-| Categoria | Estado |
-|-----------|--------|
-| **Overall Health** | **100%** ✅ |
-| Estructura (00-08) | ✅ PASS |
-| HUBs (01-10) | ✅ ACTIVE |
-| Skills (160+) | ✅ OPERATIONAL |
-| Rules (23) | ✅ DEFINED |
-| MCPs (36+) | ✅ CONFIGURED |
+| Categoria               | Estado        |
+|-------------------------|---------------|
+| **Overall Health**      | **100%** ✅    |
+| Estructura (00-08)      | ✅ PASS        |
+| HUBs (01-10)            | ✅ ACTIVE      |
+| Skills (160+)           | ✅ OPERATIONAL |
+| Rules (23)              | ✅ DEFINED     |
+| MCPs (36+)              | ✅ CONFIGURED  |
 | Auto-Improvement Engine | ✅ OPERATIONAL |
-| Git Estado | ✅ CLEAN |
+| Git Estado              | ✅ CLEAN       |
 
 **Última actualización:** 2026-03-30
 **Versión:** v6.1 Pure Green State

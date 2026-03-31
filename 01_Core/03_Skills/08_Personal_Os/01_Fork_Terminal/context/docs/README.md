@@ -55,7 +55,7 @@ python 01_Core/03_Skills/fork-terminal/tools/fork_terminal.py "claude --model cl
 ## 📚 Documentación
 
 | Documento                                         | Descripción                     | Para Quién             |
-| ------------------------------------------------- | ------------------------------- | ---------------------- |
+|---------------------------------------------------|---------------------------------|------------------------|
 | **[📊 EXECUTIVE_REPORT.md](EXECUTIVE_REPORT.md)**  | Reporte completo de la sesión   | Managers, Stakeholders |
 | **[📖 SKILL.md](SKILL.md)**                        | Especificación técnica          | Desarrolladores        |
 | **[🧪 ADVANCED_TESTS.md](ADVANCED_TESTS.md)**      | Suite de pruebas                | QA, Testers            |
@@ -95,7 +95,7 @@ python tools/fork_terminal.py "python tools/claude_fork_demo.py"
 ## 🛠️ Herramientas Soportadas
 
 | Herramienta     | Cookbook                                  | Estado       |
-| --------------- | ----------------------------------------- | ------------ |
+|-----------------|-------------------------------------------|--------------|
 | **Claude Code** | [claude-code.md](cookbook/claude-code.md) | ✅ Funcional  |
 | **Gemini CLI**  | [gemini-cli.md](cookbook/gemini-cli.md)   | ✅ Funcional  |
 | **Codex CLI**   | [codex-cli.md](cookbook/codex-cli.md)     | ✅ Funcional  |

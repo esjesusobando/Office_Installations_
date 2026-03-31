@@ -16,10 +16,10 @@ Fix 1,338 issues detected by the Auto Improvement System:
 
 ## Issue Breakdown
 
-| Type | Count | Severity | Auto-Fixable |
-|------|-------|----------|--------------|
-| BROKEN_IMPORT | 49 | HIGH | Yes |
-| NAMING_INCONSISTENCY | 1289 | LOW | No |
+| Type                 | Count   | Severity   | Auto-Fixable   |
+|----------------------|---------|------------|----------------|
+| BROKEN_IMPORT        | 49      | HIGH       | Yes            |
+| NAMING_INCONSISTENCY | 1289    | LOW        | No             |
 
 ---
 
@@ -83,11 +83,11 @@ Estos son 1,289 archivos con naming inconsistent. Antes de fixear:
 
 ## Risk Analysis
 
-| Risk | Impact | Mitigation |
-|------|--------|------------|
-| Break working code | HIGH | Test cada fix individually |
-| Too many naming issues | MEDIUM | Focus only on critical ones |
-| False positives | LOW | Manual review before apply |
+| Risk                   | Impact   | Mitigation                  |
+|------------------------|----------|-----------------------------|
+| Break working code     | HIGH     | Test cada fix individually  |
+| Too many naming issues | MEDIUM   | Focus only on critical ones |
+| False positives        | LOW      | Manual review before apply  |
 
 ---
 

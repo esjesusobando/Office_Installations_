@@ -58,24 +58,24 @@ Think_Different/
 
 Esta carpeta contiene el **cerebro operativo** del sistema - memoria a largo plazo, notas de sesiones, y mapeos:
 
-| Subcarpeta | Contenido |
-|-----------|-----------|
-| `01_Context_Memory/` | CTX de sesiones, JSONs de validación |
+| Subcarpeta            | Contenido                            |
+|-----------------------|--------------------------------------|
+| `01_Context_Memory/`  | CTX de sesiones, JSONs de validación |
 | `02_Knowledge_Brain/` | Research, PDFs, conocimiento técnico |
-| `03_Process_Notes/` | Notas de sesiones (21 archivos) |
-| `04_Memory_Brain/` | Mapas, code reviews, archivo |
+| `03_Process_Notes/`   | Notas de sesiones (21 archivos)      |
+| `04_Memory_Brain/`    | Mapas, code reviews, archivo         |
 
 ---
 
 ## 📊 Estadísticas
 
-| Área | Cantidad |
-|------|----------|
-| Context Memories | ~12 archivos |
-| Notas de Sesión | 21 archivos |
-| PDFs de Referencia | 14 archivos |
-| Code Reviews | Varios |
-| Mapeos | Activos + Archivo |
+| Área               | Cantidad          |
+|--------------------|-------------------|
+| Context Memories   | ~12 archivos      |
+| Notas de Sesión    | 21 archivos       |
+| PDFs de Referencia | 14 archivos       |
+| Code Reviews       | Varios            |
+| Mapeos             | Activos + Archivo |
 
 ---
 

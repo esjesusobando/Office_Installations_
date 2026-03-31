@@ -31,40 +31,40 @@
 ## 🔌 MCPs ACTIVOS (22 servidores)
 
 ### Memoria y Persistencia
-| Servidor                   | Estado                 | Uso Principal                                  |
-|----------------------------|------------------------|------------------------------------------------|
-| **Engram**                 | ✅ Activo               | Memoria persistente del sistema                |
-| **Context7**               | ✅ Activo               | Contexto enriquecido para código               |
+| Servidor                     | Estado                   | Uso Principal                                    |
+|------------------------------|--------------------------|--------------------------------------------------|
+| **Engram**                   | ✅ Activo                 | Memoria persistente del sistema                  |
+| **Context7**                 | ✅ Activo                 | Contexto enriquecido para código                 |
 
 ### Desarrollo y Productividad
-| Servidor                     | Estado                 | Uso Principal                              |
-|------------------------------|------------------------|--------------------------------------------|
-| **Filesystem**               | ✅ Activo               | Gestión avanzada de archivos               |
-| **Playwright**               | ✅ Activo               | Navegación y testing UI                    |
-| **GitHub**                   | ✅ Activo               | Integración con repositorios               |
+| Servidor                       | Estado                   | Uso Principal                                |
+|--------------------------------|--------------------------|----------------------------------------------|
+| **Filesystem**                 | ✅ Activo                 | Gestión avanzada de archivos                 |
+| **Playwright**                 | ✅ Activo                 | Navegación y testing UI                      |
+| **GitHub**                     | ✅ Activo                 | Integración con repositorios                 |
 
 ### Búsqueda e Investigación
-| Servidor                    | Estado                 | Uso Principal                             |
-|-----------------------------|------------------------|-------------------------------------------|
-| **Exa**                     | ✅ Activo               | Búsqueda web en tiempo real               |
-| **Eagle-MCP**               | ✅ Activo               | Gestor de archivos Eagle                  |
+| Servidor                      | Estado                   | Uso Principal                               |
+|-------------------------------|--------------------------|---------------------------------------------|
+| **Exa**                       | ✅ Activo                 | Búsqueda web en tiempo real                 |
+| **Eagle-MCP**                 | ✅ Activo                 | Gestor de archivos Eagle                    |
 
 ### Comunicación y Colaboración
-| Servidor                    | Estado                 | Uso Principal                            |
-|-----------------------------|------------------------|------------------------------------------|
-| **Notion**                  | ✅ Activo               | Base de datos y notas                    |
-| **Fireflies**               | ✅ Activo               | Transcripción de reuniones               |
-| **Linear**                  | ✅ Activo               | Gestión de proyectos                     |
+| Servidor                      | Estado                   | Uso Principal                              |
+|-------------------------------|--------------------------|--------------------------------------------|
+| **Notion**                    | ✅ Activo                 | Base de datos y notas                      |
+| **Fireflies**                 | ✅ Activo                 | Transcripción de reuniones                 |
+| **Linear**                    | ✅ Activo                 | Gestión de proyectos                       |
 
 ### Base de Datos y Backend
-| Servidor                   | Estado                 | Uso Principal                         |
-|----------------------------|------------------------|---------------------------------------|
-| **Supabase**               | ✅ Activo               | Base de datos y backend               |
+| Servidor                     | Estado                   | Uso Principal                           |
+|------------------------------|--------------------------|-----------------------------------------|
+| **Supabase**                 | ✅ Activo                 | Base de datos y backend                 |
 
 ### Testing y Calidad
-| Servidor                     | Estado                 | Uso Principal                      |
-|------------------------------|------------------------|------------------------------------|
-| **TestSprite**               | ✅ Activo               | Testing automatizado               |
+| Servidor                       | Estado                   | Uso Principal                        |
+|--------------------------------|--------------------------|--------------------------------------|
+| **TestSprite**                 | ✅ Activo                 | Testing automatizado                 |
 
 ---
 
@@ -107,17 +107,17 @@
 
 ## ⚙️ COMANDOS SDD DISPONIBLES
 
-| Comando                             | Función                                       |
-|-------------------------------------|-----------------------------------------------|
-| `/sdd:init`                         | Inicializar proyecto SDD                      |
-| `/sdd:explore <tema>`               | Explorar código y restricciones               |
-| `/sdd:new <nombre>`                 | Crear propuesta de cambio                     |
-| `/sdd:spec`                         | Escribir especificaciones                     |
-| `/sdd:design`                       | Diseño técnico y arquitectura                 |
-| `/sdd:tasks`                        | Descomponer en tareas                         |
-| `/sdd:apply`                        | Implementar tareas                            |
-| `/sdd:verify`                       | Verificar contra specs                        |
-| `/sdd:archive`                      | Archivar y cerrar cambio                      |
+| Comando                               | Función                                         |
+|---------------------------------------|-------------------------------------------------|
+| `/sdd:init`                           | Inicializar proyecto SDD                        |
+| `/sdd:explore <tema>`                 | Explorar código y restricciones                 |
+| `/sdd:new <nombre>`                   | Crear propuesta de cambio                       |
+| `/sdd:spec`                           | Escribir especificaciones                       |
+| `/sdd:design`                         | Diseño técnico y arquitectura                   |
+| `/sdd:tasks`                          | Descomponer en tareas                           |
+| `/sdd:apply`                          | Implementar tareas                              |
+| `/sdd:verify`                         | Verificar contra specs                          |
+| `/sdd:archive`                        | Archivar y cerrar cambio                        |
 
 ---
 
@@ -219,13 +219,13 @@ OpenCode/
 
 ## 🔗 DOCUMENTACIÓN CLAVE
 
-| Documento                               | Ubicación                                                            |
-|-----------------------------------------|----------------------------------------------------------------------|
-| **OpenCode Integration**                | `03_Knowledge/OpenCode_Integration.md`                               |
-| **Claude Best Practices**               | `01_Core/02_Knowledge_Brain/01_Claude_Best_Practices.md`            |
-| **Commands Reference**                  | `03_Knowledge/OpenCode_Commands_Reference.md`                        |
-| **Active Configuration**                | `03_Knowledge/OpenCode_Active_Configuration.md`                      |
-| **Inventario Total**                    | `01_Core/02_Knowledge_Brain/01_Inventario_Total.md`                 |
+| Documento                                 | Ubicación                                                              |
+|-------------------------------------------|------------------------------------------------------------------------|
+| **OpenCode Integration**                  | `03_Knowledge/OpenCode_Integration.md`                                 |
+| **Claude Best Practices**                 | `01_Core/02_Knowledge_Brain/01_Claude_Best_Practices.md`               |
+| **Commands Reference**                    | `03_Knowledge/OpenCode_Commands_Reference.md`                          |
+| **Active Configuration**                  | `03_Knowledge/OpenCode_Active_Configuration.md`                        |
+| **Inventario Total**                      | `01_Core/02_Knowledge_Brain/01_Inventario_Total.md`                    |
 
 ---
 

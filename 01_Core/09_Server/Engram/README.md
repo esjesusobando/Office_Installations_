@@ -103,7 +103,7 @@ go build -ldflags="-X main.version=local-$(git describe --tags --always)" -o eng
 Grab the latest release for your platform from [GitHub Releases](https://github.com/Gentleman-Programming/engram/releases).
 
 | Platform                  | File                                       |
-| ------------------------- | ------------------------------------------ |
+|---------------------------|--------------------------------------------|
 | macOS (Apple Silicon)     | `engram_<version>_darwin_arm64.tar.gz`     |
 | macOS (Intel)             | `engram_<version>_darwin_amd64.tar.gz`     |
 | Linux (x86_64)            | `engram_<version>_linux_amd64.tar.gz`      |
@@ -175,7 +175,7 @@ Next session starts → Previous session context is injected automatically
 ### 13 MCP Tools
 
 | Tool                        | Purpose                                                                  |
-| --------------------------- | ------------------------------------------------------------------------ |
+|-----------------------------|--------------------------------------------------------------------------|
 | `mem_save`                  | Save a structured observation (decision, bugfix, pattern, etc.)          |
 | `mem_update`                | Update an existing observation by ID                                     |
 | `mem_delete`                | Delete an observation (soft-delete by default, hard-delete optional)     |
@@ -553,7 +553,7 @@ This is the **nuclear option** — system prompts survive everything, including 
 [claude-mem](https://github.com/thedotmack/claude-mem) is a great project (28K+ stars!) that inspired Engram. But we made fundamentally different design decisions:
 
 |                          | **Engram**                                        | **claude-mem**                                   |
-| ------------------------ | ------------------------------------------------- | ------------------------------------------------ |
+|--------------------------|---------------------------------------------------|--------------------------------------------------|
 | **Language**             | Go (single binary, zero runtime deps)             | TypeScript + Python (needs Node.js, Bun, uv)     |
 | **Agent lock-in**        | None. Works with any MCP agent                    | Claude Code only (uses Claude plugin hooks)      |
 | **Search**               | SQLite FTS5 (built-in, zero setup)                | ChromaDB vector database (separate process)      |
@@ -751,7 +751,7 @@ The plugin injects a strict protocol into every agent message:
 The OpenCode plugin uses a defense-in-depth strategy to ensure memories survive compaction:
 
 | Layer                   | Mechanism                                                                                      | Survives Compaction?        |
-| ----------------------- | ---------------------------------------------------------------------------------------------- | --------------------------- |
+|-------------------------|------------------------------------------------------------------------------------------------|-----------------------------|
 | **System Prompt**       | `MEMORY_INSTRUCTIONS` concatenated into existing system prompt via `chat.system.transform`     | Always present              |
 | **Compaction Hook**     | Auto-saves checkpoint + injects context + reminds compressor                                   | Fires during compaction     |
 | **Agent Config**        | "After compaction, call `mem_context`" in agent prompt                                         | Always present              |
@@ -775,7 +775,7 @@ claude --plugin-dir ./plugin/claude-code
 ### What the Plugin Provides (vs bare MCP)
 
 | Feature                                | Bare MCP       | Plugin       |
-| -------------------------------------- | -------------- | ------------ |
+|----------------------------------------|----------------|--------------|
 | 13 memory tools                        | ✓              | ✓            |
 | Session tracking (auto-start)          | ✗              | ✓            |
 | Auto-import git-synced memories        | ✗              | ✓            |
@@ -878,7 +878,7 @@ The binary includes SQLite (via [modernc.org/sqlite](https://pkg.go.dev/modernc.
 ## Environment Variables
 
 | Variable              | Description          | Default                                            |
-| --------------------- | -------------------- | -------------------------------------------------- |
+|-----------------------|----------------------|----------------------------------------------------|
 | `ENGRAM_DATA_DIR`     | Data directory       | `~/.engram` (Windows: `%USERPROFILE%\.engram`)     |
 | `ENGRAM_PORT`         | HTTP server port     | `7437`                                             |
 
@@ -887,7 +887,7 @@ The binary includes SQLite (via [modernc.org/sqlite](https://pkg.go.dev/modernc.
 When using `engram setup`, config files are written to platform-appropriate locations:
 
 | Agent              | macOS / Linux                                                                                   | Windows                                                                     |
-| ------------------ | ----------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+|--------------------|-------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
 | OpenCode           | `~/.config/opencode/`                                                                           | `%APPDATA%\opencode\`                                                       |
 | Gemini CLI         | `~/.gemini/`                                                                                    | `%APPDATA%\gemini\`                                                         |
 | Codex              | `~/.codex/`                                                                                     | `%APPDATA%\codex\`                                                          |

@@ -136,13 +136,13 @@ The regex pattern for Python files MUST be relaxed to allow more valid naming pa
 
 ## Acceptance Criteria
 
-| Criterion | Before | After |
-|-----------|--------|-------|
-| NAMING_INCONSISTENCY count | 1,289 | < 50 |
-| BROKEN_IMPORT count | 46 | < 10 |
-| AST parsing for imports | No | Yes |
-| Exclusion patterns config | No | Yes |
-| False positive rate | ~99% | < 5% |
+| Criterion                  | Before   | After   |
+|----------------------------|----------|---------|
+| NAMING_INCONSISTENCY count | 1,289    | < 50    |
+| BROKEN_IMPORT count        | 46       | < 10    |
+| AST parsing for imports    | No       | Yes     |
+| Exclusion patterns config  | No       | Yes     |
+| False positive rate        | ~99%     | < 5%    |
 
 ---
 

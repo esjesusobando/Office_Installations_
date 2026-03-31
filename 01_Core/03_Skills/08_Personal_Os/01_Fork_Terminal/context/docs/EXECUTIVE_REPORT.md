@@ -262,7 +262,7 @@ Cada cookbook ahora incluye:
 ## 📈 Métricas del Proyecto
 
 | Métrica                 | Valor    |
-| ----------------------- | -------- |
+|-------------------------|----------|
 | Archivos creados        | 7        |
 | Archivos modificados    | 6        |
 | Líneas de código        | ~800     |

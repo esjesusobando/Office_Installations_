@@ -15,38 +15,38 @@
 
 > **NOTA:** Estos repos se actualizan frecuentemente. Verificar versiones antes de clonar.
 
-| Repo | URL GitHub | Versión Actual | Notas |
-|------|------------|----------------|-------|
-| **engram** | https://github.com/Gentleman-Programming/engram | v1.10.4 | Memoria persistente |
-| **gentle-ai** | https://github.com/Gentleman-Programming/gentle-ai | v1.7.18 | Ecosistema configurador |
-| **Gentleman.Dots** | https://github.com/Gentleman-Programming/Gentleman.Dots | v2.9.2 | Dotfiles + config |
-| **agent-teams-lite** | https://github.com/Gentleman-Programming/agent-teams-lite | v4.0.0+ | SDD workflow |
-| **gentleman-guardian-angel** | https://github.com/Gentleman-Programming/gentleman-guardian-angel | v2.7.3 | Code review AI |
-| **gentleman-skills** | https://github.com/Gentleman-Programming/gentleman-skills | - | Skills curadas |
-| **qmd** | https://github.com/tobi/qmd | v2.0.1 | Búsqueda local (NO clonado - instalar global) |
+| Repo                         | URL GitHub                                                        | Versión Actual   | Notas                                         |
+|------------------------------|-------------------------------------------------------------------|------------------|-----------------------------------------------|
+| **engram**                   | https://github.com/Gentleman-Programming/engram                   | v1.10.4          | Memoria persistente                           |
+| **gentle-ai**                | https://github.com/Gentleman-Programming/gentle-ai                | v1.7.18          | Ecosistema configurador                       |
+| **Gentleman.Dots**           | https://github.com/Gentleman-Programming/Gentleman.Dots           | v2.9.2           | Dotfiles + config                             |
+| **agent-teams-lite**         | https://github.com/Gentleman-Programming/agent-teams-lite         | v4.0.0+          | SDD workflow                                  |
+| **gentleman-guardian-angel** | https://github.com/Gentleman-Programming/gentleman-guardian-angel | v2.7.3           | Code review AI                                |
+| **gentleman-skills**         | https://github.com/Gentleman-Programming/gentleman-skills         |------------------| Skills curadas                                |
+| **qmd**                      | https://github.com/tobi/qmd                                       | v2.0.1           | Búsqueda local (NO clonado - instalar global) |
 
 ### Repositorios Adicionales
 
-| Repo | URL GitHub | Notas |
-|------|------------|-------|
-| **taste-skill** | https://github.com/Leonxlnx/taste-skill | Diseño premium |
-| **obsidian-digital-garden** | https://github.com/oleeskild/obsidian-digital-garden | Publicación notas |
+| Repo                            | URL GitHub                                              | Notas                        |
+|---------------------------------|---------------------------------------------------------|------------------------------|
+| **taste-skill**                 | https://github.com/Leonxlnx/taste-skill                 | Diseño premium               |
+| **obsidian-digital-garden**     | https://github.com/oleeskild/obsidian-digital-garden    | Publicación notas            |
 | **compound-engineering-plugin** | https://github.com/EveryInc/compound-engineering-plugin | Compound Engineering (NUEVO) |
 
 ---
 
 ## 📦 Estado de Clonación (2026-03-25)
 
-| Repo | Clonado | Ubicación |
-|------|---------|-----------|
-| agent-teams-lite | ✅ | `10_Repos_Gentleman/agent-teams-lite/` |
-| Gentleman.Dots | ✅ | `10_Repos_Gentleman/Gentleman.Dots/` |
-| engram | ✅ | `10_Repos_Gentleman/engram/` |
-| gentle-ai | ✅ | `10_Repos_Gentleman/gentle-ai/` |
-| gentleman-guardian-angel | ✅ | `.agent/05_GGA/` (local) |
-| gentleman-skills | ✅ | `10_Repos_Gentleman/gentleman-skills/` |
-| obsidian-digital-garden | ✅ | `10_Repos_Gentleman/obsidian-digital-garden/` |
-| qmd | ⚠️ | NO clonado - usar `bun add -g @tobilu/qmd` |
+| Repo                     | Clonado   | Ubicación                                     |
+|--------------------------|-----------|-----------------------------------------------|
+| agent-teams-lite         | ✅         | `10_Repos_Gentleman/agent-teams-lite/`        |
+| Gentleman.Dots           | ✅         | `10_Repos_Gentleman/Gentleman.Dots/`          |
+| engram                   | ✅         | `10_Repos_Gentleman/engram/`                  |
+| gentle-ai                | ✅         | `10_Repos_Gentleman/gentle-ai/`               |
+| gentleman-guardian-angel | ✅         | `.agent/05_GGA/` (local)                      |
+| gentleman-skills         | ✅         | `10_Repos_Gentleman/gentleman-skills/`        |
+| obsidian-digital-garden  | ✅         | `10_Repos_Gentleman/obsidian-digital-garden/` |
+| qmd                      | ⚠️        | NO clonado - usar `bun add -g @tobilu/qmd`    |
 
 ### Taste-Skills (Leonxlnx)
 
@@ -55,13 +55,13 @@
 
 > **IMPORTANTE:** Las Taste-Skills están instaladas en `.cursor/` y `.agent/`, NO en este directorio.
 
-| Skill            | Propósito                    | Cuándo Usar                     |
-| ---------------- | ---------------------------- | ------------------------------- |
-| `taste-skill`    | Diseño premium desde cero    | Webs, landing pages             |
-| `soft-skill`     | Look expensive               | Proyectos premium, invitaciones |
+| Skill              | Propósito                    | Cuándo Usar                     |
+|--------------------|------------------------------|---------------------------------|
+| `taste-skill`      | Diseño premium desde cero    | Webs, landing pages             |
+| `soft-skill`       | Look expensive               | Proyectos premium, invitaciones |
 | `minimalist-skill` | Estilo Notion/Linear         | Dashboards, interfaces clean    |
-| `redesign-skill` | Mejorar proyectos existentes | Actualizar proyectos legacy     |
-| `output-skill`   | Evita código incompleto      | SIEMPRE                         |
+| `redesign-skill`   | Mejorar proyectos existentes | Actualizar proyectos legacy     |
+| `output-skill`     | Evita código incompleto      | SIEMPRE                         |
 
 ### Configuración (Taste-Skills)
 
@@ -141,13 +141,13 @@ VISUAL_DENSITY (1-10)
 
 ## Integración PersonalOS
 
-| Archivo           | Estado                                        |
-| ----------------- | --------------------------------------------- |
+| Archivo             | Estado                                        |
+|---------------------|-----------------------------------------------|
 | `00_Core/AGENTS.md` | ✅ Actualizado con Taste-Skills PRIORIDAD ALTA |
-| `CLAUDE.md`       | ✅ Actualizado con PRIORIDAD MAXIMA            |
+| `CLAUDE.md`         | ✅ Actualizado con PRIORIDAD MAXIMA            |
 | `.cursor/CLAUDE.md` | ✅ Actualizado con ubicación correcta          |
-| `README.md`       | ✅ Highlights + Ubicación correcta             |
-| `README_DRAFT.md` | ✅ Metodología documentada                     |
+| `README.md`         | ✅ Highlights + Ubicación correcta             |
+| `README_DRAFT.md`   | ✅ Metodología documentada                     |
 
 ---
 

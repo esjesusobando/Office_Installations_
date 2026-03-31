@@ -112,8 +112,8 @@ What would you like to do?
 </intake>
 
 <routing>
-| Response | Workflow |
-|----------|----------|
+| Response      | Workflow                  |
+|---------------|---------------------------|
 | 1, "keywords" | `workflows/workflow-a.md` |
 | 2, "keywords" | `workflows/workflow-b.md` |
 </routing>
@@ -123,8 +123,8 @@ What would you like to do?
 </reference_index>
 
 <workflows_index>
-| Workflow | Purpose |
-|----------|---------|
+| Workflow      | Purpose        |
+|---------------|----------------|
 | workflow-a.md | [What it does] |
 | workflow-b.md | [What it does] |
 </workflows_index>

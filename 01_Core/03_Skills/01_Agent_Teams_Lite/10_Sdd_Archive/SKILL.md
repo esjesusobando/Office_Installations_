@@ -90,8 +90,8 @@ Return to the orchestrator:
 **Archived to**: openspec/changes/archive/{YYYY-MM-DD}-{change-name}/
 
 ### Specs Synced
-| Domain | Action | Details |
-|--------|--------|---------|
+| Domain   | Action          | Details                                       |
+|----------|-----------------|-----------------------------------------------|
 | {domain} | Created/Updated | {N added, M modified, K removed requirements} |
 
 ### Archive Contents

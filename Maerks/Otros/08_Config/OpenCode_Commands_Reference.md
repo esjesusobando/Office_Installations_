@@ -3,11 +3,11 @@
 ## 🎯 Agentes Disponibles
 
 ### Agentes Principales (opencode.json)
-| Agente                                | Modo                  | Descripción                                                                        |
-|---------------------------------------|-----------------------|------------------------------------------------------------------------------------|
-| **gentleman**                         | Primary               | Senior Architect mentor - helpful first, challenging when it matters               |
-| **dangerous-gentleman**               | All                   | Full permissions - no restrictions, no questions asked                             |
-| **sdd-orchestrator**                  | All                   | Gentleman personality + SDD delegate-only orchestrator                             |
+| Agente                                  | Modo                    | Descripción                                                                          |
+|-----------------------------------------|-------------------------|--------------------------------------------------------------------------------------|
+| **gentleman**                           | Primary                 | Senior Architect mentor - helpful first, challenging when it matters                 |
+| **dangerous-gentleman**                 | All                     | Full permissions - no restrictions, no questions asked                               |
+| **sdd-orchestrator**                    | All                     | Gentleman personality + SDD delegate-only orchestrator                               |
 
 ### Agentes del Sistema (Think Different)
 - **Orchestrator** (00): Enrutamiento de alto nivel
@@ -22,24 +22,24 @@
 ## 🔌 MCPs Disponibles (22 servidores)
 
 ### Local ( ejecutados en tu máquina )
-| Servidor                     | Comando                                                 | Uso                                           |
-|------------------------------|---------------------------------------------------------|-----------------------------------------------|
-| **Engram**                   | `engram.exe mcp`                                        | Memoria persistente del sistema               |
-| **Playwright**               | `@playwright/mcp@latest`                                | Navegación y testing UI                       |
-| **Filesystem**               | `@modelcontextprotocol/server-filesystem`               | Gestión de archivos                           |
-| **Exa**                      | `exa-mcp-server`                                        | Búsqueda web en tiempo real                   |
-| **Notion**                   | `@notionhq/notion-mcp-server`                           | Base de datos y notas                         |
-| **Fireflies**                | `mcp-remote`                                            | Transcripción de reuniones                    |
-| **GitHub**                   | (remote)                                                | Integración con GitHub API                    |
+| Servidor                       | Comando                                                   | Uso                                             |
+|--------------------------------|-----------------------------------------------------------|-------------------------------------------------|
+| **Engram**                     | `engram.exe mcp`                                          | Memoria persistente del sistema                 |
+| **Playwright**                 | `@playwright/mcp@latest`                                  | Navegación y testing UI                         |
+| **Filesystem**                 | `@modelcontextprotocol/server-filesystem`                 | Gestión de archivos                             |
+| **Exa**                        | `exa-mcp-server`                                          | Búsqueda web en tiempo real                     |
+| **Notion**                     | `@notionhq/notion-mcp-server`                             | Base de datos y notas                           |
+| **Fireflies**                  | `mcp-remote`                                              | Transcripción de reuniones                      |
+| **GitHub**                     | (remote)                                                  | Integración con GitHub API                      |
 
 ### Remotos (acceso via URL)
-| Servidor                    | URL                                           |
-|-----------------------------|-----------------------------------------------|
-| **Context7**                | `https://mcp.context7.com/mcp`                |
-| **Eagle-MCP**               | `http://localhost:41596/mcp`                  |
-| **Supabase**                | `https://mcp.supabase.com/mcp`                |
-| **Linear**                  | `https://mcp.linear.app/mcp`                  |
-| **Amplitude**               | `https://mcp.amplitude.com/mcp`               |
+| Servidor                      | URL                                             |
+|-------------------------------|-------------------------------------------------|
+| **Context7**                  | `https://mcp.context7.com/mcp`                  |
+| **Eagle-MCP**                 | `http://localhost:41596/mcp`                    |
+| **Supabase**                  | `https://mcp.supabase.com/mcp`                  |
+| **Linear**                    | `https://mcp.linear.app/mcp`                    |
+| **Amplitude**                 | `https://mcp.amplitude.com/mcp`                 |
 
 ---
 
@@ -47,17 +47,17 @@
 
 Los comandos SDD se activan con prefijo `/sdd:`
 
-| Comando                             | Skill                          | Función                                       |
-|-------------------------------------|--------------------------------|-----------------------------------------------|
-| `/sdd:init`                         | `01_Sdd_Init`                  | Inicializar contexto SDD                      |
-| `/sdd:explore <tema>`               | `02_Sdd_Explore`               | Explorar código y restricciones               |
-| `/sdd:new <nombre>`                 | `03_Sdd_Propose`               | Crear propuesta de cambio                     |
-| `/sdd:spec`                         | `04_Sdd_Spec`                  | Escribir especificaciones                     |
-| `/sdd:design`                       | `05_Sdd_Design`                | Diseño técnico y arquitectura                 |
-| `/sdd:tasks`                        | `06_Sdd_Tasks`                 | Descomponer en tareas                         |
-| `/sdd:apply`                        | `07_Sdd_Apply`                 | Implementar tareas                            |
-| `/sdd:verify`                       | `08_Sdd_Verify`                | Verificar contra specs                        |
-| `/sdd:archive`                      | `09_Sdd_Archive`               | Archivar y cerrar cambio                      |
+| Comando                               | Skill                            | Función                                         |
+|---------------------------------------|----------------------------------|-------------------------------------------------|
+| `/sdd:init`                           | `01_Sdd_Init`                    | Inicializar contexto SDD                        |
+| `/sdd:explore <tema>`                 | `02_Sdd_Explore`                 | Explorar código y restricciones                 |
+| `/sdd:new <nombre>`                   | `03_Sdd_Propose`                 | Crear propuesta de cambio                       |
+| `/sdd:spec`                           | `04_Sdd_Spec`                    | Escribir especificaciones                       |
+| `/sdd:design`                         | `05_Sdd_Design`                  | Diseño técnico y arquitectura                   |
+| `/sdd:tasks`                          | `06_Sdd_Tasks`                   | Descomponer en tareas                           |
+| `/sdd:apply`                          | `07_Sdd_Apply`                   | Implementar tareas                              |
+| `/sdd:verify`                         | `08_Sdd_Verify`                  | Verificar contra specs                          |
+| `/sdd:archive`                        | `09_Sdd_Archive`                 | Archivar y cerrar cambio                        |
 
 ---
 

@@ -97,7 +97,7 @@ What needs to be done and why.
 ## MCP Tools Available
 
 | Tool                             | Description                       |
-| -------------------------------- | --------------------------------- |
+|----------------------------------|-----------------------------------|
 | `list_tasks`                     | Filter and view tasks             |
 | `create_task`                    | Create new task with metadata     |
 | `update_task_status`             | Change task status                |
@@ -155,7 +155,7 @@ The system automatically:
 Optional integrations extend Personal OS with external tools:
 
 | Integration                            | Description                            | Setup                            |
-| -------------------------------------- | -------------------------------------- | -------------------------------- |
+|----------------------------------------|----------------------------------------|----------------------------------|
 | [Granola](./integrations/granola/)     | Sync meeting notes and transcripts     | `Set up Granola integration`     |
 
 See [integrations/](./integrations/) for full documentation.

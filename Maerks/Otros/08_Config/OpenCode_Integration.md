@@ -12,19 +12,19 @@ OpenCode está completamente integrado en el ecosistema Think Different AI, con 
 
 ### MCPs Disponibles (22 servidores)
 
-| Servidor                       | Tipo                 | Funcionalidad                                  |
-|--------------------------------|----------------------|------------------------------------------------|
-| Engram                         | Local                | Memoria persistente del sistema                |
-| Agent Teams Lite               | Local                | Framework SDD para proyectos                   |
-| GGA                            | Local                | Guardian Angel - Code Review                   |
-| Playwright                     | Local                | Navegación y testing UI                        |
-| Fireflies                      | Local                | Transcripción de reuniones                     |
-| Notion                         | Remoto               | Base de datos y notas                          |
-| Exa                            | Local                | Búsqueda web en tiempo real                    |
-| Filesystem                     | Local                | Gestión de archivos                            |
-| Context7                       | Remoto               | Contexto enriquecido para código               |
-| GitHub                         | Remoto               | Integración con GitHub API                     |
-| y más...                       |                      |                                                |
+| Servidor                         | Tipo                   | Funcionalidad                                    |
+|----------------------------------|------------------------|--------------------------------------------------|
+| Engram                           | Local                  | Memoria persistente del sistema                  |
+| Agent Teams Lite                 | Local                  | Framework SDD para proyectos                     |
+| GGA                              | Local                  | Guardian Angel - Code Review                     |
+| Playwright                       | Local                  | Navegación y testing UI                          |
+| Fireflies                        | Local                  | Transcripción de reuniones                       |
+| Notion                           | Remoto                 | Base de datos y notas                            |
+| Exa                              | Local                  | Búsqueda web en tiempo real                      |
+| Filesystem                       | Local                  | Gestión de archivos                              |
+| Context7                         | Remoto                 | Contexto enriquecido para código                 |
+| GitHub                           | Remoto                 | Integración con GitHub API                       |
+| y más...                         |                        |                                                  |
 
 ## ⚙️ Agentes Configurados
 

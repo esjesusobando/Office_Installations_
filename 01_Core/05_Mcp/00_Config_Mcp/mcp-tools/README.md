@@ -7,14 +7,14 @@
 
 ## 📊 Resumen
 
-| Tier | Categoría | MCPs | Estado |
-|------|-----------|------|--------|
-| 01 | Core (siempre activas) | context7, engram, github | ⭐ |
-| 02 | Knowledge | obsidian, notion, aim-memory | |
-| 03 | Development | playwright, docker, chrome | |
-| 04 | Research | firecrawl, exa, supabase | |
-| 05 | Visual | excalidraw, pencil | |
-| 06 | Productivity | linear, slack, jira | |
+| Tier   | Categoría              | MCPs                         | Estado   |
+|--------|------------------------|------------------------------|----------|
+| 01     | Core (siempre activas) | context7, engram, github     | ⭐        |
+| 02     | Knowledge              | obsidian, notion, aim-memory |          |
+| 03     | Development            | playwright, docker, chrome   |          |
+| 04     | Research               | firecrawl, exa, supabase     |          |
+| 05     | Visual                 | excalidraw, pencil           |          |
+| 06     | Productivity           | linear, slack, jira          |          |
 
 ---
 

@@ -14,64 +14,64 @@ updated_date: 2026-03-15
 
 ## 🔥 Top 10 MCPs Esenciales 2026
 
-| #           | Servidor                  | Categoría            | Estado                | Uso en Think Different AI                      |
-|-------------|---------------------------|----------------------|-----------------------|------------------------------------------------|
-| 1           | **Filesystem**            | Base                 | ✅ Configurado         | Acceso seguro a archivos locales               |
-| 2           | **GitHub**                | Desarrollo           | ✅ Configurado         | Gestión de repositorios                        |
-| 3           | **Brave Search**          | Búsqueda             | ✅ Añadido             | Búsqueda web integrada en Claude               |
-| 4           | **PostgreSQL**            | Database             | ✅ Añadido             | Conexión a bases de datos relacionales         |
-| 5           | **SQLite**                | Database             | ✅ Añadido             | Base de datos ligera embedded                  |
-| 6           | **Slack**                 | Comunicación         | ✅ Añadido             | Integración con equipo/devops                  |
-| 7           | **Memory**                | Persistencia         | ✅ Configurado         | Memoria a largo plazo para Claude              |
-| 8           | **Sentry**                | Monitoring           | ✅ Añadido             | Error tracking y alertas                       |
-| 9           | **StackOverflow**         | Development          | ✅ Añadido             | Búsqueda de soluciones de código               |
-| 10          | **Docker**                | DevOps               | ✅ Añadido             | Gestión de contenedores                        |
+| #             | Servidor                    | Categoría              | Estado                  | Uso en Think Different AI                        |
+|---------------|-----------------------------|------------------------|-------------------------|--------------------------------------------------|
+| 1             | **Filesystem**              | Base                   | ✅ Configurado           | Acceso seguro a archivos locales                 |
+| 2             | **GitHub**                  | Desarrollo             | ✅ Configurado           | Gestión de repositorios                          |
+| 3             | **Brave Search**            | Búsqueda               | ✅ Añadido               | Búsqueda web integrada en Claude                 |
+| 4             | **PostgreSQL**              | Database               | ✅ Añadido               | Conexión a bases de datos relacionales           |
+| 5             | **SQLite**                  | Database               | ✅ Añadido               | Base de datos ligera embedded                    |
+| 6             | **Slack**                   | Comunicación           | ✅ Añadido               | Integración con equipo/devops                    |
+| 7             | **Memory**                  | Persistencia           | ✅ Configurado           | Memoria a largo plazo para Claude                |
+| 8             | **Sentry**                  | Monitoring             | ✅ Añadido               | Error tracking y alertas                         |
+| 9             | **StackOverflow**           | Development            | ✅ Añadido               | Búsqueda de soluciones de código                 |
+| 10            | **Docker**                  | DevOps                 | ✅ Añadido               | Gestión de contenedores                          |
 
 ---
 
 ## 📋 Lista Completa de MCPs Configurados
 
 ### 🎨 Diseño y Productividad
-| Servidor               | Descripción                         | Estado              |
-|------------------------|-------------------------------------|---------------------|
-| **Pencil.dev**         | Diseño UI/UX en IDE                 | ✅ Operativo         |
-| **Excalidraw**         | Diagramas hand-drawn                | ✅ Operativo         |
-| **Playwright**         | Navegación web automatizada         | ✅ Operativo         |
+| Servidor                 | Descripción                           | Estado                |
+|--------------------------|---------------------------------------|-----------------------|
+| **Pencil.dev**           | Diseño UI/UX en IDE                   | ✅ Operativo           |
+| **Excalidraw**           | Diagramas hand-drawn                  | ✅ Operativo           |
+| **Playwright**           | Navegación web automatizada           | ✅ Operativo           |
 
 ### 🔍 Búsqueda y Documentación
-| Servidor                 | Descripción                     | Estado              |
-|--------------------------|---------------------------------|---------------------|
-| **Brave Search**         | Búsqueda web integrada          | ✅ Nuevo             |
-| **Exa**                  | Búsqueda avanzada               | ✅ Operativo         |
-| **Context7**             | Documentación de código         | ✅ Operativo         |
+| Servidor                   | Descripción                       | Estado                |
+|----------------------------|-----------------------------------|-----------------------|
+| **Brave Search**           | Búsqueda web integrada            | ✅ Nuevo               |
+| **Exa**                    | Búsqueda avanzada                 | ✅ Operativo           |
+| **Context7**               | Documentación de código           | ✅ Operativo           |
 
 ### 💾 Base de Datos
-| Servidor               | Descripción                 | Estado              |
-|------------------------|-----------------------------|---------------------|
-| **PostgreSQL**         | Database relacional         | ✅ Nuevo             |
-| **SQLite**             | Database ligera             | ✅ Nuevo             |
-| **Supabase**           | Database en la nube         | ✅ Operativo         |
+| Servidor                 | Descripción                   | Estado                |
+|--------------------------|-------------------------------|-----------------------|
+| **PostgreSQL**           | Database relacional           | ✅ Nuevo               |
+| **SQLite**               | Database ligera               | ✅ Nuevo               |
+| **Supabase**             | Database en la nube           | ✅ Operativo           |
 
 ### 👥 Comunicación
-| Servidor           | Descripción                     | Estado              |
-|--------------------|---------------------------------|---------------------|
-| **Slack**          | Comunicación por equipo         | ✅ Nuevo             |
-| **GitHub**         | Repositorios y issues           | ✅ Operativo         |
-| **Linear**         | Gestión de tareas               | ✅ Operativo         |
+| Servidor             | Descripción                       | Estado                |
+|----------------------|-----------------------------------|-----------------------|
+| **Slack**            | Comunicación por equipo           | ✅ Nuevo               |
+| **GitHub**           | Repositorios y issues             | ✅ Operativo           |
+| **Linear**           | Gestión de tareas                 | ✅ Operativo           |
 
 ### 🛠️ DevOps y Monitoreo
-| Servidor           | Descripción                         | Estado              |
-|--------------------|-------------------------------------|---------------------|
-| **Docker**         | Gestión de contenedores             | ✅ Nuevo             |
-| **Sentry**         | Error tracking                      | ✅ Nuevo             |
-| **n8n**            | Automatización de workflows         | ✅ Operativo         |
+| Servidor             | Descripción                           | Estado                |
+|----------------------|---------------------------------------|-----------------------|
+| **Docker**           | Gestión de contenedores               | ✅ Nuevo               |
+| **Sentry**           | Error tracking                        | ✅ Nuevo               |
+| **n8n**              | Automatización de workflows           | ✅ Operativo           |
 
 ### 📝 Notas y Conocimiento
-| Servidor             | Descripción                   | Estado              |
-|----------------------|-------------------------------|---------------------|
-| **Obsidian**         | Gestión de notas              | ✅ Operativo         |
-| **Notion**           | Base de datos y notas         | ✅ Operativo         |
-| **Memory**           | Memoria persistente           | ✅ Operativo         |
+| Servidor               | Descripción                     | Estado                |
+|------------------------|---------------------------------|-----------------------|
+| **Obsidian**           | Gestión de notas                | ✅ Operativo           |
+| **Notion**             | Base de datos y notas           | ✅ Operativo           |
+| **Memory**             | Memoria persistente             | ✅ Operativo           |
 
 ---
 

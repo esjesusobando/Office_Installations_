@@ -83,9 +83,9 @@ openspec/changes/add-jwt-auth/
 **Archived to**: openspec/changes/archive/2026-03-30-add-jwt-auth/
 
 ### Specs Synced
-| Domain | Action | Details |
-|--------|--------|---------|
-| authentication | Updated | 3 added requirements, 1 modified requirement |
+| Domain         | Action   | Details                                      |
+|----------------|----------|----------------------------------------------|
+| authentication | Updated  | 3 added requirements, 1 modified requirement |
 
 ### Archive Contents
 - proposal.md ✅
@@ -155,9 +155,9 @@ openspec/changes/add-notifications/
 **Archived to**: openspec/changes/archive/2026-03-30-add-notifications/
 
 ### Specs Synced
-| Domain | Action | Details |
-|--------|--------|---------|
-| notifications | Created | Full spec copied (new domain) |
+| Domain        | Action   | Details                       |
+|---------------|----------|-------------------------------|
+| notifications | Created  | Full spec copied (new domain) |
 
 ### Archive Contents
 - proposal.md ✅
@@ -254,9 +254,9 @@ openspec/changes/add-metrics/
 **Archived to**: openspec/changes/archive/2026-03-30-add-metrics/
 
 ### Specs Synced
-| Domain | Action | Details |
-|--------|--------|---------|
-| metrics | Created | New domain |
+| Domain   | Action   | Details    |
+|----------|----------|------------|
+| metrics  | Created  | New domain |
 
 ### Archive Contents
 - proposal.md ✅

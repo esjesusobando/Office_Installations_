@@ -33,7 +33,7 @@
 ### 📊 Números
 
 | Métrica                     | Valor  |
-| --------------------------- | ------ |
+|-----------------------------|--------|
 | **Archivos creados**        | 14     |
 | **Líneas de código**        | ~1,200 |
 | **Líneas de documentación** | ~700   |
@@ -91,7 +91,7 @@
 ## 📚 Documentación Generada
 
 | Documento           | Líneas     | Propósito                    |
-| ------------------- | ---------- | ---------------------------- |
+|---------------------|------------|------------------------------|
 | README.md           | 200+       | Punto de entrada principal   |
 | EXECUTIVE_REPORT.md | 350+       | Reporte ejecutivo completo   |
 | INDEX.md            | 200+       | Índice de documentación      |

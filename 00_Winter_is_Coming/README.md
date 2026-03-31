@@ -22,11 +22,11 @@
 
 Esta carpeta contiene el **ADN del sistema** - los archivos fundamentales que governan el comportamiento del asistente AI:
 
-| Archivo | Función |
-|---------|---------|
-| `AGENTS.md` | Instrucciones completas para el agente AI |
-| `BACKLOG.md` | Bandeja de entrada - notas sin procesar |
-| `GOALS.md` | Metas, temas y prioridades del usuario |
+| Archivo      | Función                                   |
+|--------------|-------------------------------------------|
+| `AGENTS.md`  | Instrucciones completas para el agente AI |
+| `BACKLOG.md` | Bandeja de entrada - notas sin procesar   |
+| `GOALS.md`   | Metas, temas y prioridades del usuario    |
 
 ---
 
