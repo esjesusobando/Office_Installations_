@@ -158,6 +158,13 @@ def main():
     # Siempre limpiar archivos nul residuales de Windows
     cleanup_nul_files()
 
+    # 🔔 SONIDO: Beep después de cada tool
+    try:
+        import winsound
+        winsound.Beep(800, 100)
+    except:
+        pass
+
     # Notificación de voz selectiva usando el sistema inteligente
     # Solo notificar para modificaciones de archivos importantes (prioridad normal)
     # El sistema automáticamente notificará cada 2 tareas

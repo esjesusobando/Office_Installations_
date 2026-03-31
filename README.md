@@ -10,14 +10,14 @@
 
 ## 📊 Estado del Sistema
 
-| Métrica            | Valor      |
-|--------------------|------------|
+| Métrica            | Valor       |
+|:-------------------|:-----------:|
 | **Overall Health** | **100%** ✅ |
-| Skills             | 160+       |
-| Rules              | 23         |
-| MCPs               | 36+        |
-| HUBs               | 10         |
-| SDD Workflows      | 9          |
+| **Skills**         |    160+     |
+| **Rules**          |     23      |
+| **MCPs**           |     36+     |
+| **HUBs**           |     10      |
+| **SDD Workflows**  |      9      |
 
 - --
 
@@ -85,18 +85,18 @@ Think_Different/
 
 ### Skills System (160+)
 
-| Categoría                   | Skills   | Propósito                                    |
-|-----------------------------|----------|----------------------------------------------|
-| **00_Compound_Engineering** | 8        | Compound Engineering                         |
-| **00_Personal_Os_Stack**    | Core     | Stack del OS                                 |
-| **00_Skill_Auditor**        | Auditor  | Validación de skills                         |
-| **01_Agent_Teams_Lite**     | 9        | SDD Workflows                                |
-| **02-17**                   | 150+     | Especializadas (PM, Design, SEO, Data, etc.) |
+| Categoría                   | Skills  | Propósito                                    |
+|:----------------------------|:-------:|:---------------------------------------------|
+| **00_Compound_Engineering** |    8    | Compound Engineering                         |
+| **00_Personal_Os_Stack**    |  Core   | Stack del OS                                 |
+| **00_Skill_Auditor**        | Auditor | Validación de skills                         |
+| **01_Agent_Teams_Lite**     |    9    | SDD Workflows                                |
+| **02-17**                   |  150+   | Especializadas (PM, Design, SEO, Data, etc.) |
 
 ### HUBs (08_Scripts_Os/)
 
 | Hub             | Script                  | Propósito                   |
-|-----------------|-------------------------|-----------------------------|
+|:----------------|:------------------------|:----------------------------|
 | **Auditor**     | `01_Auditor_Hub.py`     | Auditorías del sistema      |
 | **Git**         | `02_Git_Hub.py`         | Operaciones Git             |
 | **AIPM**        | `03_AIPM_Hub.py`        | AI Performance Monitoring   |
@@ -111,7 +111,7 @@ Think_Different/
 ### Validators
 
 | Tool                       | Ubicación                        | Función                |
-|----------------------------|----------------------------------|------------------------|
+|:---------------------------|:---------------------------------|:-----------------------|
 | **skill_validator.py**     | `08_Scripts_Os/Validator_Fixed/` | Valida estructura SOTA |
 | **skill_security_scan.py** | `08_Scripts_Os/Validator_Fixed/` | Escaneo de seguridad   |
 
@@ -184,7 +184,7 @@ Code review automático integrado:
 ## 📁 Convenciones de Nombres
 
 | Tipo            | Patrón                | Ejemplo                      |
-|-----------------|-----------------------|------------------------------|
+|:----------------|:----------------------|:-----------------------------|
 | **Directorios** | `XX_Nombre/`          | `01_Core/`, `04_Operations/` |
 | **Archivos**    | `XX_Nombre.ext`       | `01_Report_Status.md`        |
 | **Scripts**     | `##_Nombre_Script.py` | `01_Auditor_Hub.py`          |
@@ -195,7 +195,7 @@ Code review automático integrado:
 ## 📚 Documentación
 
 | Documento                | Ubicación                                           |
-|--------------------------|-----------------------------------------------------|
+|:-------------------------|:----------------------------------------------------|
 | **AGENTS.md**            | `00_Winter_is_Coming/AGENTS.md`                     |
 | **RULES_INDEX**          | `01_Core/01_Rules/RULES_INDEX.md`                   |
 | **Skills README**        | `01_Core/03_Skills/README.md`                       |

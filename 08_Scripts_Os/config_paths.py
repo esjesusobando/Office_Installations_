@@ -50,7 +50,7 @@ ENGINE_DIR = ROOT_DIR / "08_Scripts_Os"
 SYSTEM_DIR = ROOT_DIR / "01_Core"
 ARCHIVE_DIR = ROOT_DIR / "05_Archive"
 PROJECTS_DIR = ROOT_DIR / "07_Projects"
-PLAYGROUND_DIR = ROOT_DIR / "06_Playgraound"
+PLAYGROUND_DIR = ROOT_DIR / "06_Playground"
 
 # =============================================================================
 # SUBDIRECTORIOS BRAIN/OPERATIONS (v6.1)
@@ -83,8 +83,8 @@ ENGINE_COMPOUND_DIR = ROOT_DIR / "01_Core" / "03_Skills" / "00_Compound_Engineer
 
 KNOWLEDGE_RESEARCH_DIR = KNOWLEDGE_DIR / "01_Research_Os"
 KNOWLEDGE_NOTES_DIR = BRAIN_DIR / "02_Knowledge_Brain"
-KNOWLEDGE_RESOURCES_DIR = KNOWLEDGE_DIR / "03_Resources"
-KNOWLEDGE_EXAMPLES_DIR = KNOWLEDGE_DIR / "04_Examples"
+KNOWLEDGE_RESOURCES_DIR = KNOWLEDGE_DIR / "03_Writing_Content"
+KNOWLEDGE_EXAMPLES_DIR = KNOWLEDGE_DIR / "00_Examples_Personal_Os"
 KNOWLEDGE_PLANS_DIR = BRAIN_DIR / "04_Memory_Brain"
 
 # Alias para scripts que usan PLANS_DIR

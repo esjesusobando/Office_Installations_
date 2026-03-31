@@ -3,4 +3,4 @@ paths:
   - "src/api/**/*"
   - "**/db/**/*"
 ---
-@../../01_Core/04_Rules/05_Security.md
+@../../01_Core/01_Rules/05_ritual-integrity.mdc

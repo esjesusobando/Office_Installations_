@@ -11,7 +11,7 @@
 
 ## Proyecto: Think_Different
 
-**Última actualización:** 2026-03-30
+**Última actualización:** 2026-03-31
 
 ### Convenciones del Proyecto
 
@@ -29,13 +29,19 @@
 Think_Different/
 ├── 00_Winter_is_Coming/    # Goals, Backlog, AGENTS.md
 ├── 01_Core/               # Skills, Agents, MCPs, Rules (FUENTE)
+│   ├── 01_Rules/          # 23 reglas (.mdc) — fuente de verdad
+│   └── 03_Skills/         # 19 categorías de skills
 ├── 02_Knowledge/          # Documentación
 │   └── 04_Docs/           # Docs del sistema
-│       └── 99_ATL/        # SDD Registry
+│       └── 99_ATL/        # SDD Registry real
 ├── 03_Tasks/              # Tareas activas
 ├── 04_Operations/         # Auto Improvement, Scripts
-├── 08_Scripts_Os/         # HUBs (10 scripts)
-└── .agent/                 # Backup estratégico
+├── 06_Playground/         # Área de pruebas
+├── 07_Projects/           # Proyectos activos
+├── 08_Scripts_Os/         # HUBs (10 scripts) + config_paths.py
+├── .agent/                # Backup estratégico + Hooks
+├── .atl/                  # SDD Registry (este archivo) + openspec/
+└── .claude/rules/         # Reglas Claude Code → apuntan a 01_Core/01_Rules/
 ```
 
 ### Skills Principales
