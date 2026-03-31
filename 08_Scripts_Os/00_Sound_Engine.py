@@ -1,12 +1,15 @@
+#!/usr/bin/env python3
+"""Tarea completada - Sonido de exito
+Usage: python 08_Scripts_Os/00_Sound_Engine.py
+"""
 import winsound
-import sys
 
-
-def play_success_sound():
-    """Sonido de tarea exitosa: doble beep armónico"""
-    winsound.Beep(1000, 200)  # Frecuencia alta
-    winsound.Beep(1500, 400)  # Frecuencia más alta, mayor duración
-
+def play_task_complete():
+    """Melodia: C-E-G (do mi sol) - sonido de tarea completada"""
+    winsound.Beep(523, 100)   # C5 - DO
+    winsound.Beep(659, 100)   # E5 - MI
+    winsound.Beep(784, 150)   # G5 - SOL
 
 if __name__ == "__main__":
-    play_success_sound()
+    play_task_complete()
+    print("Tarea completada!")
