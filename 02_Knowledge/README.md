@@ -58,7 +58,11 @@ Think_Different/
 │   ├── 01_Reflexiones_Insights_Diseno.md
 │   └── 02_El_Diseno_Invisible.md
 ├── 04_Docs/                       # Documentos varios
-└── Skill_Creator_v2_Analysis.md  # Análisis de skill creator
+│   ├── README.md                     # Índice de documentación
+│   ├── OS_Integration_Audit_v6.1.md  # Auditoría del OS (94%)
+│   ├── 99_ATL/                        # SDD Registry
+│   │   └── skill-registry.md
+│   └── Skill_Creator_v2_Analysis.md  # Análisis de skill creator
 ```
 
 ---

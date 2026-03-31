@@ -1,145 +1,83 @@
-# PersonalOS
+# Think Different PersonalOS v6.1
 
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-orange)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-[![X](https://img.shields.io/badge/X-@__amankhan-blue?logo=x&logoColor=white)](https://x.com/_amankhan)
-[![Star this repo](https://img.shields.io/github/stars/amanaiproduct/personal-os?style=social)](https://github.com/amanaiproduct/personal-os)
+[![Version](https://img.shields.io/badge/Version-6.1-green)]()
+[![Status](https://img.shields.io/badge/Status-100%25%20--%20Production%20Ready-blue)]()
 
-Your AI-powered task management system that keeps you focused on what matters.
-
-Brain dump into `BACKLOG.md`, tell your AI assistant to process it, and get organized tasks automatically prioritized based on your goals.
-
-| Section                    | Status |
-| -------------------------- | ------ |
-| Task Management            | ✅     |
-| Goal-driven Prioritization | ✅     |
-| Knowledge Base             | ✅     |
-| Backlog Processing         | ✅     |
-| Session Evals              | ✅     |
-| MCP Server (optional)      | ✅     |
+> 🧠 **Sistema operativo personal potenciador con IA** - Múltiples agentes, skills SOTA, y automatización completa.
 
 ---
 
-_Quick links:_ [Quick Start](#quick-start) · [How It Works](#how-it-works) · [Directory Structure](#directory-structure) · [Daily Workflow](#daily-workflow)
+## 📊 Estado del Sistema
+
+| Métrica | Valor |
+|---------|-------|
+| **Overall Health** | **100%** ✅ |
+| Skills | 160+ |
+| Rules | 23 |
+| MCPs | 36+ |
+| HUBs | 10 |
+| SDD Workflows | 9 |
 
 ---
 
-<img width="1071" height="677" alt="Screenshot 2025-12-26 at 11 51 27 PM" src="https://github.com/user-attachments/assets/bbde8dc5-7e17-4ced-bc2b-ede505ee4a72" />
-
-## Quick Start
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/amanaiproduct/personal-os.git
-cd personal-os
-```
-
-### 2. Run Setup (2 minutes)
-
-```bash
-./setup.sh
-```
-
-The setup will:
-
-- Create your workspace directories
-- Guide you through questions about your goals and priorities
-- Generate your personalized GOALS.md
-- Copy template files
-
-**Note:** Python 3.10+ is only needed if you want to run the MCP server. The basic setup works with just bash.
-
-### 3. Start Using It
-
-```
-# In your AI assistant (Claude Code, etc.)
-"Read AGENTS.md and help me get organized"
-```
-
-## How It Works
-
-1. **Brain dump** - Drop notes into `BACKLOG.md` (no structure needed)
-2. **Process** - Say "process my backlog" to your AI
-3. **Get organized** - AI creates prioritized tasks based on your GOALS.md
-4. **Stay focused** - Ask "what should I work on?" for smart suggestions
-
-### Common Commands
-
-- `"Process my backlog"` - Turn notes into tasks
-- `"What should I work on?"` - Get AI suggestions
-- `"Show me my P0 tasks"` - See urgent items
-- `"Mark [task] as done"` - Complete work
-
-### Priorities
-
-| Priority | Meaning       | Limit |
-| -------- | ------------- | ----- |
-| **P0**   | Do today      | max 3 |
-| **P1**   | This week     | max 7 |
-| **P2**   | Scheduled     | -     |
-| **P3**   | Someday/maybe | -     |
-
-## Directory Structure
+## 📂 Estructura del Sistema (v6.1)
 
 ```
 Think_Different/
-├── 00_Winter_is_Coming/          # Matrix de objetivos, backlogs y agentes
-├── 01_Core/                      # Núcleo del sistema (skills, workflows, evaluaciones)
-├── 02_Knowledge/                 # Base de conocimiento (investigación, perfiles, contenido)
+├── 00_Winter_is_Coming/          # Goals, Backlog, AGENTS.md (ESTRATÉGICO)
+├── 01_Core/                      # Motor: Skills, Agents, MCPs, Rules 💾
+│   ├── 01_Rules/                 # 23 reglas del sistema
+│   ├── 03_Skills/                # 160+ skills (19 categorías)
+│   ├── 05_Mcp/                   # Configuración MCP
+│   └── 07_Hooks/                 # Hooks del sistema
+├── 02_Knowledge/                 # Documentación, Research, Notas
+│   └── 04_Docs/                   # Docs del sistema, SDD Registry
 ├── 03_Tasks/                     # Tareas activas (gitignored)
-├── 04_Operations/                # Operaciones (contexto, conocimiento, reglas, notas)
-├── 05_Archive/                   # Archivo histórico
+├── 04_Operations/                # Auto Improvement, Scripts
+│   └── 01_Auto_Improvement/      # Motor de automejora
+├── 05_Archive/                   # Legacy archivado
 ├── 06_Playground/                # Área de pruebas
 ├── 07_Projects/                  # Proyectos activos
-├── 08_Scripts_Os/                # Scripts del sistema (Hubs, auditorías, utilidades)
-├── 01_Report_Status.md           # Reporte de estado del sistema
-└── README.md                     # Este archivo
-
+├── 08_Scripts_Os/                # 10 HUBs operativos
+│   ├── Validator_Fixed/           # skill_validator.py, skill_security_scan.py
+│   └── Tool_Fixed/               # Tool Shed, Skill Harmonizer, Notifier
+├── .agent/                       # Backup estratégico
+├── .atl/                         # SDD Registry (referencia)
+└── .gga                          # Guardian Angel (Code Review)
 ```
-
-## Daily Workflow
-
-**Morning:** `"Show me today's priorities"` → Pick 1-3 tasks
-
-**During work:** Brain dump into BACKLOG.md, save docs to Knowledge/
-
-**End of day:** `"Mark [task] as done"`
-
-**Weekly:** `"Process my backlog"` + `"Clean up old tasks"`
-
-## Features
-
-- Goal-driven prioritization based on your vision
-- Smart deduplication detects duplicate tasks
-- Natural language - just talk to your AI
-- Session evals to review and learn from AI interactions
-- 2-minute setup, no Python required
-- MCP integration for Claude and other AI assistants
-
-## For Contributors
-
-The `01_Core/` directory contains the reusable system. Contributions should:
-
-- Not include personal information
-- Be generic and configurable
-- Include documentation
-- Follow the existing patterns
 
 ---
 
-### Convención de Nombres
+## 🚀 Quick Start
 
-- **Directorios numerados**: `00_`, `01_`, `02_`... para orden lógico
-- **Archivos de reporte**: Primera letra mayúscula (`01_Report_Status.md`)
-- **Scripts Python**: Formato `##_Nombre_Script.py` (`01_Auditor_Hub.py`, `20_Master_Analytics_Factory.py`)
-- **Hubs centralizadores**: `##_Nombre_Hub.py` (`04_Ritual_Hub.py`, `10_General_Hub.py`)
+```bash
+# En tu AI assistant (OpenCode, Claude Code, etc.)
+1. Leer AGENTS.md
+2. Ejecutar engram_mem_context(limit: 10)
+3. ¡Listo para trabajar!
+```
 
-### Hubs del Sistema (08_Scripts_Os/)
+---
+
+## 🛠️ Componentes Principales
+
+### Skills System (160+)
+
+| Categoría | Skills | Propósito |
+|----------|--------|-----------|
+| **00_Compound_Engineering** | 8 | Compound Engineering |
+| **00_Personal_Os_Stack** | Core | Stack del OS |
+| **00_Skill_Auditor** | Auditor | Validación de skills |
+| **01_Agent_Teams_Lite** | 9 | SDD Workflows |
+| **02-17** | 150+ | Especializadas (PM, Design, SEO, Data, etc.) |
+
+### HUBs (08_Scripts_Os/)
 
 | Hub | Script | Propósito |
 |-----|--------|-----------|
 | **Auditor** | `01_Auditor_Hub.py` | Auditorías del sistema |
-| **Git** | `02_Git_Hub.py` | Operaciones de Git |
+| **Git** | `02_Git_Hub.py` | Operaciones Git |
 | **AIPM** | `03_AIPM_Hub.py` | AI Performance Monitoring |
 | **Ritual** | `04_Ritual_Hub.py` | Rituales de sesión |
 | **Validator** | `05_Validator_Hub.py` | Validación de código |
@@ -149,35 +87,97 @@ The `01_Core/` directory contains the reusable system. Contributions should:
 | **Data** | `09_Data_Hub.py` | Procesamiento de datos |
 | **General** | `10_General_Hub.py` | Utilidades generales |
 
-### Comandos Rápidos (Aliases configurados en `.bashrc`)
+### Validators
 
-```bash
-# Hubs principales
-gr            # System Auditor (Auditor Hub)
-audit         # System Auditor (mismo que gr)
-git-hub       # Git operations
-aipm          # AI Performance Monitoring
-ritual        # Session rituals
-validate      # Code validation
-tools         # Tool management
-integration   # MCP integraciones
-workflows     # Workflow automation
-data          # Data processing
-general       # General utilities
+| Tool | Ubicación | Función |
+|------|-----------|---------|
+| **skill_validator.py** | `08_Scripts_Os/Validator_Fixed/` | Valida estructura SOTA |
+| **skill_security_scan.py** | `08_Scripts_Os/Validator_Fixed/` | Escaneo de seguridad |
 
-# System Guardian
-gr-dry        # Dry run validation
-gr-apply      # Apply fixes
-gr-agents     # Run agent review
+---
 
+## 📋 Comandos SDD
+
+Usa los comandos SDD para trabajo estructurado:
+
+```
+/sdd-init           # Inicializar contexto SDD
+/sdd-explore        # Explorar tema
+/sdd-propose        # Crear propuesta
+/sdd-spec           # Especificación
+/sdd-design         # Diseño técnico
+/sdd-tasks          # Descomponer tareas
+/sdd-apply          # Implementar
+/sdd-verify         # Verificar
+/sdd-archive        # Archivar
 ```
 
 ---
 
-## License
+## 🔧 Comandos CE (Compound Engineering)
 
-This work is licensed under CC BY-NC-SA 4.0.
+```
+/ce:ideate          # Generar ideas
+/brainstorm         # Lluvia de ideas
+/ce:plan            # Crear plan
+/ce:work            # Ejecutar trabajo
+/ce:review          # Revisar
+/ce:compound        # Documentar conocimiento
+```
 
-Copyright © 2025 Aman Khan. You may view, use, modify, and share this repo with attribution for non-commercial purposes. Commercial sale is not permitted, but you may use it internally for work and business.
+---
 
-Full license: https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+## ⚙️ GGA — Guardian Angel
+
+Code review automático integrado:
+
+```bash
+.agent/05_GGA/bin/gga run      # Revisar archivos staged
+.agent/05_GGA/bin/gga install  # Instalar pre-commit hook
+```
+
+### Reglas GGA
+- TypeScript: `const`/`let` solo, no `var`
+- React: Componentes funcionales, named exports
+
+---
+
+## 📁 Convenciones de Nombres
+
+| Tipo | Patrón | Ejemplo |
+|------|--------|---------|
+| **Directorios** | `XX_Nombre/` | `01_Core/`, `04_Operations/` |
+| **Archivos** | `XX_Nombre.ext` | `01_Report_Status.md` |
+| **Scripts** | `##_Nombre_Script.py` | `01_Auditor_Hub.py` |
+| **Skills** | `SKILL.md` | En cada skill |
+
+---
+
+## 📚 Documentación
+
+| Documento | Ubicación |
+|-----------|-----------|
+| **AGENTS.md** | `00_Winter_is_Coming/AGENTS.md` |
+| **RULES_INDEX** | `01_Core/01_Rules/RULES_INDEX.md` |
+| **Skills README** | `01_Core/03_Skills/README.md` |
+| **Scripts INDEX** | `08_Scripts_Os/SCRIPTS_INDEX.md` |
+| **OS Integration Audit** | `02_Knowledge/04_Docs/OS_Integration_Audit_v6.1.md` |
+| **Edge Cases** | `02_Knowledge/04_Docs/OS_Edge_Cases_Analysis.md` |
+
+---
+
+## 🎯 Workflow Diario
+
+1. **Inicio de sesión**: `engram_mem_context()` + leer GOALS.md
+2. **Trabajo**: Usar SDD commands para tareas complejas
+3. **Cierre**: `engram_mem_session_summary()`
+
+---
+
+## 📄 Licencia
+
+CC BY-NC-SA 4.0 - Uso no comercial permitido.
+
+---
+
+*Think Different PersonalOS v6.1 — Production Ready ✅*

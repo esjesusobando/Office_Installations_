@@ -12,14 +12,15 @@
 Think_Different/
 ├── 00_Winter_is_Coming/    # Goals, Backlog, Memoria (ESTRATÉGICO)
 ├── 01_Core/               # Motor: Skills, Agents, MCPs, Workflows 💾
-├── 02_Evals/              # Métricas y evaluaciones
-├── 03_Knowledge/          # Documentación, Research, Notas
-├── 04_Docs/               # Planes estratégicos
+├── 02_Knowledge/          # Documentación, Research, Notas
+│   └── 04_Docs/           # Documentos del sistema, SDD Registry
+├── 03_Tasks/              # Tareas activas
+├── 04_Operations/         # Operaciones: Auto Improvement, Scripts
 ├── 05_Archive/            # Legacy archivado
-├── 06_Archive/            # Backups centrales
-├── 07_Projects/           # Proyectos
+├── 06_Playground/         # Pruebas y experimentos
+├── 07_Projects/           # Proyectos activos
 ├── 08_Scripts_Os/         # Scripts operativos
-│   ├── Ritual_Fixed/      # 12 scripts funcionando
+│   ├── Validator_Fixed/   # Validators (skill, security)
 │   └── Tool_Fixed/        # Herramientas
 └── Maerks/               # Tests, planes legacy
 ```

@@ -119,35 +119,29 @@ La esencia de delegación en PersonalOS sigue el esquema de un **Equipo de Fútb
 ```text
 Think_Different/
 |--- 00_Winter_is_Coming/     # MATRIX: Goals, Backlog, AGENTS.md
-|--- 01_Core/                 # CORE: Skills, Agents, MCP, Server
-|    |--- 03_Skills/          # Skills numeradas (00-17)
-|    |--- 03_Agents/          # Agent definitions
-|    |--- 02_Evals/           # Evaluations
+|--- 01_Core/                 # CORE: Skills, Agents, MCP, Rules
+|    |--- 01_Rules/           # 23 reglas del sistema
+|    |--- 03_Skills/          # 160+ skills (19 categorías)
 |    |--- 05_Mcp/             # MCP servers config
-|    |--- 09_Server/          # Python MCP server
-|    |--- 10_Templates/       # Templates
-|    +--- 01_Rules/           # Rules del sistema
+|    +--- 07_Hooks/           # Hooks del sistema
 |
-|--- 02_Knowledge/            # Base de conocimiento
-|--- 03_Tasks/                # Tareas con YAML frontmatter
-|--- 04_Operations/           # Memoria y contexto
-|    |--- 01_Auto_Improvement/ # Motor de automejora
-|    |--- 04_Memory_Brain/    # Mapeos y analisis
-|    |--- 05_Plans/           # Planes
-|    |--- 06_Solutions/       # Soluciones
-|    |--- 07_Installer/       # Instalador
-|    |--- 08_Auditorias/      # Auditorias
+|--- 02_Knowledge/            # Documentación
+|    +--- 04_Docs/           # Docs del sistema, SDD Registry
 |
+|--- 03_Tasks/                # Tareas activas
+|--- 04_Operations/           # Auto Improvement, Scripts
+|    +--- 01_Auto_Improvement/ # Motor de automejora
 |--- 05_Archive/              # Archivo: Repos, legacy
-|    |--- 10_Repos_Gentleman/ # Repos Gentleman
-|
 |--- 06_Playground/           # Area de pruebas
 |--- 07_Projects/             # Proyectos activos
 |--- 08_Scripts_Os/           # HUBs: Auditor, Git, AIPM, Ritual, etc.
-|--- AGENTS.md                # Root entry (apunta a 00_Winter_is_Coming/)
-|--- CLAUDE.md                # Config Oficial para IAs (Este doc)
+|    +--- Validator_Fixed/    # skill_validator.py, skill_security_scan.py
+|--- .agent/                   # Backup estratégico
+|--- .atl/                    # SDD Registry
+|--- .gga                     # Guardian Angel (Code Review)
+|--- AGENTS.md                # Root entry
+|--- CLAUDE.md                # Config Oficial para IAs
 |--- README.md                # Documentacion principal
-|--- Dream_Team.md            # Equipo de agentes
 ```
 
 ### 2. CONFIGURACIÓN IA (.agent/)
@@ -192,6 +186,16 @@ Think_Different/
 | **Workflow** | `08_Workflow_Hub.py` | Workflow automation |
 | **Data** | `09_Data_Hub.py` | Data processing and analytics |
 | **General** | `10_General_Hub.py` | General utilities |
+
+### 📚 Documentación del Sistema
+
+| Documento | Ubicación |
+|-----------|-----------|
+| **OS Integration Audit** | `02_Knowledge/04_Docs/OS_Integration_Audit_v6.1.md` |
+| **Edge Cases Analysis** | `02_Knowledge/04_Docs/OS_Edge_Cases_Analysis.md` |
+| **SDD Registry** | `02_Knowledge/04_Docs/99_ATL/skill-registry.md` |
+| **Rules Index** | `01_Core/01_Rules/RULES_INDEX.md` |
+| **Skills Index** | `01_Core/03_Skills/README.md` |
 
 ### 5. SKILLS DISPONIBLES (19 Categorías en 01_Core/03_Skills/)
 | Categoria | Skills | Ubicacion |
@@ -247,11 +251,17 @@ Think_Different/
 <system_state_snapshot>
 | Categoria | Estado |
 |-----------|--------|
+| **Overall Health** | **100%** ✅ |
 | Estructura (00-08) | ✅ PASS |
 | HUBs (01-10) | ✅ ACTIVE |
-| Skills (19 categorias) | ✅ OPERATIONAL |
+| Skills (160+) | ✅ OPERATIONAL |
+| Rules (23) | ✅ DEFINED |
+| MCPs (36+) | ✅ CONFIGURED |
 | Auto-Improvement Engine | ✅ OPERATIONAL |
 | Git Estado | ✅ CLEAN |
+
+**Última actualización:** 2026-03-30
+**Versión:** v6.1 Pure Green State
 
 © 2026 PersonalOS v6.1
 </system_state_snapshot>

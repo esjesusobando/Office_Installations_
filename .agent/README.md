@@ -17,7 +17,11 @@ Este directorio contiene la configuración de agentes, skills y hooks de Persona
 | **02_Skills/** | **160+ skills** | `01_Core/03_Skills/` |
 | **03_Workflows/** | 26+ workflows | `01_Core/00_Workflows/` |
 | **04_Extensions/** | Hooks system (7 active hooks) | Local |
-| **05_GGA/** | Gentleman Guardian Angel (Code Review) | Local |
+| **05_GGA/** | Gentleman Guardian Angel (Code Review) | `.agent/05_GGA/` |
+
+---
+
+> ⚠️ **NOTA**: `.mcp.json` de referencia creado en raíz pointing to `01_Core/05_Mcp/mcp.json`
 
 ---
 
@@ -27,9 +31,10 @@ Este directorio contiene la configuración de agentes, skills y hooks de Persona
 |---------|-----------|
 | **00_Winter_is_Coming/** | Goals, Backlog, Memoria |
 | **01_Core/** | Motor: Skills, Agents, MCPs, Workflows |
-| **02_Evals/** | Métricas |
-| **03_Knowledge/** | Documentación |
-| **04_Docs/** | Planes estratégicos |
+| **02_Knowledge/** | Documentación, Research, Notas |
+| **02_Knowledge/04_Docs/** | Documentos del sistema, SDD Registry |
+| **03_Tasks/** | Tareas activas |
+| **04_Operations/** | Auto Improvement, Scripts |
 | **05_Archive/** | Legacy archivado |
 | **08_Scripts_Os/** | Scripts operativos |
 
