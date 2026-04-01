@@ -11,10 +11,68 @@
 | Aspecto | Detalle |
 |---------|---------|
 | **Origen** | `06_Playground/Hillary_Life_OS/` |
-| **Destination** | `01_Core/03_Skills/18_Personal_Life_OS/` |
+| **Destination** | `01_Core/03_Skills/18_Personal_Life_OS/` (ÚLTIMO NÚMERO DISPONIBLE) |
+| **Workflow** | `01_Core/00_Workflows/24_Hillary_Life_OS.md` (NÚMERO SIGUIENTE DISPONIBLE) |
 | **Skills a integrar** | 5 (Quick Capture, Plan My Day, Daily Notes, Recording Mode, Returns Tracker) |
 | **Impacto en sistema** | 0% — solo se agrega, no se modifica nada existente |
 | **Riesgo** | Mínimo — se integra como nueva categoría |
+
+---
+
+## 🔢 VERIFICACIÓN DE NUMERACIONES
+
+### Skills (01_Core/03_Skills/)
+
+| # | Categoría | Estado |
+|---|-----------|--------|
+| 00 | Compound_Engineering | ✅ |
+| 00 | Personal_Os_Stack | ✅ |
+| 00 | Skill_Auditor | ✅ |
+| 01 | Agent_Teams_Lite | ✅ |
+| 02 | Project_Manager | ✅ |
+| 03 | Product_Manager | ✅ |
+| 04 | Product_Design | ✅ |
+| 05 | Vibe_Coding | ✅ |
+| 06 | Testing | ✅ |
+| 07 | DevOps | ✅ |
+| 08 | Personal_Os | ✅ |
+| 09 | Marketing | ✅ |
+| 10 | Backup | ✅ |
+| 11 | Doc_Processing | ✅ |
+| 12 | N8N | ✅ |
+| 13 | System_Master | ✅ |
+| 14 | Anthropic_Harness | ✅ |
+| 15 | Skill_Creator_Oficial | ✅ |
+| 16 | Silicon_Valley_Data_Analyst | ✅ |
+| 17 | SEO_SOTA_Master | ✅ |
+| **18** | **Personal_Life_OS** | ⏳ **PRÓXIMO (LIBRE)** |
+
+**Total actual:** 22 skills (0-17) → **18 será el siguiente**
+
+### Workflows (01_Core/00_Workflows/)
+
+| # | Estado |
+|---|--------|
+| 01-23 | Ocupados |
+| **24** | ⏳ **PRÓXIMO (LIBRE)** |
+
+**Total actual:** 27 archivos, 24 es el siguiente número disponible
+
+### Scripts (08_Scripts_Os/)
+
+| # | Carpeta |
+|---|---------|
+| 01 | Ritual |
+| 02 | Tool |
+| 03 | Validator |
+| 04 | Workflow |
+| 05 | AIPM |
+| 06 | Auditor |
+| 07 | Data |
+| 08 | General |
+| 09 | Integration |
+| 10 | Legacy |
+| 11-12 | Otros (Anthropic_Harness, Audits) |
 
 ---
 
