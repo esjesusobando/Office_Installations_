@@ -668,4 +668,11 @@ Dumbledor_Silver: feat: initialize Think Different PersonalOS
 
 ---
 
-_Think Different PersonalOS v6.1 — Conectado y operando_
+## ⚠️ ENFOQUE: Explícito > Implícito
+- **Skills**: Se invocan manualmente (`/ce:review`, `/sdd:apply`). NO auto-trigger.
+- **Next Actions**: Solo sugiero siguiente paso si el usuario pregunta. NO anticipo automáticamente.
+- **Por qué**: Explicitación genera control, trazabilidad y autonomía del usuario.
+
+---
+
+_Think Different PersonalOS v6.1 — Pure Green_

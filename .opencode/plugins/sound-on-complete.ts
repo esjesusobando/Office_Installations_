@@ -11,7 +11,6 @@ import type { Event } from "@opencode-ai/sdk"
 interface ToolInput {
 	tool: string
 	sessionID: string
-	callID: string
 }
 
 interface SessionEvent {
@@ -54,8 +53,6 @@ function playSound(): void {
 }
 
 export const SoundOnCompletePlugin: Plugin = async (ctx) => {
-	const { client } = ctx
-	
 	console.log("[SOUND-PLUGIN] Initialized!")
 	
 	// Hook: fires after each tool completes

@@ -1,8 +1,23 @@
 # 01_Report_Status — PersonalOS v6.1
 
-**Fecha:** 2026-03-31
+**Fecha:** 2026-04-01
 **Versión:** v6.1
-**Estado global:** ✅ REPARADO
+**Estado global:** ✅ REPARADO / ACTUALIZADO
+
+---
+
+## Sesión de Actualización y Mantenimiento — 2026-04-01
+
+### 1. Integración: Compound Engineering Plugin `v2.60.0`
+Se analizó la última actualización del plugin de EveryInc, el cual trae considerables mejoras a nuestros flujos SDD y revisiones:
+- **Planning (`ce-plan`)**: Modo *Interactive Deepening* para planificaciones y ayudas visuales condicionales. Document-review obligatorio si se supera la barrera de confianza.
+- **Review (`ce-review`)**: Ahora requiere obligatoriamente reportes en tabla, invoca code review por defecto e introduce un *Confidence Rubric* que reduce drásticamente los falsos positivos evaluando primero la intención.
+- **Conocimiento (`ce-compound`)**: Introducción de discriminación esquemática (learning vs bugfix) y cruce con `/docs/solutions/` para mejor recordatorio del agente.
+- **General**: Agrupación del feedback sistémico en PRs (`ce-resolve-pr-feedback`) y chequeos para renombrar ramas de Git sin contexto (`ce-work`).
+
+### 2. Reparación de Subsistema OpenCode
+- **Problema**: El comando `opencode` no arrancaba debido a `unrecognized key: plugin`.
+- **Acción**: Se eliminó la llave obsoleta `plugins` de la configuración en `.opencode/opencode.jsonc` y el core json, restituyendo el estado "Pure Green".
 
 ---
 
