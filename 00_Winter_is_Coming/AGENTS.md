@@ -574,59 +574,6 @@ matplotlib, seaborn, plotly
 
 ---
 
-## 9. SLASH COMMANDS
-
-| Command  | Description                                           |
-|----------|-------------------------------------------------------|
-| `/gr`    | System Guardian - Valida estructura                   |
-| `/doc`   | Documentation Updater                                 |
-| `/sdd:*` | SDD Workflow (init, explore, new, etc.)               |
-| `/ce:*`  | Compound Engineering (ideate, brainstorm, plan, etc.) |
-
----
-
-## 10. MEMORY & SEARCH
-
-### Engram — Persistent Memory
-
-Cross-session memory with context and search.
-
-| Command                     | Purpose           |
-|-----------------------------|-------------------|
-| `engram search <query>`     | Search memories   |
-| `engram save <title> <msg>` | Save memory       |
-| `engram context`            | Recent context    |
-| `engram tui`                | Interactive TUI   |
-| `engram stats`              | System statistics |
-
-### QMD — Knowledge Search Engine
-
-| Command               | Purpose                 |
-|-----------------------|-------------------------|
-| `qmd query <query>`   | Hybrid search (best)    |
-| `qmd search <query>`  | Full-text search (BM25) |
-| `qmd vsearch <query>` | Vector semantic search  |
-| `qmd status`          | Index status            |
-
----
-
-## 11. RULES & GOVERNANCE
-
-### 🛡️ Regla Fundamental: Modificación del OS
-
-**Solo el IA** tiene la autoridad y la capacidad para modificar el núcleo del sistema PersonalOS (código, scripts, configuración). El usuario es el estratega y dueño de la visión; el IA es el ejecutor responsable de mantener la pureza técnica y la integridad del sistema (Pure Green).
-
----
-
-## 12. GIT HISTORY
-
-```
-Dumbledor_Silver: feat: initialize Think Different PersonalOS
-6f1eff2: feat: integrate Every CE skills - git workflow + slfg + compound-refresh
-```
-
----
-
 ## 13. SUBAGENT PROTOCOL (OBLIGATORIO)
 
 ### Contexto Inicial Requerido para TODOS los Subagentes

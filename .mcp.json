@@ -71,7 +71,6 @@
     },
 
     "mcp-obsidian": {
-      "_comment": "Primary Obsidian MCP - Uses stdio transport.",
       "transport": "stdio",
       "command": "npx.cmd",
       "args": [
@@ -178,7 +177,6 @@
     },
 
     "firecrawl-mcp": {
-      "_comment": "Deep Research Engine - Web scraping and structured data extraction for SOTA analysis.",
       "transport": "stdio",
       "command": "npx.cmd",
       "args": ["-y", "firecrawl-mcp"],
@@ -200,7 +198,7 @@
     },
 
     "obsidian-api": {
-      "_comment": "Secondary Obsidian MCP (Failover) - Disaster Recovery Strategy.",
+      "_comment": "Failover Obsidian MCP",
       "transport": "stdio",
       "command": "npx.cmd",
       "args": [
@@ -222,54 +220,6 @@
       "args": ["-y", "chrome-devtools-mcp@latest"]
     },
 
-    "brave-search": {
-      "transport": "stdio",
-      "command": "npx.cmd",
-      "args": ["-y", "@modelcontextprotocol/server-brave-search"],
-      "env": {
-        "BRAVE_API_KEY": "YOUR_BRAVE_API_KEY"
-      }
-    },
-
-    "postgres": {
-      "transport": "stdio",
-      "command": "npx.cmd",
-      "args": ["-y", "@modelcontextprotocol/server-postgres"],
-      "env": {
-        "POSTGRES_CONNECTION_STRING": "postgresql://user:password@localhost:5432/dbname"
-      }
-    },
-
-    "sqlite": {
-      "transport": "stdio",
-      "command": "npx.cmd",
-      "args": ["-y", "@modelcontextprotocol/server-sqlite"],
-      "env": {
-        "DB_PATH": "./database.db"
-      }
-    },
-
-    "slack": {
-      "transport": "stdio",
-      "command": "npx.cmd",
-      "args": ["-y", "@modelcontextprotocol/server-slack"],
-      "env": {
-        "SLACK_BOT_TOKEN": "YOUR_SLACK_BOT_TOKEN"
-      }
-    },
-
-    "sentry": {
-      "_comment": "Observability Layer - Real-time error tracking and performance monitoring.",
-      "transport": "stdio",
-      "command": "npx.cmd",
-      "args": ["-y", "@modelcontextprotocol/server-sentry"],
-      "env": {
-        "SENTRY_AUTH_TOKEN": "YOUR_SENTRY_AUTH_TOKEN",
-        "SENTRY_ORG": "your-org",
-        "SENTRY_PROJECT": "your-project"
-      }
-    },
-
     "stackoverflow": {
       "transport": "stdio",
       "command": "npx.cmd",
@@ -280,25 +230,6 @@
       "transport": "stdio",
       "command": "docker",
       "args": ["run", "--rm", "-i", "--mount", "type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock", "mcp/docker:latest"]
-    },
-
-    "atlassian": {
-      "transport": "streamableHttp",
-      "url": "https://mcp.atlassian.com/v1/mcp",
-      "headers": {
-        "Authorization": "Bearer YOUR_ATLASSIAN_TOKEN"
-      }
-    },
-
-    "jira-extended": {
-      "transport": "stdio",
-      "command": "uvx",
-      "args": ["mcp-atlassian-extended"],
-      "env": {
-        "ATLASSIAN_API_TOKEN": "YOUR_ATLASSIAN_API_TOKEN",
-        "ATLASSIAN_EMAIL": "your-email@example.com",
-        "ATLASSIAN_DOMAIN": "your-domain.atlassian.net"
-      }
     },
 
     "qmd": {

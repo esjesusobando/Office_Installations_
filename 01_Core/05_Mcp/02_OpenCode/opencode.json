@@ -341,6 +341,13 @@
       ],
       "type": "local"
     },
+    "pencil": {
+      "type": "local",
+      "command": [
+        "openpencil-mcp.cmd"
+      ]
+    },
+
     "obsidian-api": {
       "type": "local",
       "command": [

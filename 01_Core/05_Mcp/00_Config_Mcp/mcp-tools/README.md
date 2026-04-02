@@ -54,7 +54,10 @@ mcp-tools/
 
 ## 🔗 Archivo de Configuración
 
-Las MCPs están configuradas en: `.claude/mcp.json`
+| Herramienta    | Archivo activo                                        | Notas                          |
+|----------------|-------------------------------------------------------|--------------------------------|
+| **Claude Code**| `.mcp.json` (raíz del proyecto)                       | Fuente: `01_Core/05_Mcp/01_Claude_Code/mcp.json` |
+| **OpenCode**   | `C:\Users\sebas\.config\opencode\opencode.json`       | Fuente: `01_Core/05_Mcp/02_OpenCode/opencode.json` |
 
 ---
 

@@ -269,9 +269,18 @@ Think_Different/
 | HUBs (01-11)            | ✅ ACTIVE      |
 | Skills (160+)           | ✅ OPERATIONAL |
 | Rules (23)              | ✅ DEFINED     |
-| MCPs (36+)              | ✅ CONFIGURED  |
+| MCPs (29 activos)       | ✅ ACTIVE      |
 | Auto-Improvement Engine | ✅ OPERATIONAL |
-| Git Estado              | ✅ CLEAN                 |
+| Git Estado              | ✅ CLEAN       |
+
+### Configuración MCP (dual)
+
+| Herramienta    | Config activa                                   | Source (backup)                              |
+|----------------|-------------------------------------------------|----------------------------------------------|
+| **Claude Code**| `.mcp.json` (raíz del proyecto)                 | `01_Core/05_Mcp/01_Claude_Code/mcp.json`     |
+| **OpenCode**   | `~/.config/opencode/opencode.json`              | `01_Core/05_Mcp/02_OpenCode/opencode.json`   |
+
+> ⚠️ Al modificar MCPs: actualizar SIEMPRE el source Y el config activo correspondiente.
 
 **Última actualización:** 2026-04-01
 **Versión:** v6.1 Pure Green State

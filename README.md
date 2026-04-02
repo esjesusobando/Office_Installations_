@@ -1,70 +1,41 @@
 # Think Different PersonalOS v6.1
 
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-orange)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-[![Version](https://img.shields.io/badge/Version-6.1-green)]()
+[![Version](https://img.shields.io/badge/Version-1.7.0-green)]()
 [![Status](https://img.shields.io/badge/Status-100%25%20--%20Production%20Ready-blue)]()
 
 > 🧠 **Sistema operativo personal potenciador con IA** - Múltiples agentes, skills SOTA, y automatización completa.
 
-- --
+---
 
-## 📊 Estado del Sistema
+## 📊 Estado del Sistema (v1.7.0)
 
 | Métrica            | Valor       |
 |:-------------------|:-----------:|
 | **Overall Health** | **100%** ✅ |
 | **Skills**         |    160+     |
 | **Rules**          |     23      |
-| **MCPs**           |     36+     |
+| **MCPs**           |   29 activos|
 | **HUBs**           |     10      |
 | **SDD Workflows**  |      9      |
 
-- --
+---
 
-## 📂 Estructura del Sistema (v6.1)
+## 📁 Estructura del Sistema (Confirmed)
 
 ```
 Think_Different/
-├── 00_Winter_is_Coming/          # Goals, Backlog, AGENTS.md (ESTRATÉGICO)
-
-├── 01_Core/                      # Motor: Skills, Agents, MCPs, Rules 💾
-
-│   ├── 01_Rules/                 # 23 reglas del sistema
-
-│   ├── 03_Skills/                # 160+ skills (19 categorías)
-
-│   ├── 05_Mcp/                   # Configuración MCP
-
-│   └── 07_Hooks/                 # Hooks del sistema
-
-├── 02_Knowledge/                 # Documentación, Research, Notas
-
-│   └── 04_Docs/                   # Docs del sistema, SDD Registry
-
-├── 03_Tasks/                     # Tareas activas (gitignored)
-
-├── 04_Operations/                # Auto Improvement, Scripts
-
-│   └── 01_Auto_Improvement/      # Motor de automejora
-
-├── 05_Archive/                   # Legacy archivado
-
-├── 06_Playground/                # Área de pruebas
-
-├── 07_Projects/                  # Proyectos activos
-
-├── 08_Scripts_Os/                # 10 HUBs operativos
-
-│   ├── 03_Validator/              # skill_validator.py, skill_security_scan.py
-
-│   └── 02_Tool/                  # Tool Shed, Skill Harmonizer, Notifier
-
-├── .agent/                       # Backup estratégico
-
-├── .atl/                         # SDD Registry (referencia)
-
-└── .gga                          # Guardian Angel (Code Review)
-
+├── 00_Winter_is_Coming/     ✅ Goals, Backlog, AGENTS.md (ESTRATÉGICO)
+├── 01_Core/                 ✅ Motor: Skills, Agents, MCPs, Rules 💾
+├── 02_Knowledge/            ✅ Base de conocimiento, Docs, Research
+├── 03_Tasks/                ✅ Tareas activas (vinc. SDD)
+├── 04_Operations/           ✅ Notas, Cerebro, Automejora
+├── 05_Archive/              ✅ Repos, Legacy (v6.1: 01-09)
+├── 06_Playground/           ✅ Área de pruebas y experimentos
+├── 07_Projects/             ✅ Proyectos externos activos
+├── 08_Scripts_Os/           ✅ 10 HUBs operativos + 80 scripts
+├── Maerks/                  ✅ Tests legacy, reporte de estado
+└── .mcp.json                ✅ MCPs activos para Claude Code (29 servidores)
 ```
 
 - --
@@ -114,6 +85,28 @@ Think_Different/
 |:---------------------------|:---------------------------------|:-----------------------|
 | **skill_validator.py**     | `08_Scripts_Os/03_Validator/` | Valida estructura SOTA |
 | **skill_security_scan.py** | `08_Scripts_Os/03_Validator/` | Escaneo de seguridad   |
+
+### MCPs (29 activos)
+
+| Categoría         | Servidores                                                             |
+|:------------------|:-----------------------------------------------------------------------|
+| 🔍 Search          | exa, brave-search*, stackoverflow                                      |
+| 🧠 Memory          | engram, aim-memory-bank, notebooklm                                    |
+| 📝 Notes           | mcp-obsidian, obsidian-api, Notion                                     |
+| 🌐 Browser         | Playwright, chrome-devtools, eagle-mcp                                 |
+| 🤖 AI & Code       | context7, zai-mcp-server, github, task-master-ai, @magicuidesign/mcp  |
+| 📊 Data            | supabase, supadata, sqlite*, postgres*                                 |
+| 🔄 Workflow        | n8n-mcp, Linear, atlassian*, jira-extended*                            |
+| 💬 Communication   | fireflies, slack*, google-workspace                                    |
+| 📐 Design          | excalidraw-yctimlin, pencil                                            |
+| 🛠️ DevOps         | docker, sentry*, filesystem                                            |
+| 🚀 Deploy          | vercel, TestSprite                                                     |
+
+> `*` = requiere credenciales reales. Presentes como templates en `01_Core/05_Mcp/01_Claude_Code/mcp.json`.
+
+**Configs activas:**
+- Claude Code → `.mcp.json` (raíz del proyecto)
+- OpenCode → `~/.config/opencode/opencode.json`
 
 - --
 

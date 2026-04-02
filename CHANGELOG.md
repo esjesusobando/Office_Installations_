@@ -1,5 +1,36 @@
 # Changelog
 
+## 1.7.0 - 2026-04-01
+
+### Fixed — MCP Integration & Documentation Audit
+
+- **`.mcp.json`** (raíz): Creado por primera vez. Claude Code no cargaba ningún MCP — el archivo fuente `01_Core/05_Mcp/01_Claude_Code/mcp.json` era solo backup documental. Ahora Claude Code tiene 29 MCPs activos.
+- **`pencil` MCP**: Ruta rota `./05_System/09_Bin/.bin/openpencil-mcp.cmd` → corregida a `openpencil-mcp.cmd` (instalado globalmente en npm). Actualizado en: `.mcp.json`, `01_Core/05_Mcp/01_Claude_Code/mcp.json`, `01_Core/05_Mcp/02_OpenCode/opencode.json` y `~/.config/opencode/opencode.json`.
+- **`00_Winter_is_Coming/AGENTS.md`**: Secciones 9-12 duplicadas eliminadas (Slash Commands, Memory & Search, Rules, Git History).
+- **`01_Core/05_Mcp/00_Config_Mcp/mcp-tools/README.md`**: Referencia incorrecta `.claude/mcp.json` → tabla con rutas reales (Claude Code + OpenCode).
+- **`CLAUDE.md`**: Estado del sistema actualizado — tabla dual de config MCP, MCPs corregido a 29 activos.
+
+### Notes
+
+MCPs excluidos del `.mcp.json` activo por falta de credenciales (son templates en el source): `brave-search`, `postgres`, `slack`, `sentry`, `atlassian`, `jira-extended`.
+
+---
+
+## 1.6.0 - 2026-04-01
+
+### Added
+- **`05_Archive/`**: Estandarización numérica de 9 subdirectorios (01-09) para mejorar la integridad y navegabilidad del sistema.
+- **`Maerks/15_Architecture_Map.md`**: Mapeo completo de la nueva jerarquía de Archive.
+
+### Changed
+- **`03_Knowledge/10_Repos_Gentleman`** $\rightarrow$ **`05_Archive/07_Repos_Gentleman`**: Migración estratégica de repositorios legacy para unificar la base de conocimiento activa.
+- **`README.md`**: Embellecimiento de la estructura de directorios y actualización de badges de estado.
+
+### Verified
+- Auditor Hub: Dimensiones validadas v6.1 (Pure Green State).
+
+---
+
 ## 1.5.0 - 2026-04-01
 
 ### Added
