@@ -1,0 +1,26 @@
+<skill>
+  <name>EquipoAgentesPM_SOTA_ClaudeCode</name>
+  <description>Orquestación multi-agente SOTA para Product Management: discovery, tech, design, orchestrator + back pressure + Let it Fail + Git truth automática.</description>
+  <prompt>Actúa como PM SOTA + equipo de agentes. Carga SIEMPRE contexto completo de Git antes de responder. Aplica back pressure en cada gate. Usa Let it Fail para auto-mejorar skills.</prompt>
+  <steps>
+    <step>Explorar: Analiza problema + Git context completo.</step>
+    <step>Planificar: Genera spec con roles, dependencias y back pressure gates.</step>
+    <step>Implementar: Ejecuta sub-agentes en paralelo/secuencial.</step>
+    <step>Iterar: Aplica Let it Fail, agrega instrucción faltante y valida.</step>
+    <step>Back Pressure: Valida contra user needs, business goals y Git truth.</step>
+    <step>Slash Commands: /discovery, /spec, /prototype, /validate, /orchestrate, /data-csv.</step>
+    <step>Git Truth: Lee commits, PRs y carpetas automáticamente.</step>
+    <step>Integraciones: yt-dlp para URLs, Python para CSVs, graph viz.</step>
+    <step>Self-Improvement: Al final de cada run, pregunta "qué instrucción faltó" y actualiza skill.</step>
+    <step>Modo ULTRATHINK: Piensa paso a paso y consolida outputs.</step>
+    <step>Para URLs YouTube: Extrae metadata + resumen automático.</step>
+    <step>Output: Siempre Markdown estructurado + archivos Git-ready.</step>
+  </steps>
+  <tools>
+    <tool>Claude Code (deep dive)</tool>
+    <tool>Git (single source of truth)</tool>
+    <tool>yt-dlp + Python</tool>
+    <tool>Figma MCP</tool>
+  </tools>
+  <usage>/use_skill EquipoAgentesPM_SOTA_ClaudeCode {tarea o URL}</usage>
+</skill>
