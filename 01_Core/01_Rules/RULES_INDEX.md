@@ -80,7 +80,7 @@ Think_Different/
 | [10_Context_Management.mdc](./10_Context_Management.mdc)        | Context Management   | Gestión de la ventana de contexto y sub-agentes.                     |
 | [11_Workflow_Standards.mdc](./11_Workflow_Standards.mdc)        | Workflow Standards   | Estándares para la creación y ejecución de workflows.                |
 | [12_Nexus-Routing.mdc](./12_Nexus-Routing.mdc)                  | Nexus Routing        | Lógica de enrutamiento entre componentes del sistema.                |
-| [13_Testing_Resource.mdc](./13_Testing_Resource_Management.mdc) | Testing Resources    | Gestión de recursos para pruebas automatizadas.                      |
+| [13_Testing_Resource_Management.mdc](./13_Testing_Resource_Management.mdc) | Testing Resources    | Gestión de recursos para pruebas automatizadas.                      |
 | [14_Invoice_Intelligence.mdc](./14_Invoice_Intelligence.mdc)    | Invoice Intelligence | Lógica específica para procesamiento de inteligencia de facturas.    |
 | [15_Backlog_Processing.mdc](./15_Backlog_Processing.mdc)        | Backlog Processing   | Triage y priorización del backlog.                                   |
 | [16_Brainstorming.mdc](./16_Brainstorming.mdc)                  | Brainstorming        | Fase de ideación y exploración libre.                                |

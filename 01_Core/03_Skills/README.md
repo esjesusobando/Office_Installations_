@@ -1,7 +1,7 @@
 # 🛠️ 03_Skills — Sistema SOTA de Skills
 
 **Versión:** 6.1
-**Última actualización:** 2026-03-29
+**Última actualización:** 2026-04-03
 **Source of Truth:** `01_Core/03_Skills/`
 **Framework:** Anthropic Skill Creator v2.0 + PersonalOS SOTA
 
@@ -11,27 +11,30 @@
 
 ```
 03_Skills/
-├── 00_Skill_Auditor/         ⭐ Auditoría de skills (SOTA)
-├── 00_Compound_Engineering/  ⭐ CE Workflows (8 items)
-├── 01_Agent_Teams_Lite/      ⭐ SDD Workflow (11 items)
-├── 02_Project_Manager/        ⭐ PM Workflow (9 items)
-├── 03_Product_Manager/        ⭐ Product (9 items)
-├── 04_Product_Design/        ⭐ Design/Taste (13 items)
-├── 05_Viba_Coding/          ⭐ Dev Frameworks (18 items)
-├── 06_Testing/              ⭐ Testing + GGA (18 items)
-├── 07_DevOps/               ⭐ DevOps (13 items)
-├── 08_Personal_Os/          ⭐ Personal OS (9 items)
-├── 09_Marketing/            ⭐ Marketing (11 items)
-├── 10_Backup/               📦 Legacy (5 items)
-├── 11_Doc_Processing/       ⭐ Docs (4 items)
-├── 12_N8N/                  ⭐ n8n Automation (7 items)
-├── 13_System_Master/        ⭐ System (5 items)
-├── 14_Anthropic_Harness/    ⭐ Anthropic Patterns (9 items)
-├── 15_Skill_Creator/        ⭐ Skill Creator (Anthropic)
-└── 08_Plugins/              🔌 Plugins (PersonalOS)
+├── 00_Skill_Auditor/              ⭐ Auditoría de skills (SOTA)
+├── 00_Compound_Engineering/       ⭐ CE Workflows (8 items)
+├── 00_Personal_Os_Stack/          ⭐ Core OS Stack
+├── 01_Agent_Teams_Lite/           ⭐ SDD Workflow (10 items)
+├── 02_Project_Manager/            ⭐ PM Workflow (8 items)
+├── 03_Product_Manager/            ⭐ Product (8 items)
+├── 04_Product_Design/             ⭐ Design/Taste (12 items)
+├── 05_Vibe_Coding/                ⭐ Dev Frameworks (17 items)
+├── 06_Testing/                    ⭐ Testing + GGA (17 items)
+├── 07_DevOps/                     ⭐ DevOps (12 items)
+├── 08_Personal_Os/                ⭐ Personal OS (9 items)
+├── 09_Marketing/                  ⭐ Marketing (10 items)
+├── 10_Backup/                     📦 Legacy (5 items)
+├── 11_Doc_Processing/             ⭐ Docs (3 items)
+├── 12_N8N/                        ⭐ n8n Automation (7 items)
+├── 13_System_Master/              ⭐ System (5 items)
+├── 14_Anthropic_Harness/          ⭐ Anthropic Patterns (7 items)
+├── 15_Skill_Creator_Oficial/      ⭐ Skill Creator v2.0 (Anthropic)
+├── 16_Silicon_Valley_Data_Analyst/ ⭐ Data Analyst
+├── 17_SEO_SOTA_Master/            ⭐ SEO Master
+└── 18_Personal_Life_OS/           ⭐ Hillary Life OS (5 items)
 ```
 
-**Total: ~160+ skills**
+**Total: 21 categorías — 160+ skills**
 
 ---
 
@@ -58,7 +61,7 @@
 ```
 Anthropic Category          → PersonalOS Skills
 ─────────────────────────────────────────────────
-Library / API Reference     → 05_Viba_Coding/* (dev frameworks)
+Library / API Reference     → 05_Vibe_Coding/* (dev frameworks)
 Product Verification        → 06_Testing/*, 14_Anthropic_Harness/*
 Data Fetching              → 13_System_Master/04_Mcp_Builder
 Business Process           → 01_Agent_Teams_Lite/*, 02_Project_Manager/*
@@ -211,7 +214,7 @@ skill-name/
 | 5   | **Skill Auditor**           | Auditoría de quality           |
 | 6   | **Skill Creator**           | Crear skills automáticamente   |
 
-### 05_Viba_Coding (Development Frameworks)
+### 05_Vibe_Coding (Development Frameworks)
 
 | #   | Skill          | Propósito                           |
 |-----|----------------|-------------------------------------|
@@ -252,26 +255,31 @@ python 08_Scripts_Os/55_Sync_Skills.py --confirm
 
 ## 📊 Estadísticas (2026-03-29)
 
-| Carpeta              | Skills   | Categoría Anthropic   |
-|----------------------|----------|-----------------------|
-| 00_Skill_Auditor     | 1        | Quality               |
-| 01_Agent_Teams_Lite  | 9        | Business Process      |
-| 02_Project_Manager   | 9        | Business Process      |
-| 03_Product_Manager   | 8        | Product Verification  |
-| 04_Product_Design    | 11       | Code Quality          |
-| 05_Viba_Coding       | 21       | Library/API Reference |
-| 06_Testing           | 18       | Code Quality          |
-| 07_DevOps            | 13       | CI/CD                 |
-| 08_Personal_Os       | 9        | Runbooks              |
-| 09_Marketing         | 11       | Data Fetching         |
-| 11_Doc_Processing    | 4        | Data Fetching         |
-| 12_N8N               | 7        | Infrastructure Ops    |
-| 13_System_Master     | 5        | Infrastructure Ops    |
-| 14_Anthropic_Harness | 9        | All Categories        |
-| 15_Skill_Creator     | 1        | Code Scaffolding      |
+| Carpeta                        | Skills | Categoría Anthropic   |
+|--------------------------------|--------|-----------------------|
+| 00_Compound_Engineering        | 8      | Business Process      |
+| 00_Personal_Os_Stack           | —      | Core OS               |
+| 00_Skill_Auditor               | 1      | Quality               |
+| 01_Agent_Teams_Lite            | 10     | Business Process      |
+| 02_Project_Manager             | 8      | Business Process      |
+| 03_Product_Manager             | 8      | Product Verification  |
+| 04_Product_Design              | 12     | Code Quality          |
+| 05_Vibe_Coding                 | 17     | Library/API Reference |
+| 06_Testing                     | 17     | Code Quality          |
+| 07_DevOps                      | 12     | CI/CD                 |
+| 08_Personal_Os                 | 9      | Runbooks              |
+| 09_Marketing                   | 10     | Data Fetching         |
+| 10_Backup                      | 5      | Legacy                |
+| 11_Doc_Processing              | 3      | Data Fetching         |
+| 12_N8N                         | 7      | Infrastructure Ops    |
+| 13_System_Master               | 5      | Infrastructure Ops    |
+| 14_Anthropic_Harness           | 7      | All Categories        |
+| 15_Skill_Creator_Oficial       | 1      | Code Scaffolding      |
+| 16_Silicon_Valley_Data_Analyst | 1      | Data Fetching         |
+| 17_SEO_SOTA_Master             | 1      | Library/API Reference |
+| 18_Personal_Life_OS            | 5      | Runbooks              |
 
-**Total Activo:** 140 skills
-**Total con Backup:** 167 skills
+**Total categorías:** 21 — **Total skills activas:** 160+
 
 ---
 
