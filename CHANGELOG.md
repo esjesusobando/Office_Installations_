@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.7.1 - 2026-04-02
+
+### Fixed — OpenCode terminal launch errors
+
+- **`~/.config/opencode/opencode.json`**: Renombrado campo `env` → `environment` en 7 MCPs (`exa`, `Notion`, `task-master-ai`, `supadata`, `zai-mcp-server`, `excalidraw-yctimlin`, `firecrawl-mcp`). OpenCode v1.3.13 cambió su schema: `env` ya no es un campo válido en `McpLocalConfig`, el correcto es `environment`. Error: `Configuration is invalid ↳ Invalid input mcp.exa` (x7).
+- **`01_Core/05_Mcp/02_OpenCode/opencode.json`**: Mismo fix aplicado para mantener sync con el config activo.
+
+**Root cause:** Ruptura de schema en OpenCode v1.3.13 — `additionalProperties: false` en `McpLocalConfig` rechaza el campo `env` que era válido en versiones anteriores.
+
+---
+
 ## 1.7.0 - 2026-04-01
 
 ### Fixed — MCP Integration & Documentation Audit

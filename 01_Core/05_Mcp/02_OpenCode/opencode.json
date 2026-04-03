@@ -177,7 +177,7 @@
         "-y",
         "exa-mcp-server"
       ],
-      "env": {
+      "environment": {
         "EXA_API_KEY": "9ddeba3a-6948-4dab-85f2-fbb6fb054020"
       }
     },
@@ -235,7 +235,7 @@
         "-y",
         "@notionhq/notion-mcp-server@latest"
       ],
-      "env": {
+      "environment": {
         "NOTION_TOKEN": "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"
       }
     },
@@ -260,7 +260,7 @@
         "-y",
         "task-master-ai@latest"
       ],
-      "env": {
+      "environment": {
         "OPENROUTER_API_KEY": "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"
       }
     },
@@ -295,7 +295,7 @@
         "-y",
         "@supadata/mcp@latest"
       ],
-      "env": {
+      "environment": {
         "SUPADATA_API_KEY": "sd_8fecf5d9caff56612eb6aa0e50ad6931"
       }
     },
@@ -306,7 +306,7 @@
         "-y",
         "@z_ai/mcp-server"
       ],
-      "env": {
+      "environment": {
         "Z_AI_API_KEY": "cc1d95c25d4e4cedab7c546846adf7f7.Wq3L5omNquBRHL59",
         "Z_AI_MODE": "ZAI"
       }
@@ -318,7 +318,7 @@
         "-y",
         "excalidraw-mcp@latest"
       ],
-      "env": {
+      "environment": {
         "EXCALIDRAW_VAULT_PATH": "C:\\Users\\sebas\\Documents\\Diagramas Excalidraw"
       }
     },
@@ -329,7 +329,7 @@
         "-y",
         "firecrawl-mcp"
       ],
-      "env": {
+      "environment": {
         "FIRECRAWL_API_KEY": "fc-34ac9eebd51349aeada4af8abb97e2cf"
       }
     },
@@ -347,7 +347,6 @@
         "openpencil-mcp.cmd"
       ]
     },
-
     "obsidian-api": {
       "type": "local",
       "command": [
