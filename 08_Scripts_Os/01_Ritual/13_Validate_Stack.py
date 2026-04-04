@@ -7,17 +7,16 @@ Valida el stack tecnológico.
 """
 
 import subprocess
-import sys
 import os
 import io
-from pathlib import Path
 
-# === SETUP PATHS ===
-SCRIPT_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = (
-    SCRIPT_DIR.parent.parent
-)  # Ritual_Fixed → 08_Scripts_Os → Think_Different
-sys.path.insert(0, str(PROJECT_ROOT))
+
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
 
 # === COLOR SETUP ===
 try:
@@ -119,14 +118,11 @@ def check_git():
 def check_core_structure():
     """Verifica la existencia de los archivos críticos actualizados."""
     critical_files = {
-        "Raíz: README.md": os.path.join(ROOT_DIR, "README.md"),
-        "Raíz: CLAUDE.md": os.path.join(ROOT_DIR, "CLAUDE.md"),
-        "Config: settings.local.json": os.path.join(
-            ROOT_DIR, ".claude", "settings.local.json"
-        ),
-        "Core: Server.py": os.path.join(
-            ROOT_DIR, "05_System", "01_Core", "mcp", "Server.py"
-        ),
+        "Raíz: README.md": ROOT_DIR / "README.md",
+        "Raíz: CLAUDE.md": ROOT_DIR / "CLAUDE.md",
+        "Matrix: AGENTS.md": MATRIX_DIR / "AGENTS.md",
+        "Config: settings.local.json": ROOT_DIR / ".claude" / "settings.local.json",
+        "Core: Server.py": SERVER_DIR / "mcp" / "Server.py",
     }
 
     all_ok = True

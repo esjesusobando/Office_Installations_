@@ -15,12 +15,10 @@ Usage:
     python 09_Backlog_Triage.py --execute  # Crear tareas y limpiar
 """
 
-import sys
 import os
 import io
 import re
 import argparse
-from pathlib import Path
 from datetime import datetime
 
 # Fix Windows encoding
@@ -28,23 +26,13 @@ if sys.platform == "win32":
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
-# Path resolution
-SCRIPT_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = SCRIPT_DIR.parent.parent
 
-# Add Legacy_Backup to path for config_paths
-LEGACY_DIR = PROJECT_ROOT / "08_Scripts_Os" / "Legacy_Backup"
-sys.path.insert(0, str(LEGACY_DIR))
-
-from config_paths import ROOT_DIR, TASKS_DIR
-
-
-# ============================================================================
-# CONFIGURATION
-# ============================================================================
-
-BACKLOG_FILE = PROJECT_ROOT / "00_Winter_is_Coming" / "BACKLOG.md"
-TASKS_DIR = PROJECT_ROOT / "03_Tasks"
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
 
 # Template de tarea
 TASK_TEMPLATE = """---

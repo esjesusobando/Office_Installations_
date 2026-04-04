@@ -1,9 +1,15 @@
+# Importar pathlib primero para el protocolo de ruta
 import sys
 from pathlib import Path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
+
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
+
 import os
-import sys
 import time
 import glob
 
@@ -30,7 +36,8 @@ def repair_md(file_path):
         print(f"Error repairing {file_path}: {e}")
 
 def main():
-    base_dir = os.path.abspath(r"c:\Users\sebas\Downloads\01 Revisar\Think_Different")
+    # Usar PROJECT_ROOT dinámico desde config_paths
+    base_dir = PROJECT_ROOT
 
     # Archivos raíz
     for md_file in glob.glob(os.path.join(base_dir, "*.md")):

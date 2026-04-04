@@ -1,18 +1,22 @@
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
 import sys
 from pathlib import Path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
+
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
+
 """
 40_Validate_Rules.py - Armor Layer Protected
 """
 
 import os
-import sys
 import io
 import re
 import subprocess
 import glob
-from pathlib import Path
 from typing import List
 from colorama import init, Fore, Style
 
@@ -27,17 +31,17 @@ RESET = Style.RESET_ALL
 
 BRIGHT = Fore.MAGENTA
 
-sys.path.insert(0, str(Path(__file__).parent.parent))
-from config_paths import PROJECT_ROOT, BRAIN_DIR, ENGINE_DIR, KNOWLEDGE_DIR
+# Todas las rutas se importan desde config_paths arriba
 
 REQUIRED_DIRS = [
-    "00_Core",
-    "01_Brain",
-    "02_Operations",
-    "03_Knowledge",
-    "../..",
-    "05_System",
-    "06_Archive",
+    MATRIX_DIR.name,
+    CORE_DIR.name,
+    KNOWLEDGE_DIR.name,
+    TASKS_DIR.name,
+    OPERATIONS_DIR.name,
+    ARCHIVE_DIR.name,
+    PROJECTS_DIR.name,
+    ENGINE_DIR.name,
 ]
 for d in REQUIRED_DIRS:
     if not (PROJECT_ROOT / d).exists():
@@ -103,13 +107,13 @@ def validate_engine_naming() -> bool:
     Returns:
         bool: True si todos los archivos cumplen el estándar, False de lo contrario.
     """
-    print(f"\n{INFO}[SCAN] Validando Naming Convention en 04_Engine...{RESET}")
+    print(f"\n{INFO}[SCAN] Validando Naming Convention en 08_Scripts_Os...{RESET}")
     engine_dir = ENGINE_DIR
     pattern = re.compile(r"^\d{2}_[A-Z][a-zA-Z0-9_]+\.py$")
     errors: List[str] = []
 
     if not os.path.exists(engine_dir):
-        print(f"{ERROR}[ERR] No se encontró el directorio 04_Engine.{RESET}")
+        print(f"{ERROR}[ERR] No se encontró el directorio 08_Scripts_Os.{RESET}")
         return False
 
     for item_name in os.listdir(engine_dir):
@@ -127,7 +131,7 @@ def validate_engine_naming() -> bool:
         return False
 
     print(
-        f"{Fore.GREEN}[OK] Todos los scripts del Engine cumplen el estándar.{Style.RESET_ALL}"
+        f"{Fore.GREEN}[OK] Todos los scripts de 08_Scripts_Os cumplen el estándar.{Style.RESET_ALL}"
     )
     return True
 
@@ -142,7 +146,7 @@ def validate_rules_structure() -> bool:
     import glob
 
     print(f"\n{INFO}[SCAN] Validando y Listando Reglas (.mdc) para Contexto...{RESET}")
-    rules_dir = BRAIN_DIR / "04_Rules"
+    rules_dir = RULES_DIR
     if not os.path.exists(rules_dir):
         print(f"{WARNING}[SKIP] No se encontró el directorio de reglas.{RESET}")
         return True
@@ -199,13 +203,13 @@ def validate_arsenal_integrity() -> bool:
 
     # Rutas de búsqueda de Skills
     skills_paths = [
-        PROJECT_ROOT / ".agent" / "02_Skills" / "01_Core",
-        PROJECT_ROOT / ".agent" / "02_Skills" / "02_High_Value",
-        PROJECT_ROOT / ".agent" / "02_Skills" / "03_Utilities",
-        PROJECT_ROOT / ".agent" / "02_Skills",
+        SKILLS_DIR,
+        SKILLS_DIR / "01_Core",
+        SKILLS_DIR / "02_High_Value",
+        SKILLS_DIR / "03_Utilities",
     ]
 
-    inventory_file = KNOWLEDGE_DIR / "01_Inventario_Total.md"
+    inventory_file = INVENTORY_FILE
 
     if not os.path.exists(inventory_file):
         print(
@@ -253,13 +257,14 @@ def validate_folder_health() -> bool:
     """Verifica que la jerarquía 00-08 de PersonalOS esté intacta."""
     print(f"\n{INFO}[SCAN] Validando Jerarquía de Carpetas (00-08)...{RESET}")
     expected_dirs = [
-        "00_Core",
-        "01_Brain",
-        "02_Operations",
-        "03_Knowledge",
-        "../..",
-        "05_System",
-        "06_Archive",
+        MATRIX_DIR.name,
+        CORE_DIR.name,
+        KNOWLEDGE_DIR.name,
+        TASKS_DIR.name,
+        OPERATIONS_DIR.name,
+        ARCHIVE_DIR.name,
+        PROJECTS_DIR.name,
+        ENGINE_DIR.name,
     ]
     missing = []
     for d in expected_dirs:

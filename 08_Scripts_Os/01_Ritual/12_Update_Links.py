@@ -7,34 +7,17 @@ Actualiza enlaces del sistema.
 """
 
 import os
-import sys
 import glob
 import subprocess
 import io
-from pathlib import Path
 
-# === SETUP PATHS ===
-SCRIPT_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = SCRIPT_DIR.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
 
-# === IMPORTS ===
-try:
-    from config_paths import (
-        ROOT_DIR,
-        BRAIN_DIR,
-        BRAIN_RULES_DIR,
-        COMPOUND_ENGINE_DIR,
-        ENGINE_DIR,
-    )
-except ImportError:
-    ROOT_DIR = PROJECT_ROOT
-    BRAIN_DIR = PROJECT_ROOT / "04_Operations"
-    BRAIN_RULES_DIR = BRAIN_DIR / "04_Memory_Brain"
-    COMPOUND_ENGINE_DIR = (
-        PROJECT_ROOT / "01_Core" / "03_Skills" / "00_Compound_Engineering"
-    )
-    ENGINE_DIR = PROJECT_ROOT / "08_Scripts_Os"
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
 
 # === COLOR SETUP ===
 try:
@@ -50,18 +33,9 @@ except ImportError:
         RESET_ALL = ""
 
 
-REQUIRED_DIRS = [
-    "00_Core",
-    "01_Brain",
-    "02_Operations",
-    "03_Knowledge",
-    "../..",
-    "05_System",
-    "06_Archive",
-]
-for d in REQUIRED_DIRS:
-    if not (PROJECT_ROOT / d).exists():
-        print(f"[WARN] Required directory not found: {d}")
+for d, path in [("CORE", CORE_DIR), ("BRAIN", BRAIN_DIR), ("SCRIPTS", ENGINE_DIR)]:
+    if not path.exists():
+        print(f"[WARN] Required directory not found: {d} at {path}")
 
 # Fix Windows console encoding
 if sys.platform == "win32":

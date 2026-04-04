@@ -1,62 +1,27 @@
 import sys
 from pathlib import Path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
-#!/usr/bin/env python3
-"""
-73_Avengers_Workflow_v3.py - Avengers Compound Flow v3.0
-=========================================================
-Workflow moderno: Git Analysis -> Vision Review -> Planning -> Execution
 
-Propósito: Ejecutar ciclo completo de revisión y mejora del código
-           usando sub-agentes y workflows modernos de Claude.
-
-Fases:
-  1. Git Status Analysis (10%)
-  2. Vision Review Sub-agent (30%)
-  3. Findings Analysis (50%)
-  4. Planning Sub-agent (70%)
-  5. Execution Sub-agent (90%)
-  6. Summary (100%)
-
-Usage:
-  python 73_Avengers_Workflow_v3.py [target]
-  python 73_Avengers_Workflow_v3.py main
-  python 73_Avengers_Workflow_v3.py <PR-number>
-"""
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
 
 import subprocess
 import os
-import sys
 import io
 import json
 import re
 from datetime import datetime
-from pathlib import Path
-
-# ==============================================================================
-# ARMOR LAYER - PATH RESOLUTION
-# ==============================================================================
 
 # Fix Windows console encoding
 if sys.platform == "win32":
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
-os.environ["PERSONAL_OS_ROOT"] = PROJECT_ROOT
-
-# Agregar al path para config
-sys.path.insert(0, os.path.join(PROJECT_ROOT, "../..", "08_Scripts_Os"))
-
-try:
-    from config_paths import ROOT_DIR, OPERATIONS_DIR
-
-    ACTIVE_TASKS_DIR = Path(OPERATIONS_DIR) / "01_Active_Tasks"
-except ImportError:
-    # Fallback: ruta directa
-    ACTIVE_TASKS_DIR = Path(PROJECT_ROOT) / "02_Operations" / "01_Active_Tasks"
+# Directorio de Tareas Activas
+ACTIVE_TASKS_DIR = OPERATIONS_DIR / "01_Active_Tasks"
 
 # ==============================================================================
 # CONFIGURACIÓN

@@ -1,19 +1,20 @@
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
 import sys
 from pathlib import Path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
-from config_paths import ROOT_DIR as BASE_DIR
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
+
 import os
 import pandas as pd
 import json
-import sys
 import io
 
 # --- CONFIGURACIÓN ARMOR LAYER ---
 if sys.stdout.encoding != 'utf-8':
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-
-from config_paths import ROOT_DIR as BASE_DIR
 
 class AnalyticsFactory:
     def __init__(self, dataset_path):

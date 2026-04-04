@@ -1,37 +1,27 @@
 import sys
 from pathlib import Path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
+
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
+
 import os
 import random
 import json
 import importlib.util
-import sys
 import io
 import subprocess
-from pathlib import Path
 from typing import Dict, Any, Optional
 from colorama import init, Fore, Style
 
 init()
 
-# Agregar paths necesarios
-SCRIPT_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = SCRIPT_DIR.parent.parent
-CONFIG_PATHS = PROJECT_ROOT / "08_Scripts_Os"
-
-sys.path.insert(0, str(CONFIG_PATHS))
-sys.path.insert(0, str(PROJECT_ROOT))
-
-try:
-    from config_paths import PROJECT_ROOT as _PR, SYSTEM_DIR as _SD
-
-    PROJECT_ROOT = _PR
-    SYSTEM_DIR = _SD
-except:
-    SYSTEM_DIR = PROJECT_ROOT / "01_Core"
-
-AIPM_CORE = SYSTEM_DIR
+# Cargar servidor AIPM en el path
+if SERVER_DIR.exists() and str(SERVER_DIR) not in sys.path:
+    sys.path.insert(0, str(SERVER_DIR))
 
 # Fix Windows console encoding
 if sys.platform == "win32":

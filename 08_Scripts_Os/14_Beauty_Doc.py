@@ -1,15 +1,18 @@
-#!/usr/bin/env python3
-"""
-Beauty Doc - Aplica formato premium a todos los documentos markdown del proyecto.
-Versión actualizada para PersonalOS v6.1
-"""
+import sys
+from pathlib import Path
 
-import os
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
+
 import re
 import glob
 import hashlib
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = ROOT_DIR
 
 
 def get_content_hash(text: str) -> str:

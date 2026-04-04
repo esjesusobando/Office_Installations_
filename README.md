@@ -1,19 +1,19 @@
 # Think Different PersonalOS v6.1
 
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-orange)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-[![Version](https://img.shields.io/badge/Version-1.7.0-green)]()
+[![Version](https://img.shields.io/badge/Version-6.1-green)]()
 [![Status](https://img.shields.io/badge/Status-100%25%20--%20Production%20Ready-blue)]()
 
 > 🧠 **Sistema operativo personal potenciador con IA** - Múltiples agentes, skills SOTA, y automatización completa.
 
 ---
 
-## 📊 Estado del Sistema (v1.7.0)
+## 📊 Estado del Sistema (v6.1 - 2026-04-04)
 
 | Métrica            | Valor       |
 |:-------------------|:-----------:|
 | **Overall Health** | **100%** ✅ |
-| **Skills**         |    160+     |
+| **Skills**         |    165+     |
 | **Rules**          |     23      |
 | **MCPs**           |   29 activos|
 | **HUBs**           |     10      |

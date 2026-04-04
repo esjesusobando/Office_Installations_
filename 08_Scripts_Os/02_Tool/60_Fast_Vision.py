@@ -1,21 +1,25 @@
 import sys
 from pathlib import Path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
+
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
+
 import os
 import re
 import json
 import subprocess
-# Removed import engram_mem_save
-
 
 def validate():
-    # 1. Validate scripts in 04_Engine/
-    engine_dir = "../.."
+    # 1. Validate scripts in 08_Scripts_Os/
+    engine_dir = ENGINE_DIR
     script_pattern = re.compile(r"^\d{2}_[a-zA-Z0-9_]+\.py$")
     all_ok = True
 
-    print("[INFO] Validating scripts in 04_Engine/...")
+    print("[INFO] Validating scripts in 08_Scripts_Os/...")
     for filename in os.listdir(engine_dir):
         if filename == "60_Fast_Vision.py":
             continue
@@ -32,8 +36,8 @@ def validate():
                 print(f"[OK] Script matches pattern: {filename}")
 
     # 2. Verify 05_System/04_Env/Requirements.txt
-    req_file = "05_System/04_Env/Requirements.txt"
-    if os.path.exists(req_file):
+    req_file = ROOT_DIR / "01_Core" / "Requirements.txt"
+    if req_file.exists():
         print(f"[OK] Requirements file exists: {req_file}")
     else:
         print(f"[FAIL] Requirements file missing: {req_file}")
@@ -41,12 +45,11 @@ def validate():
 
     # 3. Scan mcp-config.json
     mcp_files = [
-        "05_System/03_Integrations/granola/mcp-config.json",
-        "05_System/03_Integrations/granola/mcp-config.json",
+        ROOT_DIR / ".mcp.json",
     ]
 
     for mcp_file in mcp_files:
-        if os.path.exists(mcp_file):
+        if mcp_file.exists():
             print(f"[INFO] Scanning {mcp_file}...")
             with open(mcp_file, "r") as f:
                 try:
@@ -78,7 +81,7 @@ def validate():
     print("[INFO] Invoking Notify_System.py...")
     try:
         subprocess.run(
-            ["python", "04_Engine/08_Scripts_Os/59_Notify_System.py"], check=True
+            ["python", str(ENGINE_DIR / "08_General" / "77_Notify_System.py")], check=True
         )
         print("[OK] Notify_System.py invoked successfully.")
     except Exception as e:

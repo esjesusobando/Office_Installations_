@@ -1,7 +1,7 @@
 # 02_Knowledge — Base de Conocimiento
 
 **Versión:** 6.1
-**Última actualización:** 2026-03-29
+**Última actualización:** 2026-04-04
 **Estado:** ✅ Activo
 
 ---
@@ -60,9 +60,14 @@ Think_Different/
 ├── 04_Docs/                       # Documentos varios
 │   ├── README.md                     # Índice de documentación
 │   ├── OS_Integration_Audit_v6.1.md  # Auditoría del OS (94%)
+│   ├── Plan_Unicorn_Engineering_SOTA.md  # Plan Unicorn Engineering
 │   ├── 99_ATL/                        # SDD Registry
 │   │   └── skill-registry.md
 │   └── Skill_Creator_v2_Analysis.md  # Análisis de skill creator
+├── 05_Unicorn/                      # Unicorn Engineering (LEGACY - NO USAR)
+├── 06_Unicorn/                      # Unicorn Engineering ⭐ FUENTE DE VERDAD
+├── 07_Invictus/                     # Skill Creator Invictus
+├── 08_Research/                     # Research adicional
 ```
 
 ---

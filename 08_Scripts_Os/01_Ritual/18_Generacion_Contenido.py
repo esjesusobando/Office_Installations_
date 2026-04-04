@@ -14,32 +14,21 @@ Usage:
 """
 
 import sys
-import os
-import io
-import argparse
 from pathlib import Path
-from datetime import datetime
 
-# Fix Windows encoding
-if sys.platform == "win32":
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
-    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
-
-# Path resolution
-SCRIPT_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = SCRIPT_DIR.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT / "08_Scripts_Os" / "Legacy_Backup"))
-from config_paths import ROOT_DIR, KNOWLEDGE_DIR
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
 
 
-# ============================================================================
-# CONFIGURATION
-# ============================================================================
-
-KNOWLEDGE_DIR = PROJECT_ROOT / "02_Knowledge"
-VOICE_SAMPLES_DIR = KNOWLEDGE_DIR / "voice-samples"
-VOICE_GUIDE_FILE = KNOWLEDGE_DIR / "voice-guide.md"
-GOALS_FILE = PROJECT_ROOT / "00_Winter_is_Coming" / "GOALS.md"
+# VOICE_SAMPLES_DIR y VOICE_GUIDE_FILE ya vienen de config_paths (asumido/agregado)
+# Si no, los definimos aquí basados en las constantes globales
+VOICE_SAMPLES_DIR = UNICORN_DIR / "voice-samples"
+VOICE_GUIDE_FILE = UNICORN_DIR / "voice-guide.md"
+GOALS_FILE = MATRIX_DIR / "GOALS.md"
 
 
 # ============================================================================

@@ -15,7 +15,15 @@ Formato: model_name | folder_name | ██████░░░ | 100%
 """
 
 import sys
-import os
+from pathlib import Path
+
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
+
 import math
 
 # ============================================================

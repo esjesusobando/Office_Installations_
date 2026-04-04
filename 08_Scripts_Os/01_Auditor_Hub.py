@@ -6,10 +6,8 @@ Reutiliza scripts de auditoría existentes: 53, 57, 34, 50, 33
 
 import argparse
 import os
-import sys
 import io
 import subprocess
-from pathlib import Path
 
 try:
     from colorama import init, Fore, Style
@@ -24,11 +22,15 @@ except ImportError:
         RESET_ALL = ""
 
 
-# =============================================================================
-# ARMOR LAYER - PATH RESOLUTION (2-LEVEL: Scripts -> Root)
-# =============================================================================
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
+
+# PROJECT_ROOT ya viene de config_paths como ROOT_DIR
+PROJECT_ROOT = ROOT_DIR
 
 DIMENSIONS = [
     "00_Winter_is_Coming",
@@ -47,8 +49,10 @@ def audit_dimensions():
     """Valida las 7+ dimensiones del proyecto."""
     print(f"\n{Style.BRIGHT}Validating Dimensions:")
     errors = 0
-    for dim in DIMENSIONS:
-        path = Path(PROJECT_ROOT) / dim
+    # Usar constante DIMENSIONS de config_paths si existiera, o manual dinámica
+    dims = ["00_Winter_is_Coming", "01_Core", "02_Knowledge", "03_Tasks", "04_Operations", "05_Archive", "08_Scripts_Os"]
+    for dim in dims:
+        path = PROJECT_ROOT / dim
         if path.exists() and path.is_dir():
             print(f"{Fore.GREEN}[OK] {dim}")
         else:
@@ -60,7 +64,7 @@ def audit_dimensions():
 def audit_script_numbering():
     """Valida que scripts sigan el patrón NN_ o NNN_."""
     print(f"\n{Style.BRIGHT}Validating Engine Script Numbering:")
-    engine_dir = Path(PROJECT_ROOT) / "08_Scripts_Os"
+    engine_dir = ENGINE_DIR
     errors = 0
     scripts = list(engine_dir.glob("*.py"))
     for script in scripts:
@@ -116,8 +120,8 @@ def dynamic_speak(text):
 
 
 def run_script(script_name):
-    # Usamos 06_Auditor para scripts corregidos (SISTEMA INDEPENDIENTE)
-    script_path = Path(__file__).parent / "06_Auditor" / script_name
+    # Usamos AUDITOR_DIR definido en config_paths o relativo dinámico
+    script_path = AUDITOR_DIR / script_name
     if not script_path.exists():
         print(f"{Fore.RED}[ERROR] Script no encontrado: {script_path}{Style.RESET_ALL}")
         return

@@ -6,36 +6,28 @@ SISTEMA SOTA INDEPENDIENTE - Sin dependencias Legacy
 
 import argparse
 import os
-import sys
 import io
 import subprocess
-from pathlib import Path
 
+
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
+
+# === COLOR SETUP ===
 try:
     from colorama import init, Fore, Style
-
-    init()
+    init(autoreset=True)
 except ImportError:
-
-    class Fore:
-        GREEN = YELLOW = RED = CYAN = MAGENTA = BLUE = ""
-
-    class Style:
-        RESET_ALL = ""
-
-
-# =============================================================================
-# ARMOR LAYER - PATH RESOLUTION (2-LEVEL: Scripts -> Root)
-# =============================================================================
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
-
-# Asegurar que 08_Scripts_Os esté en path para config_paths
-sys.path.insert(0, SCRIPT_DIR)
-from config_paths import ROOT_DIR
+    class Fore: GREEN = YELLOW = RED = CYAN = MAGENTA = BLUE = ""
+    class Style: RESET_ALL = BRIGHT = ""
 
 # Fix Windows console encoding
 if sys.platform == "win32":
+    import io
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
@@ -93,7 +85,7 @@ def run_structure_audit():
         f"{Fore.CYAN}[STRUCTURE] Validando estructura del proyecto...{Style.RESET_ALL}"
     )
 
-    # Dimensiones del proyecto
+    # Dimensiones del proyecto (Pure Green v6.1)
     DIMENSIONS = [
         "00_Winter_is_Coming",
         "01_Core",
@@ -101,7 +93,6 @@ def run_structure_audit():
         "03_Tasks",
         "04_Operations",
         "05_Archive",
-        "07_Projects",
         "08_Scripts_Os",
     ]
 

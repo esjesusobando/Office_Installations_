@@ -1,7 +1,12 @@
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
 import sys
 from pathlib import Path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
+
 """
 46_Sync_MCP_OpenCode.py - Armor Layer Protected
 Sincronización automática de MCPs entre .mcp.json y opencode.json
@@ -15,15 +20,10 @@ Objetivo: Mantener consistencia en la configuración de MCPs en todo el ecosiste
 
 import json
 import os
-import sys
-from pathlib import Path
 from datetime import datetime
 from dotenv import load_dotenv
 
 load_dotenv()
-
-sys.path.insert(0, str(Path(__file__).parent))
-from config_paths import PROJECT_ROOT, KNOWLEDGE_DIR
 
 REQUIRED_DIRS = [
     "00_Core",

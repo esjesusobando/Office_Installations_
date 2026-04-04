@@ -1,24 +1,23 @@
 import sys
 from pathlib import Path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
-"""
-INVITUS TASK PLANNER (BATCH MODE): Script para "vitaminar" tareas existentes.
-Escanea todas las tareas activas y les anexa el AI Task Planning Framework si aún no lo tienen.
-"""
 
-import sys
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
+
 import os
 import glob
 import io
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).parent))
-from config_paths import PROJECT_ROOT, OPERATIONS_TASKS_DIR, BRAIN_TEMPLATE_DIR
-
-# Asegurar encoding UTF-8 en STDOUT para Windows (Evita errores de caracteres especiales)
+# Asegurar encoding UTF-8 en STDOUT para Windows
 if sys.platform == "win32":
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+
+TASK_DIR = OPERATIONS_TASKS_DIR
+TEMPLATE_PATH = BRAIN_TEMPLATE_DIR / "01_ai_task_template.md"
 
 # Intentar importar colorama, si no está, usar prints simples
 try:

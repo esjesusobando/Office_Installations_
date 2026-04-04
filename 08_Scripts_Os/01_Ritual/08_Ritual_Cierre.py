@@ -7,33 +7,14 @@ Orquesta el cierre seguro de sesión.
 """
 
 import os
-import sys
-from pathlib import Path
 
-# === SETUP PATHS ===
-SCRIPT_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = (
-    SCRIPT_DIR.parent.parent
-)  # Ritual_Fixed → 08_Scripts_Os → Think_Different
-sys.path.insert(0, str(SCRIPT_DIR.parent))  # apunta a 08_Scripts_Os/ donde está config_paths
 
-# === IMPORTS ===
-try:
-    from config_paths import (
-        ROOT_DIR,
-        BRAIN_DIR,
-        BRAIN_RULES_DIR,
-        COMPOUND_ENGINE_DIR,
-        ENGINE_DIR,
-    )
-except ImportError:
-    ROOT_DIR = PROJECT_ROOT
-    BRAIN_DIR = PROJECT_ROOT / "04_Operations"
-    BRAIN_RULES_DIR = PROJECT_ROOT / "04_Operations" / "04_Memory_Brain"
-    COMPOUND_ENGINE_DIR = (
-        PROJECT_ROOT / "01_Core" / "03_Skills" / "00_Compound_Engineering"
-    )
-    ENGINE_DIR = PROJECT_ROOT / "08_Scripts_Os"
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
 
 import subprocess
 import datetime
@@ -59,14 +40,10 @@ except ImportError:
 
 
 # Rutas
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 COMPOUND_COMMAND = "bun run compound"  # Comando para invocar Compound Engine
 
-HOOKS_DIR = os.path.join(ROOT_DIR, ".agent", "04_Extensions", "hooks")
-RULES_REGISTRY = os.path.join(BRAIN_RULES_DIR, "Rules_Registry.md")
-INVENTORY_TOTAL = os.path.join(
-    BRAIN_DIR, "02_Knowledge_Brain", "01_Inventario_Total.md"
-)
+RULES_REGISTRY = BRAIN_RULES_DIR / "Rules_Registry.md"
+INVENTORY_TOTAL = INVENTORY_FILE
 
 
 def run_script(script_name, description):

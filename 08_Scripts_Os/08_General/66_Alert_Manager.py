@@ -1,9 +1,12 @@
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
 import sys
 from pathlib import Path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
+
 """
 66_Alert_Manager.py
 ===================
@@ -23,17 +26,12 @@ Integración: Se ejecuta después de cada auditor en 08_Ritual_Cierre.py
 """
 
 import os
-import sys
 import json
 import requests
 import subprocess
-from pathlib import Path
 from datetime import datetime
 from typing import Optional, Dict, List
 from enum import Enum
-
-sys.path.insert(0, str(Path(__file__).parent))
-from config_paths import ROOT_DIR, OPERATIONS_ANALYTICS_DIR
 
 # Fix encoding for Windows
 if sys.stdout.encoding != "utf-8":

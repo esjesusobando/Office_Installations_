@@ -1,7 +1,13 @@
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
 import sys
 from pathlib import Path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
+
+
 """
 26_Batch_Parser.py - Batch Doc Processor Elite
 ============================================
@@ -18,11 +24,9 @@ Skills relacionadas:
 """
 
 import os
-import sys
 import io
 import subprocess
 import argparse
-from pathlib import Path
 from datetime import datetime
 from typing import List, Optional
 
@@ -31,16 +35,6 @@ if sys.stdout.encoding != "utf-8":
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 if sys.stderr.encoding != "utf-8":
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8")
-
-# =============================================================================
-# CONFIG PATHS
-# =============================================================================
-try:
-    sys.path.insert(0, str(Path(__file__).parent))
-    from config_paths import ROOT_DIR, KNOWLEDGE_DIR
-except ImportError:
-    ROOT_DIR = Path(__file__).resolve().parent.parent.parent
-    KNOWLEDGE_DIR = ROOT_DIR / "03_Knowledge"
 
 # =============================================================================
 # CONSTANTES

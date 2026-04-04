@@ -13,37 +13,24 @@ Usage:
 """
 
 import sys
-import os
-import io
-import glob
-import argparse
 from pathlib import Path
-from datetime import datetime
-from typing import List, Dict, Optional
 
-# Fix Windows encoding
-if sys.platform == "win32":
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
-    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
-
-# Path resolution
-SCRIPT_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = SCRIPT_DIR.parent.parent
-
-# Add 08_Scripts_Os to path donde está config_paths
-sys.path.insert(0, str(PROJECT_ROOT / "08_Scripts_Os"))
-from config_paths import ROOT_DIR, OPERATIONS_DIR, KNOWLEDGE_DIR
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
 
 
 # ============================================================================
-# CONFIGURATION
+# CONFIGURATION (v6.1 Dynamic)
 # ============================================================================
 
-CONTEXT_MEMORY_DIR = PROJECT_ROOT / "04_Operations" / "00_Context_Memory"
-PROCESS_NOTES_DIR = PROJECT_ROOT / "04_Operations" / "03_Process_Notes"
-TASKS_DIR = PROJECT_ROOT / "03_Tasks"
-GOALS_FILE = PROJECT_ROOT / "00_Winter_is_Coming" / "GOALS.md"
-BACKLOG_FILE = PROJECT_ROOT / "00_Winter_is_Coming" / "BACKLOG.md"
+CONTEXT_MEMORY_DIR = BRAIN_MEMORY_DIR
+PROCESS_NOTES_DIR = BRAIN_NOTES_DIR
+# TASKS_DIR y BACKLOG_FILE ya vienen de config_paths
+GOALS_FILE = MATRIX_DIR / "GOALS.md"
 
 
 # ============================================================================

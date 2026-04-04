@@ -1,7 +1,12 @@
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
 import sys
 from pathlib import Path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
+
 import winsound
 import json
 import os
@@ -36,7 +41,7 @@ CONFIG_PATH = get_config_path()
 
 
 def play_sound():
-    if os.path.exists(CONFIG_PATH):
+    if CONFIG_PATH and os.path.exists(CONFIG_PATH):
         with open(CONFIG_PATH, "r") as f:
             config = json.load(f)
             side = config.get("side", "left")

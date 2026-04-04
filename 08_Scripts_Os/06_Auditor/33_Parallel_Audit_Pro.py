@@ -1,25 +1,16 @@
 import sys
 from pathlib import Path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
-import os
-import sys
-import time
-import subprocess
-import io
-from colorama import init, Fore, Style
 
-# Initialize Colorama
-init()
-
-# =============================================================================
-# ARMOR LAYER - PATH RESOLUTION (3-LEVEL)
-# =============================================================================
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
 
 # Fix Windows console encoding
 if sys.platform == "win32":
+    import io
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
@@ -50,17 +41,9 @@ def print_banner():
 """
     print(banner)
 
-ROOT_DIR = PROJECT_ROOT
+# ROOT_DIR ya viene de config_paths
 # Official Skill Tool Path
-FORK_TOOL = os.path.join(
-    PROJECT_ROOT,
-    ".agent",
-    "02_Skills",
-    "08_Personal_Os",
-    "01_Fork_Terminal",
-    "tools",
-    "fork_terminal.py",
-)
+FORK_TOOL = ROOT_DIR / ".agent" / "02_Skills" / "08_Personal_Os" / "01_Fork_Terminal" / "tools" / "fork_terminal.py"
 
 
 def launch_agent(id, name, task_cmd):
@@ -96,49 +79,49 @@ def main():
     launch_agent(
         1,
         "Stack Integrity",
-        f"python {ROOT_DIR}/08_Scripts_Os/08_Scripts_Os/13_Validate_Stack.py",
+        f"python {ENGINE_DIR}/01_Ritual/13_Validate_Stack.py",
     )
 
     # 2. Agente de Reglas
     launch_agent(
         2,
         "Rules Auditor",
-        f"python {ROOT_DIR}/08_Scripts_Os/08_Scripts_Os/40_Validate_Rules.py",
+        f"python {ENGINE_DIR}/03_Validator/40_Validate_Rules.py",
     )
 
     # 3. Agente de Enlaces
     launch_agent(
         3,
         "Link Validator",
-        f"python {ROOT_DIR}/08_Scripts_Os/08_Scripts_Os/12_Update_Links.py",
+        f"python {ENGINE_DIR}/01_Ritual/12_Update_Links.py",
     )
 
     # 4. Agente Beautifier (README)
     launch_agent(
         4,
         "Beautifier README",
-        f"python {ROOT_DIR}/08_Scripts_Os/08_Scripts_Os/35_Beautify_Tables.py target=README.md",
+        f"python {ENGINE_DIR}/13_Beautify_Tables.py target=README.md",
     )
 
     # 5. Agente Beautifier (AGENTS)
     launch_agent(
         5,
         "Beautifier AGENTS",
-        f"python {ROOT_DIR}/08_Scripts_Os/08_Scripts_Os/35_Beautify_Tables.py target=00_Core/AGENTS.md",
+        f"python {ENGINE_DIR}/13_Beautify_Tables.py target=01_Core/AGENTS.md",
     )
 
     # 6. Agente Beautifier (INVENTORY)
     launch_agent(
         6,
         "Beautifier INVENTORY",
-        f"python {ROOT_DIR}/08_Scripts_Os/08_Scripts_Os/35_Beautify_Tables.py target=01_Brain/01_Inventario_Total.md",
+        f"python {ENGINE_DIR}/13_Beautify_Tables.py target=01_Core/01_Inventario_Total.md",
     )
 
     # 7. Agente Beautifier (CLAUDE)
     launch_agent(
         7,
         "Beautifier CLAUDE",
-        f"python {ROOT_DIR}/08_Scripts_Os/08_Scripts_Os/35_Beautify_Tables.py target=CLAUDE.md",
+        f"python {ENGINE_DIR}/13_Beautify_Tables.py target=CLAUDE.md",
     )
 
     # 8. Agente de Inventario (Skills audit)

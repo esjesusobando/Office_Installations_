@@ -8,15 +8,14 @@ Genera una vista consolidada del estado de todas las tareas.
 
 import os
 import sys
-import io
-import re
-import glob
 from pathlib import Path
 
-# === SETUP PATHS ===
-SCRIPT_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = SCRIPT_DIR.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
 
 import importlib.util
 from datetime import datetime
@@ -27,26 +26,7 @@ if sys.stdout.encoding != "utf-8":
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
 # === IMPORTS ===
-try:
-    from config_paths import (
-        ROOT_DIR,
-        BRAIN_DIR,
-        BRAIN_RULES_DIR,
-        COMPOUND_ENGINE_DIR,
-        ENGINE_DIR,
-        TASKS_DIR,
-        BASE_DIR,
-    )
-except ImportError:
-    ROOT_DIR = PROJECT_ROOT
-    BASE_DIR = PROJECT_ROOT
-    BRAIN_DIR = PROJECT_ROOT / "04_Operations"
-    BRAIN_RULES_DIR = BRAIN_DIR / "04_Memory_Brain"
-    COMPOUND_ENGINE_DIR = (
-        PROJECT_ROOT / "01_Core" / "03_Skills" / "00_Compound_Engineering"
-    )
-    ENGINE_DIR = PROJECT_ROOT / "08_Scripts_Os"
-    TASKS_DIR = PROJECT_ROOT / "03_Tasks"
+# ROOT_DIR, BRAIN_DIR, etc. ya vienen de config_paths
 
 # Importar sistema de progreso
 templates_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "templates")
@@ -77,15 +57,8 @@ try:
 except ImportError:
     SUCCESS = INFO = WARNING = ERROR = BRIGHT = RESET = ""
 
-# --- CONSTANTES ---
-# Usar las rutas de config_paths o fallback
-if isinstance(TASKS_DIR, str):
-    TASKS_DIR = Path(TASKS_DIR)
-if isinstance(BASE_DIR, str):
-    BASE_DIR = Path(BASE_DIR)
-
 TASK_END_DIR = TASKS_DIR / "Task_End"
-PROGRESS_FILE = ROOT_DIR / "00_Winter_is_Coming" / "PROGRESS.md"
+PROGRESS_FILE = MATRIX_DIR / "PROGRESS.md"
 
 # Orden de prioridad
 PRIORITY_ORDER = [

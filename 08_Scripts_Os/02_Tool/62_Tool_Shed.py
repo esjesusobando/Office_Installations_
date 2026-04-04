@@ -8,22 +8,18 @@ Carga solo los MCPs necesarios según el contexto de trabajo.
 Inspirado en Stripe Minions Tool Shed Pattern
 """
 
-import os
 import sys
-import json
 from pathlib import Path
+
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
+
+import json
 from datetime import datetime
-
-# === SETUP PATHS ===
-SCRIPT_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = SCRIPT_DIR.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
-
-# === IMPORTS ===
-try:
-    from config_paths import ROOT_DIR
-except ImportError:
-    ROOT_DIR = PROJECT_ROOT
 
 # === TIERS DE MCPS ===
 MCP_TIERS = {
@@ -155,7 +151,7 @@ def get_mcps_for_tiers(tiers: list) -> list:
 
 def load_mcp_config() -> dict:
     """Carga la configuración actual de MCPs."""
-    mcp_path = ROOT_DIR / "01_Core" / "05_Mcp" / "mcp.json"
+    mcp_path = MCP_CONFIG_FILE
 
     if not mcp_path.exists():
         print(f"[WARN] MCP config not found: {mcp_path}")

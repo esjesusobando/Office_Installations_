@@ -1,7 +1,13 @@
-#!/usr/bin/env python3
-"""Tarea completada - Sonido de exito
-Usage: python 08_Scripts_Os/00_Sound_Engine.py
-"""
+import sys
+from pathlib import Path
+
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
+
 import winsound
 
 def play_task_complete():

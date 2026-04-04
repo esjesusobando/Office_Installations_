@@ -51,6 +51,9 @@ SYSTEM_DIR = ROOT_DIR / "01_Core"
 ARCHIVE_DIR = ROOT_DIR / "05_Archive"
 PROJECTS_DIR = ROOT_DIR / "07_Projects"
 PLAYGROUND_DIR = ROOT_DIR / "06_Playground"
+HOOKS_DIR = ROOT_DIR / ".agent" / "04_Extensions" / "hooks"
+SOUND_DIR = HOOKS_DIR / "04_Sound"
+# MCP_CONFIG_FILE = ROOT_DIR / "01_Core" / "05_Mcp" / "mcp.json"  # TODO: crear cuando se configure MCP
 
 # =============================================================================
 # SUBDIRECTORIOS BRAIN/OPERATIONS (v6.1)
@@ -68,6 +71,7 @@ BRAIN_RULES_DIR = BRAIN_DIR / "04_Memory_Brain"
 OPERATIONS_TASKS_DIR = ROOT_DIR / "03_Tasks"
 OPERATIONS_EVALS_DIR = ROOT_DIR / "01_Core" / "02_Evals"
 OPERATIONS_ANALYTICS_DIR = BRAIN_DIR / "03_Process_Notes"
+AUTO_IMPROVEMENT_DIR = OPERATIONS_DIR / "01_Auto_Improvement"
 
 # =============================================================================
 # SUBDIRECTORIOS ENGINE/SCRIPTS (v6.1)
@@ -131,8 +135,24 @@ TASKS_DIR = ROOT_DIR / "03_Tasks"
 # Evaluaciones (directorio real)
 EVALS_DIR = ROOT_DIR / "01_Core" / "02_Evals"
 
+# Skills y Reglas (Sistema central)
+SKILLS_DIR = CORE_DIR / "03_Skills"
+RULES_DIR = CORE_DIR / "01_Rules"
+MCP_DIR = CORE_DIR / "05_Mcp"
+AGENTS_DIR = CORE_DIR / "04_Agents"
+INVENTORY_FILE = CORE_DIR / "01_Inventario_Total.md"
+BRAIN_TEMPLATE_DIR = ROOT_DIR / "03_Tasks" / "00_Templates"
+
+# Auditoría y Conocimiento (Unicorn)
+AUDITOR_DIR = ENGINE_DIR / "06_Auditor"
+UNICORN_DIR = ROOT_DIR / "02_Knowledge"
+
 # Server MCP
 SERVER_DIR = ROOT_DIR / "01_Core" / "09_Server"
+AIPM_ROOT = SERVER_DIR / "AIPM"
+
+# Archivos específicos
+BACKLOG_FILE = MATRIX_DIR / "BACKLOG.md"
 
 # Alias para compatibilidad con Server.py legacy
 MANAGER_AI_BASE_DIR = ROOT_DIR  # Compatibilidad con Server.py

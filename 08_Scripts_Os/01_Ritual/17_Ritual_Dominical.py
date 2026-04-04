@@ -7,15 +7,16 @@ Ritual de fin de semana.
 """
 
 import os
-import sys
 import subprocess
 import io
-from pathlib import Path
 
-# === SETUP PATHS ===
-SCRIPT_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = SCRIPT_DIR.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
+
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
 
 # === COLOR SETUP ===
 try:
@@ -68,8 +69,8 @@ def print_banner():
     print(banner)
 
 
-ROOT_DIR = PROJECT_ROOT
-WORKFLOW_DIR = SCRIPT_DIR
+# ROOT_DIR ya viene de config_paths
+WORKFLOW_DIR = ENGINE_DIR / "01_Ritual"
 
 
 def run_step(name, script_name):

@@ -1,21 +1,23 @@
-#!/usr/bin/env python3
-"""
-Beautify Tables - Alinea y embellece todas las tablas markdown del proyecto.
-Versión para PersonalOS v6.1
-"""
-
 import sys
-import os
+from pathlib import Path
+
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
+
 import re
 import glob
 import io
 
-# Fix encoding
+# Fix encoding (Standard block)
 if sys.platform == "win32":
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
-PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_ROOT = ROOT_DIR
 
 
 def align_table(table_block):

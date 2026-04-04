@@ -6,18 +6,17 @@ Skill Harmonizer - Valida paridad entre skills en carpetas e inventarios
 Detecta duplicados y genera reporte de salud del sistema de skills.
 """
 
-import os
 import sys
-import json
 from pathlib import Path
 
-# === SETUP PATHS ===
-SCRIPT_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = SCRIPT_DIR.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
 
-# === CONSTANTS ===
-SKILLS_DIR = PROJECT_ROOT / "01_Core" / "03_Skills"
+import json
 
 
 def find_skills() -> dict:

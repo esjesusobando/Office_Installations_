@@ -1,7 +1,7 @@
 # 01_Core — Think Different PersonalOS
 
 **Versión:** 6.1
-**Última actualización:** 2026-03-29
+**Última actualización:** 2026-04-04
 **Estado:** ✅ Activo | 💾 FUENTE DE VERDAD
 
 ---
@@ -27,7 +27,7 @@ Think_Different/
 
 ---
 
-## 📂 Estructura 01_Core (15 Elementos)
+## 📂 Estructura 01_Core (19 carpetas de skills)
 
 | #   | Carpeta                    | Contenido               | Estado   |
 |-----|----------------------------|-------------------------|----------|
@@ -132,7 +132,9 @@ Code review, arquitectura, seguridad, performance, etc.
 | 17  | 14_Anthropic_Harness           | 9+         | ✅        |
 | 18  | 15_Skill_Creator_Oficial       |------------| ✅        |
 | 19  | 16_Silicon_Valley_Data_Analyst |------------| ✅        |
-| 20  | 17_SEO_SOTA_Master             |------------| ✅        |  |
+| 20  | 17_SEO_SOTA_Master             |------------| ✅        |
+| 21  | 18_Personal_Life_OS            | 5+         | ✅        |
+| 22  | 19_Video_Intel                 |------------| ✅        |  |
 
 ### Workflows (26+ archivos)
 
@@ -172,15 +174,15 @@ python 01_Core/09_Server/mcp/Server.py
 
 ---
 
-## 🔄 Actualización Reciente (2026-03-29)
+## 🔄 Actualización Reciente (2026-04-04)
 
-- ✅ Sincronizado .agent/ con 01_Core/ (backup estratégico)
-- ✅ Tool Shed creado (auto-detecta contexto)
-- ✅ Skill Harmonizer creado (valida 20/20 categorías)
-- ✅ Notifier creado (sonido al completar tareas)
-- ✅ 9 scripts reparados en Ritual_Fixed
-- ✅ 9+ skills nuevos en 08_Personal_Os
-- ✅ 3 SKILL.md faltantes agregados
+- ✅ Video_Intel reorganizado (scripts → 01_Scripts/, references → 02_References/)
+- ✅ SKILL_TEMPLATE reorganizado con nueva estructura
+- ✅ AIPM scripts migrate from Legacy a 05_AIPM/
+- ✅ 19_Video_Intel y 18_Personal_Life_OS agregados
+- ✅ OBAND proyecto nuevo en 07_Projects/
+- ✅ 129 archivos staged para commit
+- ✅ Engram memory activo
 
 ---
 

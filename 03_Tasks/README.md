@@ -1,7 +1,7 @@
 # 03_Tasks — Sistema de Tareas
 
 **Versión:** 6.1
-**Última actualización:** 2026-03-29
+**Última actualización:** 2026-04-04
 **Estado:** ✅ Activo
 
 ---

@@ -1,7 +1,13 @@
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
 import sys
 from pathlib import Path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
+
+
 """
 83_Universal_Parser.py - Universal Doc Reader Elite
 ==================================================
@@ -18,10 +24,8 @@ Skills relacionadas:
 """
 
 import os
-import sys
 import argparse
 import io
-from pathlib import Path
 from datetime import datetime
 from typing import Optional
 
@@ -36,55 +40,39 @@ if sys.stdout.encoding != "utf-8":
 # =============================================================================
 try:
     import PyPDF2
-
     PDF_AVAILABLE = True
 except ImportError:
     PDF_AVAILABLE = False
 
 try:
     from docx import Document
-
     DOCX_AVAILABLE = True
 except ImportError:
     DOCX_AVAILABLE = False
 
 try:
     import pandas as pd
-
     PANDAS_AVAILABLE = True
 except ImportError:
     PANDAS_AVAILABLE = False
 
 try:
     from pptx import Presentation
-
     PPTX_AVAILABLE = True
 except ImportError:
     PPTX_AVAILABLE = False
 
 try:
     from PIL import Image
-
     PIL_AVAILABLE = True
 except ImportError:
     PIL_AVAILABLE = False
 
 try:
     from psd_tools import PSDImage
-
     PSD_AVAILABLE = True
 except ImportError:
     PSD_AVAILABLE = False
-
-# =============================================================================
-# CONFIG PATHS
-# =============================================================================
-try:
-    sys.path.insert(0, str(Path(__file__).parent))
-    from config_paths import ROOT_DIR, KNOWLEDGE_DIR
-except ImportError:
-    ROOT_DIR = Path(__file__).resolve().parent.parent.parent
-    KNOWLEDGE_DIR = ROOT_DIR / "03_Knowledge"
 
 # =============================================================================
 # BRANDING & COLORS

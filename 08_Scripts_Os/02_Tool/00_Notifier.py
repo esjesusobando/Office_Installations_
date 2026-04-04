@@ -8,26 +8,21 @@ Ejecuta sonidos al completar tareas importantes.
 Usa: .agent/04_Extensions/hooks/04_Sound/task-complete-sound.ps1
 """
 
-import os
 import sys
-import subprocess
 from pathlib import Path
+
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
+
+import subprocess
 from datetime import datetime
 
-# === SETUP PATHS ===
-SCRIPT_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = SCRIPT_DIR.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
-
-# Path al script de sonido
-SOUND_SCRIPT = (
-    PROJECT_ROOT
-    / ".agent"
-    / "04_Extensions"
-    / "hooks"
-    / "04_Sound"
-    / "task-complete-sound.ps1"
-)
+# Path al script de sonido (usando constants)
+SOUND_SCRIPT = SOUND_DIR / "task-complete-sound.ps1"
 
 
 def play_success_sound():

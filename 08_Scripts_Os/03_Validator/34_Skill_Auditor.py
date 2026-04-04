@@ -1,21 +1,25 @@
+# Importar pathlib primero para el protocolo de ruta
+
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
 import sys
 from pathlib import Path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
+
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
+
 """
 SKILL AUDITOR & FIXER
 Audita la estructura de 01_Core/03_Skills y corrige la numeración.
 """
 
 import os
-import sys
 import re
-from pathlib import Path
 
-# Usar ruta absoluta basada en la ubicación del script
-SCRIPT_DIR = Path(__file__).resolve().parent
-ROOT_DIR = SCRIPT_DIR.parent.parent  # Legacy_Backup -> 08_Scripts_Os -> raíz
-Skills_ROOT = ROOT_DIR / "01_Core" / "03_Skills"
+# Skills_ROOT dinámico desde config_paths
+Skills_ROOT = SKILLS_DIR
 
 # Las categorías son los directorios dentro de Skills_ROOT
 CATEGORIES = []  # Se llenará automáticamente

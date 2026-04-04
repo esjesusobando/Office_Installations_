@@ -7,36 +7,17 @@ Sincroniza notas del Brain.
 """
 
 import os
-import sys
 import subprocess
 import glob
 from datetime import datetime
-from pathlib import Path
 
-# === SETUP PATHS ===
-SCRIPT_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = SCRIPT_DIR.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
 
-# === IMPORTS ===
-try:
-    from config_paths import (
-        ROOT_DIR,
-        BRAIN_DIR,
-        BRAIN_RULES_DIR,
-        COMPOUND_ENGINE_DIR,
-        ENGINE_DIR,
-        BRAIN_NOTES_DIR,
-    )
-except ImportError:
-    ROOT_DIR = PROJECT_ROOT
-    BRAIN_DIR = PROJECT_ROOT / "04_Operations"
-    BRAIN_NOTES_DIR = BRAIN_DIR / "03_Process_Notes"
-    BRAIN_RULES_DIR = BRAIN_DIR / "04_Memory_Brain"
-    COMPOUND_ENGINE_DIR = (
-        PROJECT_ROOT / "01_Core" / "03_Skills" / "00_Compound_Engineering"
-    )
-    ENGINE_DIR = PROJECT_ROOT / "08_Scripts_Os"
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
 
 SESSIONS_DIR = BRAIN_NOTES_DIR
 
@@ -101,7 +82,7 @@ def get_activity_summary():
             ["git", "log", "--since", "midnight", "--pretty=format:- %s"],
             capture_output=True,
             text=True,
-            cwd=PROJECT_ROOT,
+            cwd=ROOT_DIR,
         )
         if result.returncode == 0 and result.stdout:
             return result.stdout.strip()

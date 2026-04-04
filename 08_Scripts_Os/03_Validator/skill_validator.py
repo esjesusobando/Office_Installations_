@@ -12,13 +12,27 @@ Scoring System:
 - <70% = FAIL
 """
 
+import sys
+from pathlib import Path
+
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
+
 import os
 import re
 import yaml
-import sys
-from pathlib import Path
+import io
 from typing import Any
 from dataclasses import dataclass, field
+
+# Fix Unicode for Windows
+if sys.platform == "win32":
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
 
 @dataclass
@@ -503,11 +517,6 @@ class SkillValidator:
 
 def print_report(report: ValidationReport, verbose: bool = False) -> None:
     """Print validation report in a formatted way."""
-    # Set UTF-8 encoding for Windows compatibility
-    import io
-
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
-
     print("\n" + "=" * 70)
     print(f"SKILL VALIDATION REPORT: {report.skill_name}")
     print("=" * 70)

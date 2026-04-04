@@ -1,7 +1,12 @@
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
 import sys
 from pathlib import Path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
+
 """
 CAMPANILLA - PersonalOS v1.0
 Función para reproducir sonido al completar tareas.
@@ -9,19 +14,13 @@ Función para reproducir sonido al completar tareas.
 
 import os
 import subprocess
-import sys
 import io
 
 # UTF-8 encoding para Windows
 if sys.stdout.encoding != "utf-8":
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
-HOOKS_DIR = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
-    ".agent",
-    "04_Extensions",
-    "hooks",
-)
+# HOOKS_DIR ya viene de config_paths
 
 
 def play_completion_sound():

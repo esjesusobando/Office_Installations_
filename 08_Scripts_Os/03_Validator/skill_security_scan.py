@@ -9,20 +9,25 @@ Autor: Gentleman Programming
 Versión: 2.0.0 (2026-03-30)
 """
 
+import sys
+from pathlib import Path
+
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
+
 import argparse
 import io
 import logging
-import os
 import re
-import sys
 from dataclasses import dataclass, field
-from pathlib import Path
 from typing import List, Set
 
 # Fix Unicode for Windows
 if sys.platform == "win32":
-    import codecs
-
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 

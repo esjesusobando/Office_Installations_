@@ -29,7 +29,7 @@
 02_Knowledge/
 └── 05_Unicorn/
     ├── README.md                    ✅ Índice maestro
-    ├── 01_Pm/                      ✅ PM
+    ├── 01_Pm/                       ✅ PM
     │   ├── decisions/
     │   ├── lessons/
     │   ├── patterns/

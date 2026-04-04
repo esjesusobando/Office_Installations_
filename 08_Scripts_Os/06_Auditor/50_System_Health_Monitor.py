@@ -1,33 +1,21 @@
-import os
 import sys
+from pathlib import Path
 
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
+
+# === COLOR SETUP ===
 try:
     from colorama import Fore, Style, init
+    init(autoreset=True)
 except ImportError:
-
-    class Fore:
-        CYAN = GREEN = RED = YELLOW = MAGENTA = ""
-
-    class Style:
-        RESET_ALL = ""
-
-    def init(**kw):
-        pass
-
-
-# Add 08_Scripts_Os to path (un nivel up desde Auditor_Fixed)
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from config_paths import (
-    CORE_DIR,
-    BRAIN_DIR,
-    OPERATIONS_DIR,
-    KNOWLEDGE_DIR,
-    ENGINE_DIR,
-    SYSTEM_DIR,
-    ARCHIVE_DIR,
-)
-
-init(autoreset=True)
+    class Fore: CYAN = GREEN = RED = YELLOW = MAGENTA = ""
+    class Style: RESET_ALL = ""
+    def init(**kw): pass
 
 
 def check_directory_structure():
@@ -53,12 +41,10 @@ def check_directory_structure():
 
 def check_pollution():
     print(f"\n{Fore.CYAN}--- Verificando Contaminación ---")
-    # Example check: look for common junk files in root
     junk_files = [".DS_Store", "Thumbs.db"]
     found_junk = False
-    # Need to go up 2 levels from 08_Scripts_Os to root
     for junk in junk_files:
-        if os.path.exists(os.path.join(os.path.dirname(__file__), "..", "..", junk)):
+        if (ROOT_DIR / junk).exists():
             print(f"{Fore.YELLOW}[WARN] Junk file found: {junk}")
             found_junk = True
     if not found_junk:
@@ -70,11 +56,8 @@ def verify_master_files():
     print(f"\n{Fore.CYAN}--- Verificando Archivos Maestros ---")
     master_files = ["CLAUDE.md", "README.md"]
     all_found = True
-    # Auditor_Fixed → 08_Scripts_Os → Think_Different (2 niveles)
     for mf in master_files:
-        if os.path.exists(
-            os.path.join(os.path.dirname(__file__), "..", "..", mf)
-        ):
+        if (ROOT_DIR / mf).exists():
             print(f"{Fore.GREEN}[OK] {mf} encontrado.")
         else:
             print(f"{Fore.RED}[MISSING] {mf} no encontrado.")

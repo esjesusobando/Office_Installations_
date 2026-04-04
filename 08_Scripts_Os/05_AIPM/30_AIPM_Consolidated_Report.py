@@ -1,9 +1,14 @@
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
 import sys
 from pathlib import Path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
+
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
+
 import os
-import sys
 import io
 import json
 import datetime
@@ -26,15 +31,19 @@ if sys.platform == "win32":
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
+
 def dynamic_speak(text):
     """Interfaz de Voz SOTA v2.2"""
     print(f"{Fore.MAGENTA}🔊 [VOICE]: {text}{Style.RESET_ALL}")
     if sys.platform == "win32":
         try:
-            cmd = f'PowerShell -Command "Add-Type -AssemblyName System.Speech; (New-Object System.Speech.Synthesis.SpeechSynthesizer).Speak(\'{text}\')"'
-            subprocess.Popen(cmd, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            cmd = f"PowerShell -Command \"Add-Type -AssemblyName System.Speech; (New-Object System.Speech.Synthesis.SpeechSynthesizer).Speak('{text}')\""
+            subprocess.Popen(
+                cmd, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
+            )
         except:
             pass
+
 
 def print_banner():
     banner = rf"""
@@ -52,6 +61,7 @@ def print_banner():
     ###########################################################################{Style.RESET_ALL}
 """
     print(banner)
+
 
 ROOT_DIR = PROJECT_ROOT
 
@@ -350,7 +360,9 @@ class AIPMConsolidatedReport:
         )
         report_id = f"{report_prefix}_{session_name}_{timestamp}"
 
-        print(f"\n{Fore.CYAN}[AIPM] [SYNC] Generando Reporte Consolidado...{Style.RESET_ALL}")
+        print(
+            f"\n{Fore.CYAN}[AIPM] [SYNC] Generando Reporte Consolidado...{Style.RESET_ALL}"
+        )
         print(f"      Integrando herramientas: 15-25")
 
         # 1. Análisis REAL de Trazas y Reportes (Logger + Evaluator)
@@ -422,7 +434,9 @@ class AIPMConsolidatedReport:
         md_path = os.path.join(md_dir, f"{report_id}.md")
         self._generate_markdown_report(consolidated, md_path)
 
-        print(f"\n{Fore.GREEN}[AIPM] [OK] Reporte Consolidado Generado:{Style.RESET_ALL}")
+        print(
+            f"\n{Fore.GREEN}[AIPM] [OK] Reporte Consolidado Generado:{Style.RESET_ALL}"
+        )
         print(f"      JSON: {os.path.basename(json_path)}")
         print(f"      MD:   {os.path.basename(md_path)}")
 

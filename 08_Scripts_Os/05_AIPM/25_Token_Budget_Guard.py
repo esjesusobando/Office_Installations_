@@ -1,18 +1,20 @@
-import os
 import sys
+from pathlib import Path
+
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
+
+import os
 import subprocess
 import io
 from typing import Tuple
 from colorama import init, Fore, Style
 
-# Initialize Colorama
 init()
-
-# =============================================================================
-# ARMOR LAYER - PATH RESOLUTION (3-LEVEL)
-# =============================================================================
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
 
 # Fix Windows console encoding
 if sys.platform == "win32":

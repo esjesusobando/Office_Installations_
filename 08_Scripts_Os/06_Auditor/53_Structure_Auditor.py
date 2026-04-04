@@ -1,23 +1,23 @@
 import sys
 from pathlib import Path
-from colorama import init, Fore, Style
 
-init(autoreset=True)
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
 
-ROOT_DIR = Path(__file__).resolve().parent.parent.parent
-ENGINE_DIR = ROOT_DIR / "08_Scripts_Os"
+# === COLOR SETUP ===
+try:
+    from colorama import init, Fore, Style
+    init(autoreset=True)
+except ImportError:
+    class Fore: GREEN = RED = ""
+    class Style: BRIGHT = ""
 
-DIMENSIONS = [
-    "00_Winter_is_Coming",
-    "01_Core",
-    "02_Knowledge",
-    "03_Tasks",
-    "04_Operations",
-    "05_Archive",
-    "06_Playground",
-    "07_Projects",
-    "08_Scripts_Os",
-]
+# Las dimensiones ya vienen de config_paths o se definen aquí
+DIMENSIONS = ["00_Winter_is_Coming", "01_Core", "02_Knowledge", "03_Tasks", "04_Operations", "05_Archive", "08_Scripts_Os"]
 
 
 def audit():

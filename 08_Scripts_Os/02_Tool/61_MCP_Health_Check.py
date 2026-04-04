@@ -1,8 +1,14 @@
+# Importar pathlib primero para el protocolo de ruta
 import sys
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
+
 """
 61_MCP_Health_Check.py - Armor Layer Protected
 Verifica estado de MCPs configurados
@@ -15,35 +21,10 @@ Uso:
 
 import json
 import subprocess
-import sys
 import socket
-from pathlib import Path
 from colorama import init, Fore, Style
 
 init(autoreset=True)
-
-# Armor Layer: Config paths inline
-_SCRIPT_DIR = Path(__file__).resolve().parent
-_PROJECT_ROOT = _SCRIPT_DIR.parent.parent
-sys.path.insert(0, str(_PROJECT_ROOT))
-sys.path.insert(0, str(_SCRIPT_DIR.parent))
-try:
-    from config_paths import PROJECT_ROOT
-except:
-    PROJECT_ROOT = _PROJECT_ROOT
-
-REQUIRED_DIRS = [
-    "00_Core",
-    "01_Brain",
-    "02_Operations",
-    "03_Knowledge",
-    "../..",
-    "05_System",
-    "06_Archive",
-]
-for d in REQUIRED_DIRS:
-    if not (PROJECT_ROOT / d).exists():
-        print(f"[WARN] Required directory not found: {d}")
 
 ROOT_DIR = PROJECT_ROOT
 

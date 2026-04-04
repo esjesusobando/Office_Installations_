@@ -1,8 +1,12 @@
+# === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
 import sys
 from pathlib import Path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
-#!/usr/bin/env python3
+_current = Path(__file__).resolve()
+_root = next((p for p in _current.parents if (p / "01_Core").exists()), None)
+if _root:
+    sys.path.insert(0, str(_root / "08_Scripts_Os"))
+from config_paths import *
+
 """
 QMD Index Update Script
 Re-indexes QMD collections for PersonalOS.
@@ -10,9 +14,7 @@ Usage: python 56_Update_QMD_Index.py
 """
 
 import subprocess
-import sys
 import os
-from pathlib import Path
 
 # Fix Windows encoding
 os.system("chcp 65001 >nul 2>&1")
