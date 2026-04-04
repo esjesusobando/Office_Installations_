@@ -50,7 +50,7 @@ Resource_Refs:
 | Lenguaje                        | [TypeScript]                                      |
 | Base_Datos                      | [PostgreSQL]                                      |
 | UI                              | [Tailwind CSS]                                    |
-| Autenticación                   | [NextAuth/JWT]                                    |
+| Autenticación                   | [Better Auth]                                     |
 | Arquitectura                    | [App Router, Server Components]                   |
 
 * *Current State:** [Estado actual del código]

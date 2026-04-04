@@ -46,7 +46,7 @@ Por favor, lee el archivo de la tarea en `03_Tasks/[archivo].md` y propón los p
 - **Lenguaje:** TypeScript (Estricto)
 - **Base de Datos y ORM:** Prisma + PostgreSQL
 - **UI y Estilo:** Tailwind CSS, Lucide Icons
-- **Autenticación:** NextAuth.js
+- **Autenticación:** Better Auth
 - **Patrones Arquitectónicos Clave:** App Router, Server Components, Server Actions
 
 > **Complemento Estratégico (CONDUCTA IA):** No supongas. Audita el repositorio. Revisa `package.json`, `tsconfig.json`, `middleware.ts`, `drizzle/schema` y carpetas de componentes antes de proponer cambios.
