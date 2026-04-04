@@ -12,7 +12,8 @@ from pathlib import Path
 
 import click
 
-from .synthesis_engine import SynthesisEngine
+from synthesis_engine import SynthesisEngine
+from video_registry import VideoRegistry
 
 
 @click.group()
@@ -87,6 +88,23 @@ def analyze(video_url, repo, output, format, verbose, no_transcript):
                 click.echo(f"[+] Implementation plan saved to: {output}")
             else:
                 click.echo(markdown)
+                
+            # Log to registry
+            if result.get("components", {}).get("video"):
+                try:
+                    registry_path = Path(__file__).parent.parent.parent.parent.parent / "02_Knowledge" / "06_Unicorn" / "video_analysis_registry.md"
+                    video_registry = VideoRegistry(str(registry_path))
+                    
+                    if output:
+                        abs_output = str(Path(output).resolve())
+                    else:
+                        abs_output = "No File Output"
+                        
+                    video_registry.append_to_registry(result["components"]["video"], abs_output)
+                    if verbose:
+                        click.echo(f"[+] Added entry to Video Registry")
+                except Exception as reg_err:
+                    click.echo(f"[!] Warning: Failed to update registry: {reg_err}", err=True)
 
         # Summary
         if verbose:

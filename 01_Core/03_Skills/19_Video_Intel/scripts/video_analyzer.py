@@ -234,13 +234,17 @@ class VideoAnalyzer:
         """
         result = {}
 
-        # Try to use supadata if available in the environment
         try:
-            import json
-
-            # This is a conceptual integration for the agent to know it can use the tool
-            # In a real script, we would call the supadata API here
             result["metadata"] = self.download_metadata(video_url)
+            
+            if include_transcript:
+                transcript_path = self.transcribe(video_url)
+                if transcript_path and os.path.exists(transcript_path):
+                    with open(transcript_path, "r", encoding="utf-8") as f:
+                        result["transcript"] = f.read()
+                else:
+                    result["transcript"] = ""
+
         except Exception as e:
             result["error"] = str(e)
 

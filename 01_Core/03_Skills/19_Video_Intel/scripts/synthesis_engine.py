@@ -13,8 +13,9 @@ import subprocess
 import tempfile
 from typing import Dict, List, Optional
 
-from .video_analyzer import VideoAnalyzer
-from .repo_scanner import RepoScanner
+from video_analyzer import VideoAnalyzer
+from repo_scanner import RepoScanner
+from os_integration import OSIntegration
 
 
 class SynthesisEngine:
@@ -267,55 +268,9 @@ class SynthesisEngine:
     def verify_os_capabilities(self, required_tools: List[str]) -> dict:
         """
         Verify required tools against OS capabilities.
-
-        Args:
-            required_tools: List of tool names to check
-
-        Returns:
-            Dictionary with available, missing, and version info
+        Uses the dedicated OSIntegration module.
         """
-        result = {"available": [], "missing": [], "versions": {}}
-
-        for tool in required_tools:
-            # Check if tool is available
-            cmd = ["where" if os.name == "nt" else "which", tool]
-
-            try:
-                check_result = subprocess.run(
-                    cmd, capture_output=True, text=True, timeout=5
-                )
-
-                if check_result.returncode == 0:
-                    result["available"].append(tool)
-
-                    # Get version if possible
-                    version_cmd = [tool, "--version"]
-                    try:
-                        version_result = subprocess.run(
-                            version_cmd, capture_output=True, text=True, timeout=5
-                        )
-                        if version_result.returncode == 0:
-                            # Extract version number
-                            version_match = re.search(
-                                r"(\d+\.\d+(?:\.\d+)?)", version_result.stdout
-                            )
-                            if version_match:
-                                result["versions"][tool] = version_match.group(1)
-                            else:
-                                result["versions"][tool] = version_result.stdout.split(
-                                    "\n"
-                                )[0][:50]
-                    except:
-                        pass
-                else:
-                    result["missing"].append(tool)
-
-            except FileNotFoundError:
-                result["missing"].append(tool)
-            except subprocess.TimeoutExpired:
-                result["missing"].append(tool)
-
-        return result
+        return OSIntegration.verify_tools(required_tools)
 
     def generate_implementation_plan(
         self, video_data: dict, repo_data: Optional[dict] = None

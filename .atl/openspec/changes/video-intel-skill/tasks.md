@@ -47,9 +47,9 @@
 
 ## Phase 7: Integration Testing
 
-- [ ] 7.1 Run full pipeline with test video URL https://www.youtube.com/live/3psHUg6KzOo?si=Y6bZACLup04IfPCF
-- [ ] 7.2 Verify transcript extraction produces text file with timestamps
-- [ ] 7.3 Verify metadata extraction (title, duration, channel)
-- [ ] 7.4 Test methodology extraction from transcript
-- [ ] 7.5 Test OS verification reports available tools correctly
-- [ ] 7.6 Verify implementation plan generation with clear steps
+- [x] 7.1 Run full pipeline with test video URL https://www.youtube.com/live/3psHUg6KzOo?si=Y6bZACLup04IfPCF
+- [x] 7.2 Verify transcript extraction produces text file with timestamps
+- [x] 7.3 Verify metadata extraction (title, duration, channel) — title/channel/duration/id/views all correct
+- [x] 7.4 Test methodology extraction from transcript — 0 matches (NLP patterns English-only; gotcha documented)
+- [x] 7.5 Test OS verification reports available tools correctly — python/git detected; yt-dlp via `python -m yt_dlp` (gotcha)
+- [x] 7.6 Verify implementation plan generation with clear steps — CLI runs e2e, md + registry updated
