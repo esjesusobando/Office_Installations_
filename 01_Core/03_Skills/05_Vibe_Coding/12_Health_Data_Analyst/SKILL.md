@@ -99,9 +99,17 @@ def plot_health_trends(df, target_col):
 
 ## ⚠️ Gotchas (Errores Comunes a Evitar)
 
-- **[ERROR]**: Error común
-  - **Por qué**: Explicación
-  - **Solución**: Cómo evitar
+- **[ERROR]**: Missing values in data
+  - **Por qué**: Datos incompletos o NaN
+  - **Solución**: Usar `df.dropna()` o imputar con `.fillna()`
+
+- **[ERROR]**: Date parsing fails
+  - **Por qué**: Formatos de fecha inconsistentes
+  - **Solución**: Usar `pd.to_datetime(format='%Y-%m-%d')`
+
+- **[ERROR]**: Memory issues with large datasets
+  - **Por qué**: CSV muy grande para memoria
+  - **Solución**: Usar `chunksize` en read_csv
 
 ## 💾 State Persistence
 

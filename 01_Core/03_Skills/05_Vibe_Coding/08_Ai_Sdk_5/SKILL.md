@@ -241,9 +241,17 @@ ai sdk, vercel ai, chat, streaming, langchain, openai, llm
 
 ## ⚠️ Gotchas (Errores Comunes a Evitar)
 
-- **[ERROR]**: Error común
-  - **Por qué**: Explicación
-  - **Solución**: Cómo evitar
+- **[ERROR]**: Stream not rendering
+  - **Por qué**: No usar `useStream` o `useAssistant` hook
+  - **Solución**: Usar los hooks de AI SDK para streaming
+
+- **[ERROR]**: Too many tokens
+  - **Por qué**: No configurar `maxTokens` o contexto muy grande
+  - **Solución**: Usar trimMessages o limitar historial
+
+- **[ERROR]**: Model not found
+  - **Por qué**: Modelo no existe o API key sin permisos
+  - **Solución**: Verificar modelo en provider docs
 
 ## 💾 State Persistence
 

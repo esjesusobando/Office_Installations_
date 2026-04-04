@@ -227,9 +227,17 @@ zustand, state management, react, store, persist, middleware
 
 ## ⚠️ Gotchas (Errores Comunes a Evitar)
 
-- **[ERROR]**: Error común
-  - **Por qué**: Explicación
-  - **Solución**: Cómo evitar
+- **[ERROR]**: State not updating in React components
+  - **Por qué**: No usar el hook correctamente o mutar estado directamente
+  - **Solución**: Usar `set()` con functional update `set(state => ({ ... }))`
+
+- **[ERROR]**: Memory leaks
+  - **Por qué**: Selector devuelve nuevo objeto en cada render
+  - **Solución**: Usar shallow compare o selectors estables
+
+- **[ERROR]**: DevTools not working
+  - **Por qué**: Falta middleware de devtools en producción
+  - **Solución**: Usar devtools solo en desarrollo con condicional
 
 ## 💾 State Persistence
 

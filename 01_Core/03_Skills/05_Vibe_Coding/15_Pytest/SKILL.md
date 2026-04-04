@@ -191,9 +191,17 @@ pytest, python, testing, fixtures, mocking, parametrize, markers
 
 ## ⚠️ Gotchas (Errores Comunes a Evitar)
 
-- **[ERROR]**: Error común
-  - **Por qué**: Explicación
-  - **Solución**: Cómo evitar
+- **[ERROR]**: Test fails locally but not in CI
+  - **Por qué**: Dependencias de entorno o archivos no commiteados
+  - **Solución**: Usar fixtures y verificar PYTHONPATH
+
+- **[ERROR]**: Flaky tests
+  - **Por qué**: Tests dependen de orden o estado compartido
+  - **Solución**: Usar pytest-xdist para paralelización y isolate tests
+
+- **[ERROR]**: Coverage not accurate
+  - **Por qué**: Tests ejecutan código en subprocess
+  - **Solución**: Usar `--capture=no` o plugins específicos
 
 ## 💾 State Persistence
 

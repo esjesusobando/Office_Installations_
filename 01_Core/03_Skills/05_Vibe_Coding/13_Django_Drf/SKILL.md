@@ -191,9 +191,17 @@ django, drf, rest framework, viewset, serializer, api, rest api
 
 ## ⚠️ Gotchas (Errores Comunes a Evitar)
 
-- **[ERROR]**: Error común
-  - **Por qué**: Explicación
-  - **Solución**: Cómo evitar
+- **[ERROR]**: Circular import error
+  - **Por qué**: Imports cruzados entre models y serializers
+  - **Solución**: Usar `from __future__ import annotations` o mover a third party app
+
+- **[ERROR]**: N+1 query problem
+  - **Por qué**: Sin select_related/prefetch_related
+  - **Solución**: Usar `select_related('foreign_key')` y `prefetch_related('reverse_fk')`
+
+- **[ERROR]**: CSRF token missing
+  - **Por qué**: POST sin token CSRF en sessions
+  - **Solución**: Usar `@csrf_exempt` en views o send CSRF cookie
 
 ## 💾 State Persistence
 

@@ -326,9 +326,17 @@ playwright, e2e, testing, page object model, selectors, end-to-end, mcp
 
 ## ⚠️ Gotchas (Errores Comunes a Evitar)
 
-- **[ERROR]**: Error común
-  - **Por qué**: Explicación
-  - **Solución**: Cómo evitar
+- **[ERROR]**: Element not found (timeout)
+  - **Por qué**: Elemento no cargó o selector incorrecto
+  - **Solución**: Usar waitForSelector o mejorar selector con data-testid
+
+- **[ERROR]**: Tests running too slow
+  - **Por qué**: No usar parallel execution
+  - **Solución**: Usar `pytest-playwright` con `-n auto`
+
+- **[ERROR]**: Browser not launching
+  - **Por qué**: Falta Playwright browsers installation
+  - **Solución**: Ejecutar `playwright install`
 
 ## 💾 State Persistence
 

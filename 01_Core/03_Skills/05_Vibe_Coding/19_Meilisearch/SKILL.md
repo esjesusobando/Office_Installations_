@@ -117,60 +117,7 @@ export async function GET(request: Request) {
 
 ## Autocomplete Component
 
-```typescript
-// components/SearchAutocomplete.tsx
-'use client';
-
-import { useState, useEffect } from 'react';
-import { useDebounce } from '@/hooks/useDebounce';
-
-export function SearchAutocomplete() {
-  const [query, setQuery] = useState('');
-  const [results, setResults] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
-  
-  const debouncedQuery = useDebounce(query, 300);
-  
-  useEffect(() => {
-    if (debouncedQuery.length < 2) {
-      setResults([]);
-      return;
-    }
-    
-    fetch(`/api/search?q=${encodeURIComponent(debouncedQuery)}`)
-      .then(res => res.json())
-      .then(data => {
-        setResults(data.hits);
-        setIsOpen(true);
-      });
-  }, [debouncedQuery]);
-  
-  return (
-    <div className="relative">
-      <input
-        type="search"
-        value={query}
-        onChange={e => setQuery(e.target.value)}
-        placeholder="Search inventory..."
-        className="w-full px-4 py-2 border rounded-lg"
-      />
-      
-      {isOpen && results.length > 0 && (
-        <ul className="absolute z-10 w-full bg-white border rounded-lg mt-1">
-          {results.map(product => (
-            <li key={product.id} className="p-2 hover:bg-gray-100 cursor-pointer">
-              <a href={`/inventory/${product.id}`}>
-                <span className="font-medium">{product.title}</span>
-                <span className="text-gray-500 ml-2">${product.price}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-}
-```
+Para componente completo, ver [advanced.md](01_References/advanced.md)
 
 ## Webhook Sync (from Payload)
 

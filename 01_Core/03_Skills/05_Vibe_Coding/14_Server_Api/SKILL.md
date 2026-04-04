@@ -45,9 +45,17 @@ If payload or route changes, update docs in the same PR.
 
 ## ⚠️ Gotchas (Errores Comunes a Evitar)
 
-- **[ERROR]**: Error común
-  - **Por qué**: Explicación
-  - **Solución**: Cómo evitar
+- **[ERROR]**: 404 on valid route
+  - **Por qué**: Route mal escrito o middleware conflictivo
+  - **Solución**: Verificar route order y middleware stack
+
+- **[ERROR]**: CORS error
+  - **Por qué**: No configurar CORS headers
+  - **Solución**: Agregar middleware CORS antes de handler
+
+- **[ERROR]**: Body not parsed
+  - **Por qué**: No usar body-parser middleware
+  - **Solución**: Usar `express.json()` o similar
 
 ## 💾 State Persistence
 

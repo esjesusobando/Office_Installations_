@@ -115,9 +115,17 @@ typescript, ts, types, interfaces, generics, strict mode, utility types
 
 ## ⚠️ Gotchas (Errores Comunes a Evitar)
 
-- **[ERROR]**: Error común
-  - **Por qué**: Explicación
-  - **Solución**: Cómo evitar
+- **[ERROR]**: Type 'any' inferred
+  - **Por qué**: TypeScript infiere `any` cuando no puede resolver el tipo
+  - **Solución**: Usar generics `<T>` o `unknown` con type guards
+
+- **[ERROR]**: Property does not exist on type
+  - **Por qué**: Acceso a propiedad que no existe en el tipo
+  - **Solución**: Usar Optional chaining `?.` o verificar con `in` operator
+
+- **[ERROR]**: Generic type inference fails
+  - **Por qué**: No puede inferir el tipo genérico
+  - **Solución**: Proporcionar tipos explícitos `<Type>()`
 
 ## 💾 State Persistence
 

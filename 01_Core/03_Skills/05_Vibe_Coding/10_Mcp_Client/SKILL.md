@@ -134,9 +134,17 @@ pip install mcp fastmcp
 
 ## ⚠️ Gotchas (Errores Comunes a Evitar)
 
-- **[ERROR]**: Error común
-  - **Por qué**: Explicación
-  - **Solución**: Cómo evitar
+- **[ERROR]**: MCP server not responding
+  - **Por qué**: Server caído o timeout
+  - **Solución**: Implementar retry con exponential backoff
+
+- **[ERROR]**: Tool not found
+  - **Por qué**: Herramienta no expuesta por el servidor
+  - **Solución**: Verificar capabilities del servidor
+
+- **[ERROR]**: Large response payload
+  - **Por qué**: Respuesta muy grande del MCP
+  - **Solución**: Usar paginación o filtros
 
 ## 💾 State Persistence
 

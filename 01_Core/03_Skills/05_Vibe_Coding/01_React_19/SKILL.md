@@ -129,9 +129,17 @@ react, react 19, compiler, useMemo, useCallback, server components, use hook
 
 ## ⚠️ Gotchas (Errores Comunes a Evitar)
 
-- **[ERROR]**: Error común
-  - **Por qué**: Explicación
-  - **Solución**: Cómo evitar
+- **[ERROR]**: `Hydration mismatch` errors
+  - **Por qué**: Server y client state no coinciden (fechas random, timestamps)
+  - **Solución**: Usar `suppressHydrationWarning` o inicializar estado en useEffect
+
+- **[ERROR]**: Stale closures en useEffect
+  - **Por qué**: Captura valores viejos de state/props
+  - **Solución**: Usar `useCallback` para funciones, o incluir dependencias correctas
+
+- **[ERROR]**: Too many re-renders
+  - **Por qué**: Set state en render o dependency array incorrecto
+  - **Solución**: Usar `useMemo` para cálculos, `useCallback` para funciones
 
 ## 💾 State Persistence
 

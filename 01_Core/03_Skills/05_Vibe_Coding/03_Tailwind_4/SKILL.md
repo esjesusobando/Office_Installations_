@@ -204,9 +204,17 @@ tailwind, css, styling, cn, utility classes, responsive
 
 ## ⚠️ Gotchas (Errores Comunes a Evitar)
 
-- **[ERROR]**: Error común
-  - **Por qué**: Explicación
-  - **Solución**: Cómo evitar
+- **[ERROR]**: Classes no applied
+  - **Por qué**: Tailwind no detecta clases dinámicas con strings interpolados
+  - **Solución**: Usar `cn()` utility o verificar que las clases estén en safelist
+
+- **[ERROR]**: Style conflicts
+  - **Por qué**: Múltiples clases con mismo propiedad CSS
+  - **Solución**: Usar `cn()` que aplica tailwind-merge automáticamente
+
+- **[ERROR]**: Dark mode no funciona
+  - **Por qué**: Falta `darkMode: 'class'` en config
+  - **Solución**: Agregar `darkMode: 'class'` en tailwind.config.js
 
 ## 💾 State Persistence
 

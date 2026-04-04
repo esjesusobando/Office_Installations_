@@ -155,9 +155,17 @@ nextjs, next.js, app router, server components, server actions, streaming
 
 ## ⚠️ Gotchas (Errores Comunes a Evitar)
 
-- **[ERROR]**: Error común
-  - **Por qué**: Explicación
-  - **Solución**: Cómo evitar
+- **[ERROR]**: `Dynamic server usage` en Server Component
+  - **Por qué**: Se usa hook de cliente (useState, useEffect) en server component
+  - **Solución**: Mover a client component con `'use client'` o usar Server Actions
+
+- **[ERROR]**: `Params` no es aún awaitable en pages
+  - **Por qué**: En Next.js 15 params es una Promise - requiere await
+  - **Solución**: `export default async function Page({ params }: { params: Promise<{ id: string }> }) { const { id } = await params; }`
+
+- **[ERROR]**: Cookies no se actualizan inmediatamente
+  - **Por qué**: Cookies son request-time, no runtime
+  - **Solución**: Usar Server Actions con `cookies().set()` o middleware para cookies
 
 ## 💾 State Persistence
 

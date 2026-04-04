@@ -221,9 +221,17 @@ zod, validation, schema, typescript, forms, parsing
 
 ## ⚠️ Gotchas (Errores Comunes a Evitar)
 
-- **[ERROR]**: Error común
-  - **Por qué**: Explicación
-  - **Solución**: Cómo evitar
+- **[ERROR]**: Schema inference fails
+  - **Por qué**: Inferencia de tipos no funciona con objetos complejos
+  - **Solución**: Usar `z.infer<typeof schema>` explícitamente
+
+- **[ERROR]**: Validation not catching null/undefined
+  - **Por qué**: Tipos opcionales no aplican validaciones
+  - **Solución**: Usar `.optional()` después de validaciones o `.nullable()`
+
+- **[ERROR]**: Async refinements not working
+  - **Por qué**: Refinements async no están soportados directamente
+  - **Solución**: Usar `.superRefine()` con promesas
 
 ## 💾 State Persistence
 
