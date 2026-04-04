@@ -57,25 +57,23 @@ nombre-skill/
 - **Configuración**: Ver [references/CONFIG.md](references/CONFIG.md)
 - **Ejemplos avanzados**: Ver [references/ADVANCED.md](references/ADVANCED.md)
 
-## Errores Comunes
+## ⚠️ Gotchas
 
-### ❌ BAD: Sin validación de inputs
+### ERROR 1: Sin validación de inputs
+- **Por qué**: Input sin validar causa errores en runtime que pudieron prevenirse
+- **Solución**: Siempre validar inputs al inicio de la función
 
-```python
-# NO HACER: Input sin validar
-def process(data):
-    return data.upper()  # Qué pasa si data es None?
-```
+### ERROR 2: Documentación genérica
+- **Por qué**: "No cometas errores" no aporta valor - es demasiado obvio
+- **Solución**: Ser específico: "Sin yt-dlp instalado, la extracción de metadata falla"
 
-### ✅ GOOD: Con validación
+### ERROR 3: No seguir la estructura
+- **Por qué**: Sin estructura consistente, las skills son difíciles de mantener
+- **Solución**: Siempre usar el template con las secciones requeridas
 
-```python
-# HACER: Input validado
-def process(data):
-    if not data:
-        raise ValueError("data no puede ser vacío")
-    return data.upper()
-```
+### ERROR 4: Description sin triggers
+- **Por qué**: Sin triggers, el modelo no sabe cuándo activar la skill
+- **Solución**: Incluir siempre "triggers on:" seguido de palabras clave específicas
 
 ## Integración con Agent Teams Lite
 
@@ -101,3 +99,24 @@ Si esta skill es parte del workflow SDD:
 ---
 
 **Nota:** Esta es una skill template. Modifica según las necesidades específicas del caso de uso.
+
+---
+
+## Esencia Original
+
+> **Metaskill**: Template base para crear nuevas skills siguiendo estándares PersonalOS.
+
+**Por qué existe esta skill:**
+- Cada nueva skill necesita un punto de partida consistente
+- Sin template, cada skill tiene formato diferente
+- El template asegura que todas las skills cumplan los estándares SOTA
+
+**Caso de uso principal:**
+1. Se crea una nueva carpeta para la skill
+2. Se copia este template como SKILL.md base
+3. Se personalizan las secciones vacías
+4. Se audita con Skill Auditor antes de integrar
+
+---
+
+*Skill Version: 1.0.0*
