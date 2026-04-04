@@ -189,6 +189,13 @@ Reportes de auditoría se guardan en:
 | 50-69%  | ⚠️ Needs Work | Significant fixes required |
 | <50%    | ❌ Failed      | Do not integrate           |
 
+## ⚠️ Gotchas
+
+- **Auditoría falsa**: Si ejecutas el audit sin haber hecho cambios reales, el score no refleja nada. Solución: Solo auditar después de crear/modificar skills
+- **Skills sin ejecutar**: El auditor no puede validar habilidades que nunca fueron probadas. Solución: Ejecutar la skill al menos una vez antes de auditar
+- **Score subjetivo**: El rating depende de los criterios que uses. Solución: Mantener consistencia en los criterios entre auditorías
+- **Archivo references/ vacío**: Si SKILL.md >400 líneas pero references/ está vacío, no cumple progressive disclosure. Solución: Mover documentación pesada a references/
+
 ---
 
 *Skill Version: 2.0*
