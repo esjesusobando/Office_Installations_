@@ -6,8 +6,10 @@ Reutiliza scripts de auditoría existentes: 53, 57, 34, 50, 33
 
 import argparse
 import os
+import sys
 import io
 import subprocess
+from pathlib import Path
 
 try:
     from colorama import init, Fore, Style
@@ -50,7 +52,15 @@ def audit_dimensions():
     print(f"\n{Style.BRIGHT}Validating Dimensions:")
     errors = 0
     # Usar constante DIMENSIONS de config_paths si existiera, o manual dinámica
-    dims = ["00_Winter_is_Coming", "01_Core", "02_Knowledge", "03_Tasks", "04_Operations", "05_Archive", "08_Scripts_Os"]
+    dims = [
+        "00_Winter_is_Coming",
+        "01_Core",
+        "02_Knowledge",
+        "03_Tasks",
+        "04_Operations",
+        "05_Archive",
+        "08_Scripts_Os",
+    ]
     for dim in dims:
         path = PROJECT_ROOT / dim
         if path.exists() and path.is_dir():

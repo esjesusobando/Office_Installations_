@@ -7,7 +7,9 @@ Reutiliza scripts de rituales: 08, 09, 14, 15, 17
 import argparse
 import os
 import io
+import sys
 import subprocess
+from pathlib import Path
 
 
 # === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
@@ -20,14 +22,21 @@ from config_paths import *
 # === COLOR SETUP ===
 try:
     from colorama import init, Fore, Style
+
     init(autoreset=True)
 except ImportError:
-    class Fore: GREEN = YELLOW = RED = CYAN = MAGENTA = BLUE = ""
-    class Style: RESET_ALL = ""
+
+    class Fore:
+        GREEN = YELLOW = RED = CYAN = MAGENTA = BLUE = ""
+
+    class Style:
+        RESET_ALL = ""
+
 
 # Fix Windows console encoding
 if sys.platform == "win32":
     import io
+
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
