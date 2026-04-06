@@ -1,3 +1,14 @@
+---
+name: deep-research
+description: >
+  Investigación profunda y exhaustiva de temas complejos.
+  Úsalo cuando: (1) Necesites investigar un tema a fondo,
+  (2) Pidas análisis exhaustivo o "research sobre X",
+  (3) Requieras síntesis de múltiples fuentes y validación de hechos.
+  NO usar para búsquedas simples o hechos puntuales.
+  Triggers: deep research, investigación profunda, investigate topic, research, análisis exhaustivo
+---
+
 # 🔍 Skill: Deep Research (Investigación Profunda)
 
 ## Overview

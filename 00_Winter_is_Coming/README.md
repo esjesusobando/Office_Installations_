@@ -13,7 +13,9 @@
 ├── README.md     # Este archivo
 ├── AGENTS.md     # Instrucciones del agente
 ├── BACKLOG.md    # Bandeja de entrada de tareas
-└── GOALS.md      # Metas y prioridades
+├── GOALS.md      # Metas y prioridades
+└── Skills/       # Sub-agentes y prompts legacy
+    └── PM_Agent_Orchestrator.xml
 ```
 
 ---

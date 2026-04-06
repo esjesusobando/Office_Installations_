@@ -29,7 +29,6 @@ Think_Different/
 ```
 07_Projects/
 ├── README.md                    # Este archivo
-├── tree.txt                     # Árbol del directorio
 ├── 00_Context/                  # Contexto estratégico
 │   ├── 01_PRDs/                # Product Requirements Docs
 │   ├── 05_Strategy/            # Estrategia y roadmap

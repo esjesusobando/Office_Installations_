@@ -1,11 +1,10 @@
-# CTX_001 — Reporte de Contexto de Sesión
+# {00_CTX_Topico_Tratado} — Reporte de Contexto de Sesión
 
-* *Fecha:** {dd/mm/aaaa}
-* *Hora Inicio:** {HH:MM:SS}
-* *Hora Fin:** {HH:MM:SS}
-* *Duración:** {minutos} minutos
-* *Modelo:** {claude-4-5-sonnet/gpt-4o/otro}
-* *Session ID:** {session_id}
+* **Hora Inicio:** {HH:MM:SS}
+* **Hora Fin:** {HH:MM:SS}
+* **Duración:** {minutos} minutos
+* **Modelo:** {claude-4-5-sonnet/gpt-4o/otro}
+* **Session ID:** {session_id}
 
 - --
 
@@ -153,3 +152,6 @@
 
 * Generado automáticamente por Think Different AI*
 * Para recuperación de contexto: leer completo, especialmente "Objetivos", "Decisiones", "Aprendizajes"*
+
+---
+* **Fecha de Sesion:** {dd/mm/aaaa}

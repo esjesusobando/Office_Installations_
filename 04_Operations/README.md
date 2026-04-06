@@ -37,9 +37,11 @@ Think_Different/
 │   ├── _jsons/                     # JSONs de validación
 │   ├── CTX_AUTO_Intelligence_*.md
 │   └── CTX_00*.md
+├── 01_Reports/                      # Reportes de estado (01)
 ├── 02_Knowledge_Brain/             # Base de conocimiento técnico
 │   ├── 01_Inventario_Total.md
 │   └── 00_Library_PDFs/           # PDFs de referencia
+├── 02_Scripts/                      # Scripts de operaciones (02)
 ├── 03_Process_Notes/               # Notas de sesiones (~21 archivos)
 ├── 04_Memory_Brain/                 # Mapeos y análisis
 │   ├── 00_Active/                 # Memoria activa
@@ -49,7 +51,10 @@ Think_Different/
 ├── 05_Plans/                       # Planes
 ├── 06_Solutions/                   # Soluciones
 ├── 07_Installer/                    # Instalador
-└── 08_Auditorias/                  # Auditorías
+├── 08_Auditorias/                  # Auditorías
+├── 09_Agent_Teams_Lite/            # Configuración de orquestadores
+├── 10_Reports/                      # Reportes adicionales (10)
+└── 11_Scripts/                      # Scripts adicionales (11)
 ```
 
 ---
@@ -59,18 +64,20 @@ Think_Different/
 Esta carpeta contiene el **cerebro operativo** del sistema - memoria a largo plazo, notas de sesiones, y mapeos:
 
 | Subcarpeta            | Contenido                            |
-|-----------------------|--------------------------------------|
-| `01_Context_Memory/`  | CTX de sesiones, JSONs de validación |
+| --------------------- | ------------------------------------ |
+| `00_Context_Memory/`  | CTX de sesiones, JSONs de validación |
 | `02_Knowledge_Brain/` | Research, PDFs, conocimiento técnico |
 | `03_Process_Notes/`   | Notas de sesiones (21 archivos)      |
 | `04_Memory_Brain/`    | Mapas, code reviews, archivo         |
+| `08_Auditorias/`      | Auditorías de sistema y calidad      |
+| `09_Agent_Teams_Lite/`| Orquestación y lógica de agentes     |
 
 ---
 
 ## 📊 Estadísticas
 
 | Área               | Cantidad          |
-|--------------------|-------------------|
+| ------------------ | ----------------- |
 | Context Memories   | ~12 archivos      |
 | Notas de Sesión    | 21 archivos       |
 | PDFs de Referencia | 14 archivos       |
@@ -93,4 +100,4 @@ engram save [title] [content]
 
 ---
 
-*Think Different PersonalOS v6.1 — Cerebro operativo*
+_Think Different PersonalOS v6.1 — Cerebro operativo_

@@ -1,4 +1,13 @@
-# ⚙️ Skill: Compound Engine Integration
+---
+name: compound-engine
+description: >
+  Orquestador del Motor de Compuesto (Compound Engineering).
+  Úsalo cuando: (1) Necesites invocar especialistas de auditoría, diseño o arquitectura,
+  (2) Quiieras acceder a capacidades elite como Image Studio, Elite Auditor, Silicon Valley Performance,
+  (3) Requieras implementar ciclos de compound (Plan → Review → Execution → Compound).
+  NO usar para tareas simples de código que no requieran revisión especializada.
+  Triggers: compound engine, orchestrate specialists, elite features, image studio, silicon valley performance
+---
 
 ## Overview
 

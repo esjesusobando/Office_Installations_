@@ -33,6 +33,8 @@ Think_Different/
 ├── config_paths.py              # Rutas centralizadas (actualizado)
 ├── qmd.sh                      # Script QMD
 ├── testsprite_failover.sh      # Failover para TestSprite
+├── tarea_lista.bat             # Sonido de notificación Windows
+├── 00_Sound_Engine.py          # Motor de sonido general
 ├── 01_Auditor_Hub.py           # Auditor principal
 ├── 02_Git_Hub.py              # Operaciones Git
 ├── 03_AIPM_Hub.py             # AIPM logging
@@ -43,6 +45,10 @@ Think_Different/
 ├── 08_Workflow_Hub.py         # Workflows SOTA
 ├── 09_Data_Hub.py             # Datos y sincronización
 ├── 10_General_Hub.py          # Utilidades generales
+├── 11_Auto_Learn_Hub.py       # Hub de auto-aprendizaje
+├── 12_Context_Usage_Bar.py    # Barra de uso de contexto
+├── 13_Beautify_Tables.py      # Script de embellecimiento Markdown
+├── 14_Beauty_Doc.py           # Evaluador visual de documentos
 ├── 11_Anthropic_Harness/     # Anthropic patterns
 ├── 01_Ritual/                 # Rituales (12 scripts)
 ├── 02_Tool/                   # Herramientas (Tool Shed, Skill Harmonizer, Notifier)
@@ -53,7 +59,8 @@ Think_Different/
 ├── 07_Data/                   # Data scripts
 ├── 08_General/                # General utilities
 ├── 09_Integration/            # Integration scripts
-└── 10_Legacy/                 # Scripts legacy (referencia)
+├── 10_Legacy/                 # Scripts legacy (referencia)
+└── 12_Audits/                 # Archivos de auditorías
 ```
 
 ---

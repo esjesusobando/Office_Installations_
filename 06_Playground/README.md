@@ -41,4 +41,4 @@ Espacio para **pruebas, experimentos y prototipos** sin afectar el sistema princ
 
 ---
 
-*Think Different PersonalOS v6.1 — Playground activo*
+_Think Different PersonalOS v6.1 — Playground activo_

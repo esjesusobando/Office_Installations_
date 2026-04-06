@@ -72,9 +72,9 @@ def dynamic_speak(text):
             pass
 
 
-def run_script(script_name):
-    # Los scripts de Rituales están en 01_Ritual
-    script_path = ENGINE_DIR / "01_Ritual" / script_name
+def run_script(script_name, script_subdir="01_Ritual"):
+    """Ejecuta un script de ritual desde el directorio especificado."""
+    script_path = ENGINE_DIR / script_subdir / script_name
     if not script_path.exists():
         print(f"{Fore.RED}[ERROR] Script no encontrado: {script_path}{Style.RESET_ALL}")
         return
@@ -85,32 +85,26 @@ def run_script(script_name):
 
 def main():
     print_banner()
+
+    # Parser principal para --mode
     parser = argparse.ArgumentParser(
         description="Hub centralizador de Rituales y Standups."
     )
-    subparsers = parser.add_subparsers(dest="command", help="Comandos de Rituales")
-
-    # Definir subcomandos
-    subparsers.add_parser(
-        "cierre", help="Ritual de cierre (reutiliza 08_Ritual_Cierre.py)"
+    parser.add_argument(
+        "--mode",
+        choices=["genesis", "cierre", "triage", "standup", "weekly", "dominical"],
+        help="Modo de ejecución",
     )
-    subparsers.add_parser(
-        "triage", help="Triage de backlog (reutiliza 09_Backlog_Triage.py)"
-    )
-    subparsers.add_parser(
-        "standup", help="Morning standup (reutiliza 14_Morning_Standup.py)"
-    )
-    subparsers.add_parser(
-        "weekly", help="Revisión semanal (reutiliza 15_Weekly_Review.py)"
-    )
-    subparsers.add_parser(
-        "dominical", help="Ritual dominical (reutiliza 17_Ritual_Dominical.py)"
-    )
+    parser.add_argument("command", nargs="?", help="Comando alternativo")
 
     args = parser.parse_args()
 
-    # Mapeo de comandos
+    # Determinar el comando a ejecutar
+    command = args.mode or args.command
+
+    # Mapeo de comandos a scripts (ubicación real)
     cmd_map = {
+        "genesis": "87_Iron_Man_Gen.py",  # En 10_Legacy
         "cierre": "08_Ritual_Cierre.py",
         "triage": "09_Backlog_Triage.py",
         "standup": "14_Morning_Standup.py",
@@ -118,9 +112,15 @@ def main():
         "dominical": "17_Ritual_Dominical.py",
     }
 
-    if args.command in cmd_map:
-        dynamic_speak(f"Ejecutando ritual: {args.command}")
-        run_script(cmd_map[args.command])
+    if command in cmd_map:
+        # Determinar directorio correcto
+        if command == "genesis":
+            script_dir = "10_Legacy"
+        else:
+            script_dir = "01_Ritual"
+
+        dynamic_speak(f"Ejecutando: {command}")
+        run_script(cmd_map[command], script_dir)
     else:
         parser.print_help()
 

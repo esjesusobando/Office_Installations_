@@ -29,6 +29,7 @@ Think_Different/
 ```
 02_Knowledge/
 ├── README.md                         # Este archivo
+├── Skill_Creator_v2_Analysis.md     # Análisis de skill creator
 ├── .gitkeep                         # Preserva la carpeta en git
 ├── 00_Examples_Personal_Os/       # Ejemplos del PersonalOS
 │   ├── Example_Files/
@@ -63,11 +64,10 @@ Think_Different/
 │   ├── Plan_Unicorn_Engineering_SOTA.md  # Plan Unicorn Engineering
 │   ├── 99_ATL/                        # SDD Registry
 │   │   └── skill-registry.md
-│   └── Skill_Creator_v2_Analysis.md  # Análisis de skill creator
-├── 05_Unicorn/                      # Unicorn Engineering (LEGACY - NO USAR)
+│   └── Skill_Creator_v2_Analysis.md  # Análisis de skill creator (Mover a dir correcto)
+├── 05_Aipm/                         # AIPM Documentation
 ├── 06_Unicorn/                      # Unicorn Engineering ⭐ FUENTE DE VERDAD
 ├── 07_Invictus/                     # Skill Creator Invictus
-├── 08_Research/                     # Research adicional
 ```
 
 ---
@@ -83,7 +83,7 @@ Almacena **documentación de referencia, investigación, specs, notas de reunion
 ## 📚 Contenido
 
 | Tipo           | Ejemplos                                     |
-|----------------|----------------------------------------------|
+| -------------- | -------------------------------------------- |
 | Specs & briefs | Requisitos de proyecto, specs de features    |
 | Meeting notes  | Decisiones, action items, asistentes         |
 | Research       | Análisis de mercado, hallazgos técnicos      |
@@ -112,4 +112,4 @@ resource_refs:
 
 ---
 
-*Think Different PersonalOS v6.1 — Conocimiento activo*
+_Think Different PersonalOS v6.1 — Conocimiento activo_

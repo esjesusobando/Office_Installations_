@@ -31,36 +31,6 @@ Think_Different/
 ├── README.md                         # Este archivo
 ├── .gitkeep                         # Preserva la carpeta en git
 ├── 00_Templates/                   # Plantillas de tareas
-│   ├── 00_Task_Template_Skeleton.md
-│   ├── 01_ai_task_template.md
-│   ├── 02_Process_Note_Template.md
-│   ├── 03_Task_Template_SOTA.md
-│   ├── 04_Task_Template_Medio.md
-│   ├── 05_Task_Template_Corto.md
-│   └── Examples/
-│       ├── TASK_SOTA_EJEMPLO.md
-│       ├── TASK_MEDIO_EJEMPLO.md
-│       ├── TASK_CORTO_EJEMPLO.md
-│       └── TASK_CLASSIFIER_EXAMPLES/
-├── 00_P0_Audience_Growth.md
-├── 00_P0_System_Guardian_Testing_2026-03-20.md
-├── 00_TEST_Content_Generation_Draft.md
-├── 01_Tasks_Done/                 # Tareas completadas
-├── 02-10_Consolidated_Tasks.md   # Tareas consolidadas
-├── 03_P1_Verificar_MCPs.md
-├── 04_P1_Actualizar_Documentacion_Sistema.md
-├── 05_P1_Actualizar_Estructura_Carpetas.md
-├── 06_P1_Validar_Numeracion_Sistema.md
-├── 07_P1_Validar_Plugin_Marketplace.md
-├── 08_P1_Validar_Installer_PersonalOS.md
-├── 09_P1_Unificar_AGENTS_Fuente_Verdad.md
-├── 10_P1_Documentar_Sistema_OS_Completo.md
-└── P2_*/                         # Tareas P2 varias
-```
-03_Tasks/
-├── README.md                    # Este archivo
-├── .gitkeep                     # Preserva la carpeta en git
-├── 00_Templates/                # Plantillas de tareas
 │   ├── README.md
 │   ├── 00_Task_Template_Skeleton.md
 │   ├── 01_ai_task_template.md
@@ -69,23 +39,12 @@ Think_Different/
 │   ├── 04_Task_Template_Medio.md
 │   ├── 05_Task_Template_Corto.md
 │   └── Examples/
-│       ├── TASK_SOTA_EJEMPLO.md
-│       ├── TASK_MEDIO_EJEMPLO.md
-│       ├── TASK_CORTO_EJEMPLO.md
-│       └── TASK_CLASSIFIER_EXAMPLES/
-├── 00_P0_System_Guardian_Testing_2026-03-20.md
-├── 00_P0_Audience_Growth.md
-├── 01_P0_Completar_Setup_PersonalOS.md
-├── 02_P1_Crear_Primera_Tarea_Real.md
-├── 03_P1_Revisar_Goals_Q2_2026.md
-├── 04_P2_Investigar_Tendencias_AI_Agents.md
-├── 05_P2_Escribir_Memo_Estrategia.md
-├── 06_P1_Probar_Morning_Standup.md
-├── 07_P1_Probar_Backlog_Processing.md
-├── 08_P2_Probar_Content_Generation.md
-├── 09_P2_Probar_Weekly_Review.md
-├── 10_P1_Verificar_MCPs.md
-└── 11_TEST_Content_Generation_Draft.md
+├── 01_Tasks_Done/                 # Historial de tareas completadas
+├── 02_Hillary_Inbox/               # Buzon de entrada de tareas generadas
+├── 02-10_Consolidated_Tasks.md   # Tareas consolidadas
+├── 00_P0_*.md                       # Tareas prioridad 0
+├── 03-10_P1_*.md                    # Tareas prioridad 1
+└── P2_*/                            # Tareas P2 varias
 ```
 
 ---

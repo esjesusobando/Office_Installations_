@@ -27,14 +27,14 @@ Think_Different/
 
 ---
 
-## 📂 Estructura 01_Core (19 carpetas de skills)
+## 📂 Estructura 01_Core (23 carpetas de skills en 03_Skills)
 
 | #   | Carpeta                    | Contenido               | Estado   |
 |-----|----------------------------|-------------------------|----------|
 | 01  | `00_Workflows/`            | 26+ workflows           | ✅        |
 | 02  | `01_Rules/`                | 23 reglas del sistema   | ✅        |
 | 03  | `02_Evals/`                | Métricas y evaluaciones | ✅        |
-| 04  | `03_Skills/`               | 18 carpetas de skills   | ✅        |
+| 04  | `03_Skills/`               | 23 carpetas de skills   | ✅        |
 | 05  | `04_Agents/`               | Agentes configurados    | ✅        |
 | 06  | `05_Mcp/`                  | 20+ MCPs configurados   | ✅        |
 | 07  | `06_Integrations/`         | Integraciones externas  | ✅        |
@@ -109,32 +109,33 @@ Think_Different/
 
 Code review, arquitectura, seguridad, performance, etc.
 
-### Skills (18 carpetas)
+### Skills (23 carpetas)
 
-| #   | Carpeta                        | Cantidad   | Estado   |
-|-----|--------------------------------|------------|----------|
-| 01  | 00_Compound_Engineering        | 8+         | ✅        |
-| 02  | 00_Personal_Os_Stack           |------------| ✅        |
-| 03  | 00_Skill_Auditor               | 3+         | ✅        |
-| 04  | 01_Agent_Teams_Lite            | 11+        | ✅        |
-| 05  | 02_Project_Manager             | 9+         | ✅        |
-| 06  | 03_Product_Manager             | 9+         | ✅        |
-| 07  | 04_Product_Design              | 13+        | ✅        |
-| 08  | 05_Vibe_Coding                 | 18+        | ✅        |
-| 09  | 06_Testing                     | 18+        | ✅        |
-| 10  | 07_DevOps                      | 13+        | ✅        |
-| 11  | 08_Personal_Os                 | 9+         | ✅        |
-| 12  | 09_Marketing                   | 11+        | ✅        |
-| 13  | 10_Backup                      | 5+         | 📦        |
-| 14  | 11_Doc_Processing              | 4+         | ✅        |
-| 15  | 12_N8N                         | 7+         | ✅        |
-| 16  | 13_System_Master               | 5+         | ✅        |
-| 17  | 14_Anthropic_Harness           | 9+         | ✅        |
-| 18  | 15_Skill_Creator_Oficial       |------------| ✅        |
-| 19  | 16_Silicon_Valley_Data_Analyst |------------| ✅        |
-| 20  | 17_SEO_SOTA_Master             |------------| ✅        |
-| 21  | 18_Personal_Life_OS            | 5+         | ✅        |
-| 22  | 19_Video_Intel                 |------------| ✅        |  |
+| #   | Carpeta                        | Estado   |
+|-----|--------------------------------|----------|
+| 01  | 00_Compound_Engineering        | ✅        |
+| 02  | 00_Personal_Os_Stack           | ✅        |
+| 03  | 00_Skill_Auditor               | ✅        |
+| 04  | 01_Agent_Teams_Lite            | ✅        |
+| 05  | 02_Project_Manager             | ✅        |
+| 06  | 03_Product_Manager             | ✅        |
+| 07  | 04_Product_Design              | ✅        |
+| 08  | 05_Vibe_Coding                 | ✅        |
+| 09  | 06_Testing                     | ✅        |
+| 10  | 07_DevOps                      | ✅        |
+| 11  | 08_Personal_Os                 | ✅        |
+| 12  | 09_Marketing                   | ✅        |
+| 13  | 10_Backup                      | 📦        |
+| 14  | 11_Doc_Processing              | ✅        |
+| 15  | 12_N8N                         | ✅        |
+| 16  | 13_System_Master               | ✅        |
+| 17  | 14_Anthropic_Harness           | ✅        |
+| 18  | 15_Skill_Creator_Oficial       | ✅        |
+| 19  | 16_Silicon_Valley_Data_Analyst | ✅        |
+| 20  | 17_SEO_SOTA_Master             | ✅        |
+| 21  | 18_Personal_Life_OS            | ✅        |
+| 22  | 19_Video_Intel                 | ✅        |
+| 23  | SKILL_TEMPLATE                 | ✅        |
 
 ### Workflows (26+ archivos)
 
