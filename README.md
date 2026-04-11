@@ -8,7 +8,7 @@
 
 ---
 
-## 📊 Estado del Sistema (v6.1 - 2026-04-04)
+## 📊 Estado del Sistema (v6.1 - 2026-04-11)
 
 | Métrica            | Valor       |
 |:-------------------|:-----------:|

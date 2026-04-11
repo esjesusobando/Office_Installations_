@@ -254,7 +254,7 @@ python 08_Scripts_Os/55_Sync_Skills.py --confirm
 
 ---
 
-## 📊 Estadísticas (2026-03-29)
+## 📊 Estadísticas (2026-04-10)
 
 | Carpeta                        | Skills | Categoría Anthropic   |
 |--------------------------------|--------|-----------------------|
@@ -280,8 +280,9 @@ python 08_Scripts_Os/55_Sync_Skills.py --confirm
 | 17_SEO_SOTA_Master             | 1      | Library/API Reference |
 | 18_Personal_Life_OS            | 5      | Runbooks              |
 | 19_Video_Intel                 | —      | Exploration           |
+| 20_Skill_Template              | 🆕     | Code Scaffolding      |
 
-**Total categorías:** 21 — **Total skills activas:** 160+
+**Total categorías:** 24 — **Total skills activas:** 165+
 
 ---
 
