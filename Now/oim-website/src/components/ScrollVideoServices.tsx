@@ -28,76 +28,68 @@ const servicesData: Service[] = [
 
 interface ScrollVideoServicesProps {
   videoSrc: string;
-  scrollHeight?: number; // 200 = 2x viewport height
+  scrollHeight?: number;
 }
 
 /**
- * ScrollVideoServices - Frame-by-frame video scroll sync with service overlays
- * 
- * Technical implementation:
- * - Intersection Observer activates video only when in viewport
- * - Throttled updates (requestAnimationFrame) prevents performance issues
- * - Progress calculation based on container scroll position
+ * ScrollVideoServices — taste-skill compliant
+ * DESIGN_VARIANCE: 8 — Asymmetric: left panel + right content
+ * MOTION_INTENSITY: 6 — Frame-by-frame via scroll, RAF throttled
+ * VISUAL_DENSITY: 4 — Spacious glassmorphism panel
+ *
+ * Rules:
+ * - Video is sticky, fills full viewport height
+ * - Content panel is absolute, always ON TOP of video (z-10)
+ * - Glassmorphism: bg + blur + inner border (taste-skill "Liquid Glass")
+ * - NO centered layout — left-offset panel per DESIGN_VARIANCE: 8
+ * - Scroll progress drives video.currentTime (NOT autoplay)
  */
-export function ScrollVideoServices({
-  videoSrc,
-  scrollHeight = 300
-}: ScrollVideoServicesProps) {
+export function ScrollVideoServices({ videoSrc, scrollHeight = 300 }: ScrollVideoServicesProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [duration, setDuration] = useState(0);
-  const [isInView, setIsInView] = useState(false);
+  const videoRef     = useRef<HTMLVideoElement>(null);
+  const [duration, setDuration]   = useState(0);
+  const [progress, setProgress]   = useState(0);
   const lastProgress = useRef(0);
-  const rafId = useRef<number | null>(null);
+  const rafId        = useRef<number | null>(null);
 
-  // Load video duration
   useEffect(() => {
     const video = videoRef.current;
-    if (video) {
-      const handleLoaded = () => setDuration(video.duration);
-      video.addEventListener('loadedmetadata', handleLoaded);
-      return () => video.removeEventListener('loadedmetadata', handleLoaded);
-    }
+    if (!video) return;
+    const onMeta = () => setDuration(video.duration);
+    video.addEventListener('loadedmetadata', onMeta);
+    return () => video.removeEventListener('loadedmetadata', onMeta);
   }, []);
 
-  // Scroll handler with RAF throttling
   const handleScroll = useCallback(() => {
     if (!containerRef.current || !videoRef.current || duration === 0) return;
-    if (rafId.current) return; // Throttle: skip if RAF pending
+    if (rafId.current) return;
 
     rafId.current = requestAnimationFrame(() => {
-      const container = containerRef.current;
-      if (!container) return;
+      const container = containerRef.current!;
+      const video     = videoRef.current!;
+      const rect      = container.getBoundingClientRect();
+      const scrollable = container.offsetHeight - window.innerHeight;
+      if (scrollable <= 0) { rafId.current = null; return; }
 
-      const rect = container.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const containerHeight = container.offsetHeight;
-
-      // Calculate progress (0 to 1)
-      const rawProgress = -rect.top / (containerHeight - viewportHeight);
-      const progress = Math.max(0, Math.min(1, rawProgress));
-
-      // Only update if change is significant (performance)
-      if (Math.abs(progress - lastProgress.current) > 0.001) {
-        videoRef.current.currentTime = progress * duration;
-        lastProgress.current = progress;
+      const raw  = Math.max(0, Math.min(1, -rect.top / scrollable));
+      if (Math.abs(raw - lastProgress.current) > 0.001) {
+        video.currentTime  = raw * duration;
+        lastProgress.current = raw;
+        setProgress(raw);
       }
-      
       rafId.current = null;
     });
   }, [duration]);
 
-  // Setup scroll listener and Intersection Observer
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
     const observer = new IntersectionObserver(
-      ([entry]) => setIsInView(entry.isIntersecting),
+      ([e]) => { if (!e.isIntersecting && rafId.current) { cancelAnimationFrame(rafId.current); rafId.current = null; } },
       { threshold: 0 }
     );
     observer.observe(container);
-
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', handleScroll, { passive: true });
 
@@ -109,59 +101,116 @@ export function ScrollVideoServices({
     };
   }, [handleScroll]);
 
-  // Calculate current service index based on scroll progress
-  const getCurrentServiceIndex = useCallback(() => {
-    if (!containerRef.current || duration === 0) return 0;
-    const rect = containerRef.current.getBoundingClientRect();
-    const progress = Math.max(0, Math.min(1, -rect.top / (containerRef.current.offsetHeight - window.innerHeight)));
-    return Math.min(servicesData.length - 1, Math.floor(progress * servicesData.length));
-  }, [duration]);
-
-  const currentServiceIndex = getCurrentServiceIndex();
+  const activeIndex = Math.min(
+    Math.floor(progress * servicesData.length),
+    servicesData.length - 1
+  );
 
   return (
-    <div 
+    <div
       ref={containerRef}
       className="relative w-full"
       style={{ height: `${scrollHeight}vh` }}
     >
-      {/* Video Background - Sticky for scroll sync */}
+      {/* ── Video — sticky, fills viewport, frame driven by scroll ── */}
       <video
         ref={videoRef}
-        className="sticky top-0 left-0 w-full h-screen object-cover will-change-transform"
         src={videoSrc}
         playsInline
         muted
         preload="auto"
         aria-hidden="true"
+        className="sticky top-0 w-full h-screen object-cover will-change-transform"
       />
-      
-      {/* Services Overlay - Asymmetric per taste-skill DESIGN_VARIANCE: 8 */}
-      {/* Left-aligned content, not centered - creates editorial tech-forward feel */}
-      <div className="absolute top-0 left-0 w-full h-full flex items-center">
-        <div className="bg-zinc-900/70 backdrop-blur-lg border border-white/5 px-10 py-14 rounded-none max-w-xl ml-6 md:ml-16 lg:ml-24 mt-32">
-          {servicesData.map((service, index) => (
-            <div 
-              key={service.title}
-              className={`transition-all duration-500 ease-out ${
-                index === currentServiceIndex 
-                  ? 'opacity-100 translate-y-0' 
-                  : 'opacity-0 absolute -translate-y-4'
-              }`}
-            >
-              <h2 className="text-2xl md:text-3xl font-medium text-white mb-5 tracking-tight">
-                {service.title}
-              </h2>
-              <ul className="space-y-2.5">
-                {service.items.map((item) => (
-                  <li key={item} className="flex items-center text-zinc-300">
-                    <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full mr-3 flex-shrink-0" />
-                    <span className="text-base">{item}</span>
-                  </li>
-                ))}
-              </ul>
+
+      {/* ── Dark overlay over video ── */}
+      <div className="absolute inset-0 pointer-events-none"
+        style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.1) 100%)' }}
+      />
+
+      {/* ── Content panel — absolute, always on top of video (z-10) ── */}
+      {/* taste-skill: left-offset, NOT centered */}
+      <div className="absolute inset-0 z-10 flex items-center">
+        <div className="ml-6 md:ml-16 lg:ml-24 max-w-lg w-full">
+
+          {/* Glassmorphism panel — taste-skill "Liquid Glass Refraction" */}
+          <div
+            className="px-8 py-10 md:px-10 md:py-12"
+            style={{
+              background: 'rgba(10,10,10,0.6)',
+              backdropFilter: 'blur(24px)',
+              WebkitBackdropFilter: 'blur(24px)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.07), 0 24px 48px rgba(0,0,0,0.4)',
+              borderRadius: '4px',
+            }}
+          >
+            {/* Section label */}
+            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#FF5F5E]">
+              Our Services
+            </p>
+
+            {/* Step counter */}
+            <p className="mb-5 text-xs text-white/35 tabular-nums">
+              {String(activeIndex + 1).padStart(2,'0')} / {String(servicesData.length).padStart(2,'0')}
+            </p>
+
+            {/* Active service — fade swap */}
+            <div className="min-h-[160px]">
+              {servicesData.map((service, i) => (
+                <div
+                  key={service.title}
+                  className="transition-all duration-500"
+                  style={{
+                    opacity: i === activeIndex ? 1 : 0,
+                    transform: i === activeIndex ? 'translateY(0)' : 'translateY(8px)',
+                    position: i === activeIndex ? 'relative' : 'absolute',
+                    pointerEvents: i === activeIndex ? 'auto' : 'none',
+                  }}
+                >
+                  <h2 className="text-2xl md:text-3xl font-bold text-white mb-5 leading-tight"
+                    style={{ letterSpacing: '-0.025em', textWrap: 'balance' } as React.CSSProperties}
+                  >
+                    {service.title}
+                  </h2>
+                  <ul className="space-y-2.5">
+                    {service.items.map((item) => (
+                      <li key={item} className="flex items-center gap-3 text-sm text-zinc-300">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#FF5F5E] flex-shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
-          ))}
+
+            {/* Progress bar */}
+            <div className="mt-8 h-px w-full bg-white/10 overflow-hidden">
+              <div
+                className="h-full bg-[#FF5F5E] transition-all duration-100"
+                style={{ width: `${progress * 100}%` }}
+              />
+            </div>
+
+          </div>
+
+          {/* Nav dots — outside panel */}
+          <div className="flex gap-2 mt-4 ml-1">
+            {servicesData.map((_, i) => (
+              <div
+                key={i}
+                className="transition-all duration-300"
+                style={{
+                  width: i === activeIndex ? '20px' : '6px',
+                  height: '6px',
+                  borderRadius: '9999px',
+                  background: i === activeIndex ? '#FF5F5E' : 'rgba(255,255,255,0.25)',
+                }}
+              />
+            ))}
+          </div>
+
         </div>
       </div>
     </div>

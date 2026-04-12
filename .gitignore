@@ -87,7 +87,9 @@ test_*.py
 # LOCAL CONFIG - Do not commit
 # =============================================================================
 
-# MCP configurations (local to each machine)
+# MCP configurations (local to each machine — contain API keys)
+.mcp.json
+.mcp.json.local
 .claude/mcp.json
 .agent/mcp.json
 .obsidian/mcp.json
@@ -122,5 +124,5 @@ claude-plugins-official/
 01_Core/05_Mcp/opencode.json
 07_Projects/01_Projects_Lab/03_Side_Project_Backup/
 
-# Guardian Angel Entrypoint
-AGENTS.md
+# Guardian Angel Entrypoint — keep tracked, needed for GGA hook
+# AGENTS.md
