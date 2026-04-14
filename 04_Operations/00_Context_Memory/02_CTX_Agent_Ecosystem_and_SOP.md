@@ -22,8 +22,9 @@
 - **AIPM Metrics**: El sistema de Auditoría (Judge) genera reportes de salud (Context Robbery, FORENSIC) para evitar la saturación de los LLMs.
 
 ## 📊 Métricas de Éxito
-- **Pure Green**: Sistema validado, sin errores de lint/build y con documentación sincronizada.
-- **Context Efficiency**: Mantener la memoria de sesión limpia mediante compactaciones como esta.
+- **Pure Green**: Sistema validado, sin errores de mapeo de submódulos. 
+- **QMD Semantic Search**: Activada (Hybrid: Vectors + BM25).
+- **Context Efficiency**: Memoria de sesión compactada y estabilizada.
 
 ---
 *Compactado de archivos CTX 06, 07, 08, 09, 10, 11 y perfiles de agentes | Sincronizado 2026-04-14*

@@ -15,9 +15,10 @@
 - **Logro**: Reconstrucción de la web OIM usando Next.js 16 (Turbopack) y Tailwind v4.
 - **Resultado**: Aplicación 100% SOTA de la skill "Taste-Skill" (videos frame-by-frame, diseño asimétrico).
 
-### 🟢 Hillary Integration (Abril 2026)
-- **Logro**: Transición de Hillary de "Lab" a "Producción".
-- **Resultado**: Creación de la Agente #13 y redirección de 5 módulos de Life OS hacia la fuente de verdad.
+### 🟢 Hillary & QMD Integration (Abril 2026)
+- **Logro**: Hillary integrada como Agente #13. Sub-módulos reparados tras compactación masiva.
+- **QMD Status**: Indexación completa con embeddings vectoriales activos (Hybrid).
+- **Resultado**: Búsqueda semántica disponible para todos los agentes. Ecosistema Git libre de errores fatal.
 
 ## 📝 Resumen de Sesiones Recientes
 - **Sesión 018**: Finalización de la UI de OIM y SEO SOTA.
