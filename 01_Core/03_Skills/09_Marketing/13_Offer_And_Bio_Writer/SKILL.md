@@ -5,7 +5,13 @@ description: Escribe e itera bios de Instagram/LinkedIn, páginas de link en bio
 
 # Redactor de Ofertas y Bio
 
-Cada palabra en tu perfil o está trabajando para ti o te está costando. No hay neutralidad. La bio que alguien lee a las 11 de la noche decide si te manda un DM mañana — o si te olvida para siempre.
+> **Level**: Elite — Copywriting para Conversión
+
+## Esencia Original
+
+> **Metaskill**: Traductor de posicionamiento en palabras que convierten — convierte atención en acción.
+
+Cada palabra en tu perfil o está trabajando para ti o te está costando. Sin neutralidad. La bio que alguien lee a las 11pm decide si te manda un DM mañana — o te olvida para siempre.
 
 Escribe con precisión. Convierte con honestidad.
 
@@ -180,3 +186,23 @@ Antes de entregar cualquier copy, ejecuta esto:
 - [ ] ¿La última línea da ganas de tomar acción?
 
 Si algún punto falla — reescribe antes de entregar.
+
+---
+
+## ⚠️ Gotchas
+
+Para errores comunes y soluciones, ver: [references/gotchas.md](references/gotchas.md)
+
+---
+
+## 📁 Progressive Disclosure
+
+> Para información detallada:
+- [references/gotchas.md](references/gotchas.md) — Errores comunes en copy de conversión
+
+---
+
+## 💾 State Persistence
+
+Copys de landing y ofertas se pueden guardar en:
+- `02_Knowledge/05_Copy/{brand}/{asset-type}.md`

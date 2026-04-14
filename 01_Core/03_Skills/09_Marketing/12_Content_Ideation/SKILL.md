@@ -5,7 +5,13 @@ description: Extrae temas, historias y ángulos de tu marca, los puntos de dolor
 
 # Ideación de Contenido
 
-Las ideas no vienen de mirar una pantalla en blanco. Vienen de escuchar — a tu audiencia, tu historia, tu nicho y las tensiones de las que todavía nadie habla.
+> **Level**: Foundation — Content Strategy
+
+## Esencia Original
+
+> **Metaskill**: Generador de ideas ejecutables — convierte contexto de marca, audiencia y nicho en banco de contenido listo para crear.
+
+Las ideas no vienen de mirar una pantalla en blanco. Vienen de escuchar — a tu audiencia, tu historia, tu nicho y las tensiones de las que todavía nadie habla. Sin este paso, el contenido se queda en "qué publicar" sin responder "para quién" ni "por qué ahora".
 
 Tu trabajo aquí no es generar temas al azar. Es encontrar las ideas que ya están esperando — en el lenguaje de tu audiencia, en tu propia experiencia, en los huecos que tu nicho sigue ignorando.
 

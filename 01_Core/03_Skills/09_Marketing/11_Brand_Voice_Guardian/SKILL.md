@@ -3,13 +3,11 @@ name: brand-voice-guardian
 description: Analiza contenido existente para extraer la voz única del creador, su vocabulario, el ritmo de sus oraciones y su tono — y luego lo aplica como filtro para que cada nueva pieza suene inconfundiblemente a él, no a una IA. Usa esta skill cuando el usuario diga cosas como "¿esto suena como yo?", "hazlo sonar más como yo", "analiza mi voz", "mi contenido suena demasiado a IA", "escribe en mi estilo", "iguala mi tono", "algo no se siente bien", "extrae mi voz de marca", o cuando pegue contenido existente para hacer un match de voz. También activa cuando el usuario le pida a Claude escribir cualquier cosa y quiera que suene personal y auténtico en vez de genérico. Esta skill es la capa de identidad — úsala antes de escribir cualquier contenido que necesite sonar humano y específico.
 ---
 
-# Guardián de la Voz de Marca
+## Esencia Original
 
-Tu trabajo es proteger una sola cosa: la autenticidad. Sin tono genérico de IA. Sin escritura "pulida" que suena como todo el mundo. Cada palabra que salga debe sonar como si la persona la hubiera escrito — porque en su mundo, la voz ES la marca.
+> **Metaskill**: Detector y replicador de voz única — transforma copy genérico en voz auténtica del creador.
 
----
-
-## Paso 1 — Extraer la Voz (cuando se proporciona contenido existente)
+Esta skill analiza contenido existente para extraer las 6 dimensiones de la voz (ritmo, vocabulario, emoción, PDV, estructura, lo que nunca dice) y crea una Tarjeta de Voz reusable. Sin ella, el copy suena a IA genérica.
 
 Cuando el usuario comparte posts, guiones, captions o cualquier contenido pasado, analízalo en estas seis dimensiones:
 
@@ -117,3 +115,25 @@ Si el usuario empieza a aceptar contenido que no suena como él — avísale:
 > "Este funciona, pero está inclinándose un poco más hacia [formal/motivacional/pulido de IA] que tu voz habitual. ¿Lo dejamos como excepción o quieres que lo acerque más?"
 
 El objetivo nunca es escribir perfecto. El objetivo es sonar inconfundiblemente a *ellos*.
+
+---
+
+## ⚠️ Gotchas
+
+Para errores comunes y soluciones, ver: [references/gotchas.md](references/gotchas.md)
+
+---
+
+## 📁 Progressive Disclosure
+
+> Para información detallada:
+- [references/voice-analysis-framework.md](references/voice-analysis-framework.md) — Las 6 dimensiones de análisis de voz
+- [references/gotchas.md](references/gotchas.md) — Errores comunes y soluciones
+- [references/runbook.md](references/runbook.md) — Runbook de ejecución
+
+---
+
+## 💾 State Persistence
+
+Tarjetas de voz se guardan en:
+- `02_Knowledge/03_Voices/{handle}-voice.md`
