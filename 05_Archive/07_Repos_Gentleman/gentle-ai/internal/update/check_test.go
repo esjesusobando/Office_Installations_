@@ -47,6 +47,17 @@ func TestDetectInstalledVersion(t *testing.T) {
 			wantVersion: "0.3.2",
 		},
 		{
+			name: "engram dev output is preserved as dev sentinel",
+			tool: ToolInfo{Name: "engram", DetectCmd: []string{"engram", "version"}},
+			lookPathFn: func(string) (string, error) {
+				return "/usr/local/bin/engram", nil
+			},
+			execCommandFn: func(name string, args ...string) *exec.Cmd {
+				return exec.Command("echo", "engram dev")
+			},
+			wantVersion: "dev",
+		},
+		{
 			name: "gga not installed",
 			tool: ToolInfo{Name: "gga", DetectCmd: []string{"gga", "--version"}},
 			lookPathFn: func(string) (string, error) {
@@ -104,6 +115,12 @@ func TestDetectInstalledVersion(t *testing.T) {
 				t.Fatalf("detectInstalledVersion() = %q, want %q", got, tc.wantVersion)
 			}
 		})
+	}
+}
+
+func TestParseVersionFromOutput_DevSentinel(t *testing.T) {
+	if got := parseVersionFromOutput("engram dev"); got != "dev" {
+		t.Fatalf("parseVersionFromOutput(engram dev) = %q, want %q", got, "dev")
 	}
 }
 
@@ -463,13 +480,13 @@ func TestUpdateHint(t *testing.T) {
 			name:    "engram linux",
 			tool:    ToolInfo{Name: "engram"},
 			profile: system.PlatformProfile{OS: "linux", PackageManager: "apt"},
-			want:    "go install github.com/Gentleman-Programming/engram/cmd/engram@latest",
+			want:    "gentle-ai upgrade (downloads pre-built binary)",
 		},
 		{
 			name:    "engram windows",
 			tool:    ToolInfo{Name: "engram"},
 			profile: system.PlatformProfile{OS: "windows", PackageManager: "winget"},
-			want:    "go install github.com/Gentleman-Programming/engram/cmd/engram@latest",
+			want:    "gentle-ai upgrade (downloads pre-built binary)",
 		},
 		{
 			name:    "gga macOS brew",
@@ -1014,8 +1031,45 @@ func TestNoUpdatesPath(t *testing.T) {
 	}
 }
 
-// TestInstallMethodFieldsOnRegistry verifies that InstallMethod is set on all tools
-// and that gentle-ai has a nil GoImportPath.
+// --- TestEngramHintNoBrew ---
+
+// TestEngramHintNoBrew verifies that on non-brew platforms, engramHint
+// no longer returns "go install..." — it should reflect binary download.
+// This is the regression test for issue #160.
+func TestEngramHintNoBrew(t *testing.T) {
+	tests := []struct {
+		name    string
+		profile system.PlatformProfile
+	}{
+		{
+			name:    "linux apt",
+			profile: system.PlatformProfile{OS: "linux", PackageManager: "apt"},
+		},
+		{
+			name:    "windows winget",
+			profile: system.PlatformProfile{OS: "windows", PackageManager: "winget"},
+		},
+	}
+
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			tool := ToolInfo{Name: "engram"}
+			got := updateHint(tool, tc.profile)
+
+			// Must NOT contain "go install".
+			if contains(got, "go install") {
+				t.Errorf("engramHint for non-brew should NOT contain 'go install', got %q", got)
+			}
+
+			// Must NOT be empty (should have some actionable hint).
+			if got == "" {
+				t.Errorf("engramHint for non-brew should not be empty")
+			}
+		})
+	}
+}
+
+// TestInstallMethodFieldsOnRegistry verifies that InstallMethod is set on all tools.
 func TestInstallMethodFieldsOnRegistry(t *testing.T) {
 	for _, tool := range Tools {
 		if tool.InstallMethod == "" {
@@ -1023,14 +1077,15 @@ func TestInstallMethodFieldsOnRegistry(t *testing.T) {
 		}
 	}
 
-	// gentle-ai: brew on macOS, binary on linux/windows
-	// engram: go-install (no brew variant needed for this check)
-	// gga: brew on macOS, binary elsewhere
+	// engram: uses binary download (not go-install) — GoImportPath must be empty.
 	for _, tool := range Tools {
 		switch tool.Name {
 		case "engram":
-			if tool.GoImportPath == "" {
-				t.Errorf("engram must have GoImportPath set (go-install method)")
+			if tool.InstallMethod != InstallBinary {
+				t.Errorf("engram InstallMethod = %q, want %q", tool.InstallMethod, InstallBinary)
+			}
+			if tool.GoImportPath != "" {
+				t.Errorf("engram GoImportPath should be empty (binary download, not go-install), got %q", tool.GoImportPath)
 			}
 		}
 	}

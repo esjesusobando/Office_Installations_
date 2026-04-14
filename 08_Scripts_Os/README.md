@@ -1,7 +1,7 @@
 # 08_Scripts_Os — Motor de Automatización
 
 **Versión:** 6.1
-**Última actualización:** 2026-04-10
+**Última actualización:** 2026-04-14
 **Estado:** ✅ Activo
 
 ---
@@ -10,16 +10,16 @@
 
 ```
 Think_Different/
-├── 00_Winter_is_Coming/    # Goals, Backlog, Memoria (ESTRATÉGICO)
-├── 01_Core/               # Motor: Skills, Agents, MCPs, Workflows 💾
-├── 02_Knowledge/          # Documentación, Research, Notas 📚
-├── 03_Tasks/             # Tareas activas (YAML frontmatter)
-├── 04_Operations/        # Memoria y Procesos
-├── 05_Archive/           # Legacy archivado 📦
-├── 06_Playground/       # Pruebas y experimentos
-├── 07_Projects/         # Proyectos activos
-├── 08_Scripts_Os/       # Scripts operativos ✅
-└── Maerks/             # Tests legacy, planes
+├── 00_Winter_is_Coming/    # Estrategia, Backlog y ADN (ESTRATÉGICO)
+├── 01_Core/               # Motor OS: Skills, Agents, MCPs (FUENTE DE VERDAD) 💾
+├── 02_Knowledge/          # Base de Conocimiento, Research y Documentación
+├── 03_Tasks/              # Gestión de Tareas Activas
+├── 04_Operations/         # Cerebro Operativo y Automatización
+├── 05_Archive/            # Repositorio de Proyectos Finalizados
+├── 06_Playground/         # Laboratorio de Pruebas y Experimentos
+├── 07_Projects/           # Desarrollo de Proyectos Activos
+├── 08_Scripts_Os/         # Scripts y HUBs Operativos del Sistema ✅
+└── Maerks/               # Entorno de Testing y Validación
 ```
 
 ---
@@ -28,39 +28,18 @@ Think_Different/
 
 ```
 08_Scripts_Os/
-├── README.md                    # Este archivo
-├── SCRIPTS_INDEX.md             # Índice de scripts
-├── config_paths.py              # Rutas centralizadas (actualizado)
-├── qmd.sh                      # Script QMD
-├── testsprite_failover.sh      # Failover para TestSprite
-├── tarea_lista.bat             # Sonido de notificación Windows
-├── 00_Sound_Engine.py          # Motor de sonido general
-├── 01_Auditor_Hub.py           # Auditor principal
-├── 02_Git_Hub.py              # Operaciones Git
-├── 03_AIPM_Hub.py             # AIPM logging
-├── 04_Ritual_Hub.py           # Orquestador de rituales
-├── 05_Validator_Hub.py         # Validador de reglas
-├── 06_Tool_Hub.py             # Herramientas varias
-├── 07_Integration_Hub.py       # Integraciones MCP
-├── 08_Workflow_Hub.py         # Workflows SOTA
-├── 09_Data_Hub.py             # Datos y sincronización
-├── 10_General_Hub.py          # Utilidades generales
-├── 11_Auto_Learn_Hub.py       # Hub de auto-aprendizaje
-├── 12_Context_Usage_Bar.py    # Barra de uso de contexto
-├── 13_Beautify_Tables.py      # Script de embellecimiento Markdown
-├── 14_Beauty_Doc.py           # Evaluador visual de documentos
-├── 11_Anthropic_Harness/     # Anthropic patterns
-├── 01_Ritual/                 # Rituales (12 scripts)
-├── 02_Tool/                   # Herramientas (Tool Shed, Skill Harmonizer, Notifier)
-├── 03_Validator/              # Validadores
-├── 04_Workflow/               # Workflows
-├── 05_AIPM/                   # AIPM scripts
-├── 06_Auditor/                # Auditor scripts
-├── 07_Data/                   # Data scripts
-├── 08_General/                # General utilities
-├── 09_Integration/            # Integration scripts
-├── 10_Legacy/                 # Scripts legacy (referencia)
-└── 12_Audits/                 # Archivos de auditorías
+├── 01_Ritual/             # Scripts de rituales diarios y semanales
+├── 02_Tool/               # Herramientas de soporte (Sound, Notify, Fast)
+├── 03_Validator/          # Motores de validación de reglas y seguridad
+├── 04_Workflow/           # Definiciones de lógica para flujos de trabajo
+├── 05_AIPM/               # Scripts de IA Project Management y métricas
+├── 06_Auditor/            # Auditoría profunda y validación de paridad
+├── 07_Data/               # Gestión de datos, limpieza y sincronización
+├── 08_General/            # Utilidades y scripts misceláneos
+├── 09_Integration/        # Lógica de integración con MCPs externos
+├── 10_Legacy/             # Repositorio de scripts obsoletos (Backup)
+├── 11_Anthropic_Harness/ # Framework de evaluación y patrones Anthropic
+└── 12_Audits/             # Historial de reportes de auditoría generados
 ```
 
 ---

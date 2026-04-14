@@ -1,7 +1,7 @@
 # 04_Operations — Memoria y Procesos
 
 **Versión:** 6.1
-**Última actualización:** 2026-04-04
+**Última actualización:** 2026-04-14
 **Estado:** ✅ Activo
 
 ---
@@ -10,16 +10,16 @@
 
 ```
 Think_Different/
-├── 00_Winter_is_Coming/    # Goals, Backlog, Memoria (ESTRATÉGICO)
-├── 01_Core/               # Motor: Skills, Agents, MCPs, Workflows 💾
-├── 02_Knowledge/          # Documentación, Research, Notas 📚
-├── 03_Tasks/             # Tareas activas (YAML frontmatter)
-├── 04_Operations/        # Memoria y Procesos ✅
-├── 05_Archive/           # Legacy archivado
-├── 06_Playground/       # Pruebas y experimentos
-├── 07_Projects/         # Proyectos activos
-├── 08_Scripts_Os/       # Scripts operativos
-└── Maerks/             # Tests legacy, planes
+├── 00_Winter_is_Coming/    # Estrategia, Backlog y ADN (ESTRATÉGICO)
+├── 01_Core/               # Motor OS: Skills, Agents, MCPs (FUENTE DE VERDAD) 💾
+├── 02_Knowledge/          # Base de Conocimiento, Research y Documentación
+├── 03_Tasks/              # Gestión de Tareas Activas
+├── 04_Operations/         # Cerebro Operativo y Automatización ✅
+├── 05_Archive/            # Repositorio de Proyectos Finalizados
+├── 06_Playground/         # Laboratorio de Pruebas y Experimentos
+├── 07_Projects/           # Desarrollo de Proyectos Activos
+├── 08_Scripts_Os/         # Scripts y HUBs Operativos del Sistema
+└── Maerks/               # Entorno de Testing y Validación
 ```
 
 ---
@@ -28,33 +28,20 @@ Think_Different/
 
 ```
 04_Operations/
-├── README.md                         # Este archivo
-├── EVOLUTION_LOG.md                 # Log de evolución del sistema
-├── GOVERNANCE.md                    # Gobernanza
-├── RUNBOOK.md                       # Manual de operaciones
-├── 01_Auto_Improvement/            # Auto-mejora del sistema
-├── 00_Context_Memory/               # Memoria de contexto (sesiones)
-│   ├── _jsons/                     # JSONs de validación
-│   ├── CTX_AUTO_Intelligence_*.md
-│   └── CTX_00*.md
-├── 01_Reports/                      # Reportes de estado (01)
-├── 02_Knowledge_Brain/             # Base de conocimiento técnico
-│   ├── 01_Inventario_Total.md
-│   └── 00_Library_PDFs/           # PDFs de referencia
-├── 02_Scripts/                      # Scripts de operaciones (02)
-├── 03_Process_Notes/               # Notas de sesiones (~21 archivos)
-├── 04_Memory_Brain/                 # Mapeos y análisis
-│   ├── 00_Active/                 # Memoria activa
-│   ├── 01_Mapeos/                 # Mapas del sistema
-│   ├── 02_Code_Reviews/           # Revisiones de código
-│   └── 03_Archive_Memory/         # Archivo por fecha
-├── 05_Plans/                       # Planes
-├── 06_Solutions/                   # Soluciones
-├── 07_Installer/                    # Instalador
-├── 08_Auditorias/                  # Auditorías
-├── 09_Agent_Teams_Lite/            # Configuración de orquestadores
-├── 10_Reports/                      # Reportes adicionales (10)
-└── 11_Scripts/                      # Scripts adicionales (11)
+├── 00_Context_Memory/     # Memoria de contexto de sesiones (CTX)
+├── 01_Auto_Improvement/  # Lógica de auto-evolución del OS
+├── 02_Knowledge_Brain/   # Repositorio de conocimiento técnico y PDFs
+├── 03_Process_Notes/     # Bitácora de procesos y notas de sesión
+├── 04_Memory_Brain/       # Análisis de memoria y mapeos de código
+├── 05_Plans/              # Planes de implementación (SOTA)
+├── 06_Solutions/          # Base de datos de soluciones aplicadas
+├── 07_Installer/          # Scripts de instalación y configuración
+├── 08_Auditorias/        # Resultados de auditorías técnicas
+├── 09_Agent_Teams_Lite/  # Orquestación de equipos de agentes
+├── 10_Reports/            # Reportes consolidados v2 (AIPM)
+├── 11_Reports/            # Reportes adicionales v3
+└── 12_Scripts/            # Scripts operativos adicionales
+```
 ```
 
 ---

@@ -1,4 +1,23 @@
-# 📝 Process Notes - Notas de Proceso
+# 📓 Process Notes Master Catalog
+
+Directorio de bitácora y registros de evolución técnica. Las 29+ sesiones han sido sintetizadas para mayor claridad estructural.
+
+---
+
+## 📚 Volúmenes Maestros (Compactación v6.1)
+
+| # | Documento | Propósito | Estado |
+|---|-----------|-----------|--------|
+| 01 | [Refactoring and Evolution Logs](./01_NP_Refactoring_and_Evolution_Logs.md) | Crónica v6.1, Migración, Edge Cases. | ✅ SOTA |
+| 02 | [Skill Engineering and Taste](./02_NP_Skill_Engineering_and_Taste_Standards.md) | Taste Skills, Diseño Premium, SOPs. | ✅ SOTA |
+| 03 | [Strategic Decisions and Archives](./03_NP_Strategic_Decisions_and_Session_Archives.md) | Log de Decisiones Tácticas 01-29. | ✅ SOTA |
+
+---
+
+## 📂 Archivo Histórico
+Los archivos originales (01-29) se encuentran en la carpeta `_archive/` para preservar el registro detallado.
+
+*Actualizado: 2026-04-14 | Think Different PersonalOS*
 
 ## ⚠️ IMPORTANTE: Este directorio es para EL USUARIO
 

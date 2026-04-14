@@ -1,6 +1,6 @@
 ---
 name: django-drf
-description: > Triggers on: 14_Django_Drf, patterns, coding.
+description: >
   Django REST Framework patterns.
   Trigger: When building REST APIs with Django - ViewSets, Serializers, Filters.
 license: Apache-2.0
@@ -184,27 +184,3 @@ python manage.py shell
 
 ## Keywords
 django, drf, rest framework, viewset, serializer, api, rest api
-
-## Esencia Original
-> **Propósito:** Propósito del skill aquí
-> **Flujo:** Pasos principales del flujo
-
-## ⚠️ Gotchas (Errores Comunes a Evitar)
-
-- **[ERROR]**: Circular import error
-  - **Por qué**: Imports cruzados entre models y serializers
-  - **Solución**: Usar `from __future__ import annotations` o mover a third party app
-
-- **[ERROR]**: N+1 query problem
-  - **Por qué**: Sin select_related/prefetch_related
-  - **Solución**: Usar `select_related('foreign_key')` y `prefetch_related('reverse_fk')`
-
-- **[ERROR]**: CSRF token missing
-  - **Por qué**: POST sin token CSRF en sessions
-  - **Solución**: Usar `@csrf_exempt` en views o send CSRF cookie
-
-## 💾 State Persistence
-
-Guardar en:
-- `03_Knowledge/` — Documentación
-- `04_Operations/` — Estado activo

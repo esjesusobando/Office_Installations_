@@ -12,17 +12,17 @@ Cursor supports native sub-agent delegation via files in `~/.cursor/agents/`. Ea
 
 Available subagents (all installed in `~/.cursor/agents/`):
 
-| Subagent      | File             | Purpose                                                     |
-|---------------|------------------|-------------------------------------------------------------|
-| `sdd-init`    | `sdd-init.md`    | Initialize SDD context; detect stack, bootstrap persistence |
-| `sdd-explore` | `sdd-explore.md` | Investigate codebase; no files created                      |
-| `sdd-propose` | `sdd-propose.md` | Draft the change proposal                                   |
-| `sdd-spec`    | `sdd-spec.md`    | Write requirements and acceptance scenarios                 |
-| `sdd-design`  | `sdd-design.md`  | Write architecture and file-change design                   |
-| `sdd-tasks`   | `sdd-tasks.md`   | Break down change into implementation task checklist        |
-| `sdd-apply`   | `sdd-apply.md`   | Implement tasks; check off as it goes                       |
-| `sdd-verify`  | `sdd-verify.md`  | Validate implementation against specs                       |
-| `sdd-archive` | `sdd-archive.md` | Sync delta specs and archive completed change               |
+| Subagent | File | Purpose |
+|----------|------|---------|
+| `sdd-init` | `sdd-init.md` | Initialize SDD context; detect stack, bootstrap persistence |
+| `sdd-explore` | `sdd-explore.md` | Investigate codebase; no files created |
+| `sdd-propose` | `sdd-propose.md` | Draft the change proposal |
+| `sdd-spec` | `sdd-spec.md` | Write requirements and acceptance scenarios |
+| `sdd-design` | `sdd-design.md` | Write architecture and file-change design |
+| `sdd-tasks` | `sdd-tasks.md` | Break down change into implementation task checklist |
+| `sdd-apply` | `sdd-apply.md` | Implement tasks; check off as it goes |
+| `sdd-verify` | `sdd-verify.md` | Validate implementation against specs |
+| `sdd-archive` | `sdd-archive.md` | Sync delta specs and archive completed change |
 
 Each subagent runs in its own context window and returns a **structured result**. Collect the result, update DAG state, and present the summary to the user before triggering the next phase.
 
@@ -30,15 +30,15 @@ Each subagent runs in its own context window and returns a **structured result**
 
 Core principle: **does this inflate my context without need?** If yes → delegate. If no → do it inline.
 
-| Action                                                     | Inline   | Delegate                  |
-|------------------------------------------------------------|----------|---------------------------|
-| Read to decide/verify (1-3 files)                          | ✅        | —                         |
-| Read to explore/understand (4+ files)                      | —        | ✅                         |
-| Read as preparation for writing                            | —        | ✅ together with the write |
-| Write atomic (one file, mechanical, you already know what) | ✅        | —                         |
-| Write with analysis (multiple files, new logic)            | —        | ✅                         |
-| Bash for state (git, gh)                                   | ✅        | —                         |
-| Bash for execution (test, build, install)                  | —        | ✅                         |
+| Action | Inline | Delegate |
+|--------|--------|----------|
+| Read to decide/verify (1-3 files) | ✅ | — |
+| Read to explore/understand (4+ files) | — | ✅ |
+| Read as preparation for writing | — | ✅ together with the write |
+| Write atomic (one file, mechanical, you already know what) | ✅ | — |
+| Write with analysis (multiple files, new logic) | — | ✅ |
+| Bash for state (git, gh) | ✅ | — |
+| Bash for execution (test, build, install) | — | ✅ |
 
 Prefer delegating to a named subagent. Cursor will run it in an isolated window; you synthesize the structured result it returns.
 
@@ -66,7 +66,8 @@ Skills (appear in autocomplete):
 - `/sdd-explore <topic>` → investigate an idea; reads codebase, compares approaches; no files created
 - `/sdd-apply [change]` → implement tasks in batches; checks off items as it goes
 - `/sdd-verify [change]` → validate implementation against specs; reports CRITICAL / WARNING / SUGGESTION
-- `/sdd-archive [change]` → close a change and persist final state in the active artifact store
+- `/sdd-archive [change]` → close a change and persist final state in the active artifact store 
+- `/sdd-onboard` → guided end-to-end walkthrough of SDD using your real codebase
 
 Meta-commands (type directly — orchestrator handles them, won't appear in autocomplete):
 - `/sdd-new <change>` → start a new change by invoking `sdd-explore` then `sdd-propose` subagents
@@ -74,6 +75,52 @@ Meta-commands (type directly — orchestrator handles them, won't appear in auto
 - `/sdd-ff <name>` → fast-forward planning: invoke `sdd-propose` → `sdd-spec` → `sdd-design` → `sdd-tasks` in sequence
 
 `/sdd-new`, `/sdd-continue`, and `/sdd-ff` are meta-commands handled by YOU. Do NOT invoke them as skills. You orchestrate the subagent sequence yourself.
+
+### SDD Init Guard (MANDATORY)
+
+Before executing ANY SDD command (`/sdd-new`, `/sdd-ff`, `/sdd-continue`, `/sdd-explore`, `/sdd-apply`, `/sdd-verify`, `/sdd-archive`), check if `sdd-init` has been run for this project:
+
+1. Search Engram: `mem_search(query: "sdd-init/{project}", project: "{project}")`
+2. If found → init was done, proceed normally
+3. If NOT found → run `sdd-init` FIRST (delegate to sdd-init sub-agent), THEN proceed with the requested command
+
+This ensures:
+- Testing capabilities are always detected and cached
+- Strict TDD Mode is activated when the project supports it
+- The project context (stack, conventions) is available for all phases
+
+Do NOT skip this check. Do NOT ask the user — just run init silently if needed.
+
+### Execution Mode
+
+When the user invokes `/sdd-new`, `/sdd-ff`, or `/sdd-continue` for the first time in a session, ASK which execution mode they prefer:
+
+- **Automatic** (`auto`): Run all phases back-to-back without pausing. Show the final result only. Use this when the user wants speed and trusts the process.
+- **Interactive** (`interactive`): After each phase completes, show the result summary and ASK: "Want to adjust anything or continue?" before proceeding to the next phase. Use this when the user wants to review and steer each step.
+
+If the user doesn't specify, default to **Interactive** (safer, gives the user control).
+
+Cache the mode choice for the session — don't ask again unless the user explicitly requests a mode change.
+
+In **Interactive** mode, between phases:
+1. Show a concise summary of what the phase produced
+2. List what the next phase will do
+3. Ask: "¿Continuamos? / Continue?" — accept YES/continue, NO/stop, or specific feedback to adjust
+4. If the user gives feedback, incorporate it before running the next phase
+
+For this agent (inline subagents): phases already run with user visibility between invocations. **Interactive** is the default behavior — show results between subagent calls and ask before proceeding. **Automatic** means invoke subagents sequentially without pausing to ask between phases.
+
+### Artifact Store Mode
+
+When the user invokes `/sdd-new`, `/sdd-ff`, or `/sdd-continue` for the first time in a session, ALSO ASK which artifact store they want for this change:
+
+- **`engram`**: Fast, no files created. Artifacts live in engram only. Best for solo work and quick iteration. Note: re-running a phase overwrites the previous version (no history).
+- **`openspec`**: File-based. Creates `openspec/` directory with full artifact trail. Committable, shareable with team, full git history.
+- **`hybrid`**: Both — files for team sharing + engram for cross-session recovery. Higher token cost.
+
+If the user doesn't specify, detect: if engram is available → default to `engram`. Otherwise → `none`.
+
+Cache the artifact store choice for the session. Pass it as `artifact_store.mode` to every sub-agent launch.
 
 ### Dependency Graph
 ```
@@ -91,18 +138,18 @@ Each phase returns: `status`, `executive_summary`, `artifacts`, `next_recommende
 
 Read this table at session start (or before first delegation), cache it for the session, and pass the mapped alias when invoking subagents via the `model` parameter. If a phase is missing, use the `default` row. If you lack access to the assigned model, substitute `sonnet` and continue.
 
-| Phase        | Default Model   | Reason                                     |
-|--------------|-----------------|--------------------------------------------|
-| orchestrator | opus            | Coordinates, makes decisions               |
-| sdd-explore  | sonnet          | Reads code, structural - not architectural |
-| sdd-propose  | opus            | Architectural decisions                    |
-| sdd-spec     | sonnet          | Structured writing                         |
-| sdd-design   | opus            | Architecture decisions                     |
-| sdd-tasks    | sonnet          | Mechanical breakdown                       |
-| sdd-apply    | sonnet          | Implementation                             |
-| sdd-verify   | sonnet          | Validation against spec                    |
-| sdd-archive  | haiku           | Copy and close                             |
-| default      | sonnet          | Non-SDD general delegation                 |
+| Phase | Default Model | Reason |
+|-------|---------------|--------|
+| orchestrator | opus | Coordinates, makes decisions |
+| sdd-explore | sonnet | Reads code, structural - not architectural |
+| sdd-propose | opus | Architectural decisions |
+| sdd-spec | sonnet | Structured writing |
+| sdd-design | opus | Architecture decisions |
+| sdd-tasks | sonnet | Mechanical breakdown |
+| sdd-apply | sonnet | Implementation |
+| sdd-verify | sonnet | Validation against spec |
+| sdd-archive | haiku | Copy and close |
+| default | sonnet | Non-SDD general delegation |
 
 <!-- /gentle-ai:sdd-model-assignments -->
 
@@ -148,33 +195,55 @@ Sub-agents run in fresh, isolated context windows with NO shared memory. The orc
 
 Each phase has explicit read/write rules:
 
-| Phase         | Reads                    | Writes           |
-|---------------|--------------------------|------------------|
-| `sdd-explore` | nothing                  | `explore`        |
-| `sdd-propose` | exploration (optional)   | `proposal`       |
-| `sdd-spec`    | proposal (required)      | `spec`           |
-| `sdd-design`  | proposal (required)      | `design`         |
-| `sdd-tasks`   | spec + design (required) | `tasks`          |
-| `sdd-apply`   | tasks + spec + design    | `apply-progress` |
-| `sdd-verify`  | spec + tasks             | `verify-report`  |
-| `sdd-archive` | all artifacts            | `archive-report` |
+| Phase | Reads | Writes |
+|-------|-------|--------|
+| `sdd-explore` | nothing | `explore` |
+| `sdd-propose` | exploration (optional) | `proposal` |
+| `sdd-spec` | proposal (required) | `spec` |
+| `sdd-design` | proposal (required) | `design` |
+| `sdd-tasks` | spec + design (required) | `tasks` |
+| `sdd-apply` | tasks + spec + design + **apply-progress (if exists)** | `apply-progress` |
+| `sdd-verify` | spec + tasks + **apply-progress** | `verify-report` |
+| `sdd-archive` | all artifacts | `archive-report` |
 
 For phases with required dependencies, sub-agent reads directly from the backend — orchestrator passes artifact references (topic keys or file paths), NOT content itself.
 
+#### Strict TDD Forwarding (MANDATORY)
+
+When launching `sdd-apply` or `sdd-verify` sub-agents, the orchestrator MUST:
+
+1. Search for testing capabilities: `mem_search(query: "sdd-init/{project}", project: "{project}")`
+2. If the result contains `strict_tdd: true`:
+   - Add to the sub-agent prompt: `"STRICT TDD MODE IS ACTIVE. Test runner: {test_command}. You MUST follow strict-tdd.md. Do NOT fall back to Standard Mode."`
+   - This is NON-NEGOTIABLE. Do not rely on the sub-agent discovering this independently.
+3. If the search fails or `strict_tdd` is not found, do NOT add the TDD instruction (sub-agent uses Standard Mode).
+
+The orchestrator resolves TDD status ONCE per session (at first apply/verify launch) and caches it.
+
+#### Apply-Progress Continuity (MANDATORY)
+
+When launching `sdd-apply` for a continuation batch (not the first batch):
+
+1. Search for existing apply-progress: `mem_search(query: "sdd/{change-name}/apply-progress", project: "{project}")`
+2. If found, add to the sub-agent prompt: `"PREVIOUS APPLY-PROGRESS EXISTS at topic_key 'sdd/{change-name}/apply-progress'. You MUST read it first via mem_search + mem_get_observation, merge your new progress with the existing progress, and save the combined result. Do NOT overwrite — MERGE."`
+3. If not found (first batch), no special instruction needed.
+
+This prevents progress loss across batches. The sub-agent is responsible for read-merge-write, but the orchestrator MUST tell it that previous progress exists.
+
 #### Engram Topic Key Format
 
-| Artifact        | Topic Key                          |
-|-----------------|------------------------------------|
-| Project context | `sdd-init/{project}`               |
-| Exploration     | `sdd/{change-name}/explore`        |
-| Proposal        | `sdd/{change-name}/proposal`       |
-| Spec            | `sdd/{change-name}/spec`           |
-| Design          | `sdd/{change-name}/design`         |
-| Tasks           | `sdd/{change-name}/tasks`          |
-| Apply progress  | `sdd/{change-name}/apply-progress` |
-| Verify report   | `sdd/{change-name}/verify-report`  |
-| Archive report  | `sdd/{change-name}/archive-report` |
-| DAG state       | `sdd/{change-name}/state`          |
+| Artifact | Topic Key |
+|----------|-----------|
+| Project context | `sdd-init/{project}` |
+| Exploration | `sdd/{change-name}/explore` |
+| Proposal | `sdd/{change-name}/proposal` |
+| Spec | `sdd/{change-name}/spec` |
+| Design | `sdd/{change-name}/design` |
+| Tasks | `sdd/{change-name}/tasks` |
+| Apply progress | `sdd/{change-name}/apply-progress` |
+| Verify report | `sdd/{change-name}/verify-report` |
+| Archive report | `sdd/{change-name}/archive-report` |
+| DAG state | `sdd/{change-name}/state` |
 
 Sub-agents retrieve full content via two steps:
 1. `mem_search(query: "{topic_key}", project: "{project}")` → get observation ID

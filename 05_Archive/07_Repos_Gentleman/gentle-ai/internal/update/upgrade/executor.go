@@ -12,9 +12,11 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"log"
 	"os"
 	"os/exec"
 	"path/filepath"
+	"strings"
 	"time"
 
 	"github.com/gentleman-programming/gentle-ai/internal/agents"
@@ -42,6 +44,53 @@ var snapshotCreator = func(snapshotDir string, paths []string) (backup.Manifest,
 // Default "dev" matches the ldflags default in app.Version.
 var AppVersion = "dev"
 
+// backupExcludeSubdirs lists subdirectory base names that should be skipped
+// when walking agent config root directories for backup. These directories
+// contain runtime state, caches, or session data that is not configuration
+// and can be extremely large (e.g. ~/.claude/projects/ can exceed 1 GB).
+//
+// Only the base name is matched — e.g. "projects" skips any directory named
+// "projects" at any depth within the walked tree.
+//
+// Known limitation: some names are generic (e.g. "tasks", "debug", "cache",
+// "plans") and could theoretically match legitimate config subdirectories in
+// future agent versions. This is an accepted tradeoff — the risk of hanging
+// the upgrade on multi-GB runtime dirs outweighs the risk of missing a
+// niche config subdir. Skipped directories are logged at debug level.
+//
+// Must not be mutated after init. Tests must not modify this map; use a local
+// copy or pass a separate map to enumerateFilesInDir instead.
+var backupExcludeSubdirs = map[string]bool{
+	// === Shared across agents ===
+	"backups":      true, // backup snapshots themselves — never recurse into backups
+	"cache":        true, // cached data
+	"debug":        true, // debug logs
+	"downloads":    true, // downloaded files
+	"plugins":      true, // MCP plugin binaries (can be 60+ MB)
+	"sessions":     true, // conversation session data
+	"tasks":        true, // task tracking state
+	"telemetry":    true, // telemetry data
+	"node_modules": true, // npm dependencies (OpenCode, any Node-based agent)
+
+	// === Claude Code (~/.claude/) ===
+	"file-history":    true, // file change tracking
+	"ide":             true, // IDE integration state
+	"paste-cache":     true, // clipboard cache
+	"plans":           true, // conversation plans
+	"projects":        true, // per-project conversation state (can be 1+ GB)
+	"session-env":     true, // session environment snapshots
+	"shell-snapshots": true, // shell state snapshots
+	"troubleshooting": true, // troubleshooting artifacts
+
+	// === Gemini CLI / Antigravity (~/.gemini/, ~/.gemini/antigravity/) ===
+	"browser_recordings":          true, // Antigravity browser recordings (can be 3+ GB)
+	"antigravity-browser-profile": true, // Chromium profile data (250+ MB)
+	"brain":                       true, // Antigravity memory/brain data (300+ MB)
+	"conversations":               true, // Gemini conversation history
+	"context_state":               true, // Gemini context state
+	"html_artifacts":              true, // generated HTML artifacts
+}
+
 // configPathsForBackup returns the agent config file paths that the backup
 // snapshot must include before any upgrade execution.
 //
@@ -55,6 +104,8 @@ var AppVersion = "dev"
 //
 // Only files (not directories) are included — Snapshotter.Create rejects dirs.
 // Non-existent directories are silently skipped.
+// Runtime/cache subdirectories listed in backupExcludeSubdirs are skipped to
+// prevent the backup from walking gigabytes of non-config data.
 func configPathsForBackup(homeDir string) []string {
 	reg, err := agents.NewDefaultRegistry()
 	if err != nil {
@@ -74,10 +125,10 @@ func configPathsForBackup(homeDir string) []string {
 	ggaLibDir := gga.RuntimeLibDir(homeDir)
 	configDirs = append(configDirs, ggaConfigDir, ggaLibDir)
 
-	// Enumerate all regular files under each root dir.
+	// Enumerate all regular files under each root dir, skipping non-config subdirs.
 	paths := make([]string, 0)
 	for _, dir := range configDirs {
-		files, err := enumerateFilesInDir(dir)
+		files, err := enumerateFilesInDir(dir, backupExcludeSubdirs)
 		if err != nil {
 			// Directory doesn't exist or can't be read — silently skip.
 			continue
@@ -90,13 +141,54 @@ func configPathsForBackup(homeDir string) []string {
 
 // enumerateFilesInDir returns the paths of all regular files (recursively) in dir.
 // Returns an error if dir cannot be read (e.g. it doesn't exist).
-func enumerateFilesInDir(dir string) ([]string, error) {
+//
+// excludeDirNames is a set of directory base names to skip entirely at ANY depth.
+// When a directory's base name matches, the entire subtree is pruned via
+// filepath.SkipDir. The names in this set are chosen to be unambiguously
+// runtime/cache directories (e.g. "projects", "browser_recordings", "node_modules")
+// that would never be confused with legitimate config directories.
+// Skipped directories are logged at debug level for auditability.
+//
+// Symlink handling:
+//   - Symlinks to directories (including Windows junctions/reparse points) are
+//     skipped entirely — their targets are not traversed. This prevents backup
+//     failures when agent config directories contain junctioned skill directories
+//     (e.g. ~/.claude/skills → some other directory).
+//   - Symlinks to regular files ARE included — this supports dotfile managers
+//     (stow, chezmoi, bare git) where config files like CLAUDE.md may be symlinks
+//     to files in a dotfiles repository.
+func enumerateFilesInDir(dir string, excludeDirNames map[string]bool) ([]string, error) {
 	var files []string
+	cleanDir := filepath.Clean(dir)
 
-	err := filepath.WalkDir(dir, func(path string, d os.DirEntry, err error) error {
+	err := filepath.WalkDir(cleanDir, func(path string, d os.DirEntry, err error) error {
 		if err != nil {
-			// Skip unreadable entries within the dir — don't abort the walk.
+			// Log unreadable entries but don't abort the walk — partial backup
+			// is better than no backup.
+			log.Printf("backup: skipping unreadable path %s: %v", path, err)
 			return nil
+		}
+		// Symlink handling: skip directory symlinks, include file symlinks.
+		if d.Type()&os.ModeSymlink != 0 {
+			// Resolve the symlink to determine if it points to a file or directory.
+			resolved, statErr := os.Stat(path)
+			if statErr != nil {
+				// Broken symlink — skip silently.
+				return nil
+			}
+			if resolved.IsDir() {
+				// Symlink to directory — skip to avoid traversing into external trees.
+				return nil
+			}
+			// Symlink to regular file — include it (supports dotfile managers).
+			files = append(files, path)
+			return nil
+		}
+		// Skip excluded directories at any depth. The root dir itself is never
+		// excluded (path == cleanDir on the first callback invocation).
+		if d.IsDir() && path != cleanDir && excludeDirNames[strings.ToLower(d.Name())] {
+			log.Printf("backup: excluding directory %s (matched exclude list)", path)
+			return filepath.SkipDir
 		}
 		if !d.IsDir() {
 			files = append(files, path)
@@ -113,7 +205,8 @@ func enumerateFilesInDir(dir string) ([]string, error) {
 // Reporting rules:
 //   - Status UpdateAvailable → attempt upgrade; report Succeeded/Failed/Skipped(manual)
 //   - Status DevBuild → report as UpgradeSkipped with ManualHint (dev/source build)
-//   - Status UpToDate, NotInstalled, CheckFailed, VersionUnknown → omitted from report
+//   - Status VersionUnknown → report as UpgradeSkipped with ManualHint (manual attention required)
+//   - Status UpToDate, NotInstalled, CheckFailed → omitted from report
 //   - dryRun=true → no exec; eligible tools reported as UpgradeSkipped
 //
 // The backup snapshot is created before any exec call — this is the architectural
@@ -124,22 +217,26 @@ func Execute(ctx context.Context, results []update.UpdateResult, profile system.
 	if len(progress) > 0 && progress[0] != nil {
 		pw = progress[0]
 	}
-	// Separate tools into executable (UpdateAvailable) and dev-build (DevBuild).
-	// DevBuild tools are included in the report as UpgradeSkipped with a clear hint.
+	// Separate tools into executable (UpdateAvailable), dev-build (DevBuild), and
+	// version-unknown tools. Non-actionable but user-visible states are included in
+	// the report as UpgradeSkipped so the upgrade flow never fails silently.
 	var executable []update.UpdateResult
 	var devBuilds []update.UpdateResult
+	var versionUnknowns []update.UpdateResult
 	for _, r := range results {
 		switch r.Status {
 		case update.UpdateAvailable:
 			executable = append(executable, r)
 		case update.DevBuild:
 			devBuilds = append(devBuilds, r)
-			// UpToDate, NotInstalled, CheckFailed, VersionUnknown → omit from report
+		case update.VersionUnknown:
+			versionUnknowns = append(versionUnknowns, r)
+			// UpToDate, NotInstalled, CheckFailed → omit from report
 		}
 	}
 
-	// If nothing is executable or dev-built, return empty report.
-	if len(executable) == 0 && len(devBuilds) == 0 {
+	// If nothing is executable, dev-built, or version-unknown, return empty report.
+	if len(executable) == 0 && len(devBuilds) == 0 && len(versionUnknowns) == 0 {
 		return UpgradeReport{DryRun: dryRun}
 	}
 
@@ -159,14 +256,19 @@ func Execute(ctx context.Context, results []update.UpdateResult, profile system.
 			manifest.Description = "pre-upgrade snapshot"
 			manifest.CreatedByVersion = AppVersion
 			manifestPath := filepath.Join(snapshotDir, backup.ManifestFilename)
-			_ = backup.WriteManifest(manifestPath, manifest)
+			if wErr := backup.WriteManifest(manifestPath, manifest); wErr != nil {
+				log.Printf("backup: failed to write upgrade metadata to manifest: %v", wErr)
+				backupWarning = fmt.Sprintf("backup created but metadata update failed: %s", wErr)
+				sp.FinishSkipped()
+			} else {
+				sp.Finish(true)
+			}
 			backupID = manifest.ID
-			sp.Finish(true)
 		}
 	}
 
 	// Build results slice: dev-build skips first (no exec), then executable tools.
-	toolResults := make([]ToolUpgradeResult, 0, len(executable)+len(devBuilds))
+	toolResults := make([]ToolUpgradeResult, 0, len(executable)+len(devBuilds)+len(versionUnknowns))
 
 	// Dev-build tools: always UpgradeSkipped with a source-build hint.
 	for _, r := range devBuilds {
@@ -180,13 +282,35 @@ func Execute(ctx context.Context, results []update.UpdateResult, profile system.
 		})
 	}
 
+	// VersionUnknown tools: surface them as skipped so the user gets a clear hint
+	// instead of a silent omission from the upgrade report.
+	for _, r := range versionUnknowns {
+		toolResults = append(toolResults, ToolUpgradeResult{
+			ToolName:   r.Tool.Name,
+			OldVersion: r.InstalledVersion,
+			NewVersion: r.LatestVersion,
+			Method:     effectiveMethod(r.Tool, profile),
+			Status:     UpgradeSkipped,
+			ManualHint: fmt.Sprintf("installed binary was found but its version could not be determined — check `%s` and reinstall if it is a stale source/dev build", detectCommandHint(r.Tool)),
+		})
+	}
+
 	// Executable tools: run upgrade strategy.
 	for _, r := range executable {
 		method := effectiveMethod(r.Tool, profile)
 		msg := fmt.Sprintf("Upgrading %s via %s (%s → %s)", r.Tool.Name, method, r.InstalledVersion, r.LatestVersion)
 		sp := NewSpinner(pw, msg)
 		toolResult := executeOne(ctx, r, profile, dryRun)
-		sp.Finish(toolResult.Status == UpgradeSucceeded)
+		switch toolResult.Status {
+		case UpgradeSucceeded:
+			sp.Finish(true)
+		case UpgradeSkipped:
+			// Intentional skip (manual fallback, dry-run, dev-build) — NOT a failure.
+			// Render with skip marker (--) instead of failure marker (✗).
+			sp.FinishSkipped()
+		default:
+			sp.Finish(false)
+		}
 		toolResults = append(toolResults, toolResult)
 	}
 
@@ -196,6 +320,14 @@ func Execute(ctx context.Context, results []update.UpdateResult, profile system.
 		Results:       toolResults,
 		DryRun:        dryRun,
 	}
+}
+
+func detectCommandHint(tool update.ToolInfo) string {
+	if len(tool.DetectCmd) == 0 {
+		return tool.Name
+	}
+
+	return strings.Join(tool.DetectCmd, " ")
 }
 
 // executeOne runs the upgrade for a single tool.

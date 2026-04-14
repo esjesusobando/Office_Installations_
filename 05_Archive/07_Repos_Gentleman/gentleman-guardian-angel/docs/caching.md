@@ -32,7 +32,7 @@ GGA includes intelligent caching to speed up reviews by skipping files that have
 The cache automatically invalidates when:
 
 | Change                | Effect                        |
-|-----------------------|-------------------------------|
+| --------------------- | ----------------------------- |
 | File content changes  | Only that file is re-reviewed |
 | `AGENTS.md` changes   | **All files** are re-reviewed |
 | `.gga` config changes | **All files** are re-reviewed |

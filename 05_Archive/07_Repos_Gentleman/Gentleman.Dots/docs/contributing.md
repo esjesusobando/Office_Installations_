@@ -14,11 +14,11 @@ Guide for contributors and developers working on Gentleman.Dots.
 
 ### Requirements
 
-| Tool   | Version   | Purpose             |
-|--------|-----------|---------------------|
-| Go     | 1.21+     | Build the installer |
-| Docker | Latest    | Run E2E tests       |
-| Git    | Latest    | Version control     |
+| Tool | Version | Purpose |
+|------|---------|---------|
+| Go | 1.21+ | Build the installer |
+| Docker | Latest | Run E2E tests |
+| Git | Latest | Version control |
 
 ### Build from Source
 
@@ -49,7 +49,6 @@ Gentleman.Dots/
 ├── skills/                       # Repository-specific AI skills
 │   ├── setup.sh                  # Sync script for AI assistants
 │   └── */SKILL.md                # Individual skills
-├── GentlemanClaude/              # Claude Code config + user skills
 ├── GentlemanNvim/                # Neovim configuration
 ├── GentlemanFish/                # Fish shell config
 ├── GentlemanZsh/                 # Zsh config
@@ -77,29 +76,25 @@ The repository uses a skills system to provide context to AI assistants (Claude,
 # Generate all formats (CLAUDE.md, GEMINI.md, etc.)
 ./skills/setup.sh --all
 
-# Sync to user config directories
-./skills/setup.sh --sync-all
-
 # Individual targets
 ./skills/setup.sh --claude      # CLAUDE.md
 ./skills/setup.sh --gemini      # GEMINI.md
 ./skills/setup.sh --copilot     # .github/copilot-instructions.md
 ./skills/setup.sh --codex       # CODEX.md
-./skills/setup.sh --sync-claude # ~/01_Core/03_Skills/
-./skills/setup.sh --sync-opencode # ~/.config/opencode/skills/
 ```
+
+> **Note:** User-facing AI tool configs (skills, persona, themes) are now managed by [gentle-ai](https://github.com/Gentleman-Programming/gentle-ai).
 
 ### Skill Types
 
-| Type              | Location                  | Purpose                                      |
-|-------------------|---------------------------|----------------------------------------------|
-| Repository skills | `skills/`                 | For this codebase (bubbletea, trainer, etc.) |
-| User skills       | `GentlemanClaude/skills/` | Installed to user's ~/01_Core/03_Skills/     |
+| Type | Location | Purpose |
+|------|----------|---------|
+| Repository skills | `skills/` | For this codebase (bubbletea, trainer, etc.) |
 
 ### Creating a New Skill
 
 1. Load the skill-creator skill: `mcp_skill("skill-creator")`
-2. Create directory under appropriate location
+2. Create directory under `skills/`
 3. Add `SKILL.md` following the template
 4. Register in `AGENTS.md`
 5. Run `./skills/setup.sh --all`
@@ -132,13 +127,13 @@ cd installer/e2e
 
 ### Test Environments
 
-| Environment   | Shell   | Package Manager   | Tests                   |
-|---------------|---------|-------------------|-------------------------|
-| Ubuntu        | bash    | apt + Homebrew    | Full E2E + backup       |
-| Debian        | dash    | apt + Homebrew    | Basic + shell detection |
-| Fedora        | bash    | dnf               | Full E2E                |
-| Alpine        | ash     | apk               | POSIX compatibility     |
-| Termux        | sh      | pkg (simulated)   | Android/Termux specific |
+| Environment | Shell | Package Manager | Tests |
+|-------------|-------|-----------------|-------|
+| Ubuntu | bash | apt + Homebrew | Full E2E + backup |
+| Debian | dash | apt + Homebrew | Basic + shell detection |
+| Fedora | bash | dnf | Full E2E |
+| Alpine | ash | apk | POSIX compatibility |
+| Termux | sh | pkg (simulated) | Android/Termux specific |
 
 ### Adding Tests
 
@@ -197,11 +192,11 @@ shasum -a 256 installer/gentleman-installer-*
 
 ### Version Guidelines
 
-| Change Type                | Version Bump   | Example   |
-|----------------------------|----------------|-----------|
-| New platform/major feature | Minor (x.Y.0)  | v2.7.0    |
-| Bug fixes, improvements    | Patch (x.y.Z)  | v2.6.2    |
-| Breaking changes           | Major (X.0.0)  | v3.0.0    |
+| Change Type | Version Bump | Example |
+|-------------|--------------|---------|
+| New platform/major feature | Minor (x.Y.0) | v2.7.0 |
+| Bug fixes, improvements | Patch (x.y.Z) | v2.6.2 |
+| Breaking changes | Major (X.0.0) | v3.0.0 |
 
 ## Code Style
 

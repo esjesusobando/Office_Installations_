@@ -12,5 +12,12 @@
       "event": "subagent_stop",
       "status": "success"
     }
+  },
+  {
+    "timestamp": "2026-04-14T12:22:00.657743",
+    "data": {
+      "event": "subagent_stop",
+      "status": "success"
+    }
   }
 ]

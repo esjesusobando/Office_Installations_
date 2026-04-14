@@ -6,9 +6,9 @@
 //
 // Tool profiles allow agents to load only the tools they need:
 //
-//	engram mcp                    → all 14 tools (default)
+//	engram mcp                    → all 15 tools (default)
 //	engram mcp --tools=agent      → 11 tools agents actually use (per skill files)
-//	engram mcp --tools=admin      → 3 tools for TUI/CLI (delete, stats, timeline)
+//	engram mcp --tools=admin      → 4 tools for TUI/CLI (delete, stats, timeline, merge)
 //	engram mcp --tools=agent,admin → combine profiles
 //	engram mcp --tools=mem_save,mem_search → individual tool names
 package mcp
@@ -17,11 +17,18 @@ import (
 	"context"
 	"fmt"
 	"strings"
+	"time"
 
+	projectpkg "github.com/Gentleman-Programming/engram/internal/project"
 	"github.com/Gentleman-Programming/engram/internal/store"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 )
+
+// MCPConfig holds configuration for the MCP server.
+type MCPConfig struct {
+	DefaultProject string // Auto-detected project name, used when LLM sends empty project
+}
 
 var suggestTopicKey = store.SuggestTopicKey
 
@@ -37,7 +44,7 @@ var loadMCPStats = func(s *store.Store) (*store.Stats, error) {
 //   mem_suggest_topic_key, mem_capture_passive, mem_save_prompt
 //
 // "admin" — tools for manual curation, TUI, and dashboards:
-//   mem_update, mem_delete, mem_stats, mem_timeline
+//   mem_update, mem_delete, mem_stats, mem_timeline, mem_merge_projects
 //
 // "all" (default) — every tool registered.
 
@@ -61,9 +68,10 @@ var ProfileAgent = map[string]bool{
 // ProfileAdmin contains tools for TUI, dashboards, and manual curation
 // that are NOT referenced in any agent skill or memory protocol.
 var ProfileAdmin = map[string]bool{
-	"mem_delete":   true, // only in OpenCode's ENGRAM_TOOLS filter, not in any agent instructions
-	"mem_stats":    true, // only in OpenCode's ENGRAM_TOOLS filter, not in any agent instructions
-	"mem_timeline": true, // only in OpenCode's ENGRAM_TOOLS filter, not in any agent instructions
+	"mem_delete":         true, // only in OpenCode's ENGRAM_TOOLS filter, not in any agent instructions
+	"mem_stats":          true, // only in OpenCode's ENGRAM_TOOLS filter, not in any agent instructions
+	"mem_timeline":       true, // only in OpenCode's ENGRAM_TOOLS filter, not in any agent instructions
+	"mem_merge_projects": true, // destructive curation tool — not for agent use
 }
 
 // Profiles maps profile names to their tool sets.
@@ -108,12 +116,12 @@ func ResolveTools(input string) map[string]bool {
 
 // NewServer creates an MCP server with ALL tools registered (backwards compatible).
 func NewServer(s *store.Store) *server.MCPServer {
-	return NewServerWithTools(s, nil)
+	return NewServerWithConfig(s, MCPConfig{}, nil)
 }
 
 // serverInstructions tells MCP clients when to use Engram's tools.
-// Most tools are eager (always available in context). Only 4 admin tools
-// are deferred and require ToolSearch to load.
+// 6 core tools are eager (always in context). The rest are deferred
+// and require ToolSearch to load.
 const serverInstructions = `Engram provides persistent memory that survives across sessions and compactions.
 
 CORE TOOLS (always available — use without ToolSearch):
@@ -122,20 +130,27 @@ CORE TOOLS (always available — use without ToolSearch):
   mem_context — get recent session history (call at session start or after compaction)
   mem_session_summary — save end-of-session summary (MANDATORY before saying "done")
   mem_get_observation — get full untruncated content of a search result by ID
-  mem_suggest_topic_key — get a stable topic_key for upserts
-  mem_update — update an existing observation by ID
-  mem_session_start — register session start
-  mem_session_end — mark session completed
   mem_save_prompt — save user prompt for context
 
-ADMIN TOOLS (deferred — use ToolSearch only when needed):
-  mem_stats, mem_delete, mem_timeline, mem_capture_passive
+DEFERRED TOOLS (use ToolSearch when needed):
+  mem_update, mem_suggest_topic_key, mem_session_start, mem_session_end,
+  mem_stats, mem_delete, mem_timeline, mem_capture_passive, mem_merge_projects
 
 PROACTIVE SAVE RULE: Call mem_save immediately after ANY decision, bug fix, discovery, or convention — not just when asked.`
 
 // NewServerWithTools creates an MCP server registering only the tools in
 // the allowlist. If allowlist is nil, all tools are registered.
 func NewServerWithTools(s *store.Store, allowlist map[string]bool) *server.MCPServer {
+	return NewServerWithConfig(s, MCPConfig{}, allowlist)
+}
+
+// NewServerWithConfig creates an MCP server with full configuration including
+// default project detection and optional tool allowlist.
+func NewServerWithConfig(s *store.Store, cfg MCPConfig, allowlist map[string]bool) *server.MCPServer {
+	return newServerWithActivity(s, cfg, allowlist, NewSessionActivity(10*time.Minute))
+}
+
+func newServerWithActivity(s *store.Store, cfg MCPConfig, allowlist map[string]bool, activity *SessionActivity) *server.MCPServer {
 	srv := server.NewMCPServer(
 		"engram",
 		"0.1.0",
@@ -143,7 +158,7 @@ func NewServerWithTools(s *store.Store, allowlist map[string]bool) *server.MCPSe
 		server.WithInstructions(serverInstructions),
 	)
 
-	registerTools(srv, s, allowlist)
+	registerTools(srv, s, cfg, allowlist, activity)
 	return srv
 }
 
@@ -156,7 +171,7 @@ func shouldRegister(name string, allowlist map[string]bool) bool {
 	return allowlist[name]
 }
 
-func registerTools(srv *server.MCPServer, s *store.Store, allowlist map[string]bool) {
+func registerTools(srv *server.MCPServer, s *store.Store, cfg MCPConfig, allowlist map[string]bool, activity *SessionActivity) {
 	// ─── mem_search (profile: agent, core — always in context) ─────────
 	if shouldRegister("mem_search", allowlist) {
 		srv.AddTool(
@@ -184,7 +199,7 @@ func registerTools(srv *server.MCPServer, s *store.Store, allowlist map[string]b
 					mcp.Description("Max results (default: 10, max: 20)"),
 				),
 			),
-			handleSearch(s),
+			handleSearch(s, cfg, activity),
 		)
 	}
 
@@ -247,15 +262,16 @@ Examples:
 					mcp.Description("Optional topic identifier for upserts (e.g. architecture/auth-model). Reuses and updates the latest observation in same project+scope."),
 				),
 			),
-			handleSave(s),
+			handleSave(s, cfg, activity),
 		)
 	}
 
-	// ─── mem_update (profile: agent, eager) ─────────────────────────────
+	// ─── mem_update (profile: agent, deferred) ──────────────────────────
 	if shouldRegister("mem_update", allowlist) {
 		srv.AddTool(
 			mcp.NewTool("mem_update",
 				mcp.WithDescription("Update an existing observation by ID. Only provided fields are changed."),
+				mcp.WithDeferLoading(true),
 				mcp.WithTitleAnnotation("Update Memory"),
 				mcp.WithReadOnlyHintAnnotation(false),
 				mcp.WithDestructiveHintAnnotation(false),
@@ -288,11 +304,12 @@ Examples:
 		)
 	}
 
-	// ─── mem_suggest_topic_key (profile: agent, eager) ──────────────────
+	// ─── mem_suggest_topic_key (profile: agent, deferred) ───────────────
 	if shouldRegister("mem_suggest_topic_key", allowlist) {
 		srv.AddTool(
 			mcp.NewTool("mem_suggest_topic_key",
 				mcp.WithDescription("Suggest a stable topic_key for memory upserts. Use this before mem_save when you want evolving topics (like architecture decisions) to update a single observation over time."),
+				mcp.WithDeferLoading(true),
 				mcp.WithTitleAnnotation("Suggest Topic Key"),
 				mcp.WithReadOnlyHintAnnotation(true),
 				mcp.WithDestructiveHintAnnotation(false),
@@ -356,7 +373,7 @@ Examples:
 					mcp.Description("Project name"),
 				),
 			),
-			handleSavePrompt(s),
+			handleSavePrompt(s, cfg),
 		)
 	}
 
@@ -380,7 +397,7 @@ Examples:
 					mcp.Description("Number of observations to retrieve (default: 20)"),
 				),
 			),
-			handleContext(s),
+			handleContext(s, cfg, activity),
 		)
 	}
 
@@ -496,15 +513,16 @@ GUIDELINES:
 					mcp.Description("Project name"),
 				),
 			),
-			handleSessionSummary(s),
+			handleSessionSummary(s, cfg, activity),
 		)
 	}
 
-	// ─── mem_session_start (profile: agent, eager) ──────────────────────
+	// ─── mem_session_start (profile: agent, deferred) ───────────────────
 	if shouldRegister("mem_session_start", allowlist) {
 		srv.AddTool(
 			mcp.NewTool("mem_session_start",
 				mcp.WithDescription("Register the start of a new coding session. Call this at the beginning of a session to track activity."),
+				mcp.WithDeferLoading(true),
 				mcp.WithTitleAnnotation("Start Session"),
 				mcp.WithReadOnlyHintAnnotation(false),
 				mcp.WithDestructiveHintAnnotation(false),
@@ -522,15 +540,16 @@ GUIDELINES:
 					mcp.Description("Working directory"),
 				),
 			),
-			handleSessionStart(s),
+			handleSessionStart(s, cfg, activity),
 		)
 	}
 
-	// ─── mem_session_end (profile: agent, eager) ────────────────────────
+	// ─── mem_session_end (profile: agent, deferred) ─────────────────────
 	if shouldRegister("mem_session_end", allowlist) {
 		srv.AddTool(
 			mcp.NewTool("mem_session_end",
 				mcp.WithDescription("Mark a coding session as completed with an optional summary."),
+				mcp.WithDeferLoading(true),
 				mcp.WithTitleAnnotation("End Session"),
 				mcp.WithReadOnlyHintAnnotation(false),
 				mcp.WithDestructiveHintAnnotation(false),
@@ -543,8 +562,11 @@ GUIDELINES:
 				mcp.WithString("summary",
 					mcp.Description("Summary of what was accomplished"),
 				),
+				mcp.WithString("project",
+					mcp.Description("Project name (used to clear activity tracking)"),
+				),
 			),
-			handleSessionEnd(s),
+			handleSessionEnd(s, cfg, activity),
 		)
 	}
 
@@ -577,20 +599,54 @@ Duplicates are automatically detected and skipped — safe to call multiple time
 					mcp.Description("Source identifier (e.g. 'subagent-stop', 'session-end')"),
 				),
 			),
-			handleCapturePassive(s),
+			handleCapturePassive(s, cfg, activity),
+		)
+	}
+
+	// ─── mem_merge_projects (profile: admin, deferred) ──────────────────
+	if shouldRegister("mem_merge_projects", allowlist) {
+		srv.AddTool(
+			mcp.NewTool("mem_merge_projects",
+				mcp.WithDescription("Merge memories from multiple project name variants into one canonical name. Use when you discover project name drift (e.g. 'Engram' and 'engram' should be the same project). DESTRUCTIVE — moves all records from source names to the canonical name."),
+				mcp.WithDeferLoading(true),
+				mcp.WithTitleAnnotation("Merge Projects"),
+				mcp.WithReadOnlyHintAnnotation(false),
+				mcp.WithDestructiveHintAnnotation(true),
+				mcp.WithIdempotentHintAnnotation(true),
+				mcp.WithOpenWorldHintAnnotation(false),
+				mcp.WithString("from",
+					mcp.Required(),
+					mcp.Description("Comma-separated list of project names to merge FROM (e.g. 'Engram,engram-memory,ENGRAM')"),
+				),
+				mcp.WithString("to",
+					mcp.Required(),
+					mcp.Description("The canonical project name to merge INTO (e.g. 'engram')"),
+				),
+			),
+			handleMergeProjects(s),
 		)
 	}
 }
 
 // ─── Tool Handlers ───────────────────────────────────────────────────────────
 
-func handleSearch(s *store.Store) server.ToolHandlerFunc {
+func handleSearch(s *store.Store, cfg MCPConfig, activity *SessionActivity) server.ToolHandlerFunc {
 	return func(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 		query, _ := req.GetArguments()["query"].(string)
 		typ, _ := req.GetArguments()["type"].(string)
 		project, _ := req.GetArguments()["project"].(string)
 		scope, _ := req.GetArguments()["scope"].(string)
 		limit := intArg(req, "limit", 10)
+
+		// Apply default project when LLM sends empty
+		if project == "" {
+			project = cfg.DefaultProject
+		}
+		// Normalize project name
+		project, _ = store.NormalizeProject(project)
+
+		sessionID := defaultSessionID(project)
+		activity.RecordToolCall(sessionID)
 
 		results, err := s.Search(query, store.SearchOptions{
 			Type:    typ,
@@ -610,9 +666,9 @@ func handleSearch(s *store.Store) server.ToolHandlerFunc {
 		fmt.Fprintf(&b, "Found %d memories:\n\n", len(results))
 		anyTruncated := false
 		for i, r := range results {
-			project := ""
+			projectDisplay := ""
 			if r.Project != nil {
-				project = fmt.Sprintf(" | project: %s", *r.Project)
+				projectDisplay = fmt.Sprintf(" | project: %s", *r.Project)
 			}
 			preview := truncate(r.Content, 300)
 			if len(r.Content) > 300 {
@@ -622,17 +678,21 @@ func handleSearch(s *store.Store) server.ToolHandlerFunc {
 			fmt.Fprintf(&b, "[%d] #%d (%s) — %s\n    %s\n    %s%s | scope: %s\n\n",
 				i+1, r.ID, r.Type, r.Title,
 				preview,
-				r.CreatedAt, project, r.Scope)
+				r.CreatedAt, projectDisplay, r.Scope)
 		}
 		if anyTruncated {
 			fmt.Fprintf(&b, "---\nResults above are previews (300 chars). To read the full content of a specific memory, call mem_get_observation(id: <ID>).\n")
+		}
+
+		if nudge := activity.NudgeIfNeeded(sessionID); nudge != "" {
+			b.WriteString(nudge)
 		}
 
 		return mcp.NewToolResultText(b.String()), nil
 	}
 }
 
-func handleSave(s *store.Store) server.ToolHandlerFunc {
+func handleSave(s *store.Store, cfg MCPConfig, activity *SessionActivity) server.ToolHandlerFunc {
 	return func(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 		title, _ := req.GetArguments()["title"].(string)
 		content, _ := req.GetArguments()["content"].(string)
@@ -642,6 +702,14 @@ func handleSave(s *store.Store) server.ToolHandlerFunc {
 		scope, _ := req.GetArguments()["scope"].(string)
 		topicKey, _ := req.GetArguments()["topic_key"].(string)
 
+		// Apply default project when LLM sends empty
+		if project == "" {
+			project = cfg.DefaultProject
+		}
+		// Normalize project name and capture warning
+		normalized, normWarning := store.NormalizeProject(project)
+		project = normalized
+
 		if typ == "" {
 			typ = "manual"
 		}
@@ -649,6 +717,28 @@ func handleSave(s *store.Store) server.ToolHandlerFunc {
 			sessionID = defaultSessionID(project)
 		}
 		suggestedTopicKey := suggestTopicKey(typ, title, content)
+
+		// Check for similar existing projects (only when this project has no existing observations)
+		var similarWarning string
+		if project != "" {
+			existingNames, _ := s.ListProjectNames()
+			isNew := true
+			for _, e := range existingNames {
+				if e == project {
+					isNew = false
+					break
+				}
+			}
+			if isNew && len(existingNames) > 0 {
+				matches := projectpkg.FindSimilar(project, existingNames, 3)
+				if len(matches) > 0 {
+					bestMatch := matches[0].Name
+					// Cheap count query instead of full ListProjectsWithStats
+					obsCount, _ := s.CountObservationsForProject(bestMatch)
+					similarWarning = fmt.Sprintf("⚠️ Project %q has no memories. Similar project found: %q (%d memories). Consider using that name instead.", project, bestMatch, obsCount)
+				}
+			}
+		}
 
 		// Ensure the session exists
 		s.CreateSession(sessionID, project, "")
@@ -668,12 +758,20 @@ func handleSave(s *store.Store) server.ToolHandlerFunc {
 			return mcp.NewToolResultError("Failed to save: " + err.Error()), nil
 		}
 
+		activity.RecordSave(defaultSessionID(project))
+
 		msg := fmt.Sprintf("Memory saved: %q (%s)", title, typ)
 		if topicKey == "" && suggestedTopicKey != "" {
 			msg += fmt.Sprintf("\nSuggested topic_key: %s", suggestedTopicKey)
 		}
 		if truncated {
 			msg += fmt.Sprintf("\n⚠ WARNING: Content was truncated from %d to %d chars. Consider splitting into smaller observations.", len(content), s.MaxObservationLength())
+		}
+		if normWarning != "" {
+			msg += "\n" + normWarning
+		}
+		if similarWarning != "" {
+			msg += "\n" + similarWarning
 		}
 		return mcp.NewToolResultText(msg), nil
 	}
@@ -767,11 +865,17 @@ func handleDelete(s *store.Store) server.ToolHandlerFunc {
 	}
 }
 
-func handleSavePrompt(s *store.Store) server.ToolHandlerFunc {
+func handleSavePrompt(s *store.Store, cfg MCPConfig) server.ToolHandlerFunc {
 	return func(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 		content, _ := req.GetArguments()["content"].(string)
 		sessionID, _ := req.GetArguments()["session_id"].(string)
 		project, _ := req.GetArguments()["project"].(string)
+
+		// Apply default project when LLM sends empty
+		if project == "" {
+			project = cfg.DefaultProject
+		}
+		project, _ = store.NormalizeProject(project)
 
 		if sessionID == "" {
 			sessionID = defaultSessionID(project)
@@ -793,10 +897,19 @@ func handleSavePrompt(s *store.Store) server.ToolHandlerFunc {
 	}
 }
 
-func handleContext(s *store.Store) server.ToolHandlerFunc {
+func handleContext(s *store.Store, cfg MCPConfig, activity *SessionActivity) server.ToolHandlerFunc {
 	return func(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 		project, _ := req.GetArguments()["project"].(string)
 		scope, _ := req.GetArguments()["scope"].(string)
+
+		// Apply default project when LLM sends empty
+		if project == "" {
+			project = cfg.DefaultProject
+		}
+		project, _ = store.NormalizeProject(project)
+
+		sessionID := defaultSessionID(project)
+		activity.RecordToolCall(sessionID)
 
 		context, err := s.FormatContext(project, scope)
 		if err != nil {
@@ -817,6 +930,10 @@ func handleContext(s *store.Store) server.ToolHandlerFunc {
 
 		result := fmt.Sprintf("%s\n---\nMemory stats: %d sessions, %d observations across projects: %s",
 			context, stats.TotalSessions, stats.TotalObservations, projects)
+
+		if nudge := activity.NudgeIfNeeded(sessionID); nudge != "" {
+			result += nudge
+		}
 
 		return mcp.NewToolResultText(result), nil
 	}
@@ -934,11 +1051,17 @@ func handleGetObservation(s *store.Store) server.ToolHandlerFunc {
 	}
 }
 
-func handleSessionSummary(s *store.Store) server.ToolHandlerFunc {
+func handleSessionSummary(s *store.Store, cfg MCPConfig, activity *SessionActivity) server.ToolHandlerFunc {
 	return func(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 		content, _ := req.GetArguments()["content"].(string)
 		sessionID, _ := req.GetArguments()["session_id"].(string)
 		project, _ := req.GetArguments()["project"].(string)
+
+		// Apply default project when LLM sends empty
+		if project == "" {
+			project = cfg.DefaultProject
+		}
+		project, _ = store.NormalizeProject(project)
 
 		if sessionID == "" {
 			sessionID = defaultSessionID(project)
@@ -958,15 +1081,27 @@ func handleSessionSummary(s *store.Store) server.ToolHandlerFunc {
 			return mcp.NewToolResultError("Failed to save session summary: " + err.Error()), nil
 		}
 
-		return mcp.NewToolResultText(fmt.Sprintf("Session summary saved for project %q", project)), nil
+		msg := fmt.Sprintf("Session summary saved for project %q", project)
+		if score := activity.ActivityScore(defaultSessionID(project)); score != "" {
+			msg += "\n" + score
+		}
+		return mcp.NewToolResultText(msg), nil
 	}
 }
 
-func handleSessionStart(s *store.Store) server.ToolHandlerFunc {
+func handleSessionStart(s *store.Store, cfg MCPConfig, activity *SessionActivity) server.ToolHandlerFunc {
 	return func(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 		id, _ := req.GetArguments()["id"].(string)
 		project, _ := req.GetArguments()["project"].(string)
 		directory, _ := req.GetArguments()["directory"].(string)
+
+		// Apply default project when LLM sends empty
+		if project == "" {
+			project = cfg.DefaultProject
+		}
+		project, _ = store.NormalizeProject(project)
+
+		activity.RecordToolCall(defaultSessionID(project))
 
 		if err := s.CreateSession(id, project, directory); err != nil {
 			return mcp.NewToolResultError("Failed to start session: " + err.Error()), nil
@@ -976,7 +1111,7 @@ func handleSessionStart(s *store.Store) server.ToolHandlerFunc {
 	}
 }
 
-func handleSessionEnd(s *store.Store) server.ToolHandlerFunc {
+func handleSessionEnd(s *store.Store, cfg MCPConfig, activity *SessionActivity) server.ToolHandlerFunc {
 	return func(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 		id, _ := req.GetArguments()["id"].(string)
 		summary, _ := req.GetArguments()["summary"].(string)
@@ -985,16 +1120,32 @@ func handleSessionEnd(s *store.Store) server.ToolHandlerFunc {
 			return mcp.NewToolResultError("Failed to end session: " + err.Error()), nil
 		}
 
+		// Determine the project for this session to clean up activity tracking
+		project := cfg.DefaultProject
+		if p, _ := req.GetArguments()["project"].(string); p != "" {
+			project = p
+		}
+		project, _ = store.NormalizeProject(project)
+		activity.ClearSession(defaultSessionID(project))
+
 		return mcp.NewToolResultText(fmt.Sprintf("Session %q completed", id)), nil
 	}
 }
 
-func handleCapturePassive(s *store.Store) server.ToolHandlerFunc {
+func handleCapturePassive(s *store.Store, cfg MCPConfig, activity *SessionActivity) server.ToolHandlerFunc {
 	return func(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 		content, _ := req.GetArguments()["content"].(string)
 		sessionID, _ := req.GetArguments()["session_id"].(string)
 		project, _ := req.GetArguments()["project"].(string)
 		source, _ := req.GetArguments()["source"].(string)
+
+		// Apply default project when LLM sends empty
+		if project == "" {
+			project = cfg.DefaultProject
+		}
+		project, _ = store.NormalizeProject(project)
+
+		activity.RecordToolCall(defaultSessionID(project))
 
 		if content == "" {
 			return mcp.NewToolResultError("content is required — include text with a '## Key Learnings:' section"), nil
@@ -1023,6 +1174,41 @@ func handleCapturePassive(s *store.Store) server.ToolHandlerFunc {
 			"Passive capture complete: extracted=%d saved=%d duplicates=%d",
 			result.Extracted, result.Saved, result.Duplicates,
 		)), nil
+	}
+}
+
+func handleMergeProjects(s *store.Store) server.ToolHandlerFunc {
+	return func(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+		fromStr, _ := req.GetArguments()["from"].(string)
+		to, _ := req.GetArguments()["to"].(string)
+
+		if fromStr == "" || to == "" {
+			return mcp.NewToolResultError("both 'from' and 'to' are required"), nil
+		}
+
+		var sources []string
+		for _, src := range strings.Split(fromStr, ",") {
+			src = strings.TrimSpace(src)
+			if src != "" {
+				sources = append(sources, src)
+			}
+		}
+
+		if len(sources) == 0 {
+			return mcp.NewToolResultError("at least one source project name is required in 'from'"), nil
+		}
+
+		result, err := s.MergeProjects(sources, to)
+		if err != nil {
+			return mcp.NewToolResultError("Merge failed: " + err.Error()), nil
+		}
+
+		msg := fmt.Sprintf("Merged %d source(s) into %q:\n", len(result.SourcesMerged), result.Canonical)
+		msg += fmt.Sprintf("  Observations moved: %d\n", result.ObservationsUpdated)
+		msg += fmt.Sprintf("  Sessions moved:     %d\n", result.SessionsUpdated)
+		msg += fmt.Sprintf("  Prompts moved:      %d\n", result.PromptsUpdated)
+
+		return mcp.NewToolResultText(msg), nil
 	}
 }
 

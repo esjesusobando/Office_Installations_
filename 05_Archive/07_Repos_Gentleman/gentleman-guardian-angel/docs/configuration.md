@@ -44,10 +44,10 @@ TIMEOUT="300"
 ## Configuration Options
 
 | Option             | Required | Default     | Description                              |
-|--------------------|----------|-------------|------------------------------------------|
-| `PROVIDER`         | ✅ Yes    |-------------| AI provider to use                       |
+| ------------------ | -------- | ----------- | ---------------------------------------- |
+| `PROVIDER`         | ✅ Yes   | -           | AI provider to use                       |
 | `FILE_PATTERNS`    | No       | `*`         | Comma-separated file patterns to include |
-| `EXCLUDE_PATTERNS` | No       |-------------| Comma-separated file patterns to exclude |
+| `EXCLUDE_PATTERNS` | No       | -           | Comma-separated file patterns to exclude |
 | `RULES_FILE`       | No       | `AGENTS.md` | Path to your coding standards file       |
 | `STRICT_MODE`      | No       | `true`      | Fail on ambiguous AI responses           |
 | `TIMEOUT`          | No       | `300`       | Max seconds to wait for AI response      |

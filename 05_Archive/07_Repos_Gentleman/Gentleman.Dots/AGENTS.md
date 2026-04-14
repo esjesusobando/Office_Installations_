@@ -15,55 +15,30 @@ For manual loading, read the SKILL.md file directly.
 
 ### Gentleman.Dots Specific (Repository Skills)
 
-| Skill                 | Description                                                  | File                                            |
-|-----------------------|--------------------------------------------------------------|-------------------------------------------------|
+| Skill | Description | File |
+|-------|-------------|------|
 | `gentleman-bubbletea` | Bubbletea TUI patterns, Model-Update-View, screen navigation | [SKILL.md](skills/gentleman-bubbletea/SKILL.md) |
-| `gentleman-trainer`   | Vim Trainer RPG system, exercises, progression, boss fights  | [SKILL.md](skills/gentleman-trainer/SKILL.md)   |
-| `gentleman-installer` | Installation steps, interactive/non-interactive modes        | [SKILL.md](skills/gentleman-installer/SKILL.md) |
-| `gentleman-e2e`       | Docker-based E2E testing, multi-platform validation          | [SKILL.md](skills/gentleman-e2e/SKILL.md)       |
-| `gentleman-system`    | OS detection, command execution, cross-platform support      | [SKILL.md](skills/gentleman-system/SKILL.md)    |
-| `go-testing`          | Go testing patterns, table-driven tests, Bubbletea testing   | [SKILL.md](skills/go-testing/SKILL.md)          |
+| `gentleman-trainer` | Vim Trainer RPG system, exercises, progression, boss fights | [SKILL.md](skills/gentleman-trainer/SKILL.md) |
+| `gentleman-installer` | Installation steps, interactive/non-interactive modes | [SKILL.md](skills/gentleman-installer/SKILL.md) |
+| `gentleman-e2e` | Docker-based E2E testing, multi-platform validation | [SKILL.md](skills/gentleman-e2e/SKILL.md) |
+| `gentleman-system` | OS detection, command execution, cross-platform support | [SKILL.md](skills/gentleman-system/SKILL.md) |
+| `go-testing` | Go testing patterns, table-driven tests, Bubbletea testing | [SKILL.md](skills/go-testing/SKILL.md) |
 
-### Generic Skills (User Installation → ~/01_Core/03_Skills/)
-
-These skills are copied to user's Claude/OpenCode config via the installer.
-
-| Skill           | Description                                                    | Source                                                                                |
-|-----------------|----------------------------------------------------------------|---------------------------------------------------------------------------------------|
-| `react-19`      | React 19 patterns, hooks, components                           | [GentlemanClaude/skills/react-19](GentlemanClaude/skills/react-19/SKILL.md)           |
-| `nextjs-15`     | Next.js 15, App Router, Server Components                      | [GentlemanClaude/skills/nextjs-15](GentlemanClaude/skills/nextjs-15/SKILL.md)         |
-| `typescript`    | TypeScript patterns, types, generics                           | [GentlemanClaude/skills/typescript](GentlemanClaude/skills/typescript/SKILL.md)       |
-| `tailwind-4`    | Tailwind CSS v4 patterns                                       | [GentlemanClaude/skills/tailwind-4](GentlemanClaude/skills/tailwind-4/SKILL.md)       |
-| `zod-4`         | Zod validation schemas                                         | [GentlemanClaude/skills/zod-4](GentlemanClaude/skills/zod-4/SKILL.md)                 |
-| `zustand-5`     | Zustand state management                                       | [GentlemanClaude/skills/zustand-5](GentlemanClaude/skills/zustand-5/SKILL.md)         |
-| `ai-sdk-5`      | Vercel AI SDK 5                                                | [GentlemanClaude/skills/ai-sdk-5](GentlemanClaude/skills/ai-sdk-5/SKILL.md)           |
-| `django-drf`    | Django REST Framework                                          | [GentlemanClaude/skills/django-drf](GentlemanClaude/skills/django-drf/SKILL.md)       |
-| `playwright`    | Playwright E2E testing                                         | [GentlemanClaude/skills/playwright](GentlemanClaude/skills/playwright/SKILL.md)       |
-| `pytest`        | Python pytest patterns                                         | [GentlemanClaude/skills/pytest](GentlemanClaude/skills/pytest/SKILL.md)               |
-| `skill-creator` | Create new AI agent skills                                     | [GentlemanClaude/skills/skill-creator](GentlemanClaude/skills/skill-creator/SKILL.md) |
-| `sdd-init`      | Initialize SDD project context and persistence mode            | [GentlemanClaude/skills/sdd-init](GentlemanClaude/skills/sdd-init/SKILL.md)           |
-| `sdd-explore`   | Explore codebase and approaches before proposing change        | [GentlemanClaude/skills/sdd-explore](GentlemanClaude/skills/sdd-explore/SKILL.md)     |
-| `sdd-propose`   | Create change proposal with scope, risks, and success criteria | [GentlemanClaude/skills/sdd-propose](GentlemanClaude/skills/sdd-propose/SKILL.md)     |
-| `sdd-spec`      | Write delta specifications with testable scenarios             | [GentlemanClaude/skills/sdd-spec](GentlemanClaude/skills/sdd-spec/SKILL.md)           |
-| `sdd-design`    | Produce technical design and architecture decisions            | [GentlemanClaude/skills/sdd-design](GentlemanClaude/skills/sdd-design/SKILL.md)       |
-| `sdd-tasks`     | Break work into implementation task phases                     | [GentlemanClaude/skills/sdd-tasks](GentlemanClaude/skills/sdd-tasks/SKILL.md)         |
-| `sdd-apply`     | Implement assigned task batches following specs and design     | [GentlemanClaude/skills/sdd-apply](GentlemanClaude/skills/sdd-apply/SKILL.md)         |
-| `sdd-verify`    | Verify implementation against specs and tasks                  | [GentlemanClaude/skills/sdd-verify](GentlemanClaude/skills/sdd-verify/SKILL.md)       |
-| `sdd-archive`   | Close a change and archive final artifacts                     | [GentlemanClaude/skills/sdd-archive](GentlemanClaude/skills/sdd-archive/SKILL.md)     |
+> **Note:** User-facing AI skills (React 19, TypeScript, SDD workflow, etc.) are now managed by [gentle-ai](https://github.com/Gentleman-Programming/gentle-ai).
 
 ## Auto-invoke Skills
 
 When performing these actions, **ALWAYS** invoke the corresponding skill FIRST:
 
-| Action                   | Invoke First          | Why                                                 |
-|--------------------------|-----------------------|-----------------------------------------------------|
-| Adding new TUI screen    | `gentleman-bubbletea` | Screen constants, Model state, Update handlers      |
-| Creating Vim exercises   | `gentleman-trainer`   | Exercise structure, module registration, validation |
-| Adding installation step | `gentleman-installer` | Step registration, OS handling, error wrapping      |
-| Writing E2E tests        | `gentleman-e2e`       | Test structure, Docker patterns, verification       |
-| Adding OS support        | `gentleman-system`    | Detection priority, command execution patterns      |
-| Writing Go tests         | `go-testing`          | Table-driven tests, teatest patterns                |
-| Creating new skill       | `skill-creator`       | Skill structure, naming, frontmatter                |
+| Action | Invoke First | Why |
+|--------|--------------|-----|
+| Adding new TUI screen | `gentleman-bubbletea` | Screen constants, Model state, Update handlers |
+| Creating Vim exercises | `gentleman-trainer` | Exercise structure, module registration, validation |
+| Adding installation step | `gentleman-installer` | Step registration, OS handling, error wrapping |
+| Writing E2E tests | `gentleman-e2e` | Test structure, Docker patterns, verification |
+| Adding OS support | `gentleman-system` | Detection priority, command execution patterns |
+| Writing Go tests | `go-testing` | Table-driven tests, teatest patterns |
+| Creating new skill | `skill-creator` | Skill structure, naming, frontmatter |
 
 ## How Skills Work
 
@@ -80,12 +55,9 @@ skills/                              # Repository-specific skills
 ├── gentleman-bubbletea/SKILL.md     # TUI patterns
 ├── gentleman-trainer/SKILL.md       # Vim trainer
 └── ...
-
-GentlemanClaude/skills/              # User-installable skills
-├── react-19/SKILL.md                # Copied to ~/01_Core/03_Skills/
-├── typescript/SKILL.md
-└── ...
 ```
+
+> User-installable skills (React 19, TypeScript, SDD, etc.) are now managed by [gentle-ai](https://github.com/Gentleman-Programming/gentle-ai).
 
 ## Contributing
 
@@ -95,12 +67,6 @@ GentlemanClaude/skills/              # User-installable skills
 3. Add SKILL.md following the template
 4. Register in this file under "Gentleman.Dots Specific"
 5. Run `./skills/setup.sh --all` to regenerate
-
-### Adding a User Skill (for Claude/OpenCode users)
-1. Create skill directory under `GentlemanClaude/skills/`
-2. Add SKILL.md following the template
-3. Register in this file under "Generic Skills"
-4. The installer will copy it to user's config
 
 ## Project Overview
 
@@ -189,16 +155,16 @@ Sub-agents get a fresh context with NO memory. The orchestrator is responsible f
 
 Each SDD phase has explicit read/write rules based on the dependency graph:
 
-| Phase         | Reads artifacts from backend      | Writes artifact        |
-|---------------|-----------------------------------|------------------------|
-| `sdd-explore` | Nothing                           | Yes (`explore`)        |
-| `sdd-propose` | Exploration (if exists, optional) | Yes (`proposal`)       |
-| `sdd-spec`    | Proposal (required)               | Yes (`spec`)           |
-| `sdd-design`  | Proposal (required)               | Yes (`design`)         |
-| `sdd-tasks`   | Spec + Design (required)          | Yes (`tasks`)          |
-| `sdd-apply`   | Tasks + Spec + Design             | Yes (`apply-progress`) |
-| `sdd-verify`  | Spec + Tasks                      | Yes (`verify-report`)  |
-| `sdd-archive` | All artifacts                     | Yes (`archive-report`) |
+| Phase | Reads artifacts from backend | Writes artifact |
+|-------|------------------------------|-----------------|
+| `sdd-explore` | Nothing | Yes (`explore`) |
+| `sdd-propose` | Exploration (if exists, optional) | Yes (`proposal`) |
+| `sdd-spec` | Proposal (required) | Yes (`spec`) |
+| `sdd-design` | Proposal (required) | Yes (`design`) |
+| `sdd-tasks` | Spec + Design (required) | Yes (`tasks`) |
+| `sdd-apply` | Tasks + Spec + Design | Yes (`apply-progress`) |
+| `sdd-verify` | Spec + Tasks | Yes (`verify-report`) |
+| `sdd-archive` | All artifacts | Yes (`archive-report`) |
 
 For SDD phases with required dependencies, the sub-agent reads them directly from the backend (engram or openspec) — the orchestrator passes artifact references (topic keys or file paths), NOT the content itself.
 
@@ -206,18 +172,18 @@ For SDD phases with required dependencies, the sub-agent reads them directly fro
 
 When launching sub-agents for SDD phases with engram mode, pass these exact topic_keys as artifact references:
 
-| Artifact        | Topic Key                          |
-|-----------------|------------------------------------|
-| Project context | `sdd-init/{project}`               |
-| Exploration     | `sdd/{change-name}/explore`        |
-| Proposal        | `sdd/{change-name}/proposal`       |
-| Spec            | `sdd/{change-name}/spec`           |
-| Design          | `sdd/{change-name}/design`         |
-| Tasks           | `sdd/{change-name}/tasks`          |
-| Apply progress  | `sdd/{change-name}/apply-progress` |
-| Verify report   | `sdd/{change-name}/verify-report`  |
-| Archive report  | `sdd/{change-name}/archive-report` |
-| DAG state       | `sdd/{change-name}/state`          |
+| Artifact | Topic Key |
+|----------|-----------|
+| Project context | `sdd-init/{project}` |
+| Exploration | `sdd/{change-name}/explore` |
+| Proposal | `sdd/{change-name}/proposal` |
+| Spec | `sdd/{change-name}/spec` |
+| Design | `sdd/{change-name}/design` |
+| Tasks | `sdd/{change-name}/tasks` |
+| Apply progress | `sdd/{change-name}/apply-progress` |
+| Verify report | `sdd/{change-name}/verify-report` |
+| Archive report | `sdd/{change-name}/archive-report` |
+| DAG state | `sdd/{change-name}/state` |
 
 Sub-agents retrieve full content via two steps:
 1. `mem_search(query: "{topic_key}", project: "{project}")` → get observation ID

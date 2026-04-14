@@ -43,6 +43,9 @@ Este directorio contiene los agentes especializados del sistema Think Different 
 | 08  | PRD Dashboard Template | Producto       | BAJA      | ✅      |
 | 09  | Design SOP Document    | Producto       | BAJA      | ✅      |
 | 10  | Workflow Orchestrator  | Orquestación   | CRÍTICA   | ✅      |
+| 11  | AIPM Judge            | Calidad/Auditoría | ALTA      | ✅      |
+| 12  | LFG Autonomous Engine | Autonomía       | ALTA      | ✅      |
+| 13  | Hillary OS Specialist | Life OS         | ALTA      | ✅ 🆕   |
 
 ### Specialists Squad
 
@@ -173,9 +176,9 @@ Agente #07: "Audita accesibilidad de [feature]"
 
 | Componente          | Cantidad   | Estado   |
 |---------------------|------------|----------|
-| Agentes Principales | 10         | ✅        |
+| Agentes Principales | 11         | ✅        |
 | Specialists Squad   | 4          | ✅        |
-| Total Agentes       | 14         | ✅        |
+| Total Agentes       | 15         | ✅        |
 | Flujo TDD           | 7 fases    | ✅        |
 
 ---

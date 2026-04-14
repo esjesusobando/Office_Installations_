@@ -151,11 +151,13 @@ duration: 45min
 ```
 04_Recording_Mode/
 ├── SKILL.md
-├── templates/privacidad.md
-├── recordings/.gitkeep
-├── transcripts/
-└── examples/transcript_example.md
+└── templates/privacidad.md
 ```
+
+## Destinos (Single Source of Truth)
+
+- **Transcripts**: `03_Tasks/02_Hillary_Inbox/Transcripts/`
+- **Audio Backup**: `03_Tasks/01_Tasks_Done/Audio_Vault/` (Si se requiere persistencia)
 
 ---
 

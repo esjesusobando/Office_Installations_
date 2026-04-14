@@ -129,7 +129,7 @@ get_skills_path() {
     home="$(home_dir)"
 
     case "$agent" in
-        claude-code)  echo "$home/01_Core/03_Skills" ;;
+        claude-code)  echo "$home/.claude/skills" ;;
         opencode)     echo "$home/.config/opencode/skills" ;;
         gemini-cli)   echo "$home/.gemini/skills" ;;
         cursor)       echo "$home/.cursor/skills" ;;

@@ -1,7 +1,7 @@
 # 02_Knowledge — Base de Conocimiento
 
 **Versión:** 6.1
-**Última actualización:** 2026-04-04
+**Última actualización:** 2026-04-14
 **Estado:** ✅ Activo
 
 ---
@@ -10,16 +10,16 @@
 
 ```
 Think_Different/
-├── 00_Winter_is_Coming/    # Goals, Backlog, Memoria (ESTRATÉGICO)
-├── 01_Core/               # Motor: Skills, Agents, MCPs, Workflows 💾
-├── 02_Knowledge/          # Documentación, Research, Notas 📚
-├── 03_Tasks/             # Tareas activas (YAML frontmatter)
-├── 04_Operations/        # Operaciones: Memory, Brain, Notes
-├── 05_Archive/           # Legacy archivado
-├── 06_Playground/       # Pruebas y experimentos
-├── 07_Projects/         # Proyectos activos
-├── 08_Scripts_Os/       # Scripts operativos
-└── Maerks/             # Tests legacy, planes
+├── 00_Winter_is_Coming/    # Estrategia, Backlog y ADN (ESTRATÉGICO)
+├── 01_Core/               # Motor OS: Skills, Agents, MCPs (FUENTE DE VERDAD) 💾
+├── 02_Knowledge/          # Base de Conocimiento, Research y Documentación 📚
+├── 03_Tasks/              # Gestión de Tareas Activas
+├── 04_Operations/         # Cerebro Operativo y Automatización
+├── 05_Archive/            # Repositorio de Proyectos Finalizados
+├── 06_Playground/         # Laboratorio de Pruebas y Experimentos
+├── 07_Projects/           # Desarrollo de Proyectos Activos
+├── 08_Scripts_Os/         # Scripts y HUBs Operativos del Sistema
+└── Maerks/               # Entorno de Testing y Validación
 ```
 
 ---
@@ -28,46 +28,17 @@ Think_Different/
 
 ```
 02_Knowledge/
-├── README.md                         # Este archivo
-├── Skill_Creator_v2_Analysis.md     # Análisis de skill creator
-├── .gitkeep                         # Preserva la carpeta en git
-├── 00_Examples_Personal_Os/       # Ejemplos del PersonalOS
-│   ├── Example_Files/
-│   │   ├── 01_BACKLOG_Example.md
-│   │   ├── 02_Example_Knowledge.md
-│   │   └── 03_Example_Task.md
-│   ├── Tutorials/
-│   │   ├── 01_Build_Your_Personal_Os.md
-│   │   ├── 02_Markdown_and_Structure.md
-│   │   ├── 03_Mcp_Server_Implementation.md
-│   │   ├── 04_Memory.md
-│   │   ├── 05_Session_Evals.md
-│   │   ├── 06_Subagents.md
-│   │   ├── 07_Tool_Calling.md
-│   │   └── 08_Voice_Training.md
-│   └── Workflows/
-│       ├── 01_Backlog_Processing.md
-│       ├── 02_Morning_Standup.md
-│       ├── 03_Content_Generation.md
-│       └── 04_Weekly_Review.md
-├── 01_Research_Os/                 # Investigación del OS
-│   ├── Skills_TOP_Rankings.md
-│   └── Claude_AI_Announcements_2026.md
-├── 02_Perfiles_Team/              # Perfiles del equipo
-├── 03_Writing_Content/            # Contenido escrito
-│   ├── 00_Zinking_Tone.md
-│   ├── 01_Reflexiones_Insights_Diseno.md
-│   └── 02_El_Diseno_Invisible.md
-├── 04_Docs/                       # Documentos varios
-│   ├── README.md                     # Índice de documentación
-│   ├── OS_Integration_Audit_v6.1.md  # Auditoría del OS (94%)
-│   ├── Plan_Unicorn_Engineering_SOTA.md  # Plan Unicorn Engineering
-│   ├── 99_ATL/                        # SDD Registry
-│   │   └── skill-registry.md
-│   └── Skill_Creator_v2_Analysis.md  # Análisis de skill creator (Mover a dir correcto)
-├── 05_Aipm/                         # AIPM Documentation
-├── 06_Unicorn/                      # Unicorn Engineering ⭐ FUENTE DE VERDAD
-├── 07_Invictus/                     # Skill Creator Invictus
+├── README.md                         # Este archivo (v6.1)
+├── Skill_Creator_v2_Analysis.md     # Análisis profundo del motor de creación de skills
+├── 00_Examples_Personal_Os/         # Tutoriales, workflows y archivos de ejemplo
+├── 01_Research_Os/                   # Investigación tecnológica y rankings
+├── 02_Perfiles_Team/                 # Definición de roles (Prompt Engineering)
+├── 03_Writing_Content/               # Borradores de contenido y reflexiones de diseño
+├── 04_Docs/                          # Documentación oficial (Auditorías, Runbooks, ATL)
+├── 05_Aipm/                          # Recursos de AI Project Management
+├── 06_Unicorn/                       # Unicorn Engineering (Fuente de Verdad Técnica)
+└── 07_Invictus/                      # Metodología de creación de agentes Invictus
+```
 ```
 
 ---

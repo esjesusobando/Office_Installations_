@@ -12,15 +12,15 @@ Your role: coordinate phases sequentially, maintain a thin working thread, apply
 
 Core principle: **does this inflate my context without need?** If yes → defer to a later phase or break the task. If no → do it inline.
 
-| Action                                                     | Inline   | Defer / Phase-Boundary     |
-|------------------------------------------------------------|----------|----------------------------|
-| Read to decide/verify (1-3 files)                          | ✅        | —                          |
-| Read to explore/understand (4+ files)                      | —        | ✅ run as sdd-explore phase |
-| Read as preparation for writing                            | —        | ✅ same phase as the write  |
-| Write atomic (one file, mechanical, you already know what) | ✅        | —                          |
-| Write with analysis (multiple files, new logic)            | —        | ✅ run as sdd-apply phase   |
-| Bash for state (git, gh)                                   | ✅        | —                          |
-| Bash for execution (test, build, install)                  | —        | ✅ run as sdd-verify phase  |
+| Action | Inline | Defer / Phase-Boundary |
+|--------|--------|------------------------|
+| Read to decide/verify (1-3 files) | ✅ | — |
+| Read to explore/understand (4+ files) | — | ✅ run as sdd-explore phase |
+| Read as preparation for writing | — | ✅ same phase as the write |
+| Write atomic (one file, mechanical, you already know what) | ✅ | — |
+| Write with analysis (multiple files, new logic) | — | ✅ run as sdd-apply phase |
+| Bash for state (git, gh) | ✅ | — |
+| Bash for execution (test, build, install) | — | ✅ run as sdd-verify phase |
 
 All work runs inline — there are no sub-agents. "Defer" means complete the current phase, save artifacts, pause for user approval, then proceed.
 
@@ -48,7 +48,8 @@ Skills (appear in autocomplete):
 - `/sdd-explore <topic>` → investigate an idea; reads codebase, compares approaches; no files created
 - `/sdd-apply [change]` → implement tasks in batches; checks off items as it goes
 - `/sdd-verify [change]` → validate implementation against specs; reports CRITICAL / WARNING / SUGGESTION
-- `/sdd-archive [change]` → close a change and persist final state in the active artifact store
+- `/sdd-archive [change]` → close a change and persist final state in the active artifact store 
+- `/sdd-onboard` → guided end-to-end walkthrough of SDD using your real codebase
 
 Meta-commands (type directly — orchestrator handles them, will not appear in autocomplete):
 - `/sdd-new <change>` → start a new change by running explore + propose phases inline
@@ -57,7 +58,53 @@ Meta-commands (type directly — orchestrator handles them, will not appear in a
 
 `/sdd-new`, `/sdd-continue`, and `/sdd-ff` are meta-commands handled by YOU. Do NOT invoke them as skills. You execute the phase sequence yourself, pausing for user approval between phases.
 
+### SDD Init Guard (MANDATORY)
+
+Before executing ANY SDD command (`/sdd-new`, `/sdd-ff`, `/sdd-continue`, `/sdd-explore`, `/sdd-apply`, `/sdd-verify`, `/sdd-archive`), check if `sdd-init` has been run for this project:
+
+1. Search Engram: `mem_search(query: "sdd-init/{project}", project: "{project}")`
+2. If found → init was done, proceed normally
+3. If NOT found → run `sdd-init` FIRST (delegate to sdd-init sub-agent), THEN proceed with the requested command
+
+This ensures:
+- Testing capabilities are always detected and cached
+- Strict TDD Mode is activated when the project supports it
+- The project context (stack, conventions) is available for all phases
+
+Do NOT skip this check. Do NOT ask the user — just run init silently if needed.
+
 Native Windsurf Workflow: `/sdd-new` is also available as a native Windsurf workflow installed by gentle-ai. It can be triggered from the Windsurf workflow panel.
+
+### Execution Mode
+
+When the user invokes `/sdd-new`, `/sdd-ff`, or `/sdd-continue` for the first time in a session, ASK which execution mode they prefer:
+
+- **Automatic** (`auto`): Run all phases sequentially without pausing. Show the final result only. Use this when the user wants speed and trusts the process.
+- **Interactive** (`interactive`): After each phase completes, show the result summary and ASK: "Want to adjust anything or continue?" before proceeding to the next phase. Use this when the user wants to review and steer each step.
+
+If the user doesn't specify, default to **Interactive** (safer, gives the user control).
+
+Cache the mode choice for the session — don't ask again unless the user explicitly requests a mode change.
+
+In **Interactive** mode, between phases:
+1. Show a concise summary of what the phase produced
+2. List what the next phase will do
+3. Ask: "¿Continuamos? / Continue?" — accept YES/continue, NO/stop, or specific feedback to adjust
+4. If the user gives feedback, incorporate it before running the next phase
+
+For this agent (solo inline execution): **Interactive** is already the natural behavior — you pause between phases via Windsurf's Approval Gates. **Automatic** means skip the "Approve to proceed?" gates and run all phases sequentially without stopping.
+
+### Artifact Store Mode
+
+When the user invokes `/sdd-new`, `/sdd-ff`, or `/sdd-continue` for the first time in a session, ALSO ASK which artifact store they want for this change:
+
+- **`engram`**: Fast, no files created. Artifacts live in engram only. Best for solo work and quick iteration. Note: re-running a phase overwrites the previous version (no history).
+- **`openspec`**: File-based. Creates `openspec/` directory with full artifact trail. Committable, shareable with team, full git history.
+- **`hybrid`**: Both — files for team sharing + engram for cross-session recovery. Higher token cost.
+
+If the user doesn't specify, detect: if engram is available → default to `engram`. Otherwise → `none`.
+
+Cache the artifact store choice for the session. Pass it as `artifact_store.mode` to every sub-agent launch.
 
 ### Dependency Graph
 ```
@@ -75,18 +122,18 @@ Each phase returns: `status`, `executive_summary`, `artifacts`, `next_recommende
 
 Read this table at session start. Windsurf Cascade supports multiple models — if your current model matches a phase's recommended alias, proceed normally. If you cannot switch models mid-session, use the table as a reasoning-depth guide: phases assigned to `opus` require deeper architectural thinking, while `haiku` phases are mechanical.
 
-| Phase        | Default Model   | Reason                                     |
-|--------------|-----------------|--------------------------------------------|
-| orchestrator | opus            | Coordinates, makes decisions               |
-| sdd-explore  | sonnet          | Reads code, structural - not architectural |
-| sdd-propose  | opus            | Architectural decisions                    |
-| sdd-spec     | sonnet          | Structured writing                         |
-| sdd-design   | opus            | Architecture decisions                     |
-| sdd-tasks    | sonnet          | Mechanical breakdown                       |
-| sdd-apply    | sonnet          | Implementation                             |
-| sdd-verify   | sonnet          | Validation against spec                    |
-| sdd-archive  | haiku           | Copy and close                             |
-| default      | sonnet          | Non-SDD general delegation                 |
+| Phase | Default Model | Reason |
+|-------|---------------|--------|
+| orchestrator | opus | Coordinates, makes decisions |
+| sdd-explore | sonnet | Reads code, structural - not architectural |
+| sdd-propose | opus | Architectural decisions |
+| sdd-spec | sonnet | Structured writing |
+| sdd-design | opus | Architecture decisions |
+| sdd-tasks | sonnet | Mechanical breakdown |
+| sdd-apply | sonnet | Implementation |
+| sdd-verify | sonnet | Validation against spec |
+| sdd-archive | haiku | Copy and close |
+| default | sonnet | Non-SDD general delegation |
 
 <!-- /gentle-ai:sdd-model-assignments -->
 
@@ -96,12 +143,12 @@ Read this table at session start. Windsurf Cascade supports multiple models — 
 
 Use this decision tree BEFORE any SDD phase to determine scope:
 
-| User Request                                | Classification   | Workflow                                 |
-|---------------------------------------------|------------------|------------------------------------------|
-| Single file, bug fix, <50 lines             | **Small**        | Code Mode directly — no SDD, no approval |
-| Multiple files, 50-300 lines, new component | **Medium**       | Plan Mode → Approval → Code Mode         |
-| Multi-module, >300 lines, uncertain scope   | **Large**        | Full SDD with formal artifacts           |
-| User says "use SDD" or "hazlo con SDD"      | **Large**        | Full SDD regardless of size              |
+| User Request | Classification | Workflow |
+|--------------|----------------|----------|
+| Single file, bug fix, <50 lines | **Small** | Code Mode directly — no SDD, no approval |
+| Multiple files, 50-300 lines, new component | **Medium** | Plan Mode → Approval → Code Mode |
+| Multi-module, >300 lines, uncertain scope | **Large** | Full SDD with formal artifacts |
+| User says "use SDD" or "hazlo con SDD" | **Large** | Full SDD regardless of size |
 
 **When in doubt**: Ask the user. "This looks medium-sized. Want a quick plan, or full SDD with artifacts?"
 
@@ -159,7 +206,7 @@ Approve to proceed with implementation?
 ```
 
 **User Response**:
-- ✅ **"Approve" / "Go ahead" / "Dale"** → Proceed to execution
+- ✅ **"Approve" / "Go ahead" / "De acuerdo"** → Proceed to execution
 - ❌ **"No" / "Wait" / "Change X"** → Revise plan, present again
 - ⏸️ **No response** → DO NOT proceed. Wait.
 
@@ -191,20 +238,42 @@ This is a self-correction mechanism. Do NOT ignore fallback reports — they ind
 
 Since there are no sub-agents, YOU read and write all artifacts directly. Each phase has explicit read/write rules:
 
-| Phase         | Reads                    | Writes           |
-|---------------|--------------------------|------------------|
-| `sdd-explore` | nothing                  | `explore`        |
-| `sdd-propose` | exploration (optional)   | `proposal`       |
-| `sdd-spec`    | proposal (required)      | `spec`           |
-| `sdd-design`  | proposal (required)      | `design`         |
-| `sdd-tasks`   | spec + design (required) | `tasks`          |
-| `sdd-apply`   | tasks + spec + design    | `apply-progress` |
-| `sdd-verify`  | spec + tasks             | `verify-report`  |
-| `sdd-archive` | all artifacts            | `archive-report` |
+| Phase | Reads | Writes |
+|-------|-------|--------|
+| `sdd-explore` | nothing | `explore` |
+| `sdd-propose` | exploration (optional) | `proposal` |
+| `sdd-spec` | proposal (required) | `spec` |
+| `sdd-design` | proposal (required) | `design` |
+| `sdd-tasks` | spec + design (required) | `tasks` |
+| `sdd-apply` | tasks + spec + design + **apply-progress (if exists)** | `apply-progress` |
+| `sdd-verify` | spec + tasks + **apply-progress** | `verify-report` |
+| `sdd-archive` | all artifacts | `archive-report` |
 
 For phases with required dependencies, retrieve artifacts from Engram using topic keys before starting the phase. Pass artifact references (topic keys), NOT full content. Retrieve full content only when actively working on that phase — do not inline entire specs or designs into conversation context. Do NOT rely on conversation history alone — conversation context is lossy across sessions.
 
 For Large changes using Plan Mode: after writing specs and design artifacts to Engram, also save them as Plan Mode files so they can be @mentioned in future sessions.
+
+#### Strict TDD Forwarding (MANDATORY)
+
+When executing `sdd-apply` or `sdd-verify` phases, the orchestrator MUST:
+
+1. Search for testing capabilities: `mem_search(query: "sdd-init/{project}", project: "{project}")`
+2. If the result contains `strict_tdd: true`:
+   - Add to the phase context: `"STRICT TDD MODE IS ACTIVE. Test runner: {test_command}. You MUST follow strict-tdd.md. Do NOT fall back to Standard Mode."`
+   - This is NON-NEGOTIABLE. Do not rely on self-discovering this independently.
+3. If the search fails or `strict_tdd` is not found, do NOT add the TDD instruction (use Standard Mode).
+
+The orchestrator resolves TDD status ONCE per session (at first apply/verify launch) and caches it.
+
+#### Apply-Progress Continuity (MANDATORY)
+
+When executing `sdd-apply` for a continuation batch (not the first batch):
+
+1. Search for existing apply-progress: `mem_search(query: "sdd/{change-name}/apply-progress", project: "{project}")`
+2. If found, read it first via `mem_search` + `mem_get_observation`, merge your new progress with the existing progress, and save the combined result. Do NOT overwrite — MERGE.
+3. If not found (first batch), no special handling needed.
+
+This prevents progress loss across batches. Read-merge-write is mandatory for continuation batches.
 
 ### Non-SDD Tasks
 
@@ -215,18 +284,18 @@ When executing general (non-SDD) work:
 
 ## Engram Topic Key Format
 
-| Artifact        | Topic Key                          |
-|-----------------|------------------------------------|
-| Project context | `sdd-init/{project}`               |
-| Exploration     | `sdd/{change-name}/explore`        |
-| Proposal        | `sdd/{change-name}/proposal`       |
-| Spec            | `sdd/{change-name}/spec`           |
-| Design          | `sdd/{change-name}/design`         |
-| Tasks           | `sdd/{change-name}/tasks`          |
-| Apply progress  | `sdd/{change-name}/apply-progress` |
-| Verify report   | `sdd/{change-name}/verify-report`  |
-| Archive report  | `sdd/{change-name}/archive-report` |
-| DAG state       | `sdd/{change-name}/state`          |
+| Artifact | Topic Key |
+|----------|-----------|
+| Project context | `sdd-init/{project}` |
+| Exploration | `sdd/{change-name}/explore` |
+| Proposal | `sdd/{change-name}/proposal` |
+| Spec | `sdd/{change-name}/spec` |
+| Design | `sdd/{change-name}/design` |
+| Tasks | `sdd/{change-name}/tasks` |
+| Apply progress | `sdd/{change-name}/apply-progress` |
+| Verify report | `sdd/{change-name}/verify-report` |
+| Archive report | `sdd/{change-name}/archive-report` |
+| DAG state | `sdd/{change-name}/state` |
 
 Retrieve full content via two steps:
 1. `mem_search(query: "{topic_key}", project: "{project}")` → get observation ID

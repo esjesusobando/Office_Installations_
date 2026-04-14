@@ -1,7 +1,7 @@
 # 01_Core — Think Different PersonalOS
 
 **Versión:** 6.1
-**Última actualización:** 2026-04-11
+**Última actualización:** 2026-04-14
 **Estado:** ✅ Activo | 💾 FUENTE DE VERDAD
 
 ---
@@ -10,19 +10,16 @@
 
 ```
 Think_Different/
-├── 00_Winter_is_Coming/    # Goals, Backlog, Memoria (ESTRATÉGICO)
-├── 01_Core/               # Motor: Skills, Agents, MCPs, Workflows 💾
-├── 02_Knowledge/          # Documentación, Research, Notas
-│   └── 04_Docs/           # Documentos del sistema, SDD Registry
-├── 03_Tasks/              # Tareas activas
-├── 04_Operations/         # Operaciones: Auto Improvement, Scripts
-├── 05_Archive/            # Legacy archivado
-├── 06_Playground/         # Pruebas y experimentos
-├── 07_Projects/           # Proyectos activos
-├── 08_Scripts_Os/         # Scripts operativos
-│   ├── Validator_Fixed/   # Validators (skill, security)
-│   └── Tool_Fixed/        # Herramientas
-└── Maerks/               # Tests, planes legacy
+├── 00_Winter_is_Coming/    # Estrategia, Backlog y ADN (ESTRATÉGICO)
+├── 01_Core/               # Motor OS: Skills, Agents, MCPs (FUENTE DE VERDAD) 💾
+├── 02_Knowledge/          # Base de Conocimiento, Research y Documentación
+├── 03_Tasks/              # Gestión de Tareas Activas
+├── 04_Operations/         # Cerebro Operativo y Automatización
+├── 05_Archive/            # Repositorio de Proyectos Finalizados
+├── 06_Playground/         # Laboratorio de Pruebas y Experimentos
+├── 07_Projects/           # Desarrollo de Proyectos Activos
+├── 08_Scripts_Os/         # Scripts y HUBs Operativos del Sistema
+└── Maerks/               # Entorno de Testing y Validación
 ```
 
 ---
@@ -109,34 +106,32 @@ Think_Different/
 
 Code review, arquitectura, seguridad, performance, etc.
 
-### Skills (24 carpetas)
-
 | #   | Carpeta                        | Estado   |
 |-----|--------------------------------|----------|
 | 01  | 00_Compound_Engineering        | ✅        |
 | 02  | 00_Personal_Os_Stack           | ✅        |
 | 03  | 00_Skill_Auditor               | ✅        |
 | 04  | 01_Agent_Teams_Lite            | ✅        |
-| 05  | 02_Project_Manager              | ✅        |
-| 06  | 03_Product_Manager              | ✅        |
-| 07  | 04_Product_Design               | ✅        |
-| 08  | 05_Vibe_Coding                  | ✅        |
-| 09  | 06_Testing                      | ✅        |
-| 10  | 07_DevOps                       | ✅        |
-| 11  | 08_Personal_Os                  | ✅        |
-| 12  | 09_Marketing                    | ✅        |
-| 13  | 10_Backup                       | 📦        |
-| 14  | 11_Doc_Processing               | ✅        |
-| 15  | 12_N8N                          | ✅        |
-| 16  | 13_System_Master                | ✅        |
-| 17  | 14_Anthropic_Harness            | ✅        |
-| 18  | 15_Skill_Creator_Oficial        | ✅        |
-| 19  | 16_Silicon_Valley_Data_Analyst  | ✅        |
-| 20  | 17_SEO_SOTA_Master              | ✅        |
-| 21  | 18_Personal_Life_OS             | ✅        |
-| 22  | 19_Video_Intel                  | ✅        |
-| 23  | 20_Skill_Template               | ✅ 🆕     |
-| 24  | SKILL_TEMPLATE                   | ✅        |
+| 05  | 02_Project_Manager             | ✅        |
+| 06  | 03_Product_Manager             | ✅        |
+| 07  | 04_Product_Design              | ✅        |
+| 08  | 05_Vibe_Coding                 | ✅        |
+| 09  | 06_Testing                     | ✅        |
+| 10  | 07_DevOps                      | ✅        |
+| 11  | 08_Personal_Os                 | ✅        |
+| 12  | 09_Marketing                   | ✅        |
+| 13  | 10_Backup                      | 📦        |
+| 14  | 11_Doc_Processing              | ✅        |
+| 15  | 12_N8n                         | ✅        |
+| 16  | 13_System_Master               | ✅        |
+| 17  | 14_Anthropic_Harness           | ✅        |
+| 18  | 15_Skill_Creator_Oficial       | ✅        |
+| 19  | 16_Silicon_Valley_Data_Analyst | ✅        |
+| 20  | 17_SEO_SOTA_Master             | ✅        |
+| 21  | 18_Personal_Life_OS            | ✅        |
+| 22  | 19_Video_Intel                 | ✅        |
+| 23  | 20_James_Cameron               | ✅ 🆕     |
+| 24  | 21_Skill_Template              | ✅        |
 
 ### Workflows (26+ archivos)
 
@@ -176,16 +171,13 @@ python 01_Core/09_Server/mcp/Server.py
 
 ---
 
-## 🔄 Actualización Reciente (2026-04-10)
+## 🔄 Actualización Reciente (2026-04-14)
 
-- ✅ Video_Intel reorganizado (scripts → 01_Scripts/, references → 02_References/)
-- ✅ SKILL_TEMPLATE reorganizado con nueva estructura
-- ✅ AIPM scripts migrate from Legacy a 05_AIPM/
-- ✅ 19_Video_Intel y 18_Personal_Life_OS agregados
-- ✅ 20_Skill_Template agregado (nueva versión)
-- ✅ 24 carpetas de skills (actualizado de 23)
-- ✅ Engram memory activo
-- ✅ GGA merge conflict resuelto
+- ✅ Normalización de casing en Skills (Mcp, Typescript, N8n)
+- ✅ Reparación de Scripts de Auditoría (33, 34)
+- ✅ Plantilla de seguridad .mcp.json.template integrada en 05_Mcp/
+- ✅ 24 carpetas de skills verificadas (SOTA)
+- ✅ Engram memory activo y sincronizado
 
 ---
 

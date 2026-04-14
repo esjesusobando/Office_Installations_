@@ -157,14 +157,15 @@ Notes: Terminando script de bash
 ```
 03_Daily_Notes/
 ├── SKILL.md
-├── templates/
-│   └── observacion.md
-├── logs/
-│   ├── 2026-03-31.md
-│   └── 2026-04-01.md
-└── insights/
-    └── weekly-2026-13.md
+└── templates/
+    └── observacion.md
 ```
+
+## Destinos (Single Source of Truth)
+
+- **Daily Log**: `03_Tasks/Daily_Activity_Log.md`
+- **Daily Summary**: `03_Tasks/Daily_Report.md` (Integrado en reporte de Hillary)
+- **Weekly Insight**: `03_Tasks/Weekly_Insights.md`
 
 ---
 

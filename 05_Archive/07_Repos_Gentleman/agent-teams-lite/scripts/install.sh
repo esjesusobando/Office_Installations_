@@ -68,9 +68,9 @@ get_tool_path() {
     case "$tool" in
         claude-code)
             case "$OS" in
-                windows)  echo "$USERPROFILE/01_Core/03_Skills" ;;
-                wsl)      echo "$HOME/01_Core/03_Skills" ;;
-                *)        echo "$HOME/01_Core/03_Skills" ;;
+                windows)  echo "$USERPROFILE/.claude/skills" ;;
+                wsl)      echo "$HOME/.claude/skills" ;;
+                *)        echo "$HOME/.claude/skills" ;;
             esac
             ;;
         opencode)

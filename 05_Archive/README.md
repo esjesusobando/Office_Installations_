@@ -1,7 +1,7 @@
 # 05_Archive — Legacy y Repositorios
 
 **Versión:** 6.1
-**Última actualización:** 2026-04-11
+**Última actualización:** 2026-04-14
 **Estado:** 📦 Legacy
 
 ---
@@ -10,16 +10,16 @@
 
 ```
 Think_Different/
-├── 00_Winter_is_Coming/    # Goals, Backlog, Memoria (ESTRATÉGICO)
-├── 01_Core/               # Motor: Skills, Agents, MCPs, Workflows 💾
-├── 02_Knowledge/          # Documentación, Research, Notas 📚
-├── 03_Tasks/             # Tareas activas (YAML frontmatter)
-├── 04_Operations/        # Memoria y Procesos
-├── 05_Archive/           # Legacy archivado 📦
-├── 06_Playground/       # Pruebas y experimentos
-├── 07_Projects/         # Proyectos activos
-├── 08_Scripts_Os/       # Scripts operativos
-└── Maerks/             # Tests legacy, planes
+├── 00_Winter_is_Coming/    # Estrategia, Backlog y ADN (ESTRATÉGICO)
+├── 01_Core/               # Motor OS: Skills, Agents, MCPs (FUENTE DE VERDAD) 💾
+├── 02_Knowledge/          # Base de Conocimiento, Research y Documentación
+├── 03_Tasks/              # Gestión de Tareas Activas
+├── 04_Operations/         # Cerebro Operativo y Automatización
+├── 05_Archive/            # Repositorio de Proyectos Finalizados 📦
+├── 06_Playground/         # Laboratorio de Pruebas y Experimentos
+├── 07_Projects/           # Desarrollo de Proyectos Activos
+├── 08_Scripts_Os/         # Scripts y HUBs Operativos del Sistema
+└── Maerks/               # Entorno de Testing y Validación
 ```
 
 ---
@@ -77,7 +77,7 @@ Almacena **archivos obsoletos, repositorios de referencia legacy, y backups**. E
 
 ## 🔗 Recursos
 
-- [Repos README](./10_Repos_Gentleman/README.md) — Guía completa de repos
+- [Repos README](./07_Repos_Gentleman/README.md) — Guía completa de repos
 - [GGA Integration](./gentleman-guardian-angel/) — Code review
 
 ---

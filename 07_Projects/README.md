@@ -1,7 +1,7 @@
 # 07_Projects — Laboratorios y Proyectos
 
 **Versión:** 6.1
-**Última actualización:** 2026-04-04
+**Última actualización:** 2026-04-14
 **Estado:** ✅ Activo
 
 ---
@@ -10,16 +10,16 @@
 
 ```
 Think_Different/
-├── 00_Winter_is_Coming/    # Goals, Backlog, Memoria (ESTRATÉGICO)
-├── 01_Core/               # Motor: Skills, Agents, MCPs, Workflows 💾
-├── 02_Knowledge/          # Documentación, Research, Notas 📚
-├── 03_Tasks/             # Tareas activas (YAML frontmatter)
-├── 04_Operations/        # Memoria y Procesos
-├── 05_Archive/           # Legacy archivado 📦
-├── 06_Playground/       # Pruebas y experimentos
-├── 07_Projects/         # Proyectos activos ✅
-├── 08_Scripts_Os/       # Scripts operativos
-└── Maerks/             # Tests legacy, planes
+├── 00_Winter_is_Coming/    # Estrategia, Backlog y ADN (ESTRATÉGICO)
+├── 01_Core/               # Motor OS: Skills, Agents, MCPs (FUENTE DE VERDAD) 💾
+├── 02_Knowledge/          # Base de Conocimiento, Research y Documentación
+├── 03_Tasks/              # Gestión de Tareas Activas
+├── 04_Operations/         # Cerebro Operativo y Automatización
+├── 05_Archive/            # Repositorio de Proyectos Finalizados
+├── 06_Playground/         # Laboratorio de Pruebas y Experimentos
+├── 07_Projects/           # Desarrollo de Proyectos Activos ✅
+├── 08_Scripts_Os/         # Scripts y HUBs Operativos del Sistema
+└── Maerks/               # Entorno de Testing y Validación
 ```
 
 ---
@@ -28,16 +28,19 @@ Think_Different/
 
 ```
 07_Projects/
-├── README.md                    # Este archivo
-├── 00_Context/                  # Contexto estratégico
-│   ├── 01_PRDs/                # Product Requirements Docs
-│   ├── 05_Strategy/            # Estrategia y roadmap
-│   └── 06_Tech/                # Diagramas técnicos
-└── 01_Projects_Lab/             # Laboratorios de proyectos
-    ├── 01_Efrain_World/        # Proyecto Efraín
-    ├── 02_Cassette/            # Cassette project
-    ├── 03_Side_Project_Backup/ # Backup de proyectos
-    └── 04_Macano_Rest/         # Restaurant Macano (SDD)
+├── 00_Context/                  # Material estratégico y documentos de negocio
+│   ├── 01_PRDs/                # Requisitos de Producto (SOTA)
+│   ├── 05_Strategy/            # Roadmap y visión 2026
+│   └── 06_Tech/                # Arquitectura y diagramas técnicos
+└── 01_Projects_Lab/             # Entorno de desarrollo práctico
+    ├── 01_Efrain_World/        # Efraín World Project
+    ├── 02_Cassette/            # Cassette interactive project
+    ├── 03_Side_Project_Backup/ # Respaldos de ideas secundarias
+    ├── 04_Macano_Rest/         # Macano Restaurant (Sistema SDD)
+    ├── 05_OBAND/               # Proyecto OBAND
+    ├── 06_OIM_Original/        # OIM (Versión Original)
+    ├── 07_Backup_OIM/          # Backup estratégico OIM
+    └── 08_Elite_Portfolio/      # Elite Portfolio Lab
 ```
 
 ---

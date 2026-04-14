@@ -11,6 +11,7 @@ import (
 	"database/sql"
 	"encoding/hex"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -19,10 +20,22 @@ import (
 	"strings"
 	"time"
 
-	_ "modernc.org/sqlite"
+	sqlite "modernc.org/sqlite"
 )
 
 var openDB = sql.Open
+
+// sqliteConstraintForeignKey is the extended SQLite result code for a foreign-key
+// constraint violation (SQLITE_CONSTRAINT_FOREIGNKEY = 787).
+// See https://www.sqlite.org/rescode.html#constraint_foreignkey
+const sqliteConstraintForeignKey = 787
+
+// Sentinel errors returned by delete operations so callers can use errors.Is.
+var (
+	ErrSessionNotFound        = errors.New("session not found")
+	ErrSessionHasObservations = errors.New("session still has observations")
+	ErrPromptNotFound         = errors.New("prompt not found")
+)
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -479,6 +492,7 @@ func (s *Store) migrate() error {
 			tool_name,
 			type,
 			project,
+			topic_key,
 			content='observations',
 			content_rowid='id'
 		);
@@ -641,25 +655,29 @@ func (s *Store) migrate() error {
 	if err == sql.ErrNoRows {
 		triggers := `
 			CREATE TRIGGER obs_fts_insert AFTER INSERT ON observations BEGIN
-				INSERT INTO observations_fts(rowid, title, content, tool_name, type, project)
-				VALUES (new.id, new.title, new.content, new.tool_name, new.type, new.project);
+				INSERT INTO observations_fts(rowid, title, content, tool_name, type, project, topic_key)
+				VALUES (new.id, new.title, new.content, new.tool_name, new.type, new.project, new.topic_key);
 			END;
 
 			CREATE TRIGGER obs_fts_delete AFTER DELETE ON observations BEGIN
-				INSERT INTO observations_fts(observations_fts, rowid, title, content, tool_name, type, project)
-				VALUES ('delete', old.id, old.title, old.content, old.tool_name, old.type, old.project);
+				INSERT INTO observations_fts(observations_fts, rowid, title, content, tool_name, type, project, topic_key)
+				VALUES ('delete', old.id, old.title, old.content, old.tool_name, old.type, old.project, old.topic_key);
 			END;
 
 			CREATE TRIGGER obs_fts_update AFTER UPDATE ON observations BEGIN
-				INSERT INTO observations_fts(observations_fts, rowid, title, content, tool_name, type, project)
-				VALUES ('delete', old.id, old.title, old.content, old.tool_name, old.type, old.project);
-				INSERT INTO observations_fts(rowid, title, content, tool_name, type, project)
-				VALUES (new.id, new.title, new.content, new.tool_name, new.type, new.project);
+				INSERT INTO observations_fts(observations_fts, rowid, title, content, tool_name, type, project, topic_key)
+				VALUES ('delete', old.id, old.title, old.content, old.tool_name, old.type, old.project, old.topic_key);
+				INSERT INTO observations_fts(rowid, title, content, tool_name, type, project, topic_key)
+				VALUES (new.id, new.title, new.content, new.tool_name, new.type, new.project, new.topic_key);
 			END;
 		`
 		if _, err := s.execHook(s.db, triggers); err != nil {
 			return err
 		}
+	}
+
+	if err := s.migrateFTSTopicKey(); err != nil {
+		return err
 	}
 
 	// Prompts FTS triggers (separate idempotent check)
@@ -695,9 +713,61 @@ func (s *Store) migrate() error {
 	return nil
 }
 
+func (s *Store) migrateFTSTopicKey() error {
+	var colCount int
+	err := s.db.QueryRow("SELECT COUNT(*) FROM pragma_table_xinfo('observations_fts') WHERE name = 'topic_key'").Scan(&colCount)
+	if err != nil || colCount > 0 {
+		return nil
+	}
+
+	if _, err := s.execHook(s.db, `
+		DROP TRIGGER IF EXISTS obs_fts_insert;
+		DROP TRIGGER IF EXISTS obs_fts_update;
+		DROP TRIGGER IF EXISTS obs_fts_delete;
+		DROP TABLE IF EXISTS observations_fts;
+		CREATE VIRTUAL TABLE observations_fts USING fts5(
+			title,
+			content,
+			tool_name,
+			type,
+			project,
+			topic_key,
+			content='observations',
+			content_rowid='id'
+		);
+		INSERT INTO observations_fts(rowid, title, content, tool_name, type, project, topic_key)
+		SELECT id, title, content, tool_name, type, project, topic_key
+		FROM observations
+		WHERE deleted_at IS NULL;
+
+		CREATE TRIGGER obs_fts_insert AFTER INSERT ON observations BEGIN
+			INSERT INTO observations_fts(rowid, title, content, tool_name, type, project, topic_key)
+			VALUES (new.id, new.title, new.content, new.tool_name, new.type, new.project, new.topic_key);
+		END;
+
+		CREATE TRIGGER obs_fts_delete AFTER DELETE ON observations BEGIN
+			INSERT INTO observations_fts(observations_fts, rowid, title, content, tool_name, type, project, topic_key)
+			VALUES ('delete', old.id, old.title, old.content, old.tool_name, old.type, old.project, old.topic_key);
+		END;
+
+		CREATE TRIGGER obs_fts_update AFTER UPDATE ON observations BEGIN
+			INSERT INTO observations_fts(observations_fts, rowid, title, content, tool_name, type, project, topic_key)
+			VALUES ('delete', old.id, old.title, old.content, old.tool_name, old.type, old.project, old.topic_key);
+			INSERT INTO observations_fts(rowid, title, content, tool_name, type, project, topic_key)
+			VALUES (new.id, new.title, new.content, new.tool_name, new.type, new.project, new.topic_key);
+		END;
+	`); err != nil {
+		return fmt.Errorf("migrate fts topic_key: %w", err)
+	}
+	return nil
+}
+
 // ─── Sessions ────────────────────────────────────────────────────────────────
 
 func (s *Store) CreateSession(id, project, directory string) error {
+	// Normalize project name before storing
+	project, _ = NormalizeProject(project)
+
 	return s.withTx(func(tx *sql.Tx) error {
 		if err := s.createSessionTx(tx, id, project, directory); err != nil {
 			return err
@@ -759,6 +829,9 @@ func (s *Store) GetSession(id string) (*Session, error) {
 }
 
 func (s *Store) RecentSessions(project string, limit int) ([]SessionSummary, error) {
+	// Normalize project filter for case-insensitive matching
+	project, _ = NormalizeProject(project)
+
 	if limit <= 0 {
 		limit = 5
 	}
@@ -886,6 +959,9 @@ func (s *Store) SessionObservations(sessionID string, limit int) ([]Observation,
 // ─── Observations ────────────────────────────────────────────────────────────
 
 func (s *Store) AddObservation(p AddObservationParams) (int64, error) {
+	// Normalize project name (lowercase + trim) before any persistence
+	p.Project, _ = NormalizeProject(p.Project)
+
 	// Strip <private>...</private> tags before persisting ANYTHING
 	title := stripPrivateTags(p.Title)
 	content := stripPrivateTags(p.Content)
@@ -1011,6 +1087,9 @@ func (s *Store) AddObservation(p AddObservationParams) (int64, error) {
 }
 
 func (s *Store) RecentObservations(project, scope string, limit int) ([]Observation, error) {
+	// Normalize project filter for case-insensitive matching
+	project, _ = NormalizeProject(project)
+
 	if limit <= 0 {
 		limit = s.cfg.MaxContextResults
 	}
@@ -1041,6 +1120,9 @@ func (s *Store) RecentObservations(project, scope string, limit int) ([]Observat
 // ─── User Prompts ────────────────────────────────────────────────────────────
 
 func (s *Store) AddPrompt(p AddPromptParams) (int64, error) {
+	// Normalize project name before storing
+	p.Project, _ = NormalizeProject(p.Project)
+
 	content := stripPrivateTags(p.Content)
 	if len(content) > s.cfg.MaxObservationLength {
 		content = content[:s.cfg.MaxObservationLength] + "... [truncated]"
@@ -1074,6 +1156,9 @@ func (s *Store) AddPrompt(p AddPromptParams) (int64, error) {
 }
 
 func (s *Store) RecentPrompts(project string, limit int) ([]Prompt, error) {
+	// Normalize project filter for case-insensitive matching
+	project, _ = NormalizeProject(project)
+
 	if limit <= 0 {
 		limit = 20
 	}
@@ -1146,6 +1231,87 @@ func (s *Store) SearchPrompts(query string, project string, limit int) ([]Prompt
 	return results, rows.Err()
 }
 
+// ─── Delete Session ──────────────────────────────────────────────────────────
+
+// DeleteSession hard-deletes a session and its prompts.
+// It returns ErrSessionHasObservations if the session has any observations
+// (including soft-deleted ones) to prevent orphaned rows.
+// It returns ErrSessionNotFound if no session with that ID exists.
+//
+// Note: this delete only removes local rows. It does not enqueue a delete
+// sync mutation, but any previously enqueued mutations for the session or its
+// prompts may still be synced later if autosync is enabled, and a later pull
+// may recreate the deleted rows locally.
+func (s *Store) DeleteSession(id string) error {
+	return s.withTx(func(tx *sql.Tx) error {
+		// Count ALL observations for the session, including soft-deleted ones,
+		// because the FK constraint on observations.session_id has no ON DELETE CASCADE.
+		var count int
+		rows, err := s.queryItHook(tx, `SELECT COUNT(*) FROM observations WHERE session_id = ?`, id)
+		if err != nil {
+			return fmt.Errorf("delete session: count observations: %w", err)
+		}
+		if rows.Next() {
+			if err := rows.Scan(&count); err != nil {
+				_ = rows.Close()
+				return fmt.Errorf("delete session: count observations: %w", err)
+			}
+		}
+		_ = rows.Close()
+		if count > 0 {
+			return fmt.Errorf("%w: session %q has %d observation(s)", ErrSessionHasObservations, id, count)
+		}
+
+		if _, err := s.execHook(tx, `DELETE FROM user_prompts WHERE session_id = ?`, id); err != nil {
+			return fmt.Errorf("delete session: remove prompts: %w", err)
+		}
+
+		res, err := s.execHook(tx, `DELETE FROM sessions WHERE id = ?`, id)
+		if err != nil {
+			var sqliteErr *sqlite.Error
+			if errors.As(err, &sqliteErr) && sqliteErr.Code() == sqliteConstraintForeignKey {
+				return fmt.Errorf("%w: session %q has observation(s)", ErrSessionHasObservations, id)
+			}
+			return fmt.Errorf("delete session: %w", err)
+		}
+		n, err := res.RowsAffected()
+		if err != nil {
+			return fmt.Errorf("delete session: rows affected: %w", err)
+		}
+		if n == 0 {
+			return fmt.Errorf("%w: %q", ErrSessionNotFound, id)
+		}
+
+		return nil
+	})
+}
+
+// ─── Delete Prompt ───────────────────────────────────────────────────────────
+
+// DeletePrompt hard-deletes a single prompt by ID.
+// It returns ErrPromptNotFound if no prompt with that ID exists.
+//
+// Note: this delete only removes local rows. It does not enqueue a delete
+// sync mutation, but any previously enqueued mutations for the prompt
+// may still be synced later if autosync is enabled, and a later pull
+// may recreate the deleted row locally.
+func (s *Store) DeletePrompt(id int64) error {
+	return s.withTx(func(tx *sql.Tx) error {
+		res, err := s.execHook(tx, `DELETE FROM user_prompts WHERE id = ?`, id)
+		if err != nil {
+			return fmt.Errorf("delete prompt: %w", err)
+		}
+		n, err := res.RowsAffected()
+		if err != nil {
+			return fmt.Errorf("delete prompt: rows affected: %w", err)
+		}
+		if n == 0 {
+			return fmt.Errorf("%w: prompt #%d", ErrPromptNotFound, id)
+		}
+		return nil
+	})
+}
+
 // ─── Get Single Observation ──────────────────────────────────────────────────
 
 func (s *Store) GetObservation(id int64) (*Observation, error) {
@@ -1193,7 +1359,7 @@ func (s *Store) UpdateObservation(id int64, p UpdateObservationParams) (*Observa
 			}
 		}
 		if p.Project != nil {
-			project = *p.Project
+			project, _ = NormalizeProject(*p.Project)
 		}
 		if p.Scope != nil {
 			scope = normalizeScope(*p.Scope)
@@ -1388,6 +1554,9 @@ func (s *Store) Timeline(observationID int64, before, after int) (*TimelineResul
 // ─── Search (FTS5) ───────────────────────────────────────────────────────────
 
 func (s *Store) Search(query string, opts SearchOptions) ([]SearchResult, error) {
+	// Normalize project filter so "Engram" finds records stored as "engram"
+	opts.Project, _ = NormalizeProject(opts.Project)
+
 	limit := opts.Limit
 	if limit <= 0 {
 		limit = 10
@@ -1396,10 +1565,54 @@ func (s *Store) Search(query string, opts SearchOptions) ([]SearchResult, error)
 		limit = s.cfg.MaxSearchResults
 	}
 
+	var directResults []SearchResult
+	if strings.Contains(query, "/") {
+		tkSQL := `
+			SELECT id, ifnull(sync_id, '') as sync_id, session_id, type, title, content, tool_name, project,
+			       scope, topic_key, revision_count, duplicate_count, last_seen_at, created_at, updated_at, deleted_at
+			FROM observations
+			WHERE topic_key = ? AND deleted_at IS NULL
+		`
+		tkArgs := []any{query}
+
+		if opts.Type != "" {
+			tkSQL += " AND type = ?"
+			tkArgs = append(tkArgs, opts.Type)
+		}
+		if opts.Project != "" {
+			tkSQL += " AND project = ?"
+			tkArgs = append(tkArgs, opts.Project)
+		}
+		if opts.Scope != "" {
+			tkSQL += " AND scope = ?"
+			tkArgs = append(tkArgs, normalizeScope(opts.Scope))
+		}
+
+		tkSQL += " ORDER BY updated_at DESC LIMIT ?"
+		tkArgs = append(tkArgs, limit)
+
+		tkRows, err := s.queryItHook(s.db, tkSQL, tkArgs...)
+		if err == nil {
+			defer tkRows.Close()
+			for tkRows.Next() {
+				var sr SearchResult
+				if err := tkRows.Scan(
+					&sr.ID, &sr.SyncID, &sr.SessionID, &sr.Type, &sr.Title, &sr.Content,
+					&sr.ToolName, &sr.Project, &sr.Scope, &sr.TopicKey, &sr.RevisionCount, &sr.DuplicateCount,
+					&sr.LastSeenAt, &sr.CreatedAt, &sr.UpdatedAt, &sr.DeletedAt,
+				); err != nil {
+					break
+				}
+				sr.Rank = -1000
+				directResults = append(directResults, sr)
+			}
+		}
+	}
+
 	// Sanitize query for FTS5 — wrap each term in quotes to avoid syntax errors
 	ftsQuery := sanitizeFTS(query)
 
-	sql := `
+	sqlQ := `
 		SELECT o.id, ifnull(o.sync_id, '') as sync_id, o.session_id, o.type, o.title, o.content, o.tool_name, o.project,
 		       o.scope, o.topic_key, o.revision_count, o.duplicate_count, o.last_seen_at, o.created_at, o.updated_at, o.deleted_at,
 		       fts.rank
@@ -1410,30 +1623,36 @@ func (s *Store) Search(query string, opts SearchOptions) ([]SearchResult, error)
 	args := []any{ftsQuery}
 
 	if opts.Type != "" {
-		sql += " AND o.type = ?"
+		sqlQ += " AND o.type = ?"
 		args = append(args, opts.Type)
 	}
 
 	if opts.Project != "" {
-		sql += " AND o.project = ?"
+		sqlQ += " AND o.project = ?"
 		args = append(args, opts.Project)
 	}
 
 	if opts.Scope != "" {
-		sql += " AND o.scope = ?"
+		sqlQ += " AND o.scope = ?"
 		args = append(args, normalizeScope(opts.Scope))
 	}
 
-	sql += " ORDER BY fts.rank LIMIT ?"
+	sqlQ += " ORDER BY fts.rank LIMIT ?"
 	args = append(args, limit)
 
-	rows, err := s.queryItHook(s.db, sql, args...)
+	rows, err := s.queryItHook(s.db, sqlQ, args...)
 	if err != nil {
 		return nil, fmt.Errorf("search: %w", err)
 	}
 	defer rows.Close()
 
+	seen := make(map[int64]bool)
+	for _, dr := range directResults {
+		seen[dr.ID] = true
+	}
+
 	var results []SearchResult
+	results = append(results, directResults...)
 	for rows.Next() {
 		var sr SearchResult
 		if err := rows.Scan(
@@ -1444,9 +1663,18 @@ func (s *Store) Search(query string, opts SearchOptions) ([]SearchResult, error)
 		); err != nil {
 			return nil, err
 		}
-		results = append(results, sr)
+		if !seen[sr.ID] {
+			results = append(results, sr)
+		}
 	}
-	return results, rows.Err()
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+
+	if len(results) > limit {
+		results = results[:limit]
+	}
+	return results, nil
 }
 
 // ─── Stats ───────────────────────────────────────────────────────────────────
@@ -2129,6 +2357,289 @@ func (s *Store) MigrateProject(oldName, newName string) (*MigrateResult, error) 
 		}
 		result.PromptsUpdated, _ = res.RowsAffected()
 
+		// Enqueue sync mutations so cloud sync picks up the migrated records.
+		// Same pattern used by EnrollProject and MergeProjects.
+		return s.backfillProjectSyncMutationsTx(tx, newName)
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	return result, nil
+}
+
+// ─── Project Queries ──────────────────────────────────────────────────────────
+
+// ProjectNameCount holds a project name and how many observations it has.
+type ProjectNameCount struct {
+	Name  string `json:"name"`
+	Count int    `json:"count"`
+}
+
+// ListProjectNames returns all distinct project names from observations,
+// ordered alphabetically. Used for fuzzy matching and consolidation.
+func (s *Store) ListProjectNames() ([]string, error) {
+	rows, err := s.queryItHook(s.db,
+		`SELECT DISTINCT project FROM observations
+		 WHERE project IS NOT NULL AND project != '' AND deleted_at IS NULL
+		 ORDER BY project`,
+	)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var results []string
+	for rows.Next() {
+		var name string
+		if err := rows.Scan(&name); err != nil {
+			return nil, err
+		}
+		results = append(results, name)
+	}
+	return results, rows.Err()
+}
+
+// ProjectStats holds aggregate statistics for a single project.
+type ProjectStats struct {
+	Name             string   `json:"name"`
+	ObservationCount int      `json:"observation_count"`
+	SessionCount     int      `json:"session_count"`
+	PromptCount      int      `json:"prompt_count"`
+	Directories      []string `json:"directories"` // unique directories from sessions
+}
+
+// ListProjectsWithStats returns all projects with aggregated counts.
+// Ordered by observation count descending.
+func (s *Store) ListProjectsWithStats() ([]ProjectStats, error) {
+	// Observation counts per project
+	obsRows, err := s.queryItHook(s.db,
+		`SELECT project, COUNT(*) as cnt
+		 FROM observations
+		 WHERE project IS NOT NULL AND project != '' AND deleted_at IS NULL
+		 GROUP BY project`,
+	)
+	if err != nil {
+		return nil, fmt.Errorf("list projects obs: %w", err)
+	}
+	defer obsRows.Close()
+
+	statsMap := make(map[string]*ProjectStats)
+	for obsRows.Next() {
+		var name string
+		var cnt int
+		if err := obsRows.Scan(&name, &cnt); err != nil {
+			return nil, err
+		}
+		statsMap[name] = &ProjectStats{Name: name, ObservationCount: cnt}
+	}
+	if err := obsRows.Err(); err != nil {
+		return nil, err
+	}
+
+	// Session counts + directories per project
+	sessRows, err := s.queryItHook(s.db,
+		`SELECT project, COUNT(*) as cnt, directory
+		 FROM sessions
+		 WHERE project IS NOT NULL AND project != ''
+		 GROUP BY project, directory`,
+	)
+	if err != nil {
+		return nil, fmt.Errorf("list projects sessions: %w", err)
+	}
+	defer sessRows.Close()
+
+	type projDir struct {
+		count int
+		dirs  map[string]bool
+	}
+	sessData := make(map[string]*projDir)
+	for sessRows.Next() {
+		var name, dir string
+		var cnt int
+		if err := sessRows.Scan(&name, &cnt, &dir); err != nil {
+			return nil, err
+		}
+		if sessData[name] == nil {
+			sessData[name] = &projDir{dirs: make(map[string]bool)}
+		}
+		sessData[name].count += cnt
+		if dir != "" {
+			sessData[name].dirs[dir] = true
+		}
+	}
+	if err := sessRows.Err(); err != nil {
+		return nil, err
+	}
+
+	for name, sd := range sessData {
+		if statsMap[name] == nil {
+			statsMap[name] = &ProjectStats{Name: name}
+		}
+		statsMap[name].SessionCount = sd.count
+		for d := range sd.dirs {
+			statsMap[name].Directories = append(statsMap[name].Directories, d)
+		}
+	}
+
+	// Prompt counts per project
+	promptRows, err := s.queryItHook(s.db,
+		`SELECT project, COUNT(*) as cnt
+		 FROM user_prompts
+		 WHERE project IS NOT NULL AND project != ''
+		 GROUP BY project`,
+	)
+	if err != nil {
+		return nil, fmt.Errorf("list projects prompts: %w", err)
+	}
+	defer promptRows.Close()
+
+	for promptRows.Next() {
+		var name string
+		var cnt int
+		if err := promptRows.Scan(&name, &cnt); err != nil {
+			return nil, err
+		}
+		if statsMap[name] == nil {
+			statsMap[name] = &ProjectStats{Name: name}
+		}
+		statsMap[name].PromptCount = cnt
+	}
+	if err := promptRows.Err(); err != nil {
+		return nil, err
+	}
+
+	// Convert to slice, sorted by observation count descending
+	results := make([]ProjectStats, 0, len(statsMap))
+	for _, ps := range statsMap {
+		results = append(results, *ps)
+	}
+	// Simple insertion sort — project lists are small
+	for i := 1; i < len(results); i++ {
+		for j := i; j > 0 && results[j].ObservationCount > results[j-1].ObservationCount; j-- {
+			results[j], results[j-1] = results[j-1], results[j]
+		}
+	}
+
+	return results, nil
+}
+
+// CountObservationsForProject returns the number of non-deleted observations
+// for the given project name. Used by handleSave for the similar-project
+// warning instead of the heavier ListProjectsWithStats.
+func (s *Store) CountObservationsForProject(name string) (int, error) {
+	var count int
+	err := s.db.QueryRow(
+		`SELECT COUNT(*) FROM observations WHERE project = ? AND deleted_at IS NULL`,
+		name,
+	).Scan(&count)
+	return count, err
+}
+
+// MergeResult summarizes the result of merging multiple project name variants
+// into a single canonical project name.
+type MergeResult struct {
+	Canonical           string   `json:"canonical"`
+	SourcesMerged       []string `json:"sources_merged"`
+	ObservationsUpdated int64    `json:"observations_updated"`
+	SessionsUpdated     int64    `json:"sessions_updated"`
+	PromptsUpdated      int64    `json:"prompts_updated"`
+}
+
+// MergeProjects migrates all records from each source project name into the
+// canonical name. Sources that equal the canonical (after normalization) or
+// have no records are silently skipped — the operation is idempotent.
+// All updates are performed inside a single transaction for atomicity.
+func (s *Store) MergeProjects(sources []string, canonical string) (*MergeResult, error) {
+	canonical, _ = NormalizeProject(canonical)
+	if canonical == "" {
+		return nil, fmt.Errorf("canonical project name must not be empty")
+	}
+
+	result := &MergeResult{Canonical: canonical}
+
+	err := s.withTx(func(tx *sql.Tx) error {
+		for _, src := range sources {
+			src, _ = NormalizeProject(src)
+			if src == "" || src == canonical {
+				continue
+			}
+
+			res, err := s.execHook(tx, `UPDATE observations SET project = ? WHERE project = ?`, canonical, src)
+			if err != nil {
+				return fmt.Errorf("merge observations %q → %q: %w", src, canonical, err)
+			}
+			n, _ := res.RowsAffected()
+			result.ObservationsUpdated += n
+
+			res, err = s.execHook(tx, `UPDATE sessions SET project = ? WHERE project = ?`, canonical, src)
+			if err != nil {
+				return fmt.Errorf("merge sessions %q → %q: %w", src, canonical, err)
+			}
+			n, _ = res.RowsAffected()
+			result.SessionsUpdated += n
+
+			res, err = s.execHook(tx, `UPDATE user_prompts SET project = ? WHERE project = ?`, canonical, src)
+			if err != nil {
+				return fmt.Errorf("merge prompts %q → %q: %w", src, canonical, err)
+			}
+			n, _ = res.RowsAffected()
+			result.PromptsUpdated += n
+
+			result.SourcesMerged = append(result.SourcesMerged, src)
+		}
+		// Enqueue sync mutations so cloud sync picks up the merged records.
+		// Same pattern used by EnrollProject.
+		return s.backfillProjectSyncMutationsTx(tx, canonical)
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	return result, nil
+}
+
+// ─── Project Pruning ─────────────────────────────────────────────────────────
+
+// PruneResult holds the outcome of pruning a single project.
+type PruneResult struct {
+	Project         string `json:"project"`
+	SessionsDeleted int64  `json:"sessions_deleted"`
+	PromptsDeleted  int64  `json:"prompts_deleted"`
+}
+
+// PruneProject removes all sessions and prompts for a project that has zero
+// (non-deleted) observations. Returns an error if the project still has
+// observations — the caller must verify first.
+func (s *Store) PruneProject(project string) (*PruneResult, error) {
+	if project == "" {
+		return nil, fmt.Errorf("project name must not be empty")
+	}
+
+	// Safety check: refuse to prune if observations exist.
+	count, err := s.CountObservationsForProject(project)
+	if err != nil {
+		return nil, fmt.Errorf("count observations: %w", err)
+	}
+	if count > 0 {
+		return nil, fmt.Errorf("project %q still has %d observations — cannot prune", project, count)
+	}
+
+	result := &PruneResult{Project: project}
+
+	err = s.withTx(func(tx *sql.Tx) error {
+		res, err := s.execHook(tx, `DELETE FROM user_prompts WHERE project = ?`, project)
+		if err != nil {
+			return fmt.Errorf("prune prompts: %w", err)
+		}
+		result.PromptsDeleted, _ = res.RowsAffected()
+
+		res, err = s.execHook(tx, `DELETE FROM sessions WHERE project = ?`, project)
+		if err != nil {
+			return fmt.Errorf("prune sessions: %w", err)
+		}
+		result.SessionsDeleted, _ = res.RowsAffected()
+
 		return nil
 	})
 	if err != nil {
@@ -2712,11 +3223,12 @@ func (s *Store) migrateLegacyObservationsTable() error {
 			tool_name,
 			type,
 			project,
+			topic_key,
 			content='observations',
 			content_rowid='id'
 		);
-		INSERT INTO observations_fts(rowid, title, content, tool_name, type, project)
-		SELECT id, title, content, tool_name, type, project
+		INSERT INTO observations_fts(rowid, title, content, tool_name, type, project, topic_key)
+		SELECT id, title, content, tool_name, type, project, topic_key
 		FROM observations
 		WHERE deleted_at IS NULL;
 	`); err != nil {
@@ -2751,6 +3263,30 @@ func normalizeScope(scope string) string {
 		return "personal"
 	}
 	return "project"
+}
+
+// NormalizeProject applies canonical project name normalization:
+// lowercase + trim whitespace + collapse consecutive hyphens/underscores.
+// Returns the normalized name and a warning message if the name was changed
+// (empty string if no change was needed).
+// Exported so MCP and CLI handlers can surface the warning to users.
+func NormalizeProject(project string) (normalized string, warning string) {
+	if project == "" {
+		return "", ""
+	}
+	n := strings.TrimSpace(strings.ToLower(project))
+	// Collapse multiple consecutive hyphens
+	for strings.Contains(n, "--") {
+		n = strings.ReplaceAll(n, "--", "-")
+	}
+	// Collapse multiple consecutive underscores
+	for strings.Contains(n, "__") {
+		n = strings.ReplaceAll(n, "__", "_")
+	}
+	if n == project {
+		return n, ""
+	}
+	return n, fmt.Sprintf("⚠️ Project name normalized: %q → %q", project, n)
 }
 
 // SuggestTopicKey generates a stable topic key suggestion from type/title/content.
@@ -3039,6 +3575,9 @@ func cleanMarkdown(text string) string {
 // PassiveCapture extracts learnings from text and saves them as observations.
 // It deduplicates against existing observations using content hash matching.
 func (s *Store) PassiveCapture(p PassiveCaptureParams) (*PassiveCaptureResult, error) {
+	// Normalize project name before storing
+	p.Project, _ = NormalizeProject(p.Project)
+
 	result := &PassiveCaptureResult{}
 
 	learnings := ExtractLearnings(p.Content)

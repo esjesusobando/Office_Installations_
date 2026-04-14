@@ -1,6 +1,6 @@
 ---
 name: tailwind-4
-description: > Triggers on: 03_Tailwind_4, patterns, coding.
+description: >
   Tailwind CSS 4 patterns and best practices.
   Trigger: When styling with Tailwind - cn(), theme variables, no var() in className.
 license: Apache-2.0
@@ -197,27 +197,3 @@ const CHART_COLORS = {
 
 ## Keywords
 tailwind, css, styling, cn, utility classes, responsive
-
-## Esencia Original
-> **Propósito:** Propósito del skill aquí
-> **Flujo:** Pasos principales del flujo
-
-## ⚠️ Gotchas (Errores Comunes a Evitar)
-
-- **[ERROR]**: Classes no applied
-  - **Por qué**: Tailwind no detecta clases dinámicas con strings interpolados
-  - **Solución**: Usar `cn()` utility o verificar que las clases estén en safelist
-
-- **[ERROR]**: Style conflicts
-  - **Por qué**: Múltiples clases con mismo propiedad CSS
-  - **Solución**: Usar `cn()` que aplica tailwind-merge automáticamente
-
-- **[ERROR]**: Dark mode no funciona
-  - **Por qué**: Falta `darkMode: 'class'` en config
-  - **Solución**: Agregar `darkMode: 'class'` en tailwind.config.js
-
-## 💾 State Persistence
-
-Guardar en:
-- `03_Knowledge/` — Documentación
-- `04_Operations/` — Estado activo

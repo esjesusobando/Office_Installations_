@@ -37,34 +37,34 @@ PRs that are not linked to an approved issue will be **automatically rejected** 
 
 ### Type Labels (applied to PRs)
 
-| Label           | Description                             |
-|-----------------|-----------------------------------------|
-| `type:bug`      | Bug fix                                 |
-| `type:feature`  | New feature or enhancement              |
+| Label | Description |
+|-------|-------------|
+| `type:bug` | Bug fix |
+| `type:feature` | New feature or enhancement |
 | `type:refactor` | Code refactoring, no functional changes |
-| `type:docs`     | Documentation only                      |
-| `type:test`     | Test coverage additions                 |
-| `type:chore`    | Build, CI, tooling changes              |
-| `type:breaking` | Breaking change                         |
+| `type:docs` | Documentation only |
+| `type:test` | Test coverage additions |
+| `type:chore` | Build, CI, tooling changes |
+| `type:breaking` | Breaking change |
 
 ### Status Labels (applied to Issues)
 
-| Label                 | Description                                     |
-|-----------------------|-------------------------------------------------|
-| `status:needs-review` | Newly opened, awaiting maintainer review        |
-| `status:approved`     | Approved for implementation — work can begin    |
-| `status:in-progress`  | Being worked on                                 |
-| `status:blocked`      | Blocked by another issue or external dependency |
-| `status:wont-fix`     | Out of scope or won't be addressed              |
+| Label | Description |
+|-------|-------------|
+| `status:needs-review` | Newly opened, awaiting maintainer review |
+| `status:approved` | Approved for implementation — work can begin |
+| `status:in-progress` | Being worked on |
+| `status:blocked` | Blocked by another issue or external dependency |
+| `status:wont-fix` | Out of scope or won't be addressed |
 
 ### Priority Labels
 
-| Label               | Description                               |
-|---------------------|-------------------------------------------|
+| Label | Description |
+|-------|-------------|
 | `priority:critical` | Blocking issues, security vulnerabilities |
-| `priority:high`     | Important, affects many users             |
-| `priority:medium`   | Normal priority                           |
-| `priority:low`      | Nice to have                              |
+| `priority:high` | Important, affects many users |
+| `priority:medium` | Normal priority |
+| `priority:low` | Nice to have |
 
 ---
 
@@ -126,6 +126,22 @@ chmod +x docker-test.sh
 
 > ⚠️ E2E tests spin up containers to simulate real installation environments. They may take a few minutes to complete.
 
+### Windows — Known Test Limitations
+
+Some unit tests require OS-level capabilities that are restricted on Windows by default.
+
+#### Symlink tests (`SeCreateSymbolicLinkPrivilege`)
+
+Tests that create symbolic links (e.g. in `internal/components/filemerge`) will be **skipped automatically** on Windows builds where the process lacks `SeCreateSymbolicLinkPrivilege` (`ERROR_PRIVILEGE_NOT_HELD`, errno 1314). This is a Windows security policy, not a bug in the code.
+
+To run these tests without restrictions, choose one of:
+
+- **Enable Developer Mode** — Settings → System → For developers → Developer Mode. This grants symlink creation to all processes without admin rights.
+- **Run as Administrator** — open your terminal as Administrator before running `go test ./...`.
+- **Grant the privilege explicitly** via Group Policy: `Local Security Policy → User Rights Assignment → Create symbolic links`.
+
+> On Linux and macOS these tests always run without any extra setup.
+
 ---
 
 ## Commit Convention
@@ -150,19 +166,19 @@ Commit messages **must** match this pattern:
 
 ### Allowed Types
 
-| Type       | Purpose                               |
-|------------|---------------------------------------|
-| `feat`     | New feature                           |
-| `fix`      | Bug fix                               |
-| `docs`     | Documentation only                    |
-| `refactor` | Code change (no behavior change)      |
-| `chore`    | Maintenance, dependencies, tooling    |
-| `style`    | Formatting, linting (no logic change) |
-| `perf`     | Performance improvement               |
-| `test`     | Adding or updating tests              |
-| `build`    | Build system or external deps         |
-| `ci`       | CI configuration                      |
-| `revert`   | Reverts a previous commit             |
+| Type | Purpose |
+|------|---------|
+| `feat` | New feature |
+| `fix` | Bug fix |
+| `docs` | Documentation only |
+| `refactor` | Code change (no behavior change) |
+| `chore` | Maintenance, dependencies, tooling |
+| `style` | Formatting, linting (no logic change) |
+| `perf` | Performance improvement |
+| `test` | Adding or updating tests |
+| `build` | Build system or external deps |
+| `ci` | CI configuration |
+| `revert` | Reverts a previous commit |
 
 ### Examples
 
@@ -235,13 +251,13 @@ fix(agent): handle missing HOME env var gracefully
 
 All PRs go through automated checks:
 
-| Check                               | What It Verifies                                   |
-|-------------------------------------|----------------------------------------------------|
-| **Check Issue Reference**           | PR body contains `Closes/Fixes/Resolves #N`        |
+| Check | What It Verifies |
+|-------|-----------------|
+| **Check Issue Reference** | PR body contains `Closes/Fixes/Resolves #N` |
 | **Check Issue Has status:approved** | The linked issue has been approved by a maintainer |
-| **Check PR Has type:* Label**       | Exactly one `type:*` label is applied              |
-| **Unit Tests**                      | `go test ./...` passes                             |
-| **E2E Tests**                       | `cd e2e && ./docker-test.sh` passes                |
+| **Check PR Has type:* Label** | Exactly one `type:*` label is applied |
+| **Unit Tests** | `go test ./...` passes |
+| **E2E Tests** | `cd e2e && ./docker-test.sh` passes |
 
 **All checks must pass** before a PR can be merged.
 

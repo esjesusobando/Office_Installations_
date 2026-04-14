@@ -1,9 +1,23 @@
-# 🧠 Context Memory - Memoria a Corto Plazo
+# 🧠 Context Memory Master Catalog
 
-## ⚠️ IMPORTANTE: Este directorio es para el AGENTE (AI)
+Directorio de memoria persistente para la continuidad de agentes. Las sesiones históricas han sido compactadas para maximizar la ventana de contexto del LLM.
 
-> **Estos documentos son MI memoria técnica entre sesiones.**
-> **Para notas personales de proceso, ver: `03_Process_Notes/`**
+---
+
+## 📚 Volúmenes Maestros (Compactación v6.1)
+
+| # | Documento | Propósito | Estado |
+|---|-----------|-----------|--------|
+| 01 | [System Architecture Foundations](./01_CTX_System_Architecture_Foundations.md) | Fundamentos, SSOT, Reglas de Oro. | ✅ SOTA |
+| 02 | [Agent Ecosystem and SOP](./02_CTX_Agent_Ecosystem_and_SOP.md) | Escuadrón de 13 agentes, roles y AIPM. | ✅ SOTA |
+| 03 | [Operations and Project History](./03_CTX_Operations_and_Project_History.md) | Hitos OIM, Hillary, Logs de Sesión 01-19. | ✅ SOTA |
+
+---
+
+## 📂 Archivo Histórico
+Los archivos originales (01-19) se encuentran en la carpeta `_archive/` para consulta forense si fuera necesario.
+
+*Actualizado: 2026-04-14 | Think Different PersonalOS*
 
 ---
 

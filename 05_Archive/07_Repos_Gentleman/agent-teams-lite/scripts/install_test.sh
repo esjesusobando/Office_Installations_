@@ -185,13 +185,13 @@ test_invalid_option() {
 
 test_install_claude_code() {
     bash "$INSTALL_SCRIPT" --agent claude-code > /dev/null 2>&1
-    assert_all_skills_installed "$HOME/01_Core/03_Skills"
+    assert_all_skills_installed "$HOME/.claude/skills"
 }
 
 test_claude_code_skill_count() {
     bash "$INSTALL_SCRIPT" --agent claude-code > /dev/null 2>&1
     local count
-    count=$(find "$HOME/01_Core/03_Skills" -name "SKILL.md" | wc -l | tr -d ' ')
+    count=$(find "$HOME/.claude/skills" -name "SKILL.md" | wc -l | tr -d ' ')
     assert_eq "15" "$count" "Expected exactly 15 skills for Claude Code"
 }
 
@@ -357,7 +357,7 @@ test_custom_path_skill_count() {
 test_all_global() {
     bash "$INSTALL_SCRIPT" --agent all-global > /dev/null 2>&1
     # Claude Code
-    assert_all_skills_installed "$HOME/01_Core/03_Skills" || return 1
+    assert_all_skills_installed "$HOME/.claude/skills" || return 1
     # OpenCode
     assert_all_skills_installed "$HOME/.config/opencode/skills" || return 1
     # Gemini CLI
@@ -373,7 +373,7 @@ test_all_global_total_skill_count() {
     # 5 targets x 15 skills = 75 SKILL.md files
     local total=0
     for dir in \
-        "$HOME/01_Core/03_Skills" \
+        "$HOME/.claude/skills" \
         "$HOME/.config/opencode/skills" \
         "$HOME/.gemini/skills" \
         "$HOME/.codex/skills" \
@@ -402,9 +402,9 @@ test_all_global_opencode_commands() {
 test_idempotent_claude_code() {
     bash "$INSTALL_SCRIPT" --agent claude-code > /dev/null 2>&1
     bash "$INSTALL_SCRIPT" --agent claude-code > /dev/null 2>&1
-    assert_all_skills_installed "$HOME/01_Core/03_Skills"
+    assert_all_skills_installed "$HOME/.claude/skills"
     local count
-    count=$(find "$HOME/01_Core/03_Skills" -name "SKILL.md" | wc -l | tr -d ' ')
+    count=$(find "$HOME/.claude/skills" -name "SKILL.md" | wc -l | tr -d ' ')
     assert_eq "15" "$count" "Expected exactly 15 skills after double install"
 }
 
@@ -424,7 +424,7 @@ test_idempotent_all_global() {
     bash "$INSTALL_SCRIPT" --agent all-global > /dev/null 2>&1
     bash "$INSTALL_SCRIPT" --agent all-global > /dev/null 2>&1
     for dir in \
-        "$HOME/01_Core/03_Skills" \
+        "$HOME/.claude/skills" \
         "$HOME/.config/opencode/skills" \
         "$HOME/.gemini/skills" \
         "$HOME/.codex/skills" \
@@ -444,7 +444,7 @@ test_skill_content_matches_source() {
     local source_dir="$REPO_DIR/skills"
     for skill in "${EXPECTED_SKILLS[@]}"; do
         local src="$source_dir/$skill/SKILL.md"
-        local dst="$HOME/01_Core/03_Skills/$skill/SKILL.md"
+        local dst="$HOME/.claude/skills/$skill/SKILL.md"
         if ! diff -q "$src" "$dst" > /dev/null 2>&1; then
             echo "Content mismatch: $skill/SKILL.md"
             echo "  Source: $src"
@@ -547,31 +547,31 @@ test_header_shows_detected_os() {
 
 test_pre_existing_dir_not_clobbered() {
     # Create a pre-existing file that should NOT be deleted
-    mkdir -p "$HOME/01_Core/03_Skills/my-custom-skill"
-    echo "custom content" > "$HOME/01_Core/03_Skills/my-custom-skill/SKILL.md"
+    mkdir -p "$HOME/.claude/skills/my-custom-skill"
+    echo "custom content" > "$HOME/.claude/skills/my-custom-skill/SKILL.md"
     bash "$INSTALL_SCRIPT" --agent claude-code > /dev/null 2>&1
     # SDD skills should be installed
-    assert_all_skills_installed "$HOME/01_Core/03_Skills" || return 1
+    assert_all_skills_installed "$HOME/.claude/skills" || return 1
     # Custom skill should still exist
-    assert_file_exists "$HOME/01_Core/03_Skills/my-custom-skill/SKILL.md" || return 1
+    assert_file_exists "$HOME/.claude/skills/my-custom-skill/SKILL.md" || return 1
     local content
-    content=$(cat "$HOME/01_Core/03_Skills/my-custom-skill/SKILL.md")
+    content=$(cat "$HOME/.claude/skills/my-custom-skill/SKILL.md")
     assert_eq "custom content" "$content" "Custom skill content should be preserved"
 }
 
 test_overwrite_stale_skill() {
     # Pre-create a stale SKILL.md
-    mkdir -p "$HOME/01_Core/03_Skills/sdd-apply"
-    echo "stale" > "$HOME/01_Core/03_Skills/sdd-apply/SKILL.md"
+    mkdir -p "$HOME/.claude/skills/sdd-apply"
+    echo "stale" > "$HOME/.claude/skills/sdd-apply/SKILL.md"
     bash "$INSTALL_SCRIPT" --agent claude-code > /dev/null 2>&1
     # Should be replaced with actual content (not "stale")
     local content
-    content=$(head -c 5 "$HOME/01_Core/03_Skills/sdd-apply/SKILL.md")
+    content=$(head -c 5 "$HOME/.claude/skills/sdd-apply/SKILL.md")
     if [[ "$content" == "stale" ]]; then
         echo "SKILL.md was NOT overwritten — still contains stale data"
         return 1
     fi
-    assert_file_not_empty "$HOME/01_Core/03_Skills/sdd-apply/SKILL.md"
+    assert_file_not_empty "$HOME/.claude/skills/sdd-apply/SKILL.md"
 }
 
 test_nested_custom_path() {
@@ -598,7 +598,7 @@ run_test "Unknown option exits non-zero" test_invalid_option
 echo ""
 
 echo -e "${BOLD}Claude Code${NC}"
-run_test "Installs all 15 skills to ~/01_Core/03_Skills" test_install_claude_code
+run_test "Installs all 15 skills to ~/.claude/skills" test_install_claude_code
 run_test "Exactly 15 SKILL.md files" test_claude_code_skill_count
 echo ""
 

@@ -10,11 +10,11 @@
 
 ```
 00_Winter_is_Coming/
-├── README.md     # Este archivo
-├── AGENTS.md     # Instrucciones del agente
-├── BACKLOG.md    # Bandeja de entrada de tareas
-├── GOALS.md      # Metas y prioridades
-└── Skills/       # Sub-agentes y prompts legacy
+├── AGENTS.md        # Núcleo de comportamiento y OS Rules
+├── BACKLOG.md       # Gestión de tareas y backlog estratégico
+├── GOALS.md         # Objetivos estratégicos y Q-planning
+├── README.md        # Documentación de la dimensión
+└── Skills/          # Prompts y configuraciones legacy (Backup)
     └── PM_Agent_Orchestrator.xml
 ```
 

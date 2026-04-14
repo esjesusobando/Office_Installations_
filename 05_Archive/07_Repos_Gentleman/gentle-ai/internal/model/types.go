@@ -5,12 +5,15 @@ type AgentID string
 const (
 	AgentClaudeCode    AgentID = "claude-code"
 	AgentOpenCode      AgentID = "opencode"
+	AgentKilocode      AgentID = "kilocode"
 	AgentGeminiCLI     AgentID = "gemini-cli"
 	AgentCursor        AgentID = "cursor"
 	AgentVSCodeCopilot AgentID = "vscode-copilot"
 	AgentCodex         AgentID = "codex"
 	AgentAntigravity   AgentID = "antigravity"
 	AgentWindsurf      AgentID = "windsurf"
+	AgentQwenCode      AgentID = "qwen-code"
+	AgentKiroIDE       AgentID = "kiro-ide"
 )
 
 // SupportTier indicates how fully an agent supports the Gentleman AI ecosystem.
@@ -37,6 +40,22 @@ const (
 	ComponentTheme      ComponentID = "theme"
 )
 
+type UninstallMode string
+
+const (
+	UninstallModePartial      UninstallMode = "partial"
+	UninstallModeFull         UninstallMode = "full"
+	UninstallModeFullRemove   UninstallMode = "full-remove"
+	UninstallModeCleanInstall UninstallMode = "clean-install"
+)
+
+type EngramUninstallScope string
+
+const (
+	EngramUninstallScopeGlobal  EngramUninstallScope = "global"
+	EngramUninstallScopeProject EngramUninstallScope = "project"
+)
+
 type SkillID string
 
 const (
@@ -49,20 +68,13 @@ const (
 	SkillSDDDesign     SkillID = "sdd-design"
 	SkillSDDTasks      SkillID = "sdd-tasks"
 	SkillSDDArchive    SkillID = "sdd-archive"
-	SkillReact19       SkillID = "react-19"
-	SkillNextJS15      SkillID = "nextjs-15"
-	SkillTailwind4     SkillID = "tailwind-4"
-	SkillZustand5      SkillID = "zustand-5"
-	SkillZod4          SkillID = "zod-4"
-	SkillAISDK5        SkillID = "ai-sdk-5"
-	SkillPlaywright    SkillID = "playwright"
-	SkillPytest        SkillID = "pytest"
-	SkillDjangoDRF     SkillID = "django-drf"
+	SkillSDDOnboard    SkillID = "sdd-onboard"
 	SkillGoTesting     SkillID = "go-testing"
 	SkillCreator       SkillID = "skill-creator"
 	SkillJudgmentDay   SkillID = "judgment-day"
 	SkillBranchPR      SkillID = "branch-pr"
 	SkillIssueCreation SkillID = "issue-creation"
+	SkillSkillRegistry SkillID = "skill-registry"
 )
 
 type PersonaID string
@@ -117,3 +129,12 @@ const (
 	SDDModeSingle SDDModeID = "single"
 	SDDModeMulti  SDDModeID = "multi"
 )
+
+// Profile represents a named SDD orchestrator configuration with model assignments.
+// The default profile (Name="" or Name="default") maps to the base sdd-orchestrator.
+// Named profiles generate sdd-orchestrator-{Name} + suffixed sub-agents.
+type Profile struct {
+	Name              string                     // e.g. "cheap", "premium"; empty = default
+	OrchestratorModel ModelAssignment            // orchestrator model
+	PhaseAssignments  map[string]ModelAssignment // key = phase name (e.g. "sdd-apply")
+}

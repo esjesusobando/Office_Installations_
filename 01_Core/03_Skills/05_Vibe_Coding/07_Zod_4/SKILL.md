@@ -1,6 +1,6 @@
 ---
 name: zod-4
-description: > Triggers on: 07_Zod_4, patterns, coding.
+description: >
   Zod 4 schema validation patterns.
   Trigger: When using Zod for validation - breaking changes from v3.
 license: Apache-2.0
@@ -214,27 +214,3 @@ function Form() {
 
 ## Keywords
 zod, validation, schema, typescript, forms, parsing
-
-## Esencia Original
-> **Propósito:** Propósito del skill aquí
-> **Flujo:** Pasos principales del flujo
-
-## ⚠️ Gotchas (Errores Comunes a Evitar)
-
-- **[ERROR]**: Schema inference fails
-  - **Por qué**: Inferencia de tipos no funciona con objetos complejos
-  - **Solución**: Usar `z.infer<typeof schema>` explícitamente
-
-- **[ERROR]**: Validation not catching null/undefined
-  - **Por qué**: Tipos opcionales no aplican validaciones
-  - **Solución**: Usar `.optional()` después de validaciones o `.nullable()`
-
-- **[ERROR]**: Async refinements not working
-  - **Por qué**: Refinements async no están soportados directamente
-  - **Solución**: Usar `.superRefine()` con promesas
-
-## 💾 State Persistence
-
-Guardar en:
-- `03_Knowledge/` — Documentación
-- `04_Operations/` — Estado activo

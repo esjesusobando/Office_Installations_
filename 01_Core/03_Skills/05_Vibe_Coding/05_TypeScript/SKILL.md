@@ -1,6 +1,6 @@
 ---
 name: typescript
-description: > Triggers on: 05_TypeScript, patterns, coding.
+description: >
   TypeScript strict patterns and best practices.
   Trigger: When writing TypeScript code - types, interfaces, generics.
 license: Apache-2.0
@@ -108,27 +108,3 @@ import { createUser, type Config } from "./utils";
 
 ## Keywords
 typescript, ts, types, interfaces, generics, strict mode, utility types
-
-## Esencia Original
-> **Propósito:** Propósito del skill aquí
-> **Flujo:** Pasos principales del flujo
-
-## ⚠️ Gotchas (Errores Comunes a Evitar)
-
-- **[ERROR]**: Type 'any' inferred
-  - **Por qué**: TypeScript infiere `any` cuando no puede resolver el tipo
-  - **Solución**: Usar generics `<T>` o `unknown` con type guards
-
-- **[ERROR]**: Property does not exist on type
-  - **Por qué**: Acceso a propiedad que no existe en el tipo
-  - **Solución**: Usar Optional chaining `?.` o verificar con `in` operator
-
-- **[ERROR]**: Generic type inference fails
-  - **Por qué**: No puede inferir el tipo genérico
-  - **Solución**: Proporcionar tipos explícitos `<Type>()`
-
-## 💾 State Persistence
-
-Guardar en:
-- `03_Knowledge/` — Documentación
-- `04_Operations/` — Estado activo

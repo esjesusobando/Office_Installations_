@@ -26,9 +26,8 @@ var Tools = []ToolInfo{
 		Repo:          "engram",
 		DetectCmd:     []string{"engram", "version"},
 		VersionPrefix: "v",
-		// engram: brew on macOS/Linux-brew, go-install elsewhere.
-		InstallMethod: InstallGoInstall,
-		GoImportPath:  "github.com/Gentleman-Programming/engram/cmd/engram",
+		// engram: brew on macOS/Linux-brew, binary download elsewhere.
+		InstallMethod: InstallBinary,
 	},
 	{
 		Name:          "gga",
@@ -36,7 +35,9 @@ var Tools = []ToolInfo{
 		Repo:          "gentleman-guardian-angel",
 		DetectCmd:     []string{"gga", "--version"},
 		VersionPrefix: "v",
-		// gga: brew on macOS, binary release download on Linux/Windows.
-		InstallMethod: InstallBinary,
+		// gga: brew on macOS, install.sh script on Linux/Windows.
+		// GGA does not publish pre-built release binary assets — only source archives.
+		// Using InstallScript runs curl | bash via the project's install.sh.
+		InstallMethod: InstallScript,
 	},
 }

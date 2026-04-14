@@ -4,13 +4,13 @@
 
 ---
 
-| Platform                      | Package Manager  | Status    |
-|-------------------------------|------------------|-----------|
-| macOS (Apple Silicon + Intel) | Homebrew         | Supported |
-| Linux (Ubuntu/Debian)         | apt              | Supported |
-| Linux (Arch)                  | pacman           | Supported |
-| Linux (Fedora/RHEL family)    | dnf              | Supported |
-| Windows 10/11                 | winget           | Supported |
+| Platform | Package Manager | Status |
+|----------|----------------|--------|
+| macOS (Apple Silicon + Intel) | Homebrew | Supported |
+| Linux (Ubuntu/Debian) | apt | Supported |
+| Linux (Arch) | pacman | Supported |
+| Linux (Fedora/RHEL family) | dnf | Supported |
+| Windows 10/11 | winget | Supported |
 
 Derivatives are detected via `ID_LIKE` in `/etc/os-release` (Linux Mint, Pop!_OS, Manjaro, EndeavourOS, CentOS Stream, Rocky Linux, AlmaLinux, etc.).
 
@@ -25,7 +25,7 @@ Release binaries are built for `linux`, `darwin`, and `windows` on both `amd64` 
 - **curl** is pre-installed on Windows 10+ and does not require separate installation.
 - **PowerShell** is the default shell when `$SHELL` is not set.
 - Release archives use `.zip` format on Windows (`.tar.gz` on macOS/Linux).
-- **GGA on Windows** only works inside Git Bash. After installation, run `gga init` and `gga install` from Git Bash — not from PowerShell or CMD. This is a GGA limitation, not a gentle-ai limitation.
+- **GGA on Windows** works from both Git Bash and PowerShell. gentle-ai installs a `gga.ps1` shim that automatically delegates to Git Bash, so no manual shell switching is required.
 
 ---
 
@@ -49,10 +49,14 @@ If the hash matches `checksums.txt`, the file is authentic for that release.
 
 ## Windows Config Paths
 
-| Agent           | Windows Config Path                                                                  |
-|-----------------|--------------------------------------------------------------------------------------|
-| Claude Code     | `%USERPROFILE%\.claude\`                                                             |
-| OpenCode        | `%USERPROFILE%\.config\opencode\`                                                    |
-| Gemini CLI      | `%USERPROFILE%\.gemini\`                                                             |
-| Cursor          | `%USERPROFILE%\.cursor\`                                                             |
+| Agent | Windows Config Path |
+|-------|-------------------|
+| Claude Code | `%USERPROFILE%\.claude\` |
+| OpenCode | `%USERPROFILE%\.config\opencode\` |
+| Gemini CLI | `%USERPROFILE%\.gemini\` |
+| Cursor | `%USERPROFILE%\.cursor\` |
 | VS Code Copilot | `%APPDATA%\Code\User\` (settings, MCP, prompts) + `%USERPROFILE%\.copilot\` (skills) |
+| Codex | `%USERPROFILE%\.codex\` |
+| Windsurf | `%USERPROFILE%\.codeium\windsurf\` (skills, MCP, rules) + `%APPDATA%\Windsurf\User\` (settings) |
+| Antigravity | `%USERPROFILE%\.gemini\antigravity\` |
+| Kiro IDE | `%USERPROFILE%\.kiro\steering\` (prompts) + `%USERPROFILE%\.kiro\skills\` (skills) + `%USERPROFILE%\.kiro\agents\` (SDD agents) + `%APPDATA%\kiro\User\settings.json` (settings) + `%USERPROFILE%\.kiro\settings\mcp.json` (MCP) |

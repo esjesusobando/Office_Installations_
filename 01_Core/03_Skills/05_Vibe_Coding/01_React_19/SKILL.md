@@ -1,6 +1,6 @@
 ---
 name: react-19
-description: > Triggers on: 01_React_19, patterns, coding.
+description: >
   React 19 patterns with React Compiler.
   Trigger: When writing React components - no useMemo/useCallback needed.
 license: Apache-2.0
@@ -122,27 +122,3 @@ const Input = forwardRef((props, ref) => <input ref={ref} {...props} />);
 
 ## Keywords
 react, react 19, compiler, useMemo, useCallback, server components, use hook
-
-## Esencia Original
-> **Propósito:** Propósito del skill aquí
-> **Flujo:** Pasos principales del flujo
-
-## ⚠️ Gotchas (Errores Comunes a Evitar)
-
-- **[ERROR]**: `Hydration mismatch` errors
-  - **Por qué**: Server y client state no coinciden (fechas random, timestamps)
-  - **Solución**: Usar `suppressHydrationWarning` o inicializar estado en useEffect
-
-- **[ERROR]**: Stale closures en useEffect
-  - **Por qué**: Captura valores viejos de state/props
-  - **Solución**: Usar `useCallback` para funciones, o incluir dependencias correctas
-
-- **[ERROR]**: Too many re-renders
-  - **Por qué**: Set state en render o dependency array incorrecto
-  - **Solución**: Usar `useMemo` para cálculos, `useCallback` para funciones
-
-## 💾 State Persistence
-
-Guardar en:
-- `03_Knowledge/` — Documentación
-- `04_Operations/` — Estado activo

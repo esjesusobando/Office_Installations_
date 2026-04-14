@@ -16,17 +16,17 @@ scope:     project
 
 ### Artifact Types
 
-| Artifact Type    | Produced By   | Description                                     |
-|------------------|---------------|-------------------------------------------------|
-| `explore`        | sdd-explore   | Exploration analysis                            |
-| `proposal`       | sdd-propose   | Change proposal                                 |
-| `spec`           | sdd-spec      | Delta specifications (all domains concatenated) |
-| `design`         | sdd-design    | Technical design                                |
-| `tasks`          | sdd-tasks     | Task breakdown                                  |
-| `apply-progress` | sdd-apply     | Implementation progress (one per batch)         |
-| `verify-report`  | sdd-verify    | Verification report                             |
-| `archive-report` | sdd-archive   | Archive closure with lineage                    |
-| `state`          | orchestrator  | DAG state for recovery after compaction         |
+| Artifact Type | Produced By | Description |
+|---------------|-------------|-------------|
+| `explore` | sdd-explore | Exploration analysis |
+| `proposal` | sdd-propose | Change proposal |
+| `spec` | sdd-spec | Delta specifications (all domains concatenated) |
+| `design` | sdd-design | Technical design |
+| `tasks` | sdd-tasks | Task breakdown |
+| `apply-progress` | sdd-apply | Implementation progress (one per batch) |
+| `verify-report` | sdd-verify | Verification report |
+| `archive-report` | sdd-archive | Archive closure with lineage |
+| `state` | orchestrator | DAG state for recovery after compaction |
 
 Exception: `sdd-init` uses `sdd-init/{project-name}` as both title and topic_key.
 
@@ -108,6 +108,16 @@ Use `mem_update` when you have the exact ID. Use `mem_save` with same `topic_key
 mem_search(query: "sdd/{change-name}/", project: "{project}")
 → Returns all artifacts for that change
 ```
+
+## Project Name Resolution (engram v1.11.0+)
+
+Engram auto-detects the project name from the git remote at MCP startup. The `--project` flag and `ENGRAM_PROJECT` env var can override detection. All project names are normalized to lowercase and trimmed.
+
+If the agent saves a memory under a project name that doesn't match existing observations, engram warns about potential name drift. Use `mem_merge_projects` (MCP tool) or `engram projects consolidate` (CLI) to merge variants.
+
+## Upsert Behavior
+
+Same `topic_key` + `project` + `scope` → UPDATE (overwrite), not INSERT. Previous content is lost — `revision_count` increments but old content is NOT saved. This is by design — engram is working memory, not an audit trail. For iteration history or team collaboration, use `openspec` or `hybrid` mode.
 
 ## Why This Convention
 

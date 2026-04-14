@@ -1,8 +1,8 @@
-# Maerks — Tests Legacy y Planes
+# Maerks — HUB Técnico y Arquitectura
 
 **Versión:** 6.1
-**Última actualización:** 2026-04-11
-**Estado:** 📦 Legacy
+**Última actualización:** 2026-04-14
+**Estado:** ✅ Activo | 🛠️ LABORATORIO TÉCNICO
 
 ---
 
@@ -10,25 +10,16 @@
 
 ```
 Think_Different/
-├── 00_Winter_is_Coming/    # Goals, Backlog, Memoria (ESTRATÉGICO)
-├── 01_Core/               # Motor: Skills, Agents, MCPs, Workflows 💾
-├── 02_Knowledge/          # Documentación, Research, Notas 📚
-├── 03_Tasks/             # Tareas activas (YAML frontmatter)
-├── 04_Operations/        # Memoria y Procesos
-├── 05_Archive/                  # 📦 Legacy archivado (01-09)
-│   ├── 01_Raiz_Archive/         # Raíz y contexto
-│   ├── 02_Rules_Legacy/         # Reglas antiguas
-│   ├── 03_Docs_Legacy/          # Documentación histórica
-│   ├── 04_Backups_AutoMejora/   # Backups de mejoras
-│   ├── 05_Planes_Legacy/        # Planes cerrados
-│   ├── 06_Recursos/             # Activos y recursos
-│   ├── 07_Repos_Gentleman/      # Ecosistema Gentleman
-│   ├── 08_Planes_Estrategicos/  # Estrategia legacy
-│   └── 09_OpenSpec_Archive/     # Especificaciones antiguas
-├── 06_Playground/       # Pruebas y experimentos
-├── 07_Projects/         # Proyectos activos
-├── 08_Scripts_Os/       # Scripts operativos
-└── Maerks/             # Tests legacy, planes 📦
+├── 00_Winter_is_Coming/    # Estrategia, Backlog y ADN (ESTRATÉGICO)
+├── 01_Core/               # Motor OS: Skills, Agents, MCPs (FUENTE DE VERDAD) 💾
+├── 02_Knowledge/          # Base de Conocimiento, Research y Documentación
+├── 03_Tasks/              # Gestión de Tareas Activas
+├── 04_Operations/         # Cerebro Operativo y Automatización
+├── 05_Archive/            # Repositorio de Proyectos Finalizados
+├── 06_Playground/         # Laboratorio de Pruebas y Experimentos
+├── 07_Projects/           # Desarrollo de Proyectos Activos
+├── 08_Scripts_Os/         # Scripts y HUBs Operativos del Sistema
+└── Maerks/               # Entorno de Testing, Guías y Arquitectura 🛠️
 ```
 
 ---
@@ -37,18 +28,20 @@ Think_Different/
 
 ```
 Maerks/
-├── README.md                     # Este archivo
-├── 00_Plan_Automejora_v6.1.md  # Plan de automejora
-├── 01_Report_Status.md          # Reporte de estado
-├── 15_Architecture_Map.md       # Mapa de arquitectura
-├── 16_SOP_Prompts/              # Prompts SOP
-├── 18_Gap_Analysis_v5.2_to_v6.1.md # Análisis de gaps
-├── Dream_Team.md               # Equipo de agentes
-├── Otros/                      # Otros archivos legacy
-│   ├── 08_Config/
-│   ├── 13_Strategic_Plans/
-│   └── 14_Config_Mcp/
-└── test/                        # Scripts de prueba
+├── 00_Test_Anthropic_Harness/  # Pruebas de integración Anthropic
+├── 01_Create_Agent_Skills/     # Flujos de creación de agentes
+├── 02_Skill_Creator/           # Motor de generación de capacidades
+├── 03_File_Todos/              # Gestión de TODOs en archivos
+├── 04_Process_Notes_Legacy/    # Notas de procesos antiguos
+├── 05_Tests/                   # Batería de tests del sistema
+├── 06_Reports/                 # Reportes técnicos consolidados
+├── 07_Tools/                   # Herramientas de soporte Maerks
+├── 08_SOP_Prompts/             # Standard Operating Procedures (Prompts)
+├── 09_Claude_Code_Learn/       # Aprendizajes de Claude Code
+├── 15_Architecture_Map.md      # Mapa masivo de arquitectura (v6.1)
+├── 18_Gap_Analysis_v5.2_to_6.1 # Análisis de evolución técnica
+├── Dream_Team.md               # Definición del equipo de agentes
+└── test/                       # Scripts de prueba y validación
 ```
 
 ---

@@ -18,13 +18,19 @@
 
 ---
 
+## 🛠️ Documentación Operativa
+
+- [SKILL.md](./SKILL.md) — Instrucciones detalladas para agentes (v6.1).
+
+---
+
 ## Flujo de Integración
 
 ```
 Quick Capture → 03_Tasks/02_Hillary_Inbox/   (inbox de capturas)
-Plan My Day   → schedule diario desde inbox
-Daily Notes   → 04_Operations/ (observaciones)
-Recording Mode → transcripciones anonimizadas
+Plan My Day   → 03_Tasks/Daily_Routine.md    (schedule diario)
+Daily Notes   → 03_Tasks/Daily_Activity_Log.md (observaciones)
+Recording Mode → 03_Tasks/02_Hillary_Inbox/Transcripts/
 Returns Tracker → 01_Core/03_Skills/ (auto-generated skills)
 ```
 
@@ -33,7 +39,7 @@ Returns Tracker → 01_Core/03_Skills/ (auto-generated skills)
 ## Invocar el Orquestador
 
 ```
-/hillary          # Activa workflow 24_Hillary_Life_OS.md
+/hillary          # Activa workflow 25_Hillary_Life_OS.md
 "life os"         # Alias del orquestador
 "personal productivity"
 ```

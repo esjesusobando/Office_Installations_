@@ -1,7 +1,7 @@
 # 03_Tasks — Sistema de Tareas
 
 **Versión:** 6.1
-**Última actualización:** 2026-04-04
+**Última actualización:** 2026-04-14
 **Estado:** ✅ Activo
 
 ---
@@ -10,16 +10,16 @@
 
 ```
 Think_Different/
-├── 00_Winter_is_Coming/    # Goals, Backlog, Memoria (ESTRATÉGICO)
-├── 01_Core/               # Motor: Skills, Agents, MCPs, Workflows 💾
-├── 02_Knowledge/          # Documentación, Research, Notas 📚
-├── 03_Tasks/             # Tareas activas (YAML frontmatter) ✅
-├── 04_Operations/        # Operaciones: Memory, Brain, Notes
-├── 05_Archive/           # Legacy archivado
-├── 06_Playground/       # Pruebas y experimentos
-├── 07_Projects/         # Proyectos activos
-├── 08_Scripts_Os/       # Scripts operativos
-└── Maerks/             # Tests legacy, planes
+├── 00_Winter_is_Coming/    # Estrategia, Backlog y ADN (ESTRATÉGICO)
+├── 01_Core/               # Motor OS: Skills, Agents, MCPs (FUENTE DE VERDAD) 💾
+├── 02_Knowledge/          # Base de Conocimiento, Research y Documentación
+├── 03_Tasks/              # Gestión de Tareas Activas ✅
+├── 04_Operations/         # Cerebro Operativo y Automatización
+├── 05_Archive/            # Repositorio de Proyectos Finalizados
+├── 06_Playground/         # Laboratorio de Pruebas y Experimentos
+├── 07_Projects/           # Desarrollo de Proyectos Activos
+├── 08_Scripts_Os/         # Scripts y HUBs Operativos del Sistema
+└── Maerks/               # Entorno de Testing y Validación
 ```
 
 ---
@@ -28,23 +28,13 @@ Think_Different/
 
 ```
 03_Tasks/
-├── README.md                         # Este archivo
-├── .gitkeep                         # Preserva la carpeta en git
-├── 00_Templates/                   # Plantillas de tareas
-│   ├── README.md
-│   ├── 00_Task_Template_Skeleton.md
-│   ├── 01_ai_task_template.md
-│   ├── 02_Process_Note_Template.md
-│   ├── 03_Task_Template_SOTA.md
-│   ├── 04_Task_Template_Medio.md
-│   ├── 05_Task_Template_Corto.md
-│   └── Examples/
-├── 01_Tasks_Done/                 # Historial de tareas completadas
-├── 02_Hillary_Inbox/               # Buzon de entrada de tareas generadas
-├── 02-10_Consolidated_Tasks.md   # Tareas consolidadas
-├── 00_P0_*.md                       # Tareas prioridad 0
-├── 03-10_P1_*.md                    # Tareas prioridad 1
-└── P2_*/                            # Tareas P2 varias
+├── 00_Templates/                   # Plantillas oficiales (SOTA, Skeleton, AI)
+├── 01_Tasks_Done/                 # Historial de hitos logrados
+├── 02_Hillary_Inbox/               # Entrada de tareas sin procesar
+├── 02-10_Consolidated_Tasks.md   # Logs consolidados v6.1
+├── 00_P0_*.md                       # Tareas CRÍTICAS (System Guardian, Audience)
+├── 03-10_P1_*.md                    # Tareas prioritarias (MCPs, Documentación)
+└── *.md                             # Tareas activas (P2, etc.)
 ```
 
 ---

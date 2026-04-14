@@ -1,6 +1,6 @@
 ---
 name: nextjs-15
-description: > Triggers on: 02_Nextjs_15, patterns, coding.
+description: >
   Next.js 15 App Router patterns.
   Trigger: When working with Next.js - routing, Server Actions, data fetching.
 license: Apache-2.0
@@ -148,27 +148,3 @@ export async function getSecretData() {
 
 ## Keywords
 nextjs, next.js, app router, server components, server actions, streaming
-
-## Esencia Original
-> **Propósito:** Propósito del skill aquí
-> **Flujo:** Pasos principales del flujo
-
-## ⚠️ Gotchas (Errores Comunes a Evitar)
-
-- **[ERROR]**: `Dynamic server usage` en Server Component
-  - **Por qué**: Se usa hook de cliente (useState, useEffect) en server component
-  - **Solución**: Mover a client component con `'use client'` o usar Server Actions
-
-- **[ERROR]**: `Params` no es aún awaitable en pages
-  - **Por qué**: En Next.js 15 params es una Promise - requiere await
-  - **Solución**: `export default async function Page({ params }: { params: Promise<{ id: string }> }) { const { id } = await params; }`
-
-- **[ERROR]**: Cookies no se actualizan inmediatamente
-  - **Por qué**: Cookies son request-time, no runtime
-  - **Solución**: Usar Server Actions con `cookies().set()` o middleware para cookies
-
-## 💾 State Persistence
-
-Guardar en:
-- `03_Knowledge/` — Documentación
-- `04_Operations/` — Estado activo

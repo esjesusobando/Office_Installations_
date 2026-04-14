@@ -43,6 +43,8 @@ func (profileResolver) ResolveAgentInstall(profile system.PlatformProfile, agent
 		return resolveClaudeCodeInstall(profile), nil
 	case model.AgentOpenCode:
 		return resolveOpenCodeInstall(profile)
+	case model.AgentKilocode:
+		return resolveKilocodeInstall(profile), nil
 	default:
 		return nil, fmt.Errorf("install command is not supported for agent %q", agent)
 	}
@@ -56,6 +58,16 @@ func resolveClaudeCodeInstall(profile system.PlatformProfile) CommandSequence {
 		return CommandSequence{{"sudo", "npm", "install", "-g", "@anthropic-ai/claude-code"}}
 	}
 	return CommandSequence{{"npm", "install", "-g", "@anthropic-ai/claude-code"}}
+}
+
+// resolveKilocodeInstall returns the npm install command sequence for Kilocode.
+// On Linux with system npm, sudo is required. With nvm/fnm/volta, it is not.
+// On Windows and macOS, sudo is never needed.
+func resolveKilocodeInstall(profile system.PlatformProfile) CommandSequence {
+	if profile.OS == "linux" && !profile.NpmWritable {
+		return CommandSequence{{"sudo", "npm", "install", "-g", "@kilocode/cli"}}
+	}
+	return CommandSequence{{"npm", "install", "-g", "@kilocode/cli"}}
 }
 
 func (profileResolver) ResolveComponentInstall(profile system.PlatformProfile, component model.ComponentID) (CommandSequence, error) {
@@ -259,31 +271,24 @@ func validateGoForModuleInstall(profile system.PlatformProfile) error {
 }
 
 // resolveEngramInstall returns the correct install command sequence for Engram per platform.
-// - darwin: brew tap + brew install (via Gentleman-Programming/homebrew-tap)
-// - linux/windows: go install (engram is not in any distro repo or winget)
+// - darwin (brew): brew tap + brew install (via Gentleman-Programming/homebrew-tap)
+// - linux/windows: returns an error — callers must use engram.DownloadLatestBinary() instead.
+//
+// The go install method has been removed because it required Go 1.24+ which most
+// users on Linux/Windows don't have. Pre-built binaries are available at:
+// https://github.com/Gentleman-Programming/engram/releases
 func resolveEngramInstall(profile system.PlatformProfile) (CommandSequence, error) {
 	switch profile.PackageManager {
 	case "brew":
-		// macOS: brew manages Go transitively — no preflight needed.
+		// macOS (or Linux with Homebrew): brew manages Go transitively — no preflight needed.
 		return CommandSequence{
 			{"brew", "tap", "Gentleman-Programming/homebrew-tap"},
 			{"brew", "install", "engram"},
 		}, nil
-	case "apt", "pacman", "dnf":
-		if err := validateGoForModuleInstall(profile); err != nil {
-			return nil, err
-		}
-		return CommandSequence{{"env", "CGO_ENABLED=0", "go", "install", "github.com/Gentleman-Programming/engram/cmd/engram@latest"}}, nil
-	case "winget":
-		if err := validateGoForModuleInstall(profile); err != nil {
-			return nil, err
-		}
-		// On Windows, use go install (Engram has no winget package yet).
-		return CommandSequence{{"go", "install", "github.com/Gentleman-Programming/engram/cmd/engram@latest"}}, nil
 	default:
 		return nil, fmt.Errorf(
-			"unsupported platform for engram: os=%q distro=%q pm=%q",
-			profile.OS, profile.LinuxDistro, profile.PackageManager,
+			"engram on %q/%q uses direct binary download — use engram.DownloadLatestBinary() instead of CommandSequence",
+			profile.OS, profile.PackageManager,
 		)
 	}
 }

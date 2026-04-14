@@ -29,7 +29,7 @@ This is the foundation of the **Skill Resolver Protocol** (see `_shared/skill-re
 1. Glob for `*/SKILL.md` files across ALL known skill directories. Check every path below — scan ALL that exist, not just the first match:
 
    **User-level (global skills):**
-   - `~/01_Core/03_Skills/` — Claude Code
+   - `~/.claude/skills/` — Claude Code
    - `~/.config/opencode/skills/` — OpenCode
    - `~/.gemini/skills/` — Gemini CLI
    - `~/.cursor/skills/` — Cursor
@@ -37,7 +37,7 @@ This is the foundation of the **Skill Resolver Protocol** (see `_shared/skill-re
    - The parent directory of this skill file (catch-all for any tool)
 
    **Project-level (workspace skills):**
-   - `{project-root}/01_Core/03_Skills/` — Claude Code
+   - `{project-root}/.claude/skills/` — Claude Code
    - `{project-root}/.gemini/skills/` — Gemini CLI
    - `{project-root}/.agent/skills/` — Antigravity (workspace)
    - `{project-root}/skills/` — Generic
@@ -106,10 +106,10 @@ See `_shared/skill-resolver.md` for the full resolution protocol.
 
 ## User Skills
 
-| Trigger                    | Skill        | Path                    |
-|----------------------------|--------------|-------------------------|
+| Trigger | Skill | Path |
+|---------|-------|------|
 | {trigger from frontmatter} | {skill name} | {full path to SKILL.md} |
-| ...                        | ...          | ...                     |
+| ... | ... | ... |
 
 ## Compact Rules
 
@@ -129,11 +129,11 @@ Pre-digested rules per skill. Delegators copy matching blocks into sub-agent pro
 
 ## Project Conventions
 
-| File              | Path             | Notes                          |
-|-------------------|------------------|--------------------------------|
-| {index file}      | {path}           | Index — references files below |
-| {referenced file} | {extracted path} | Referenced by {index file}     |
-| {standalone file} | {path}           |                                |
+| File | Path | Notes |
+|------|------|-------|
+| {index file} | {path} | Index — references files below |
+| {referenced file} | {extracted path} | Referenced by {index file} |
+| {standalone file} | {path} | |
 
 Read the convention files listed above for project-specific patterns and rules. All referenced paths have been extracted — no need to read index files to discover more.
 ```
@@ -174,14 +174,14 @@ mem_save(
 **Engram**: {saved / not available}
 
 ### User Skills Found
-| Skill   | Trigger   |
-|---------|-----------|
-| {name}  | {trigger} |
-| ...     | ...       |
+| Skill | Trigger |
+|-------|---------|
+| {name} | {trigger} |
+| ... | ... |
 
 ### Project Conventions Found
-| File   | Path   |
-|--------|--------|
+| File | Path |
+|------|------|
 | {file} | {path} |
 
 ### Next Steps

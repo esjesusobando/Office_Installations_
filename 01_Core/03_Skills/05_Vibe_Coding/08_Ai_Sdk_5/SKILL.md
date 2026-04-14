@@ -1,6 +1,6 @@
 ---
 name: ai-sdk-5
-description: > Triggers on: 08_Ai_Sdk_5, patterns, coding.
+description: >
   Vercel AI SDK 5 patterns.
   Trigger: When building AI chat features - breaking changes from v4.
 license: Apache-2.0
@@ -234,27 +234,3 @@ const { error, messages, sendMessage } = useChat({
 
 ## Keywords
 ai sdk, vercel ai, chat, streaming, langchain, openai, llm
-
-## Esencia Original
-> **Propósito:** Propósito del skill aquí
-> **Flujo:** Pasos principales del flujo
-
-## ⚠️ Gotchas (Errores Comunes a Evitar)
-
-- **[ERROR]**: Stream not rendering
-  - **Por qué**: No usar `useStream` o `useAssistant` hook
-  - **Solución**: Usar los hooks de AI SDK para streaming
-
-- **[ERROR]**: Too many tokens
-  - **Por qué**: No configurar `maxTokens` o contexto muy grande
-  - **Solución**: Usar trimMessages o limitar historial
-
-- **[ERROR]**: Model not found
-  - **Por qué**: Modelo no existe o API key sin permisos
-  - **Solución**: Verificar modelo en provider docs
-
-## 💾 State Persistence
-
-Guardar en:
-- `03_Knowledge/` — Documentación
-- `04_Operations/` — Estado activo
