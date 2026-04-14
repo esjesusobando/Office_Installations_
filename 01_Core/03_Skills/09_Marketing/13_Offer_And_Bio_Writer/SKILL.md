@@ -1,6 +1,6 @@
 ---
 name: offer-and-bio-writer
-description: Escribe e itera bios de Instagram/LinkedIn, páginas de link en bio, copy de landing pages y guiones de DM — todo alineado al posicionamiento de la marca y diseñado para convertir atención en acción. Usa esta skill cuando el usuario diga cosas como "escribe mi bio", "arregla mi bio de Instagram", "mi bio no convierte", "escribe una landing page", "ayúdame a escribir mi link en bio", "escribe un guion de DM", "cómo presento mi oferta", "escribe mi oferta", "necesito copy para mi página", "ayúdame a posicionarme", o cualquier cosa que involucre cómo se muestra cuando alguien hace clic en su perfil. También activa cuando el usuario esté lanzando una nueva oferta, servicio o producto y necesite palabras que hagan que la gente quiera comprar, agendar o enviar un DM. Esta skill convierte a desconocidos en leads.
+description: Escribe e itera bios de Instagram/LinkedIn, páginas de link en bio, copy de landing pages y guiones de DM — todo alineado al posicionamiento de la marca y diseñado para convertir atención en acción. Usa esta skill cuando el usuario diga cosas como "escribe mi bio", "arregla mi bio de Instagram", "mi bio no convierte", "escribe una landing page", "ayúdame a escribir mi link en bio", "escribe un guion de DM", "cómo presento mi oferta", "escribe mi oferta", "necesito copy para mi página", "ayúdame a posicionarme", o cualquier cosa que involucre cómo se muestra cuando alguien hace clic en su perfil. También activa cuando el usuario esté lanzando una nueva oferta, servicio o producto y necesite palabras que hagan que la gente quiera comprar, agendar o enviar un DM. Esta skill convierte a desconocidos en leads. Triggers on: "escribe mi bio", "arregla mi bio", "mi bio no convierte", "escribe una landing page", "link en bio", "guion de DM", "presenta mi oferta".
 ---
 
 # Redactor de Ofertas y Bio
@@ -191,7 +191,15 @@ Si algún punto falla — reescribe antes de entregar.
 
 ## ⚠️ Gotchas
 
-Para errores comunes y soluciones, ver: [references/gotchas.md](references/gotchas.md)
+**Don't**: Escribir sin posicionamiento — sin saber para quién, el copy es inútil.
+**Don't**: Bio con múltiples CTAs — dos CTAs = cero clics.
+**Don't**: Escribir en tercera persona — primera persona conecta mejor.
+**Don't**: Landing sin prueba social — sin evidencia es solo promesa.
+**Don't**: DM frío tipo pitch — abre con algo específico SOBRE ELLOS.
+**Don't**: Landing sin garantía — el precio sin garantía = riesgo = no conversión.
+**Don't**: Describir lo que hacés, no lo que ellos obtienen — liderá con resultados.
+
+> Para errores adicionales, ver: [references/gotchas.md](references/gotchas.md)
 
 ---
 

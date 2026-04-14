@@ -1,6 +1,6 @@
 ---
 name: content-ideation
-description: Extrae temas, historias y ángulos de tu marca, los puntos de dolor de tu audiencia y las conversaciones tendencia en tu nicho — y los convierte en una lista de ideas de contenido lista para ejecutar. Usa esta skill cuando el usuario diga cosas como "no sé qué publicar", "dame ideas de contenido", "se me acabaron las ideas", "¿qué debería hacer esta semana?", "plan de contenido", "lluvia de ideas", "¿qué temas debería cubrir?", "necesito un calendario de contenido", "ayúdame a generar ideas", o cuando se sienta bloqueado antes de crear cualquier cosa. También activa cuando el usuario comparte su nicho, audiencia o marca y quiere una dirección estratégica de contenido. Esta es la capa de pensamiento — úsala siempre antes de que se haga cualquier guion, visual o post.
+description: Extrae temas, historias y ángulos de tu marca, los puntos de dolor de tu audiencia y las conversaciones tendencia en tu nicho — y los convierte en una lista de ideas de contenido lista para ejecutar. Usa esta skill cuando el usuario diga cosas como "no sé qué publicar", "dame ideas de contenido", "se me acabaron las ideas", "¿qué debería hacer esta semana?", "plan de contenido", "lluvia de ideas", "¿qué temas debería cubrir?", "necesito un calendario de contenido", "ayúdame a generar ideas", o cuando se sienta bloqueado antes de crear cualquier cosa. También activa cuando el usuario comparte su nicho, audiencia o marca y quiere una dirección estratégica de contenido. Esta es la capa de pensamiento — úsala siempre antes de que se haga cualquier guion, visual o post. Triggers on: "no sé qué publicar", "dame ideas", "se me acabaron las ideas", "plan de contenido", "lluvia de ideas".
 ---
 
 # Ideación de Contenido
@@ -207,3 +207,30 @@ NOTAS
 - "¿Qué parece simple en mi nicho pero en realidad tiene capas?"
 - "¿Qué nunca volvería a hacer — y por qué?"
 - "¿Cuál fue un logro que me sorprendió incluso a mí?"
+
+---
+
+## ⚠️ Gotchas
+
+**Don't**: Idear sin contexto de audiencia — las mejores ideas vienen del dolor real.
+**Don't**: Ideas genéricas — "crecer en Instagram" es tema, no idea. Falta el ángulo.
+**Don't**: No priorizar — 25 ideas sin ordenar = ninguna ejecutada.
+**Don't**: Ignorar el timing — una gran idea en el momento wrong = 0 impacto.
+**Don't**: Repetir lo que ya existe — revisá el historial antes de generar.
+**Don't**: Ideas sin gancho — el gancho decide si alguien se detiene o sigue scrollando.
+
+> Para errores adicionales, ver: [references/gotchas.md](references/gotchas.md)
+
+---
+
+## 📁 Progressive Disclosure
+
+> Para información detallada:
+- [references/gotchas.md](references/gotchas.md) — Errores comunes en ideación
+
+---
+
+## 💾 State Persistence
+
+Ideas generadas se pueden guardar en:
+- `02_Knowledge/04_Content/{brand}-ideas.md`

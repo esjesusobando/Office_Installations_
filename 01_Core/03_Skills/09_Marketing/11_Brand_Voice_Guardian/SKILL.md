@@ -1,6 +1,6 @@
 ---
 name: brand-voice-guardian
-description: Analiza contenido existente para extraer la voz única del creador, su vocabulario, el ritmo de sus oraciones y su tono — y luego lo aplica como filtro para que cada nueva pieza suene inconfundiblemente a él, no a una IA. Usa esta skill cuando el usuario diga cosas como "¿esto suena como yo?", "hazlo sonar más como yo", "analiza mi voz", "mi contenido suena demasiado a IA", "escribe en mi estilo", "iguala mi tono", "algo no se siente bien", "extrae mi voz de marca", o cuando pegue contenido existente para hacer un match de voz. También activa cuando el usuario le pida a Claude escribir cualquier cosa y quiera que suene personal y auténtico en vez de genérico. Esta skill es la capa de identidad — úsala antes de escribir cualquier contenido que necesite sonar humano y específico.
+description: Analiza contenido existente para extraer la voz única del creador, su vocabulario, el ritmo de sus oraciones y su tono — y luego lo aplica como filtro para que cada nueva pieza suene inconfundiblemente a él, no a una IA. Usa esta skill cuando el usuario diga cosas como "¿esto suena como yo?", "hazlo sonar más como yo", "analiza mi voz", "mi contenido suena demasiado a IA", "escribe en mi estilo", "iguala mi tono", "algo no se siente bien", "extrae mi voz de marca", o cuando pegue contenido existente para hacer un match de voz. También activa cuando el usuario le pida a Claude escribir cualquier cosa y quiera que suene personal y auténtico en vez de genérico. Esta skill es la capa de identidad — úsala antes de escribir cualquier contenido que necesite sonar humano y específico. Triggers on: "¿suena como yo?", "hazlo sonar más como yo", "analiza mi voz", "mi contenido suena a IA".
 ---
 
 ## Esencia Original
@@ -120,7 +120,14 @@ El objetivo nunca es escribir perfecto. El objetivo es sonar inconfundiblemente 
 
 ## ⚠️ Gotchas
 
-Para errores comunes y soluciones, ver: [references/gotchas.md](references/gotchas.md)
+**Don't**: Pedir ejemplos sin contexto — el usuario puede no tener contenido previo listo.
+**Don't**: Ignorar el canal — Instagram ≠ LinkedIn ≠ YouTube.
+**Don't**: Crear "voz perfecta" que no existe — el usuario puede tener etapas diferentes.
+**Don't**: Sobre-escribir la tarjeta de voz — máximo 10 items.
+**Don't**: Aceptar drift de voz sin notificar — alerta proactiva cuando detectes deriva.
+**Don't**: No verificar antes de entregar — checklist de 6 preguntas.
+
+> Para errores adicionales, ver: [references/gotchas.md](references/gotchas.md)
 
 ---
 
