@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { ArrowRight, CheckCircle, Envelope, Phone, MapPin } from "@phosphor-icons/react";
 
 interface FormData {
@@ -11,8 +11,7 @@ interface FormData {
 }
 
 /**
- * ContactSection - SOTA Design per taste-skill
- * Split layout, form with states
+ * ContactSection - Clean, modern, zinc + emerald
  */
 export function ContactSection() {
   const [formData, setFormData] = useState<FormData>({
@@ -26,14 +25,9 @@ export function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
-    // Simulate submission
     await new Promise((resolve) => setTimeout(resolve, 1500));
-    
     setIsSubmitting(false);
     setIsSubmitted(true);
-    
-    // Reset after 5 seconds
     setTimeout(() => {
       setIsSubmitted(false);
       setFormData({ name: "", email: "", message: "" });
@@ -48,7 +42,7 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-24 md:py-32 bg-zinc-50 dark:bg-zinc-950">
+    <section id="contact" className="py-20 md:py-32 bg-zinc-50 dark:bg-zinc-950">
       <div className="container-premium">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           {/* Left column - Info (5 columns) */}
@@ -59,16 +53,16 @@ export function ContactSection() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="font-body text-sm tracking-[0.2em] uppercase text-emerald-600 dark:text-emerald-400 mb-4">
+            <p className="text-sm tracking-[0.2em] uppercase text-emerald-600 dark:text-emerald-400 mb-4">
               Contacto
             </p>
             
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50 mb-6">
-              Hablemos de tu proyecto
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50 mb-6">
+              Trabajemos juntos
             </h2>
             
-            <p className="font-body text-lg text-zinc-500 dark:text-zinc-400 mb-10 leading-relaxed">
-              ¿Tienes una idea que quieres convertir en realidad? Me encantaría conocer tu proyecto y explorar cómo puedo ayudarte.
+            <p className="text-lg text-zinc-500 dark:text-zinc-400 mb-10 leading-relaxed">
+              ¿Quieres trabajar conmigo o colaborar en un proyecto? Me encantaría conocer tu propuesta y explorar cómo podemos crear algo juntos.
             </p>
 
             {/* Contact info */}
@@ -84,8 +78,8 @@ export function ContactSection() {
                   <Envelope weight="bold" className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                 </div>
                 <div>
-                  <p className="font-body text-sm text-zinc-500 dark:text-zinc-400">Email</p>
-                  <p className="font-body text-zinc-900 dark:text-zinc-100">hola@elenadesign.com</p>
+                  <p className="text-sm text-zinc-500 dark:text-zinc-400">Email</p>
+                  <p className="text-zinc-900 dark:text-zinc-100">hola@sofiamodel.com</p>
                 </div>
               </motion.div>
 
@@ -100,8 +94,8 @@ export function ContactSection() {
                   <Phone weight="bold" className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                 </div>
                 <div>
-                  <p className="font-body text-sm text-zinc-500 dark:text-zinc-400">Teléfono</p>
-                  <p className="font-body text-zinc-900 dark:text-zinc-100">+34 612 345 678</p>
+                  <p className="text-sm text-zinc-500 dark:text-zinc-400">WhatsApp</p>
+                  <p className="text-zinc-900 dark:text-zinc-100">+34 612 345 678</p>
                 </div>
               </motion.div>
 
@@ -116,8 +110,8 @@ export function ContactSection() {
                   <MapPin weight="bold" className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                 </div>
                 <div>
-                  <p className="font-body text-sm text-zinc-500 dark:text-zinc-400">Ubicación</p>
-                  <p className="font-body text-zinc-900 dark:text-zinc-100">Madrid, España</p>
+                  <p className="text-sm text-zinc-500 dark:text-zinc-400">Ubicación</p>
+                  <p className="text-zinc-900 dark:text-zinc-100">España & Internacional</p>
                 </div>
               </motion.div>
             </div>
@@ -139,10 +133,7 @@ export function ContactSection() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.3, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               >
-                <label
-                  htmlFor="name"
-                  className="block font-body text-sm text-zinc-600 dark:text-zinc-400 mb-2"
-                >
+                <label htmlFor="name" className="block text-sm text-zinc-600 dark:text-zinc-400 mb-2">
                   Nombre
                 </label>
                 <input
@@ -152,7 +143,7 @@ export function ContactSection() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-6 py-4 rounded-[1rem] bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 font-body text-base placeholder:text-zinc-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors"
+                  className="w-full px-6 py-4 rounded-[1rem] bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 text-base placeholder:text-zinc-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors"
                   placeholder="Tu nombre completo"
                 />
               </motion.div>
@@ -164,10 +155,7 @@ export function ContactSection() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.4, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               >
-                <label
-                  htmlFor="email"
-                  className="block font-body text-sm text-zinc-600 dark:text-zinc-400 mb-2"
-                >
+                <label htmlFor="email" className="block text-sm text-zinc-600 dark:text-zinc-400 mb-2">
                   Email
                 </label>
                 <input
@@ -177,7 +165,7 @@ export function ContactSection() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-6 py-4 rounded-[1rem] bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 font-body text-base placeholder:text-zinc-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors"
+                  className="w-full px-6 py-4 rounded-[1rem] bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 text-base placeholder:text-zinc-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors"
                   placeholder="tu@email.com"
                 />
               </motion.div>
@@ -189,10 +177,7 @@ export function ContactSection() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.5, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               >
-                <label
-                  htmlFor="message"
-                  className="block font-body text-sm text-zinc-600 dark:text-zinc-400 mb-2"
-                >
+                <label htmlFor="message" className="block text-sm text-zinc-600 dark:text-zinc-400 mb-2">
                   Mensaje
                 </label>
                 <textarea
@@ -202,8 +187,8 @@ export function ContactSection() {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full px-6 py-4 rounded-[1rem] bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 font-body text-base placeholder:text-zinc-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors resize-none"
-                  placeholder="Cuéntame sobre tu proyecto..."
+                  className="w-full px-6 py-4 rounded-[1rem] bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 text-base placeholder:text-zinc-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors resize-none"
+                  placeholder="Cuéntame sobre tu propuesta de colaboración..."
                 />
               </motion.div>
 
@@ -217,7 +202,7 @@ export function ContactSection() {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting || isSubmitted}
-                  className={`w-full inline-flex items-center justify-center gap-3 px-8 py-4 font-body text-base font-medium rounded-full transition-all duration-300 ${
+                  className={`w-full inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-medium rounded-full transition-all duration-300 ${
                     isSubmitted
                       ? "bg-emerald-500 text-white"
                       : "bg-zinc-900 dark:bg-zinc-100 text-zinc-50 dark:text-zinc-900 hover:bg-emerald-600 dark:hover:bg-emerald-500"

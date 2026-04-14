@@ -22,6 +22,7 @@
 | 5   | 05_Strategy/ | Estrategia: Roadmap, OKRs, Oportunidades |
 | 6   | 06_Tech/     | Documentación técnica y diagramas        |
 | 7   | 07_Template/ | Plantillas                               |
+| 8   | 08_Learnings/ | Análisis de videos, webinars y casos    |
 
 ---
 

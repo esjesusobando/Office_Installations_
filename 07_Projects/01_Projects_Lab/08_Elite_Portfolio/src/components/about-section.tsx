@@ -4,22 +4,23 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 const stats = [
-  { value: "12+", label: "Años de Experiencia" },
-  { value: "47", label: "Proyectos Completados" },
-  { value: "23", label: "Clientes Felices" },
-  { value: "4", label: "Premios de Diseño" },
+  { value: "500K+", label: "Seguidores" },
+  { value: "50+", label: "Campañas" },
+  { value: "20+", label: "Marcas" },
+  { value: "8", label: "Años" },
 ];
 
 const highlights = [
-  "Diseño residencial de lujo",
-  "Espacios comerciales innovadores",
-  "Renovaciones patrimoniales",
-  "Consultoría arquitectónica",
+  "Modelaje profesional internacional",
+  "Emprendimiento digital",
+  "Contenido para marcas de lujo",
+  "Colaboraciones premium",
 ];
 
 /**
- * AboutSection - SOTA Design per taste-skill
- * Split 2-column layout (DESIGN_VARIANCE: 8), stats 2x2 grid
+ * AboutSection - Split 2-column layout
+ * DESIGN_VARIANCE: 8
+ * Zinc + Emerald
  */
 export function AboutSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -28,11 +29,10 @@ export function AboutSection() {
     offset: ["start end", "end start"],
   });
 
-  // Parallax for image
   const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
 
   return (
-    <section id="about" className="py-24 md:py-32 bg-zinc-100 dark:bg-zinc-900">
+    <section id="about" className="py-20 md:py-32 bg-zinc-50 dark:bg-zinc-900">
       <div ref={containerRef} className="container-premium">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left column - Image (5 columns) */}
@@ -44,11 +44,11 @@ export function AboutSection() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="relative">
-              {/* Main image - asymmetric */}
-              <motion.div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden">
+              {/* Main image */}
+              <motion.div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden">
                 <img
                   src="https://picsum.photos/seed/about1/800/1000"
-                  alt="Arquitecta profesional"
+                  alt="Modelo profesional"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/40 via-transparent to-transparent" />
@@ -56,7 +56,7 @@ export function AboutSection() {
 
               {/* Offset decorative element */}
               <motion.div
-                className="absolute -bottom-6 -right-6 w-2/3 h-2/3 rounded-[2rem] border-2 border-emerald-500/30 -z-10"
+                className="absolute -bottom-6 -right-6 w-2/3 h-2/3 rounded-[1.5rem] border-2 border-emerald-500/30 -z-10"
                 style={{ y }}
               />
 
@@ -68,11 +68,11 @@ export function AboutSection() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.4, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               >
-                <p className="font-display text-4xl font-semibold text-emerald-600 dark:text-emerald-400">
-                  12+
+                <p className="text-4xl font-semibold text-emerald-600 dark:text-emerald-400">
+                  500K+
                 </p>
-                <p className="font-body text-sm text-zinc-500 dark:text-zinc-400">
-                  Años de experiencia
+                <p className="text-sm text-zinc-500 dark:text-zinc-400">
+                  Seguidores
                 </p>
               </motion.div>
             </div>
@@ -87,27 +87,28 @@ export function AboutSection() {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
             {/* Section label */}
-            <p className="font-body text-sm tracking-[0.2em] uppercase text-emerald-600 dark:text-emerald-400 mb-4">
+            <p className="text-sm tracking-[0.2em] uppercase text-emerald-600 dark:text-emerald-400 mb-4">
               Sobre Mí
             </p>
 
             {/* Heading */}
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50 mb-6">
-              Creando espacios que{" "}
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50 mb-6">
+              Compartiendo{" "}
               <span className="text-emerald-600 dark:text-emerald-400">
-                inspiran
+                elegancia
               </span>
             </h2>
 
             {/* Description */}
             <div className="space-y-4 mb-10">
-              <p className="font-body text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
-                Mi enfoque combina la funcionalidad con la estética, creando espacios que 
-                cuentan historias y responden a las necesidades reales de quienes los habitan.
+              <p className="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                Mi viaje en el mundo del modelaje y el contenido digital me ha llevado a 
+                colaborar con las marcas más prestigiosas del sector lujo, creando una 
+                comunidad que valora la estética y el buen gusto.
               </p>
-              <p className="font-body text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
-                Cada proyecto es una oportunidad para transformar visiónes en realidades 
-                tangibles, donde cada detalle está pensado para generar bienestar y personalidad.
+              <p className="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                Cada sesión, cada campaña y cada colaboración es una oportunidad para 
+                expresar mi visión del glamour moderno: sofisticado, auténtico y accesible.
               </p>
             </div>
 
@@ -116,16 +117,16 @@ export function AboutSection() {
               {stats.map((stat, i) => (
                 <motion.div
                   key={stat.label}
-                  className="p-6 rounded-[1.5rem] bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700"
+                  className="p-6 rounded-[1.5rem] bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.3 + i * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <p className="font-display text-3xl font-semibold text-zinc-900 dark:text-zinc-50 mb-1">
+                  <p className="text-3xl font-semibold text-zinc-900 dark:text-zinc-50 mb-1">
                     {stat.value}
                   </p>
-                  <p className="font-body text-sm text-zinc-500 dark:text-zinc-400">
+                  <p className="text-sm text-zinc-500 dark:text-zinc-400">
                     {stat.label}
                   </p>
                 </motion.div>
@@ -144,7 +145,7 @@ export function AboutSection() {
                   transition={{ delay: 0.6 + i * 0.1, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                  <span className="font-body text-zinc-600 dark:text-zinc-300">
+                  <span className="text-zinc-600 dark:text-zinc-300">
                     {highlight}
                   </span>
                 </motion.div>

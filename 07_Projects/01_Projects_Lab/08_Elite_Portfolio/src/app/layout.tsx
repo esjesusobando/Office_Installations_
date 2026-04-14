@@ -16,32 +16,32 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Elena - Portfolio de Arquitectura",
-    default: "Elena - Portfolio de Arquitectura y Diseño de Interiores",
+    template: "%s | Sofía - Modelo & Empresaria",
+    default: "Sofía - Modelo & Empresaria",
   },
-  description: "Arquitecta y diseñadora de interiores creando espacios que inspiran, funcionan y perduran en el tiempo. Proyectos residenciales y comerciales.",
-  keywords: ["arquitectura", "diseño de interiores", "portfolio", "diseño residencial", "diseño comercial", "espacios premium"],
-  authors: [{ name: "Elena" }],
+  description: "Modelo profesional y empresaria. Compartiendo elegancia y glamour con el mundo. Portafolio de campañas internacionales, editoriales y contenido premium.",
+  keywords: ["modelo", "modelo profesional", "empresaria", "portafolio", "moda", "belleza", "campañas", "editorial", "influencer"],
+  authors: [{ name: "Sofía" }],
   openGraph: {
-    title: "Elena - Portfolio de Arquitectura y Diseño",
-    description: "Creando espacios que inspiran, funcionan y perduran en el tiempo.",
+    title: "Sofía - Modelo & Empresaria",
+    description: "Compartiendo elegancia y glamour con el mundo.",
     type: "website",
     locale: "es_ES",
-    url: "https://elena-portfolio.com",
-    siteName: "Elena Portfolio",
+    url: "https://sofia-model.com",
+    siteName: "Sofía Portfolio",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Elena - Portfolio de Arquitectura",
+        alt: "Sofía - Modelo & Empresaria",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Elena - Portfolio de Arquitectura y Diseño",
-    description: "Creando espacios que inspiran, funcionan y perduran en el tiempo.",
+    title: "Sofía - Modelo & Empresaria",
+    description: "Compartiendo elegancia y glamour con el mundo.",
   },
   robots: {
     index: true,

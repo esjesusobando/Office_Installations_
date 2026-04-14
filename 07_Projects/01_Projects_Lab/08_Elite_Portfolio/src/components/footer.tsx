@@ -1,17 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { InstagramLogo, LinkedinLogo, DribbbleLogo } from "@phosphor-icons/react";
+import { InstagramLogo } from "@phosphor-icons/react";
 
 const socialLinks = [
-  { icon: InstagramLogo, href: "#", label: "Instagram" },
-  { icon: LinkedinLogo, href: "#", label: "LinkedIn" },
-  { icon: DribbbleLogo, href: "#", label: "Dribbble" },
+  { icon: InstagramLogo, href: "https://instagram.com/planointerior_sj", label: "Instagram" },
 ];
 
 /**
- * Footer - SOTA Design per taste-skill
- * Minimal, elegant, left-aligned
+ * Footer - Clean, minimal, zinc + emerald
  */
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -30,12 +27,12 @@ export function Footer() {
           >
             <a
               href="#"
-              className="font-display text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50"
+              className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50"
             >
-              Elena
+              Sofía
             </a>
-            <p className="font-body text-sm text-zinc-500 dark:text-zinc-400 max-w-xs">
-              Creando experiencias digitales extraordinarias que inspiran y transforman.
+            <p className="text-sm text-zinc-500 dark:text-zinc-400 max-w-xs">
+              Modelo & Empresaria. Compartiendo elegancia y glamour con el mundo.
             </p>
           </motion.div>
 
@@ -49,19 +46,19 @@ export function Footer() {
           >
             <a
               href="#work"
-              className="font-body text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+              className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
             >
-              Proyectos
+              Portafolio
             </a>
             <a
               href="#about"
-              className="font-body text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+              className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
             >
               Sobre Mí
             </a>
             <a
               href="#contact"
-              className="font-body text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+              className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
             >
               Contacto
             </a>
@@ -82,6 +79,8 @@ export function Footer() {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center text-zinc-600 dark:text-zinc-400 hover:bg-emerald-500 hover:text-white transition-colors"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -92,8 +91,8 @@ export function Footer() {
             </div>
 
             {/* Copyright */}
-            <p className="font-body text-xs text-zinc-400 dark:text-zinc-500">
-              © {currentYear} Elena. Todos los derechos reservados.
+            <p className="text-xs text-zinc-400 dark:text-zinc-500">
+              © {currentYear} Sofía. Todos los derechos reservados.
             </p>
           </motion.div>
         </div>

@@ -7,20 +7,20 @@ import { Footer } from "@/components/footer";
 
 /**
  * HomePage - Server Component
- * SOTA Design per taste-skill
- * DESIGN_VARIANCE: 8 (Asymmetric, Artsy)
- * MOTION_INTENSITY: 6 (Framer Motion fluid)
- * VISUAL_DENSITY: 4 (Art Gallery/Airy)
+ * Victoria's Secret / Hollywood Model Aesthetic
+ * DESIGN_VARIANCE: 10 (Cinematic, Editorial)
+ * MOTION_INTENSITY: 7 (Elegant, Slow)
+ * VISUAL_DENSITY: 3 (Spacious, Airy)
  */
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
+    <main className="min-h-screen bg-cream">
       <Navigation />
       
       <Hero 
         name="Elena"
-        role="Arquitecta y Diseñadora"
-        tagline="Creando espacios que inspiran, funcionan y perduran en el tiempo."
+        role="Modelo Internacional"
+        tagline="Glamour accesible, elegancia atemporal."
       />
       
       <ProjectsGrid />

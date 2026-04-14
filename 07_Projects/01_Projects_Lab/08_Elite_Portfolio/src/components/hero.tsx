@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { ArrowRight, ArrowDown } from "@phosphor-icons/react";
+import { ArrowRight } from "@phosphor-icons/react";
 
 interface HeroProps {
   name: string;
@@ -15,6 +15,7 @@ interface HeroProps {
  * DESIGN_VARIANCE: 8 (Asymmetric, Artsy)
  * MOTION_INTENSITY: 6 (Framer Motion fluid)
  * VISUAL_DENSITY: 4 (Art Gallery/Airy)
+ * Zinc Base + Emerald Accent
  */
 export function Hero({ name, role, tagline, onScrollToWork }: HeroProps) {
   const { scrollY } = useScroll();
@@ -28,12 +29,11 @@ export function Hero({ name, role, tagline, onScrollToWork }: HeroProps) {
   // Spring physics for scroll indicator
   const scrollYSpring = useSpring(scrollY, { stiffness: 100, damping: 30 });
 
-  // Split name into letters for stagger reveal
   const nameLetters = name.split("");
 
   return (
     <section className="relative min-h-[100dvh] flex items-center overflow-hidden">
-      {/* Background - Zinc base, NO pure black */}
+      {/* Background - Zinc base */}
       <motion.div 
         className="absolute inset-0 bg-zinc-50 dark:bg-zinc-950"
         style={{ y: y1 }}
@@ -76,7 +76,7 @@ export function Hero({ name, role, tagline, onScrollToWork }: HeroProps) {
             >
               {/* Role - uppercase tracking */}
               <motion.p 
-                className="font-body text-sm md:text-base tracking-[0.25em] uppercase text-emerald-600 dark:text-emerald-400 mb-6"
+                className="text-sm md:text-base tracking-[0.25em] uppercase text-emerald-600 dark:text-emerald-400 mb-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
@@ -85,7 +85,7 @@ export function Hero({ name, role, tagline, onScrollToWork }: HeroProps) {
               </motion.p>
 
               {/* Name - letter by letter reveal with spring */}
-              <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tight mb-6 text-zinc-900 dark:text-zinc-50">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tight mb-6 text-zinc-900 dark:text-zinc-50">
                 <motion.span
                   className="inline-flex"
                   initial={{ opacity: 0 }}
@@ -113,7 +113,7 @@ export function Hero({ name, role, tagline, onScrollToWork }: HeroProps) {
               {/* Tagline - elegant, max-width for readability */}
               {tagline && (
                 <motion.p 
-                  className="font-body text-lg md:text-xl lg:text-2xl text-zinc-500 dark:text-zinc-400 leading-relaxed mb-10 max-w-xl"
+                  className="text-lg md:text-xl lg:text-2xl text-zinc-500 dark:text-zinc-400 leading-relaxed mb-10 max-w-xl"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -122,7 +122,7 @@ export function Hero({ name, role, tagline, onScrollToWork }: HeroProps) {
                 </motion.p>
               )}
 
-              {/* CTA Buttons - asymmetric placement */}
+              {/* CTA Buttons */}
               <motion.div 
                 className="flex flex-col sm:flex-row gap-4"
                 initial={{ opacity: 0, y: 20 }}
@@ -130,11 +130,11 @@ export function Hero({ name, role, tagline, onScrollToWork }: HeroProps) {
                 transition={{ duration: 0.6, delay: 1, ease: [0.16, 1, 0.3, 1] }}
               >
                 <motion.button
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 font-body text-sm font-medium tracking-tight bg-emerald-600 text-white rounded-full transition-all duration-300 hover:bg-emerald-700 hover:shadow-lg hover:shadow-emerald-500/20 active:translate-y-[1px]"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 text-sm font-medium tracking-tight bg-emerald-600 text-white rounded-full transition-all duration-300 hover:bg-emerald-700 hover:shadow-lg hover:shadow-emerald-500/20 active:translate-y-[1px]"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <span>Ver Proyectos</span>
+                  <span>Ver Portafolio</span>
                   <motion.span
                     animate={{ x: [0, 4, 0] }}
                     transition={{
@@ -148,7 +148,7 @@ export function Hero({ name, role, tagline, onScrollToWork }: HeroProps) {
                 </motion.button>
                 
                 <motion.button
-                  className="inline-flex items-center justify-center px-8 py-4 font-body text-sm font-medium tracking-tight border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 rounded-full transition-all duration-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 active:translate-y-[1px]"
+                  className="inline-flex items-center justify-center px-8 py-4 text-sm font-medium tracking-tight border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 rounded-full transition-all duration-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 active:translate-y-[1px]"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -166,16 +166,13 @@ export function Hero({ name, role, tagline, onScrollToWork }: HeroProps) {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
             >
-              {/* Abstract visual representation */}
               <div className="relative aspect-[4/5]">
                 {/* Glassmorphism card with inner border refraction */}
                 <motion.div 
                   className="absolute inset-0 rounded-[2.5rem] overflow-hidden"
                   style={{ y: y2 }}
                 >
-                  {/* Background image placeholder */}
                   <div className="absolute inset-0 bg-gradient-to-br from-zinc-200 to-zinc-300 dark:from-zinc-800 dark:to-zinc-900">
-                    {/* Abstract lines */}
                     <svg className="absolute inset-0 w-full h-full opacity-30" viewBox="0 0 400 500" preserveAspectRatio="none">
                       <defs>
                         <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -245,8 +242,8 @@ export function Hero({ name, role, tagline, onScrollToWork }: HeroProps) {
             ease: "easeInOut",
           }}
         >
-          <span className="font-body text-xs tracking-[0.2em] uppercase">Scroll</span>
-          <ArrowDown weight="bold" className="w-4 h-4" />
+          <span className="text-xs tracking-[0.2em] uppercase">Scroll</span>
+          <ArrowRight weight="bold" className="w-4 h-4 rotate-90" />
         </motion.button>
       </motion.div>
     </section>
