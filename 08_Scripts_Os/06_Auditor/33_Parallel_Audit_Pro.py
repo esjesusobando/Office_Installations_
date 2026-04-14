@@ -1,4 +1,7 @@
 import sys
+import os
+import time
+import subprocess
 from pathlib import Path
 
 # === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
@@ -8,21 +11,39 @@ if _root:
     sys.path.insert(0, str(_root / "08_Scripts_Os"))
 from config_paths import *
 
+# Intentar importar colorama, si no, fallback a strings vacíos
+try:
+    from colorama import Fore, Style, init
+
+    init(autoreset=True)
+except ImportError:
+
+    class MockColor:
+        def __getattr__(self, name):
+            return ""
+
+    Fore = Style = MockColor()
+
 # Fix Windows console encoding
 if sys.platform == "win32":
     import io
+
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
+
 
 def dynamic_speak(text):
     """Interfaz de Voz SOTA v2.2"""
     print(f"{Fore.MAGENTA}🔊 [VOICE]: {text}{Style.RESET_ALL}")
     if sys.platform == "win32":
         try:
-            cmd = f'PowerShell -Command "Add-Type -AssemblyName System.Speech; (New-Object System.Speech.Synthesis.SpeechSynthesizer).Speak(\'{text}\')"'
-            subprocess.Popen(cmd, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            cmd = f"PowerShell -Command \"Add-Type -AssemblyName System.Speech; (New-Object System.Speech.Synthesis.SpeechSynthesizer).Speak('{text}')\""
+            subprocess.Popen(
+                cmd, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
+            )
         except:
             pass
+
 
 def print_banner():
     banner = rf"""
@@ -41,9 +62,12 @@ def print_banner():
 """
     print(banner)
 
+
 # ROOT_DIR ya viene de config_paths
 # Official Skill Tool Path
-FORK_TOOL = ROOT_DIR / ".agent" / "02_Skills" / "08_Personal_Os" / "01_Fork_Terminal" / "tools" / "fork_terminal.py"
+FORK_TOOL = (
+    SKILLS_DIR / "08_Personal_Os" / "01_Fork_Terminal" / "tools" / "fork_terminal.py"
+)
 
 
 def launch_agent(id, name, task_cmd):
@@ -129,7 +153,7 @@ def main():
     launch_agent(
         8,
         "Skill Auditor",
-        "echo Auditing 02_Skills vs Inventory... & dir /s .agent\\02_Skills",
+        "echo Auditing 01_Core/03_Skills vs Inventory... & dir /s 01_Core\\03_Skills",
     )
 
     # 9. Agente de Seguridad
@@ -143,7 +167,7 @@ def main():
     launch_agent(
         10,
         "Final Reporter",
-        f"python {ROOT_DIR}/08_Scripts_Os/08_Scripts_Os/30_AIPM_Consolidated_Report.py",
+        f"python {ENGINE_DIR}/03_AIPM_Hub.py",
     )
 
     print("\n✅ All 10 Agents Deployed.")

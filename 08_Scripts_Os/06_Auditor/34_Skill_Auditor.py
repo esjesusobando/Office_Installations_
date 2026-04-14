@@ -1,4 +1,6 @@
 import sys
+import os
+import re
 from pathlib import Path
 
 # === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
