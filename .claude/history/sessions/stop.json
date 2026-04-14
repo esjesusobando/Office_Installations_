@@ -12,5 +12,12 @@
       "event": "stop",
       "chat": false
     }
+  },
+  {
+    "timestamp": "2026-04-14T15:31:27.173788",
+    "data": {
+      "event": "stop",
+      "chat": false
+    }
   }
 ]
