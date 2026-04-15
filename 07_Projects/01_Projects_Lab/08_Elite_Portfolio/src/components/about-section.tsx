@@ -1,158 +1,79 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-
-const stats = [
-  { value: "500K+", label: "Seguidores" },
-  { value: "50+", label: "Campañas" },
-  { value: "20+", label: "Marcas" },
-  { value: "8", label: "Años" },
-];
-
-const highlights = [
-  "Modelaje profesional internacional",
-  "Emprendimiento digital",
-  "Contenido para marcas de lujo",
-  "Colaboraciones premium",
-];
+import { motion } from "framer-motion";
 
 /**
- * AboutSection - Split 2-column layout
- * DESIGN_VARIANCE: 8
- * Zinc + Emerald
+ * AboutSection - zuzannarister style
+ * Just images, minimal text
  */
 export function AboutSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
-
   return (
-    <section id="about" className="py-20 md:py-32 bg-zinc-50 dark:bg-zinc-900">
-      <div ref={containerRef} className="container-premium">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left column - Image (5 columns) */}
-          <motion.div
-            className="lg:col-span-5"
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+    <section id="about" className="py-20 bg-white">
+      <div className="container-premium">
+        {/* Minimal - just images */}
+        <motion.div 
+          className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.div 
+            className="aspect-[3/4] overflow-hidden bg-gray-100"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <div className="relative">
-              {/* Main image */}
-              <motion.div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden">
-                <img
-                  src="https://picsum.photos/seed/about1/800/1000"
-                  alt="Modelo profesional"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/40 via-transparent to-transparent" />
-              </motion.div>
-
-              {/* Offset decorative element */}
-              <motion.div
-                className="absolute -bottom-6 -right-6 w-2/3 h-2/3 rounded-[1.5rem] border-2 border-emerald-500/30 -z-10"
-                style={{ y }}
-              />
-
-              {/* Floating stat card - glassmorphism */}
-              <motion.div
-                className="absolute -bottom-4 -left-4 md:-left-8 p-6 rounded-[1.5rem] bg-zinc-50/90 dark:bg-zinc-800/90 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-xl"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <p className="text-4xl font-semibold text-emerald-600 dark:text-emerald-400">
-                  500K+
-                </p>
-                <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                  Seguidores
-                </p>
-              </motion.div>
-            </div>
+            <img
+              src="https://picsum.photos/seed/about1/600/800"
+              alt="About 1"
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+            />
           </motion.div>
-
-          {/* Right column - Content (7 columns) */}
-          <motion.div
-            className="lg:col-span-7"
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          
+          <motion.div 
+            className="aspect-[3/4] overflow-hidden bg-gray-100"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            {/* Section label */}
-            <p className="text-sm tracking-[0.2em] uppercase text-emerald-600 dark:text-emerald-400 mb-4">
-              Sobre Mí
-            </p>
-
-            {/* Heading */}
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50 mb-6">
-              Compartiendo{" "}
-              <span className="text-emerald-600 dark:text-emerald-400">
-                elegancia
-              </span>
-            </h2>
-
-            {/* Description */}
-            <div className="space-y-4 mb-10">
-              <p className="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
-                Mi viaje en el mundo del modelaje y el contenido digital me ha llevado a 
-                colaborar con las marcas más prestigiosas del sector lujo, creando una 
-                comunidad que valora la estética y el buen gusto.
-              </p>
-              <p className="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
-                Cada sesión, cada campaña y cada colaboración es una oportunidad para 
-                expresar mi visión del glamour moderno: sofisticado, auténtico y accesible.
-              </p>
-            </div>
-
-            {/* Stats grid - 2x2 */}
-            <div className="grid grid-cols-2 gap-4 mb-10">
-              {stats.map((stat, i) => (
-                <motion.div
-                  key={stat.label}
-                  className="p-6 rounded-[1.5rem] bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 + i * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <p className="text-3xl font-semibold text-zinc-900 dark:text-zinc-50 mb-1">
-                    {stat.value}
-                  </p>
-                  <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                    {stat.label}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Highlights - vertical list */}
-            <div className="space-y-3">
-              {highlights.map((highlight, i) => (
-                <motion.div
-                  key={highlight}
-                  className="flex items-center gap-3"
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.6 + i * 0.1, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                  <span className="text-zinc-600 dark:text-zinc-300">
-                    {highlight}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
+            <img
+              src="https://picsum.photos/seed/about2/600/800"
+              alt="About 2"
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+            />
           </motion.div>
-        </div>
+          
+          <motion.div 
+            className="aspect-[3/4] overflow-hidden bg-gray-100"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <img
+              src="https://picsum.photos/seed/about3/600/800"
+              alt="About 3"
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+            />
+          </motion.div>
+          
+          <motion.div 
+            className="aspect-[3/4] overflow-hidden bg-gray-100"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <img
+              src="https://picsum.photos/seed/about4/600/800"
+              alt="About 4"
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+            />
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

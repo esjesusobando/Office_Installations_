@@ -49,23 +49,23 @@ export default function Home() {
       {/* HERO — Interior_Design.mp4, textos encima del video */}
       <HeroSection videoSrc="/videos/Interior_Design.mp4">
         <div className="max-w-2xl">
-          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-[#FF5F5E]">
+          <p className="animate-fade-up mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-[#FF5F5E]">
             Office Installations Mayen — Atlanta, GA
           </p>
           <h1
-            className="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-[-0.03em] text-white mb-6"
+            className="animate-fade-up-1 text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-[-0.03em] text-white mb-6"
             style={{ textWrap: 'balance' } as React.CSSProperties}
           >
             {lang === 'en'
               ? 'Professional Office Furniture Installation in Atlanta'
               : 'Instalación Profesional de Muebles de Oficina en Atlanta'}
           </h1>
-          <p className="text-base md:text-lg text-white/70 mb-10 max-w-[55ch] leading-relaxed">
+          <p className="animate-fade-up-2 text-base md:text-lg text-white/70 mb-10 max-w-[55ch] leading-relaxed">
             {lang === 'en'
               ? 'Since 2018, reliable furniture assembly and relocation for businesses across Georgia.'
               : 'Desde 2018, ensamblaje y reubicación de muebles para empresas en Georgia.'}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+          <div className="animate-fade-up-3 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
             <a
               href="#contact"
               className="inline-flex items-center justify-center rounded-xl bg-[#FF5F5E] px-8 py-4 text-sm font-semibold text-white transition-all duration-200 hover:bg-[#FF5F5E]/90 active:scale-[0.97]"

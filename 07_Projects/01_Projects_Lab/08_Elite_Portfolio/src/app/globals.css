@@ -2,22 +2,30 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+/* Elite Portfolio - Motion-Driven Style
+ * Generated from UI UX Pro Max Design System
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
 :root {
-  /* Zinc Base + Emerald Accent */
-  --background: #fafafa;
-  --foreground: #09090b;
-  --accent: #059669;
-  --accent-muted: #10b981;
+  /* Design System Colors */
+  --primary: #18181B;
+  --secondary: #3F3F46;
+  --cta: #2563EB;
+  --background: #FAFAFA;
+  --text: #09090B;
   
-  /* Semantic mapping */
-  --bg-primary: #fafafa;
-  --bg-secondary: #f4f4f5;
-  --bg-tertiary: #e4e4e7;
-  --text-primary: #09090b;
-  --text-secondary: #71717a;
-  --text-tertiary: #a1a1aa;
-  --border-subtle: #e4e4e7;
-  --border-emphasis: #d4d4d8;
+  /* Aliases for compatibility */
+  --charcoal: var(--primary);
+  --cream: var(--background);
+  --stone: var(--secondary);
+  
+  --white: #ffffff;
+  --off-white: var(--background);
+  --black: var(--text);
+  --gray: var(--secondary);
+  --light-gray: #e5e5e5;
 }
 
 @layer base {
@@ -28,152 +36,41 @@
   }
 
   body {
-    font-family: var(--font-sans), system-ui, sans-serif;
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  /* Zinc semantic */
-  :root {
-    --zinc-50: #fafafa;
-    --zinc-100: #f4f4f5;
-    --zinc-200: #e4e4e7;
-    --zinc-300: #d4d4d8;
-    --zinc-400: #a1a1aa;
-    --zinc-500: #71717a;
-    --zinc-600: #52525b;
-    --zinc-700: #3f3f46;
-    --zinc-800: #27272a;
-    --zinc-900: #18181b;
-    --zinc-950: #09090b;
-  }
-
-  /* Dark mode */
-  .dark {
-    --bg-primary: #09090b;
-    --bg-secondary: #18181b;
-    --bg-tertiary: #27272a;
-    --text-primary: #fafafa;
-    --text-secondary: #a1a1aa;
-    --text-tertiary: #71717a;
-    --border-subtle: #27272a;
-    --border-emphasis: #3f3f46;
-  }
-
-  .dark body {
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-weight: 500;
-    letter-spacing: -0.025em;
-    line-height: 1.2;
-  }
-
-  ::selection {
-    background-color: var(--accent);
-    color: white;
+    font-family: 'Archivo', system-ui, -apple-system, sans-serif;
+    background-color: var(--background);
+    color: var(--text);
   }
 }
 
 @layer utilities {
-  /* Premium container */
+  .font-display {
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  }
+
+  .font-body {
+    font-family: 'Archivo', system-ui, -apple-system, sans-serif;
+  }
+
   .container-premium {
-    max-width: 1440px;
+    max-width: 1400px;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
-
-  /* Glassmorphism with inner refraction */
-  .glass {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  
+  /* Motion-Driven effects */
+  .motion-hover {
+    transition: transform 300ms ease, opacity 300ms ease;
   }
-
-  .dark .glass {
-    background: rgba(24, 24, 27, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  }
-
-  /* Text gradient (subtle) */
-  .text-gradient {
-    background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  /* Subtle noise texture */
-  .noise {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.015;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  }
-
-  /* Hide scrollbar but keep functionality */
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
+  
+  .motion-hover:hover {
+    transform: scale(1.02);
   }
 }
 
 @layer components {
-  /* Button Primary - Emerald */
-  .btn-primary {
-    @apply inline-flex items-center justify-center px-8 py-4 
-           text-sm font-medium tracking-tight
-           bg-zinc-900 text-white rounded-full
-           transition-all duration-300 ease-out
-           hover:bg-emerald-600 hover:shadow-lg hover:shadow-emerald-500/20
-           active:translate-y-[1px];
-  }
-
-  .dark .btn-primary {
-    @apply bg-white text-zinc-900 hover:bg-emerald-500 hover:text-white;
-  }
-
-  /* Button Secondary - Outline */
-  .btn-secondary {
-    @apply inline-flex items-center justify-center px-8 py-4 
-           text-sm font-medium tracking-tight
-           border border-zinc-300 text-zinc-900 rounded-full
-           transition-all duration-300 ease-out
-           hover:border-zinc-900 hover:bg-zinc-900 hover:text-white;
-  }
-
-  .dark .btn-secondary {
-    @apply border-zinc-700 text-zinc-100 hover:border-zinc-100 hover:bg-zinc-100 hover:text-zinc-900;
-  }
-
-  /* Section padding */
-  .section-py {
-    @apply py-20 md:py-32 lg:py-40;
-  }
-
-  /* Fade in animation base */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-  }
-
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
+  .section-heading {
+    @apply font-display text-3xl md:text-4xl font-normal;
   }
 }

@@ -3,99 +3,40 @@
 import { motion } from "framer-motion";
 import { InstagramLogo } from "@phosphor-icons/react";
 
-const socialLinks = [
-  { icon: InstagramLogo, href: "https://instagram.com/planointerior_sj", label: "Instagram" },
-];
-
 /**
- * Footer - Clean, minimal, zinc + emerald
+ * Footer - zuzannarister style
+ * Minimal - just copyright
  */
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="py-12 md:py-16 bg-zinc-100 dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800">
+    <footer className="py-12 bg-white border-t border-gray-100">
       <div className="container-premium">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-          {/* Left - Brand */}
-          <motion.div
-            className="flex flex-col gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <a
-              href="#"
-              className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50"
-            >
-              Sofía
-            </a>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400 max-w-xs">
-              Modelo & Empresaria. Compartiendo elegancia y glamour con el mundo.
-            </p>
-          </motion.div>
+        <motion.div 
+          className="flex flex-col md:flex-row items-center justify-between gap-6"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          {/* Copyright */}
+          <p className="text-xs text-gray-400">
+            © {currentYear}
+          </p>
 
-          {/* Center - Navigation */}
-          <motion.div
-            className="flex flex-wrap gap-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <a
-              href="#work"
-              className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+          {/* Social - just Instagram */}
+          <div className="flex items-center gap-4">
+            <a 
+              href="https://instagram.com/planointerior_sj"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-black transition-colors"
             >
-              Portafolio
+              <InstagramLogo weight="bold" className="w-5 h-5" />
             </a>
-            <a
-              href="#about"
-              className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
-            >
-              Sobre Mí
-            </a>
-            <a
-              href="#contact"
-              className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
-            >
-              Contacto
-            </a>
-          </motion.div>
-
-          {/* Right - Social + Copyright */}
-          <motion.div
-            className="flex flex-col items-start md:items-end gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          >
-            {/* Social links */}
-            <div className="flex items-center gap-4">
-              {socialLinks.map((social, i) => (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
-                  aria-label={social.label}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center text-zinc-600 dark:text-zinc-400 hover:bg-emerald-500 hover:text-white transition-colors"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <social.icon weight="bold" className="w-4 h-4" />
-                </motion.a>
-              ))}
-            </div>
-
-            {/* Copyright */}
-            <p className="text-xs text-zinc-400 dark:text-zinc-500">
-              © {currentYear} Sofía. Todos los derechos reservados.
-            </p>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </footer>
   );
