@@ -4,214 +4,279 @@ import { useRef, useEffect, useState, useCallback } from 'react';
 
 interface Service {
   title: string;
+  titleEs: string;
   items: string[];
+  itemsEs: string[];
 }
 
 const servicesData: Service[] = [
   {
-    title: "Office Furniture Installation",
-    items: ["Desks & workstations", "Cubicles", "Conference tables", "Chairs & storage units"]
+    title: 'Office Furniture Installation',
+    titleEs: 'Instalación de Muebles',
+    items: ['Desks & workstations', 'Cubicles & partitions', 'Conference tables', 'Chairs & storage units'],
+    itemsEs: ['Escritorios y estaciones', 'Cubículos y divisiones', 'Mesas de conferencia', 'Sillas y almacenamiento'],
   },
   {
-    title: "Office Setup & Reconfiguration",
-    items: ["New office setups", "Workspace redesign", "Furniture rearrangement"]
+    title: 'Office Setup & Reconfiguration',
+    titleEs: 'Configuración y Rediseño',
+    items: ['New office setups', 'Workspace redesign', 'Furniture rearrangement', 'Layout optimization'],
+    itemsEs: ['Nuevas instalaciones', 'Rediseño de espacios', 'Reubicación de muebles', 'Optimización de layout'],
   },
   {
-    title: "Disassembly & Moving",
-    items: ["Safe disassembly", "Relocation", "Reinstallation"]
+    title: 'Disassembly & Moving',
+    titleEs: 'Desmontaje y Traslado',
+    items: ['Safe disassembly', 'Professional packing', 'Relocation services', 'Reinstallation'],
+    itemsEs: ['Desmontaje seguro', 'Embalaje profesional', 'Servicio de traslado', 'Reinstalación'],
   },
   {
-    title: "Commercial Projects",
-    items: ["Small & large offices", "Corporate environments", "Fast turnaround projects"]
-  }
+    title: 'Commercial Projects',
+    titleEs: 'Proyectos Comerciales',
+    items: ['Small & large offices', 'Corporate environments', 'Fast turnaround', 'Full project management'],
+    itemsEs: ['Oficinas pequeñas y grandes', 'Ambientes corporativos', 'Entrega rápida', 'Gestión de proyecto'],
+  },
 ];
 
 interface ScrollVideoServicesProps {
   videoSrc: string;
   scrollHeight?: number;
+  lang?: 'en' | 'es';
 }
 
-/**
- * ScrollVideoServices — taste-skill compliant
- * DESIGN_VARIANCE: 8 — Asymmetric: left panel + right content
- * MOTION_INTENSITY: 6 — Frame-by-frame via scroll, RAF throttled
- * VISUAL_DENSITY: 4 — Spacious glassmorphism panel
- *
- * Rules:
- * - Video is sticky, fills full viewport height
- * - Content panel is absolute, always ON TOP of video (z-10)
- * - Glassmorphism: bg + blur + inner border (taste-skill "Liquid Glass")
- * - NO centered layout — left-offset panel per DESIGN_VARIANCE: 8
- * - Scroll progress drives video.currentTime (NOT autoplay)
- */
-export function ScrollVideoServices({ videoSrc, scrollHeight = 300 }: ScrollVideoServicesProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const videoRef     = useRef<HTMLVideoElement>(null);
-  const [duration, setDuration]   = useState(0);
-  const [progress, setProgress]   = useState(0);
-  const lastProgress = useRef(0);
-  const rafId        = useRef<number | null>(null);
+export function ScrollVideoServices({ videoSrc, scrollHeight = 400, lang = 'en' }: ScrollVideoServicesProps) {
+  const containerRef  = useRef<HTMLDivElement>(null);
+  const videoRef      = useRef<HTMLVideoElement>(null);
+  const durationRef   = useRef(0);
+  const lastProgress  = useRef(-1);
+  const rafId         = useRef<number | null>(null);
+  const [progress, setProgress]     = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
 
+  // Load video duration
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    const onMeta = () => setDuration(video.duration);
-    video.addEventListener('loadedmetadata', onMeta);
+    const onMeta = () => { durationRef.current = video.duration; };
+    if (video.readyState >= 1) {
+      durationRef.current = video.duration;
+    } else {
+      video.addEventListener('loadedmetadata', onMeta, { once: true });
+    }
     return () => video.removeEventListener('loadedmetadata', onMeta);
   }, []);
 
+  const tick = useCallback(() => {
+    rafId.current = null;
+    const container = containerRef.current;
+    const video     = videoRef.current;
+    if (!container || !video || durationRef.current === 0) return;
+
+    const rect      = container.getBoundingClientRect();
+    const scrollable = container.offsetHeight - window.innerHeight;
+    if (scrollable <= 0) return;
+
+    const raw = Math.max(0, Math.min(1, -rect.top / scrollable));
+
+    if (Math.abs(raw - lastProgress.current) > 0.0005) {
+      lastProgress.current = raw;
+      video.currentTime = raw * durationRef.current;
+
+      const idx = Math.min(
+        Math.floor(raw * servicesData.length),
+        servicesData.length - 1
+      );
+
+      setProgress(raw);
+      setActiveIndex(idx);
+    }
+  }, []);
+
   const handleScroll = useCallback(() => {
-    if (!containerRef.current || !videoRef.current || duration === 0) return;
     if (rafId.current) return;
-
-    rafId.current = requestAnimationFrame(() => {
-      const container = containerRef.current!;
-      const video     = videoRef.current!;
-      const rect      = container.getBoundingClientRect();
-      const scrollable = container.offsetHeight - window.innerHeight;
-      if (scrollable <= 0) { rafId.current = null; return; }
-
-      const raw  = Math.max(0, Math.min(1, -rect.top / scrollable));
-      if (Math.abs(raw - lastProgress.current) > 0.001) {
-        video.currentTime  = raw * duration;
-        lastProgress.current = raw;
-        setProgress(raw);
-      }
-      rafId.current = null;
-    });
-  }, [duration]);
+    rafId.current = requestAnimationFrame(tick);
+  }, [tick]);
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    const observer = new IntersectionObserver(
-      ([e]) => { if (!e.isIntersecting && rafId.current) { cancelAnimationFrame(rafId.current); rafId.current = null; } },
-      { threshold: 0 }
-    );
-    observer.observe(container);
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', handleScroll, { passive: true });
 
+    // Run once on mount to set initial state
+    handleScroll();
+
     return () => {
-      observer.disconnect();
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleScroll);
       if (rafId.current) cancelAnimationFrame(rafId.current);
     };
   }, [handleScroll]);
 
-  const activeIndex = Math.min(
-    Math.floor(progress * servicesData.length),
-    servicesData.length - 1
-  );
+  const service = servicesData[activeIndex];
 
   return (
-    <div
-      ref={containerRef}
-      className="relative w-full"
-      style={{ height: `${scrollHeight}vh` }}
-    >
-      {/* ── Video — sticky, fills viewport, frame driven by scroll ── */}
-      <video
-        ref={videoRef}
-        src={videoSrc}
-        playsInline
-        muted
-        preload="auto"
-        aria-hidden="true"
-        className="sticky top-0 w-full h-screen object-cover will-change-transform"
+    /*
+     * ARCHITECTURE:
+     * - Outer div: tall scroll container (400vh)
+     * - Inner sticky wrapper: height 100vh, sticks to viewport while scrolling
+     * - Everything (video + overlay + content) lives inside the sticky wrapper
+     * This is the CORRECT pattern — overlay and content move with the sticky viewport,
+     * not with the scroll container.
+     */
+    <div ref={containerRef} className="relative w-full" style={{ height: `${scrollHeight}vh` }}>
+
+      {/* ── Edge fade masks — blend into adjacent sections ── */}
+      {/* Top mask: fades FROM zinc-950 (Hero bg) TO transparent */}
+      <div
+        className="absolute top-0 left-0 right-0 z-20 pointer-events-none"
+        style={{
+          height: '18vh',
+          background: 'linear-gradient(to bottom, #09090b 0%, rgba(9,9,11,0.85) 35%, rgba(9,9,11,0) 100%)',
+        }}
+      />
+      {/* Bottom mask: fades FROM transparent TO #f8f9fa (About bg) */}
+      <div
+        className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none"
+        style={{
+          height: '18vh',
+          background: 'linear-gradient(to top, #f8f9fa 0%, rgba(248,249,250,0.85) 35%, rgba(248,249,250,0) 100%)',
+        }}
       />
 
-      {/* ── Dark overlay over video ── */}
-      <div className="absolute inset-0 pointer-events-none"
-        style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.1) 100%)' }}
-      />
+      {/* ── Sticky viewport wrapper — everything lives here ── */}
+      <div className="sticky top-0 w-full overflow-hidden" style={{ height: '100vh' }}>
 
-      {/* ── Content panel — absolute, always on top of video (z-10) ── */}
-      {/* taste-skill: left-offset, NOT centered */}
-      <div className="absolute inset-0 z-10 flex items-center">
-        <div className="ml-6 md:ml-16 lg:ml-24 max-w-lg w-full">
+        {/* Video — fills sticky viewport */}
+        <video
+          ref={videoRef}
+          src={videoSrc}
+          playsInline
+          muted
+          preload="auto"
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover will-change-transform"
+        />
 
-          {/* Glassmorphism panel — taste-skill "Liquid Glass Refraction" */}
-          <div
-            className="px-8 py-10 md:px-10 md:py-12"
-            style={{
-              background: 'rgba(10,10,10,0.6)',
-              backdropFilter: 'blur(24px)',
-              WebkitBackdropFilter: 'blur(24px)',
-              border: '1px solid rgba(255,255,255,0.08)',
-              boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.07), 0 24px 48px rgba(0,0,0,0.4)',
-              borderRadius: '4px',
-            }}
-          >
-            {/* Section label */}
-            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#FF5F5E]">
-              Our Services
-            </p>
+        {/* Cinematic overlay — left-heavy for content legibility */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(105deg, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.50) 45%, rgba(0,0,0,0.15) 100%)',
+          }}
+        />
+        {/* Bottom vignette */}
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 40%)' }} />
 
-            {/* Step counter */}
-            <p className="mb-5 text-xs text-white/35 tabular-nums">
-              {String(activeIndex + 1).padStart(2,'0')} / {String(servicesData.length).padStart(2,'0')}
-            </p>
+        {/* ── Content panel — left-offset, vertically centered ── */}
+        <div className="absolute inset-0 flex items-center">
+          <div className="ml-6 md:ml-16 lg:ml-24 w-full max-w-md">
 
-            {/* Active service — fade swap */}
-            <div className="min-h-[160px]">
-              {servicesData.map((service, i) => (
-                <div
-                  key={service.title}
-                  className="transition-all duration-500"
+            {/* Glass card */}
+            <div
+              style={{
+                background: 'rgba(8,8,8,0.55)',
+                backdropFilter: 'blur(28px)',
+                WebkitBackdropFilter: 'blur(28px)',
+                border: '1px solid rgba(255,255,255,0.07)',
+                borderTop: '1px solid rgba(255,255,255,0.12)',
+                boxShadow: '0 32px 64px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06)',
+                borderRadius: '16px',
+                padding: '36px 36px 32px',
+              }}
+            >
+              {/* Label + counter */}
+              <div className="flex items-center justify-between mb-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#FF5F5E]">
+                  {lang === 'en' ? 'Our Services' : 'Nuestros Servicios'}
+                </p>
+                <p className="text-xs text-white/30 tabular-nums font-medium">
+                  {String(activeIndex + 1).padStart(2, '0')} / {String(servicesData.length).padStart(2, '0')}
+                </p>
+              </div>
+
+              {/* Service content — fixed height to avoid layout jump */}
+              <div style={{ minHeight: '180px' }}>
+                <h2
+                  className="text-2xl md:text-3xl font-bold text-white leading-tight mb-5"
                   style={{
-                    opacity: i === activeIndex ? 1 : 0,
-                    transform: i === activeIndex ? 'translateY(0)' : 'translateY(8px)',
-                    position: i === activeIndex ? 'relative' : 'absolute',
-                    pointerEvents: i === activeIndex ? 'auto' : 'none',
+                    letterSpacing: '-0.028em',
+                    transition: 'opacity 0.4s cubic-bezier(0.16,1,0.3,1)',
                   }}
                 >
-                  <h2 className="text-2xl md:text-3xl font-bold text-white mb-5 leading-tight"
-                    style={{ letterSpacing: '-0.025em', textWrap: 'balance' } as React.CSSProperties}
-                  >
-                    {service.title}
-                  </h2>
-                  <ul className="space-y-2.5">
-                    {service.items.map((item) => (
-                      <li key={item} className="flex items-center gap-3 text-sm text-zinc-300">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#FF5F5E] flex-shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+                  {lang === 'en' ? service.title : service.titleEs}
+                </h2>
+
+                <ul className="space-y-2.5">
+                  {(lang === 'en' ? service.items : service.itemsEs).map((item, i) => (
+                    <li
+                      key={item}
+                      className="flex items-center gap-3 text-sm text-zinc-300/90"
+                      style={{
+                        transition: `opacity 0.35s cubic-bezier(0.16,1,0.3,1) ${i * 0.04}s`,
+                      }}
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#FF5F5E] flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Progress track */}
+              <div className="mt-8 space-y-2">
+                <div className="h-px w-full bg-white/8 overflow-hidden rounded-full">
+                  <div
+                    className="h-full bg-[#FF5F5E] rounded-full"
+                    style={{
+                      width: `${progress * 100}%`,
+                      transition: 'width 0.08s linear',
+                    }}
+                  />
                 </div>
-              ))}
+
+                {/* Segment dots */}
+                <div className="flex gap-1.5">
+                  {servicesData.map((_, i) => (
+                    <div
+                      key={i}
+                      style={{
+                        height: '3px',
+                        flex: i === activeIndex ? '2' : '1',
+                        borderRadius: '9999px',
+                        background: i === activeIndex ? '#FF5F5E' : 'rgba(255,255,255,0.18)',
+                        transition: 'flex 0.35s cubic-bezier(0.16,1,0.3,1), background 0.35s ease',
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
 
-            {/* Progress bar */}
-            <div className="mt-8 h-px w-full bg-white/10 overflow-hidden">
-              <div
-                className="h-full bg-[#FF5F5E] transition-all duration-100"
-                style={{ width: `${progress * 100}%` }}
-              />
-            </div>
+            {/* CTA below card */}
+            <a
+              href="#contact"
+              className="mt-4 inline-flex items-center gap-2 text-xs text-white/45 hover:text-white transition-colors duration-200 ml-1"
+            >
+              <span className="h-px w-4 bg-white/45" />
+              {lang === 'en' ? 'Get a free quote' : 'Cotización gratis'}
+            </a>
 
           </div>
-
-          {/* Nav dots — outside panel */}
-          <div className="flex gap-2 mt-4 ml-1">
-            {servicesData.map((_, i) => (
-              <div
-                key={i}
-                className="transition-all duration-300"
-                style={{
-                  width: i === activeIndex ? '20px' : '6px',
-                  height: '6px',
-                  borderRadius: '9999px',
-                  background: i === activeIndex ? '#FF5F5E' : 'rgba(255,255,255,0.25)',
-                }}
-              />
-            ))}
-          </div>
-
         </div>
+
+        {/* Scroll progress indicator — right edge */}
+        <div className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col items-center gap-1.5">
+          <div className="w-px bg-white/10 overflow-hidden rounded-full" style={{ height: '80px' }}>
+            <div
+              className="w-full bg-[#FF5F5E] rounded-full"
+              style={{
+                height: `${progress * 100}%`,
+                transition: 'height 0.08s linear',
+              }}
+            />
+          </div>
+        </div>
+
       </div>
     </div>
   );

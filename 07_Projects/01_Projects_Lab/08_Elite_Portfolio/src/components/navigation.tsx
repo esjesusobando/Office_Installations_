@@ -1,45 +1,52 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useState } from "react";
 
-interface NavigationProps {
-  name: string;
-}
+export function Navigation() {
+  const [scrolled, setScrolled] = useState(false);
 
-/**
- * Navigation - zuzannarister style
- * Minimal: name on left, Work on right
- */
-export function Navigation({ name }: NavigationProps) {
-  const { scrollY } = useScroll();
-  
-  // Only show on scroll
-  const opacity = useTransform(scrollY, [0, 100], [0, 1]);
-
-  const scrollToWork = () => {
-    const workSection = document.getElementById("work");
-    if (workSection) {
-      workSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <motion.nav 
-      className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-6 bg-white/0"
-      style={{ opacity }}
+    <nav
+      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-5 transition-all duration-500"
+      style={{
+        background: scrolled ? "rgba(245,243,239,0.92)" : "transparent",
+        backdropFilter: scrolled ? "blur(16px)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
+        borderBottom: scrolled ? "1px solid rgba(12,12,12,0.06)" : "1px solid transparent",
+      }}
     >
-      {/* Name - Left */}
-      <span className="text-sm tracking-widest uppercase text-black">
-        {name}
-      </span>
-
-      {/* Work button - Right */}
-      <button 
-        onClick={scrollToWork}
-        className="text-sm tracking-widest uppercase text-gray-500 hover:text-black transition-colors"
+      <a
+        href="#"
+        className="text-xs font-medium uppercase tracking-[0.28em]"
+        style={{ color: "var(--ink)" }}
       >
-        Work
-      </button>
-    </motion.nav>
+        SM
+      </a>
+
+      <div className="flex items-center gap-8">
+        {[
+          { label: "Work", href: "#work" },
+          { label: "About", href: "#about" },
+          { label: "Contact", href: "#contact" },
+        ].map(({ label, href }) => (
+          <a
+            key={label}
+            href={href}
+            className="text-xs uppercase tracking-[0.2em] transition-colors duration-200"
+            style={{ color: "var(--muted)" }}
+            onMouseEnter={e => (e.currentTarget.style.color = "var(--ink)")}
+            onMouseLeave={e => (e.currentTarget.style.color = "var(--muted)")}
+          >
+            {label}
+          </a>
+        ))}
+      </div>
+    </nav>
   );
 }

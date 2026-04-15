@@ -3,6 +3,7 @@ name: google-stitch-mcp
 description: >
   Google Stitch MCP integration for AI coding agents. Trigger: When user wants to generate UI designs 
   from text prompts, set up Stitch MCP in Cursor/Claude Code, or build websites with AI design automation.
+  Category: Infrastructure Ops (MCP servers).
 license: Apache-2.0
 metadata:
   author: gentleman-programming

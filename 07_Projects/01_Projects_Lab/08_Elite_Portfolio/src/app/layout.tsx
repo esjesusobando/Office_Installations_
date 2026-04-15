@@ -3,12 +3,12 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Elena - Modelo Internacional",
-    default: "Elena - Modelo Internacional",
+    template: "%s | Sofía Mayen",
+    default: "Sofía Mayen — Product Designer & Creative Director",
   },
-  description: "Portfolio profesional de modelo internacional. Campañas, editoriales y contenido de moda.",
-  keywords: ["modelo", "portafolio", "moda", "editorial", "fashion model"],
-  authors: [{ name: "Elena" }],
+  description: "Product designer specializing in brand identity, UI/UX systems and creative direction. Based in Atlanta, GA.",
+  keywords: ["product designer", "UI/UX", "brand identity", "creative director", "Atlanta"],
+  authors: [{ name: "Sofía Mayen" }],
 };
 
 export default function RootLayout({
@@ -17,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es">
-      <body className="antialiased bg-cream text-charcoal">
+    <html lang="en">
+      <body className="antialiased">
         {children}
       </body>
     </html>

@@ -90,7 +90,8 @@ export default function Home() {
       {/* SCROLL VIDEO — Home_exploding_view.mp4, frame-by-frame */}
       <ScrollVideoServices
         videoSrc="/videos/Home_exploding_view.mp4"
-        scrollHeight={300}
+        scrollHeight={400}
+        lang={lang}
       />
 
       {/* ABOUT */}
@@ -103,19 +104,48 @@ export default function Home() {
       <ContactForm lang={lang} />
 
       {/* FOOTER */}
-      <footer className="border-t border-gray-100 bg-white px-6 md:px-12 py-10">
-        <div className="mx-auto max-w-7xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <p className="text-sm font-semibold text-[#191c1d]">OIM</p>
-          <p className="text-xs text-gray-400">
-            &copy; {new Date().getFullYear()} Office Installations Mayen — Atlanta, GA
-          </p>
-          <div className="flex gap-6">
-            <a href="#contact" className="text-xs text-gray-400 hover:text-[#191c1d] transition-colors">
-              {lang === 'en' ? 'Privacy' : 'Privacidad'}
-            </a>
-            <a href="#contact" className="text-xs text-gray-400 hover:text-[#191c1d] transition-colors">
-              {lang === 'en' ? 'Terms' : 'Términos'}
-            </a>
+      <footer className="bg-[#191c1d] px-6 md:px-12 py-12">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-10 pb-10 border-b border-white/10">
+            <div>
+              <p className="text-white font-bold text-xl mb-1" style={{ letterSpacing: '-0.03em' }}>OIM</p>
+              <p className="text-xs text-white/35">Office Installations Mayen</p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a
+                href="tel:+14048372951"
+                className="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors"
+              >
+                <span className="text-[#FF5F5E]">→</span>
+                +1 (404) 837-2951
+              </a>
+              <a
+                href="mailto:info@oimatlanta.com"
+                className="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors"
+              >
+                <span className="text-[#FF5F5E]">→</span>
+                info@oimatlanta.com
+              </a>
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center rounded-xl bg-[#FF5F5E] px-6 py-2.5 text-xs font-semibold text-white hover:bg-[#FF5F5E]/90 transition-colors"
+              >
+                {lang === 'en' ? 'Free Quote' : 'Cotización Gratis'}
+              </a>
+            </div>
+          </div>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <p className="text-xs text-white/25">
+              &copy; {new Date().getFullYear()} Office Installations Mayen — Atlanta, GA. Licensed & Insured.
+            </p>
+            <div className="flex gap-5">
+              <a href="#contact" className="text-xs text-white/25 hover:text-white/60 transition-colors">
+                {lang === 'en' ? 'Privacy' : 'Privacidad'}
+              </a>
+              <a href="#contact" className="text-xs text-white/25 hover:text-white/60 transition-colors">
+                {lang === 'en' ? 'Terms' : 'Términos'}
+              </a>
+            </div>
           </div>
         </div>
       </footer>

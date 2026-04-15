@@ -5,23 +5,14 @@ import { AboutSection } from "@/components/about-section";
 import { ContactSection } from "@/components/contact-section";
 import { Footer } from "@/components/footer";
 
-/**
- * HomePage - zuzannarister style
- * White background, huge images, minimal text
- */
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main style={{ background: "var(--paper)" }}>
       <Navigation />
-      
-      <Hero name="Sofía" />
-      
+      <Hero name="Sofía Mayen" role="Product Designer & Creative Director" tagline="Crafting experiences that feel inevitable." />
       <ProjectsGrid />
-      
       <AboutSection />
-      
       <ContactSection />
-      
       <Footer />
     </main>
   );

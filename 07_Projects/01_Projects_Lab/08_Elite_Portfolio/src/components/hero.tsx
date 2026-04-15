@@ -1,90 +1,100 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 interface HeroProps {
   name: string;
   role?: string;
   tagline?: string;
-  onScrollToWork?: () => void;
 }
 
-/**
- * Hero - zuzannarister style
- * White background, huge central image, minimal text (just name)
- */
-export function Hero({ name, role, tagline, onScrollToWork }: HeroProps) {
-  const { scrollY } = useScroll();
+export function Hero({
+  name = "Sofía Mayen",
+  role = "Product Designer & Creative Director",
+  tagline = "Crafting experiences that feel inevitable.",
+}: HeroProps) {
+  const lineRef = useRef<HTMLDivElement>(null);
 
-  // Subtle parallax
-  const y = useTransform(scrollY, [0, 500], [0, 50]);
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  useEffect(() => {
+    const el = lineRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const p = Math.min(window.scrollY / (window.innerHeight * 0.6), 1);
+      el.style.opacity = String(1 - p);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-white">
-      {/* Huge central image - like zuzannarister */}
-      <motion.div 
-        className="absolute inset-0"
-        style={{ y }}
-      >
-        {/* Hero image - full bleed, huge */}
-        <div className="w-full h-full bg-gradient-to-b from-gray-100 to-gray-200">
-          {/* Placeholder - in real app this would be a real photo */}
-          <div className="w-full h-full flex items-center justify-center">
-            <div className="text-center">
-              <div className="w-64 h-64 md:w-96 md:h-96 rounded-full bg-gray-200 mx-auto mb-8" />
-              <p className="text-gray-400 text-sm">Tu foto aquí</p>
-            </div>
-          </div>
-        </div>
-      </motion.div>
+    <section className="relative min-h-[100dvh] w-full flex flex-col justify-between px-6 md:px-12 pt-32 pb-12 overflow-hidden">
 
-      {/* Minimal text overlay - name only */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
-        <motion.h1 
-          className="text-6xl md:text-8xl lg:text-9xl font-normal text-black tracking-tight"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+      {/* Warm paper texture overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "radial-gradient(ellipse 80% 60% at 60% 40%, rgba(200,184,154,0.18) 0%, transparent 70%)",
+        }}
+      />
+
+      {/* Top: name large — editorial */}
+      <div className="relative z-10">
+        <h1
+          className="serif anim-0"
+          style={{
+            fontSize: "clamp(3.5rem, 10vw, 9rem)",
+            lineHeight: 0.95,
+            letterSpacing: "-0.02em",
+            color: "var(--ink)",
+          }}
         >
-          {name}
-        </motion.h1>
-
-        {role && (
-          <motion.p 
-            className="text-xs md:text-sm tracking-[0.3em] uppercase text-gray-500 mt-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-          >
-            {role}
-          </motion.p>
-        )}
+          {name.split(" ").map((word, i) => (
+            <span key={i} className={i === 1 ? "italic" : ""}>
+              {word}{i < name.split(" ").length - 1 ? " " : ""}
+            </span>
+          ))}
+        </h1>
       </div>
 
-      {/* Minimal nav at top - only essential */}
-      <motion.nav 
-        className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-6"
-        style={{ opacity }}
-      >
-        <span className="text-sm tracking-widest uppercase text-black">
-          {name}
-        </span>
-        <button 
-          onClick={onScrollToWork}
-          className="text-sm tracking-widest uppercase text-gray-500 hover:text-black transition-colors"
-        >
-          Work
-        </button>
-      </motion.nav>
+      {/* Bottom row: role + tagline + scroll cue */}
+      <div className="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div className="anim-1">
+          <p
+            className="text-xs uppercase tracking-[0.22em] mb-2"
+            style={{ color: "var(--muted)" }}
+          >
+            {role}
+          </p>
+          <p
+            className="serif italic text-xl md:text-2xl"
+            style={{ color: "var(--ink)", maxWidth: "36ch" }}
+          >
+            {tagline}
+          </p>
+        </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        style={{ opacity: useTransform(scrollY, [0, 100], [0.3, 0]) }}
+        <div
+          ref={lineRef}
+          className="anim-2 flex flex-col items-center gap-2 self-end md:self-auto"
+        >
+          <span className="text-xs uppercase tracking-[0.2em]" style={{ color: "var(--muted)" }}>
+            Scroll
+          </span>
+          <div
+            className="w-px"
+            style={{ height: "60px", background: "var(--accent)" }}
+          />
+        </div>
+      </div>
+
+      {/* Floating year tag — editorial detail */}
+      <div
+        className="anim-3 absolute top-40 right-6 md:right-12 text-xs tracking-widest uppercase"
+        style={{ color: "var(--muted)", writingMode: "vertical-lr", letterSpacing: "0.22em" }}
       >
-        <div className="w-px h-12 bg-gray-300" />
-      </motion.div>
+        ©&nbsp;{new Date().getFullYear()}
+      </div>
+
     </section>
   );
 }

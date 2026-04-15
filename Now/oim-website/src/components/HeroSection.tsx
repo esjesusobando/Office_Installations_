@@ -78,6 +78,15 @@ export function HeroSection({ videoSrc, posterSrc, children }: HeroSectionProps)
         </div>
       </div>
 
+      {/* ── Bottom edge fade — blends into ScrollVideo section ── */}
+      <div
+        className="absolute bottom-0 left-0 right-0 pointer-events-none z-10"
+        style={{
+          height: '22vh',
+          background: 'linear-gradient(to bottom, rgba(9,9,11,0) 0%, rgba(9,9,11,0.7) 60%, #09090b 100%)',
+        }}
+      />
+
       {/* ── Scroll cue ── */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 animate-bounce">
         <div className="w-5 h-8 rounded-full border border-white/25 flex items-start justify-center pt-1.5">

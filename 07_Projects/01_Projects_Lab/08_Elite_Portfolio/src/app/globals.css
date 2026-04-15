@@ -2,75 +2,51 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-/* Elite Portfolio - Motion-Driven Style
- * Generated from UI UX Pro Max Design System
- */
-
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap');
 
 :root {
-  /* Design System Colors */
-  --primary: #18181B;
-  --secondary: #3F3F46;
-  --cta: #2563EB;
-  --background: #FAFAFA;
-  --text: #09090B;
-  
-  /* Aliases for compatibility */
-  --charcoal: var(--primary);
-  --cream: var(--background);
-  --stone: var(--secondary);
-  
-  --white: #ffffff;
-  --off-white: var(--background);
-  --black: var(--text);
-  --gray: var(--secondary);
-  --light-gray: #e5e5e5;
+  --ink:     #0c0c0c;
+  --paper:   #f5f3ef;
+  --muted:   #8a8680;
+  --accent:  #c8b89a;
+  --line:    rgba(12,12,12,0.10);
 }
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  body {
-    font-family: 'Archivo', system-ui, -apple-system, sans-serif;
-    background-color: var(--background);
-    color: var(--text);
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@layer utilities {
-  .font-display {
-    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
-  }
-
-  .font-body {
-    font-family: 'Archivo', system-ui, -apple-system, sans-serif;
-  }
-
-  .container-premium {
-    max-width: 1400px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-  
-  /* Motion-Driven effects */
-  .motion-hover {
-    transition: transform 300ms ease, opacity 300ms ease;
-  }
-  
-  .motion-hover:hover {
-    transform: scale(1.02);
-  }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
 }
 
-@layer components {
-  .section-heading {
-    @apply font-display text-3xl md:text-4xl font-normal;
-  }
+/* Serif display */
+.serif { font-family: 'Instrument Serif', Georgia, serif; }
+
+/* Smooth image loads */
+img { display: block; }
+
+/* Custom scrollbar — thin */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--paper); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 9999px; }
+
+/* Hover reveal utility */
+.reveal-on-hover { opacity: 0; transition: opacity 0.3s ease; }
+.group:hover .reveal-on-hover { opacity: 1; }
+
+/* Stagger fade-up */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
+.anim-0 { animation: fade-up 0.7s cubic-bezier(0.16,1,0.3,1) 0.0s both; }
+.anim-1 { animation: fade-up 0.7s cubic-bezier(0.16,1,0.3,1) 0.12s both; }
+.anim-2 { animation: fade-up 0.7s cubic-bezier(0.16,1,0.3,1) 0.22s both; }
+.anim-3 { animation: fade-up 0.7s cubic-bezier(0.16,1,0.3,1) 0.34s both; }

@@ -83,6 +83,7 @@ argument-hint: "[what you want to accomplish]"
 - **DevOps**: mcp-integration, observability-skill, github-pr
 - **Design**: taste-skill, minimalist-skill, brand-voice-generator
 - **Marketing**: content-creation, social-content, programmatic-seo
+- **MCP & Infrastructure**: mcp-builder, **google-stitch-mcp**
 
 ## ⚠️ Gotchas
 
