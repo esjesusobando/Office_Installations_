@@ -9,7 +9,7 @@
 
 set -e
 
-VERSION="2.7.3"
+VERSION="${GGA_VERSION:-dev}"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LIB_DIR="$(dirname "$SCRIPT_DIR")/lib"
 
@@ -48,6 +48,16 @@ CYAN='\033[0;36m'
 BOLD='\033[1m'
 NC='\033[0m' # No Color
 
+# OS detection
+detect_os() {
+  case "$(uname -s)" in
+    Darwin*)          echo "macos" ;;
+    MINGW*|MSYS*|CYGWIN*) echo "windows" ;;
+    *)                echo "linux" ;;
+  esac
+}
+GGA_OS=$(detect_os)
+
 # Defaults
 DEFAULT_FILE_PATTERNS="*"
 DEFAULT_RULES_FILE="AGENTS.md"
@@ -61,6 +71,11 @@ UPDATE_CHECK_REPO="Gentleman-Programming/gentleman-guardian-angel"
 
 # Check for newer version on GitHub (2s timeout, silent on failure)
 check_update() {
+  # Skip update check for dev builds (not installed via Homebrew/release)
+  if [[ "$VERSION" == "dev" ]]; then
+    return 0
+  fi
+
   local latest_tag
   latest_tag=$("${CURL_CMD:-curl}" -sf --max-time 2 \
     -H "Accept: application/vnd.github+json" \
@@ -200,8 +215,14 @@ load_config() {
   TIMEOUT="$DEFAULT_TIMEOUT"
   PR_BASE_BRANCH=""
 
-  # Load global config first
-  GLOBAL_CONFIG="$HOME/.config/gga/config"
+  # Load global config first (platform-aware path)
+  if [[ -n "${APPDATA:-}" ]]; then
+    GLOBAL_CONFIG="${APPDATA}/gga/config"
+  elif [[ -n "${XDG_CONFIG_HOME:-}" ]]; then
+    GLOBAL_CONFIG="${XDG_CONFIG_HOME}/gga/config"
+  else
+    GLOBAL_CONFIG="$HOME/.config/gga/config"
+  fi
   if [[ -f "$GLOBAL_CONFIG" ]]; then
     # shellcheck source=/dev/null
     source "$GLOBAL_CONFIG"
@@ -234,8 +255,14 @@ cmd_config() {
   echo -e "${BOLD}Current Configuration:${NC}"
   echo ""
   
-  # Check config sources
-  GLOBAL_CONFIG="$HOME/.config/gga/config"
+  # Check config sources (platform-aware path)
+  if [[ -n "${APPDATA:-}" ]]; then
+    GLOBAL_CONFIG="${APPDATA}/gga/config"
+  elif [[ -n "${XDG_CONFIG_HOME:-}" ]]; then
+    GLOBAL_CONFIG="${XDG_CONFIG_HOME}/gga/config"
+  else
+    GLOBAL_CONFIG="$HOME/.config/gga/config"
+  fi
   PROJECT_CONFIG=".gga"
   
   echo -e "${BOLD}Config Files:${NC}"
@@ -408,7 +435,7 @@ cmd_install() {
     # Check for legacy ai-code-review and migrate
     if grep -q "ai-code-review" "$HOOK_PATH"; then
       log_warning "Found legacy 'ai-code-review' in hook, migrating to 'gga'..."
-      if [[ "$(uname)" == "Darwin" ]]; then
+      if [[ "$GGA_OS" == "macos" ]]; then
         sed -i '' 's/ai-code-review/gga/g' "$HOOK_PATH"
         sed -i '' 's/AI Code Review/Gentleman Guardian Angel/g' "$HOOK_PATH"
       else
@@ -523,7 +550,7 @@ uninstall_from_hook() {
   # Check for GGA using markers first (new format)
   if grep -q "$GGA_MARKER_START" "$hook_path"; then
     # Remove content between markers (inclusive)
-    if [[ "$(uname)" == "Darwin" ]]; then
+    if [[ "$GGA_OS" == "macos" ]]; then
       sed -i '' "/$GGA_MARKER_START/,/$GGA_MARKER_END/d" "$hook_path"
     else
       sed -i "/$GGA_MARKER_START/,/$GGA_MARKER_END/d" "$hook_path"
@@ -548,7 +575,7 @@ uninstall_from_hook() {
     log_success "Removed $hook_name hook"
   else
     # Mixed hook, just remove our lines (legacy format)
-    if [[ "$(uname)" == "Darwin" ]]; then
+    if [[ "$GGA_OS" == "macos" ]]; then
       sed -i '' '/# Gentleman Guardian Angel/d' "$hook_path"
       sed -i '' '/gga run/d' "$hook_path"
     else
