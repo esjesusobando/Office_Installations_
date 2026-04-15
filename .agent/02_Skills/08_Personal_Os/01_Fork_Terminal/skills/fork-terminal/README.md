@@ -7,7 +7,7 @@ El skill está listo y funcional.
 ## estructura
 
 | Directorio                         | Propósito                                         |
-| ---------------------------------- | ------------------------------------------------- |
+|------------------------------------|---------------------------------------------------|
 | **[cookbook/](cookbook/)**         | Recetas para usar Claude Code, Gemini, etc.       |
 | **[tools/](tools/)**               | La herramienta principal (`fork_terminal.py`).    |
 | **[examples/](context/examples/)** | Demos y scripts de prueba (en carpeta `context`). |

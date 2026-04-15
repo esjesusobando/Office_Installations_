@@ -8,6 +8,8 @@ import argparse
 import os
 import io
 import subprocess
+import sys
+from pathlib import Path
 
 
 # === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===

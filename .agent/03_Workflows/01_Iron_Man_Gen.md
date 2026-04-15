@@ -26,7 +26,7 @@ Ejecutar al inicio de cada sesión para cargar el contexto completo del sistema:
    - Leer `00_Winter_is_Coming/GOALS.md` para alinear foco del día.
 
 5. **Verificar MCPs disponibles** (opcional):
-   - Playwright MCP: disponible para navegación web, screenshots y videos.
+   - Playwright MCP: disponible para navegación web y screenshots.
    - Fireflies MCP: disponible si `FIREFLIES_API_KEY` está configurada en `.mcp.json`.
 
 6. **Resumen de Contexto al Chat**:
@@ -34,7 +34,6 @@ Ejecutar al inicio de cada sesión para cargar el contexto completo del sistema:
      - Estado actual del proyecto (último commit, cambios recientes).
      - Reglas críticas de esta sesión.
      - Tareas en progreso / bloqueadas inmediatas.
-     - Agentes y herramientas disponibles (`.agent/01_Agents/`).
-     - Al finalizzar cada tarea en el chat activar Script [run](../../01_Core/07_Hooks/04_Sound/task-complete-sound.ps1)
+     - Agentes y herramientas disponibles (`.agent/01_Agents/`, `.agent/01_Agents/`).
 
 // turbo-all

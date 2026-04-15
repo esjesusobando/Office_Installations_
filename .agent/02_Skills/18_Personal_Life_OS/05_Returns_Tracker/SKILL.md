@@ -19,12 +19,12 @@ Observación → DETECTAR → PATRON → GENERAR → SKILL
 
 ## Inputs
 
-| Source         | Data                | Weight   |
-|----------------|---------------------|----------|
-| Quick Capture  | Frecuencia de tags  | Alta     |
-| Daily Notes    | Patrones temporales | Alta     |
-| Recording Mode | Temas recurrentes   | Media    |
-| Plan My Day    | Tareas repetitivas  | Alta     |
+| Source         | Data                | Target Path      | Weight   |
+|----------------|---------------------|------------------|----------|
+| Quick Capture  | Frecuencia de tags  | `03_Tasks/02_Hillary_Inbox/` | Alta     |
+| Daily Notes    | Patrones temporales | `03_Tasks/Daily_Activity_Log.md` | Alta     |
+| Recording Mode | Temas recurrentes   | `03_Tasks/02_Hillary_Inbox/Transcripts/` | Media    |
+| Plan My Day    | Tareas repetitivas  | `03_Tasks/` (Backlog) | Alta     |
 
 ### Detectable Patterns
 

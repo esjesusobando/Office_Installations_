@@ -1,6 +1,6 @@
 ---
 name: typescript
-description: > Triggers on: 05_TypeScript, patterns, coding.
+description: >
   TypeScript strict patterns and best practices.
   Trigger: When writing TypeScript code - types, interfaces, generics.
 license: Apache-2.0
@@ -108,19 +108,3 @@ import { createUser, type Config } from "./utils";
 
 ## Keywords
 typescript, ts, types, interfaces, generics, strict mode, utility types
-
-## Esencia Original
-> **Propósito:** Propósito del skill aquí
-> **Flujo:** Pasos principales del flujo
-
-## ⚠️ Gotchas (Errores Comunes a Evitar)
-
-- **[ERROR]**: Error común
-  - **Por qué**: Explicación
-  - **Solución**: Cómo evitar
-
-## 💾 State Persistence
-
-Guardar en:
-- `03_Knowledge/` — Documentación
-- `04_Operations/` — Estado activo

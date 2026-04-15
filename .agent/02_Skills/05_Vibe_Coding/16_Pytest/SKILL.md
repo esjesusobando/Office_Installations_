@@ -1,6 +1,6 @@
 ---
 name: pytest
-description: > Triggers on: 16_Pytest, patterns, coding.
+description: >
   Pytest testing patterns for Python.
   Trigger: When writing Python tests - fixtures, mocking, markers.
 license: Apache-2.0
@@ -184,19 +184,3 @@ pytest --tb=short               # Short traceback
 
 ## Keywords
 pytest, python, testing, fixtures, mocking, parametrize, markers
-
-## Esencia Original
-> **Propósito:** Propósito del skill aquí
-> **Flujo:** Pasos principales del flujo
-
-## ⚠️ Gotchas (Errores Comunes a Evitar)
-
-- **[ERROR]**: Error común
-  - **Por qué**: Explicación
-  - **Solución**: Cómo evitar
-
-## 💾 State Persistence
-
-Guardar en:
-- `03_Knowledge/` — Documentación
-- `04_Operations/` — Estado activo

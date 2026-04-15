@@ -97,7 +97,7 @@ n8n-validation-expert/
 ## Common Error Types
 
 | Error Type         | Priority | Auto-Fix | Severity |
-| ------------------ | -------- | -------- | -------- |
+|--------------------|----------|----------|----------|
 | missing_required   | Highest  | ❌        | Error    |
 | invalid_value      | High     | ❌        | Error    |
 | type_mismatch      | Medium   | ❌        | Error    |

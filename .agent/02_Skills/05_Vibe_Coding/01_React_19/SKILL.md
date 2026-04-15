@@ -1,6 +1,6 @@
 ---
 name: react-19
-description: > Triggers on: 01_React_19, patterns, coding.
+description: >
   React 19 patterns with React Compiler.
   Trigger: When writing React components - no useMemo/useCallback needed.
 license: Apache-2.0
@@ -122,19 +122,3 @@ const Input = forwardRef((props, ref) => <input ref={ref} {...props} />);
 
 ## Keywords
 react, react 19, compiler, useMemo, useCallback, server components, use hook
-
-## Esencia Original
-> **Propósito:** Propósito del skill aquí
-> **Flujo:** Pasos principales del flujo
-
-## ⚠️ Gotchas (Errores Comunes a Evitar)
-
-- **[ERROR]**: Error común
-  - **Por qué**: Explicación
-  - **Solución**: Cómo evitar
-
-## 💾 State Persistence
-
-Guardar en:
-- `03_Knowledge/` — Documentación
-- `04_Operations/` — Estado activo

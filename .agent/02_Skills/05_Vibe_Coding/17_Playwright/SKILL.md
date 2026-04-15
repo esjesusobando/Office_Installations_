@@ -1,6 +1,6 @@
 ---
 name: playwright
-description: > Triggers on: 17_Playwright, patterns, coding.
+description: >
   Playwright E2E testing patterns.
   Trigger: When writing E2E tests - Page Objects, selectors, MCP workflow.
 license: Apache-2.0
@@ -319,19 +319,3 @@ npx playwright test tests/login/       # Run specific folder
 
 ## Keywords
 playwright, e2e, testing, page object model, selectors, end-to-end, mcp
-
-## Esencia Original
-> **Propósito:** Propósito del skill aquí
-> **Flujo:** Pasos principales del flujo
-
-## ⚠️ Gotchas (Errores Comunes a Evitar)
-
-- **[ERROR]**: Error común
-  - **Por qué**: Explicación
-  - **Solución**: Cómo evitar
-
-## 💾 State Persistence
-
-Guardar en:
-- `03_Knowledge/` — Documentación
-- `04_Operations/` — Estado activo

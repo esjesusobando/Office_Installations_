@@ -1,6 +1,6 @@
 ---
 name: tailwind-4
-description: > Triggers on: 03_Tailwind_4, patterns, coding.
+description: >
   Tailwind CSS 4 patterns and best practices.
   Trigger: When styling with Tailwind - cn(), theme variables, no var() in className.
 license: Apache-2.0
@@ -197,19 +197,3 @@ const CHART_COLORS = {
 
 ## Keywords
 tailwind, css, styling, cn, utility classes, responsive
-
-## Esencia Original
-> **Propósito:** Propósito del skill aquí
-> **Flujo:** Pasos principales del flujo
-
-## ⚠️ Gotchas (Errores Comunes a Evitar)
-
-- **[ERROR]**: Error común
-  - **Por qué**: Explicación
-  - **Solución**: Cómo evitar
-
-## 💾 State Persistence
-
-Guardar en:
-- `03_Knowledge/` — Documentación
-- `04_Operations/` — Estado activo

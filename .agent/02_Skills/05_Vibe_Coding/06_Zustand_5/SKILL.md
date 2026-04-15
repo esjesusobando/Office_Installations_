@@ -1,6 +1,6 @@
 ---
 name: zustand-5
-description: > Triggers on: 06_Zustand_5, patterns, coding.
+description: >
   Zustand 5 state management patterns.
   Trigger: When managing React state with Zustand.
 license: Apache-2.0
@@ -220,19 +220,3 @@ const unsubscribe = useCounterStore.subscribe(
 
 ## Keywords
 zustand, state management, react, store, persist, middleware
-
-## Esencia Original
-> **Propósito:** Propósito del skill aquí
-> **Flujo:** Pasos principales del flujo
-
-## ⚠️ Gotchas (Errores Comunes a Evitar)
-
-- **[ERROR]**: Error común
-  - **Por qué**: Explicación
-  - **Solución**: Cómo evitar
-
-## 💾 State Persistence
-
-Guardar en:
-- `03_Knowledge/` — Documentación
-- `04_Operations/` — Estado activo

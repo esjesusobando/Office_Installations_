@@ -415,9 +415,17 @@ description: [3rd-person description with triggers]
 
 ## ⚠️ Gotchas (Errores Comunes a Evitar)
 
-- **[ERROR]**: Error común
-  - **Por qué**: Explicación
-  - **Solución**: Cómo evitar
+- **[ERROR]**: Skill not triggering
+  - **Por qué**: Keywords no coinciden con descripción del usuario
+  - **Solución**: Incluir múltiples sinónimos en description
+
+- **[ERROR]**: Context window overflow
+  - **Por qué**: SKILL.md muy grande
+  - **Solución**: Usar progressive disclosure con references/
+
+- **[ERROR]**: Bundled scripts not executing
+  - **Por qué**: Rutas relativas incorrectas
+  - **Solución**: Usar paths relativos al skill directory
 
 ## 💾 State Persistence
 

@@ -107,7 +107,7 @@ n8n-node-configuration/
 Configuration metrics:
 
 | Metric                     | Value        | Insight                        |
-| -------------------------- | ------------ | ------------------------------ |
+|----------------------------|--------------|--------------------------------|
 | get_node_essentials        | Primary tool | Most popular discovery pattern |
 | Success rate (essentials)  | 91.7%        | Essentials sufficient for most |
 | Avg time search→essentials | 18 seconds   | Fast discovery workflow        |
@@ -334,7 +334,7 @@ get_node_essentials({nodeType: "nodes-base.slack"});
 **Node types covered**: Top 20 most-used nodes
 
 | Category      | Nodes                 | Coverage           |
-| ------------- | --------------------- | ------------------ |
+|---------------|-----------------------|--------------------|
 | HTTP/API      | HTTP Request, Webhook | Complete           |
 | Communication | Slack, Gmail          | Common operations  |
 | Database      | Postgres, MySQL       | CRUD operations    |

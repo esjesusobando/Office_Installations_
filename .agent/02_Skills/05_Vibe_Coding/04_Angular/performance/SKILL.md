@@ -18,13 +18,13 @@ import { NgOptimizedImage } from '@angular/common';
   template: `
     <!-- LCP image: add priority -->
     <img ngSrc="hero.jpg" width="800" height="400" priority>
-
+    
     <!-- Regular: lazy loaded by default -->
     <img ngSrc="thumb.jpg" width="200" height="200">
-
+    
     <!-- Fill mode (parent needs position: relative) -->
     <img ngSrc="bg.jpg" fill>
-
+    
     <!-- With placeholder -->
     <img ngSrc="photo.jpg" width="400" height="300" placeholder>
   `

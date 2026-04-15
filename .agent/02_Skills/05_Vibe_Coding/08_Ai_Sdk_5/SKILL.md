@@ -1,6 +1,6 @@
 ---
 name: ai-sdk-5
-description: > Triggers on: 08_Ai_Sdk_5, patterns, coding.
+description: >
   Vercel AI SDK 5 patterns.
   Trigger: When building AI chat features - breaking changes from v4.
 license: Apache-2.0
@@ -234,19 +234,3 @@ const { error, messages, sendMessage } = useChat({
 
 ## Keywords
 ai sdk, vercel ai, chat, streaming, langchain, openai, llm
-
-## Esencia Original
-> **Propósito:** Propósito del skill aquí
-> **Flujo:** Pasos principales del flujo
-
-## ⚠️ Gotchas (Errores Comunes a Evitar)
-
-- **[ERROR]**: Error común
-  - **Por qué**: Explicación
-  - **Solución**: Cómo evitar
-
-## 💾 State Persistence
-
-Guardar en:
-- `03_Knowledge/` — Documentación
-- `04_Operations/` — Estado activo

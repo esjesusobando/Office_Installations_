@@ -1,3 +1,14 @@
+---
+name: firecrawl
+description: > Triggers on: 17_Firecrawl, firecrawl, scraping, web crawl, scrape.
+  Firecrawl patterns - AI-first web scraping and crawling.
+  Trigger: When scraping websites, crawling sites, extracting web content.
+license: Apache-2.0
+metadata:
+  author: gentleman-programming
+  version: "1.0"
+---
+
 # 🕷️ Firecrawl Intelligence
 
 ## Overview Triggers on: 18_Firecrawl, patterns, coding.
@@ -28,9 +39,17 @@ _Alineado con el Pilar 1: Motor AI-Prime (Herramientas Técnicas)_
 
 ## ⚠️ Gotchas (Errores Comunes a Evitar)
 
-- **[ERROR]**: Error común
-  - **Por qué**: Explicación
-  - **Solución**: Cómo evitar
+- **[ERROR]**: Rate limiting blocks requests
+  - **Por qué**: Sitio objetivo tiene protección anti-bot
+  - **Solución**: Usar proxy rotativo y delays entre requests
+
+- **[ERROR]**: JavaScript content not loaded
+  - **Por qué**: Sitio usa SPA/client-side rendering
+  - **Solución**: Usar firecrawl con modo `javascript: true`
+
+- **[ERROR]**: Partial content extracted
+  - **Por qué**: Página carga contenido lazy
+  - **Solución**: Usar `waitFor` option o esperar a que cargue
 
 ## 💾 State Persistence
 

@@ -13,6 +13,7 @@ Usage:
 """
 
 import sys
+from datetime import datetime
 from pathlib import Path
 
 # === PROTOCOLO DE RUTA DINÁMICA (v6.1) ===
@@ -240,6 +241,18 @@ def run_standup(show_tasks: bool = True, show_goals: bool = True):
         backlog_items = [l for l in backlog_lines if l.strip().startswith("- ")]
         print(f"\n📬 BACKLOG: {len(backlog_items)} items pendientes")
 
+    # Auditoría Semanal (Lunes)
+    if datetime.now().weekday() == 0 or getattr(args, 'audit', False):
+        print("\n" + "=" * 70)
+        print("🔍 AUDITORÍA DE SISTEMA (Revisión Semanal)")
+        print("=" * 70)
+        auditor_path = ENGINE_DIR / "01_Auditor_Hub.py"
+        if auditor_path.exists():
+            import subprocess
+            subprocess.run([sys.executable, str(auditor_path)])
+        else:
+            print("⚠️ No se encontró el Auditor Hub.")
+
     print("\n" + "=" * 70)
     print("💬 ¿EN QUÉ TRABAJAREMOS HOY?")
     print("=" * 70 + "\n")
@@ -253,6 +266,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Morning Standup v3.0")
     parser.add_argument("--tasks", action="store_true", help="Show only tasks")
     parser.add_argument("--goals", action="store_true", help="Show only goals")
+    parser.add_argument("--audit", action="store_true", help="Run weekly system audit explicitly")
 
     args = parser.parse_args()
 

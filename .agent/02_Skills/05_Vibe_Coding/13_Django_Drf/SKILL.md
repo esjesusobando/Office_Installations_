@@ -1,6 +1,6 @@
 ---
 name: django-drf
-description: > Triggers on: 14_Django_Drf, patterns, coding.
+description: >
   Django REST Framework patterns.
   Trigger: When building REST APIs with Django - ViewSets, Serializers, Filters.
 license: Apache-2.0
@@ -184,19 +184,3 @@ python manage.py shell
 
 ## Keywords
 django, drf, rest framework, viewset, serializer, api, rest api
-
-## Esencia Original
-> **Propósito:** Propósito del skill aquí
-> **Flujo:** Pasos principales del flujo
-
-## ⚠️ Gotchas (Errores Comunes a Evitar)
-
-- **[ERROR]**: Error común
-  - **Por qué**: Explicación
-  - **Solución**: Cómo evitar
-
-## 💾 State Persistence
-
-Guardar en:
-- `03_Knowledge/` — Documentación
-- `04_Operations/` — Estado activo

@@ -1,6 +1,6 @@
 ---
 name: zod-4
-description: > Triggers on: 07_Zod_4, patterns, coding.
+description: >
   Zod 4 schema validation patterns.
   Trigger: When using Zod for validation - breaking changes from v3.
 license: Apache-2.0
@@ -214,19 +214,3 @@ function Form() {
 
 ## Keywords
 zod, validation, schema, typescript, forms, parsing
-
-## Esencia Original
-> **Propósito:** Propósito del skill aquí
-> **Flujo:** Pasos principales del flujo
-
-## ⚠️ Gotchas (Errores Comunes a Evitar)
-
-- **[ERROR]**: Error común
-  - **Por qué**: Explicación
-  - **Solución**: Cómo evitar
-
-## 💾 State Persistence
-
-Guardar en:
-- `03_Knowledge/` — Documentación
-- `04_Operations/` — Estado activo

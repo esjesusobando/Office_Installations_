@@ -1,9 +1,15 @@
 ---
-name: Invoice Intelligence (OCR)
-description: Sistema profesional de procesamiento paralelo de facturas con OCR. Extrae datos clave (montos, fechas, items, proveedores) de PDFs y los organiza automáticamente. Diseñado para alta fidelidad y rendimiento usando Tesseract y procesamiento paralelo. Triggers on: 12_Invoice_Intelligence, patterns, coding.
+name: invoice-intelligence
+description: > Triggers on: 11_Invoice_Intelligence, invoice, ocr, pdf, extraction.
+  Invoice Intelligence patterns - OCR processing for invoices.
+  Trigger: When processing invoices, extracting data from PDFs, OCR.
+license: Apache-2.0
+metadata:
+  author: gentleman-programming
+  version: "1.0"
 ---
 
-# 📑 Skill 49: Invoice Intelligence (OCR)
+# 📑 Invoice Intelligence (OCR)
 
 Sistema de grado industrial para la extracción y organización de datos financieros desde documentos PDF.
 
@@ -54,9 +60,17 @@ python scripts/dashboard.py
 
 ## ⚠️ Gotchas (Errores Comunes a Evitar)
 
-- **[ERROR]**: Error común
-  - **Por qué**: Explicación
-  - **Solución**: Cómo evitar
+- **[ERROR]**: OCR low accuracy
+  - **Por qué**: Imagen de baja calidad o rotación incorrecta
+  - **Solución**: Preprocesar imagen (enhance, deskew) antes de OCR
+
+- **[ERROR]**: Text not extracted
+  - **Por qué**: PDF escaneado (no texto digital)
+  - **Solución**: Usar OCR (Tesseract) en lugar de text extraction
+
+- **[ERROR]**: Multiple languages failing
+  - **Por qué**: Modelo OCR no soporta el idioma
+  - **Solución**: Usar `-l spa+eng` para múltiples idiomas
 
 ## 💾 State Persistence
 

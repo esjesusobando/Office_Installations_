@@ -44,39 +44,30 @@ class AutoModeSecurity:
     def __init__(self, config: Optional[Dict] = None):
         self.config = config or {}
 
-        # Initialize components - try relative first, fallback to absolute
+        # Initialize components using dynamic loading to avoid SyntaxError with numbered modules
+        import importlib.util
+        base_path = os.path.dirname(os.path.abspath(__file__))
+
+        def load_internal_module(name, filename):
+            module_path = os.path.join(base_path, filename)
+            spec = importlib.util.spec_from_file_location(name, module_path)
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+            return module
+
         try:
-            from .00_Prompt_Injection_Probe import PromptInjectionProbe
-            from .01_Transcript_Classifier import TranscriptClassifier, RiskLevel
-            from .02_Stage1_Fast_Filter import Stage1FastFilter
-            from .03_Stage2_CoT_Reasoning import Stage2CoTReasoning
-        except ImportError:
-            # Fallback to absolute imports for standalone use
-            import importlib.util
-
-            base_path = os.path.dirname(os.path.abspath(__file__))
-
-            spec = importlib.util.spec_from_file_location("probe", os.path.join(base_path, "00_Prompt_Injection_Probe.py"))
-            probe_module = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(probe_module)
-
-            spec = importlib.util.spec_from_file_location("classifier", os.path.join(base_path, "01_Transcript_Classifier.py"))
-            classifier_module = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(classifier_module)
-
-            spec = importlib.util.spec_from_file_location("filter", os.path.join(base_path, "02_Stage1_Fast_Filter.py"))
-            filter_module = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(filter_module)
-
-            spec = importlib.util.spec_from_file_location("cot", os.path.join(base_path, "03_Stage2_CoT_Reasoning.py"))
-            cot_module = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(cot_module)
+            probe_module = load_internal_module("probe", "00_Prompt_Injection_Probe.py")
+            classifier_module = load_internal_module("classifier", "01_Transcript_Classifier.py")
+            filter_module = load_internal_module("filter", "02_Stage1_Fast_Filter.py")
+            cot_module = load_internal_module("cot", "03_Stage2_CoT_Reasoning.py")
 
             PromptInjectionProbe = probe_module.PromptInjectionProbe
             TranscriptClassifier = classifier_module.TranscriptClassifier
             RiskLevel = classifier_module.RiskLevel
             Stage1FastFilter = filter_module.Stage1FastFilter
             Stage2CoTReasoning = cot_module.Stage2CoTReasoning
+        except Exception as e:
+            raise RuntimeError(f"Error cargando componentes de seguridad: {str(e)}")
 
         self.injection_probe = PromptInjectionProbe()
         self.classifier = TranscriptClassifier()

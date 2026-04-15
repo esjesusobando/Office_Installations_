@@ -1,129 +1,242 @@
-# 🛠️ 02_Skills — Sistema SOTA de Skills
+# 🛠️ 03_Skills — Sistema SOTA de Skills
 
-**Versión:** 4.0
-**Última actualización:** 2026-03-26
+**Versión:** 6.1
+**Última actualización:** 2026-04-03
 **Source of Truth:** `01_Core/03_Skills/`
-**Sync Target:** `.cursor/02_Skills/`
+**Framework:** Anthropic Skill Creator v2.0 + PersonalOS SOTA
 
 ---
 
-## 📂 Estructura Actual (2026-03-26)
+## 📂 Estructura Actual (2026-03-29)
 
 ```
-02_Skills/
-├── 00_Compound_Engineering/ ⭐ CE Workflows (8 items)
-├── 00_Skill_Auditor/         ⭐ Auditoría (3 items)
-├── 01_Agent_Teams_Lite/      ⭐ SDD Workflow (11 items)
-├── 02_Project_Manager/        ⭐ PM Workflow (9 items)
-├── 03_Product_Manager/       ⭐ Product (9 items)
-├── 04_Product_Design/        ⭐ Design/Taste (13 items)
-├── 05_Vibe_Coding/           ⭐ Dev Frameworks (18 items)
-├── 06_Testing/               ⭐ Testing + GGA (18 items)
-├── 07_DevOps/                ⭐ DevOps (13 items)
-├── 08_Personal_Os/           ⭐ Personal OS (9 items)
-├── 09_Marketing/             ⭐ Marketing (11 items)
-├── 10_Backup/                📦 Legacy (5 items)
-├── 11_Doc_Processing/        ⭐ Docs (4 items)
-├── 12_N8N/                   ⭐ n8n Automation (7 items)
-├── 13_System_Master/         ⭐ System (5 items)
-└── 14_Anthropic_Harness/    ⭐ Anthropic Patterns + Plugins (9 items)
+03_Skills/
+├── 00_Skill_Auditor/              ⭐ Auditoría de skills (SOTA)
+├── 00_Compound_Engineering/       ⭐ CE Workflows (8 items)
+├── 00_Personal_Os_Stack/          ⭐ Core OS Stack
+├── 01_Agent_Teams_Lite/           ⭐ SDD Workflow (10 items)
+├── 02_Project_Manager/            ⭐ PM Workflow (8 items)
+├── 03_Product_Manager/            ⭐ Product (8 items)
+├── 04_Product_Design/             ⭐ Design/Taste (12 items)
+├── 05_Vibe_Coding/                ⭐ Dev Frameworks (17 items)
+├── 06_Testing/                    ⭐ Testing + GGA (17 items)
+├── 07_DevOps/                     ⭐ DevOps (12 items)
+├── 08_Personal_Os/                ⭐ Personal OS (9 items)
+├── 09_Marketing/                  ⭐ Marketing (10 items)
+├── 10_Backup/                     📦 Legacy (5 items)
+├── 11_Doc_Processing/             ⭐ Docs (3 items)
+├── 12_N8N/                        ⭐ n8n Automation (7 items)
+├── 13_System_Master/              ⭐ System (5 items)
+├── 14_Anthropic_Harness/          ⭐ Anthropic Patterns (7 items)
+├── 15_Skill_Creator_Oficial/      ⭐ Skill Creator v2.0 (Anthropic)
+├── 16_Silicon_Valley_Data_Analyst/ ⭐ Data Analyst
+├── 17_SEO_SOTA_Master/            ⭐ SEO Master
+└── 18_Personal_Life_OS/           ⭐ Hillary Life OS (5 items)
+├── 19_Video_Intel/                🔬 Video Intel — exploracion YouTube/GitHub
 ```
 
-**Total: ~160+ skills**
-
-> **IMPORTANTE:** `05_Gentleman_System/` es BACKUP histórico. `07_Every/` es la versión ACTIVA.
+**Total: 21 categorías — 160+ skills**
 
 ---
 
-## 🏆 TOP Skills Rankings
+## 🏆 LAS 9 CATEGORÍAS DE ANTHROPIC (Framework Oficial)
+
+> **Fuente:** Thariq (Claude Code Team @ Anthropic) - "Lessons from Building Claude Code: How We Use Skills"
+
+### Tabla de Categorías
+
+| #   | Categoría                   | Propósito                      | Ejemplo PersonalOS                                       |
+|-----|-----------------------------|--------------------------------|----------------------------------------------------------|
+| 1   | **Library / API Reference** | Enseñar a usar librerías       | `nextjs-15`, `react-19`, `zod-4`                         |
+| 2   | **Product Verification**    | Confirmar features funcionan   | `pr-review`, `technical-review`                          |
+| 3   | **Data Fetching**           | Obtener datos externos         | `analytics-tracking`, `agent-browser`                    |
+| 4   | **Business Process**        | Hacer cumplir reglas/workflows | `sdd-workflow`, `planning-tasks-ai`                      |
+| 5   | **Code Scaffolding**        | Generar boilerplate            | `skill-creator`, `angular-architecture`                  |
+| 6   | **Code Quality**            | Code review y linting          | `testing-coverage`, `security-review`                    |
+| 7   | **CI/CD**                   | Deploy y pipelines             | Observabilidad, deployment                               |
+| 8   | **Runbooks**                | Respuesta a incidentes         | `systematic-debugging`, `verification-before-completion` |
+| 9   | **Infrastructure Ops**      | Operaciones de servidor/DB     | `mcp-client`, `django-drf`                               |
+
+### Mapping con PersonalOS
+
+```
+Anthropic Category          → PersonalOS Skills
+─────────────────────────────────────────────────
+Library / API Reference     → 05_Vibe_Coding/* (dev frameworks)
+Product Verification        → 06_Testing/*, 14_Anthropic_Harness/*
+Data Fetching              → 13_System_Master/04_Mcp_Builder
+Business Process           → 01_Agent_Teams_Lite/*, 02_Project_Manager/*
+Code Scaffolding           → 15_Skill_Creator, angular-architecture
+Code Quality               → 06_Testing/*, pr-review, security-review
+CI/CD                      → 07_DevOps/*
+Runbooks                   → systematic-debugging, verification
+Infrastructure Ops         → 13_System_Master/*, 12_N8N/*
+```
+
+---
+
+## 🎯 MEJORES PRÁCTICAS ANTHROPIC 2026 (SOTA)
+
+> **Integradas del paper de Thariq (Anthropic)**
+
+### 1. 📝 Always Include a Gotchas Section
+
+**ERRORES que los docs no dicen:**
+```
+## ⚠️ Gotchas
+
+- Always check `.env.local` before running `npm run build`
+- Never use `--force` in production
+- This API rate-limits at 60 req/min — add sleep in batch jobs
+```
+**Impacto:** Skills con Gotchas mejoran measurablemente la precisión de Claude.
+
+### 2. 📂 Progressive Disclosure
+
+**NO poner todo en un README.** Dividir en sub-archivos:
+```
+skill/
+├── README.md          # Overview only
+├── advanced.md        # Pulled on demand
+└── troubleshooting.md # Pulled on demand
+```
+**Por qué:** Contexto es recurso finito. No quemarlo en cosas innecesarias.
+
+### 3. 🎣 On-Demand Hooks (Pattern /careful)
+
+```
+# careful skill
+
+During this session, always ask for confirmation before running:
+- git reset --hard
+- rm -rf
+- DROP TABLE
+```
+**Pattern:** Activar solo cuando necesitas seguridad adicional. No es permanente.
+
+### 4. 📦 Bundle Scripts in Skill Folder
+
+Skills no son solo markdown. Incluir scripts ejecutables:
+```
+deploy-skill/
+├── README.md
+└── scripts/
+    ├── pre-deploy-check.sh
+    ├── rollback.sh
+    └── notify-slack.py
+```
+
+### 5. ✍️ Write Descriptions That Tell Claude WHEN to Use
+
+| ❌ BAD              | ✅ GOOD                                                           |
+|--------------------|------------------------------------------------------------------|
+| "deployment stuff" | "Production deploys, rollbacks, and health checks"               |
+| "DB operations"    | "PostgreSQL CRUD, migrations, and backups"                       |
+| "code review"      | "Type safety, error handling, and security vulnerability review" |
+
+---
+
+## 🔬 SKILL AUDITOR (Sistema de Calidad)
+
+> **Ubicación:** `00_Skill_Auditor/`
+
+El **Skill Auditor** audita skills contra estándares **Anthropic SOTA v5.1** + **Skill Creator v2.0**.
+
+### Criterios de Auditoría
+
+| Criterio               | Descripción                    |
+|------------------------|--------------------------------|
+| YAML Frontmatter       | name, description con triggers |
+| Progressive Disclosure | < 200 líneas ideal, < 500 máx  |
+| Gotchas Section        | Mínimo 3 errores documentados  |
+| Esencia Original       | Propósito claro de la skill    |
+| State Persistence      | Dónde guardar estado           |
+
+### Scoring
+
+| Score   | Rating                                     |
+|---------|--------------------------------------------|
+| 90-100% | ✅ Excellent - Ready for production         |
+| 70-89%  | 👍 Good - Minor improvements needed         |
+| 50-69%  | ⚠️ Needs Work - Significant fixes required |
+| <50%    | ❌ Failed - Do not integrate                |
+
+### Uso
+```bash
+# Auditar una skill
+python 00_Skill_Auditor/scripts/audit-skills.py
+
+# Validar esencia
+python 00_Skill_Auditor/scripts/validate-essence.py
+```
+
+---
+
+## 🤖 SKILL CREATOR (Anthropic Official)
+
+> **Ubicación:** `15_Skill_Creator_Oficial/`, `08_Plugins/01_Staff_Claude_Code/`
+
+El **Skill Creator** genera scaffolding de skills automáticamente mediante conversación.
+
+### Features v2.0
+
+| Feature           | Descripción                           |
+|-------------------|---------------------------------------|
+| evals.json        | Skills que usan evaluación automática |
+| Benchmark results | Skills críticas del OS                |
+| agents/ folder    | Sub-agentes especializados            |
+| references/       | Docs pesadas separadas                |
+
+### Estructura Generada
+```
+skill-name/
+├── SKILL.md              # Instrucciones principales
+├── README.md             # Documentación
+├── references/           # Docs adicionales
+│   ├── schemas.md
+│   └── examples.md
+├── scripts/             # Código reutilizable
+├── agents/              # Sub-agentes
+└── evals.json          # Evaluación automática
+```
+
+---
+
+## 📋 TOP Skills Rankings
 
 ### 01_Core (Priority #1)
 
-| #     | Skill                         | Propósito                        |
-|-------|-------------------------------|----------------------------------|
-| 1     | Fork Terminal                 | Multiplexar terminal sessions    |
-| 2     | Parallel Orchestration        | Agent teams parallel execution   |
-| 3     | Premium Git Manager           | Git workflows avanzados          |
-| 4     | Subagent Driven Development   | Arquitectura multi-agent         |
-| 5     | Antigravity Skill Creator     | Crear skills automáticamente     |
+| #   | Skill                       | Propósito                      |
+|-----|-----------------------------|--------------------------------|
+| 1   | Fork Terminal               | Multiplexar terminal sessions  |
+| 2   | Parallel Orchestration      | Agent teams parallel execution |
+| 3   | Premium Git Manager         | Git workflows avanzados        |
+| 4   | Subagent Driven Development | Arquitectura multi-agent       |
+| 5   | **Skill Auditor**           | Auditoría de quality           |
+| 6   | **Skill Creator**           | Crear skills automáticamente   |
 
-### 04_Product_Manager (Priority #5 — PM Workflow)
+### 05_Vibe_Coding (Development Frameworks)
 
-| #     | Skill                      | Propósito                         |
-|-------|----------------------------|-----------------------------------|
-| 1     | brainstorming              | Exploración de ideas              |
-| 2     | writing-plans              | Creación de planes                |
-| 3     | executing-plans            | Ejecución de planes               |
-| 4     | jira-epic                  | Creación de epics en Jira         |
-| 5     | jira-task                  | Gestión de tareas en Jira         |
-| 6     | github-pr                  | Workflow de PRs                   |
-| 7     | writing-strategy-memos     | Memos estratégicos                |
-| 8     | planning-tasks-ai          | Planificación con AI              |
+| #   | Skill          | Propósito                           |
+|-----|----------------|-------------------------------------|
+| 1   | **react-19**   | React moderno con Server Components |
+| 2   | **nextjs-15**  | Next.js App Router                  |
+| 3   | **tailwind-4** | Tailwind CSS v4                     |
+| 4   | **zod-4**      | Validación de schemas               |
+| 5   | **zustand-5**  | State management                    |
+| 6   | **ai-sdk-5**   | AI SDK integration                  |
+| 7   | **playwright** | E2E testing                         |
+| 8   | **angular**    | Angular patterns                    |
 
-### 06_Taste_Skills (Priority #6 — Premium Design)
+### 06_Testing (Quality)
 
-| #     | Skill                  | Propósito                                | Uso                    |
-|-------|------------------------|------------------------------------------|------------------------|
-| 1     | **taste-skill**        | Diseño premium variance/motion/density   | OBLIGATORIO frontend   |
-| 2     | **soft-skill**         | Look expensive — Awwwards tier           | Premium projects       |
-| 3     | **minimalist-skill**   | Notion/Linear style                      | Dashboards             |
-| 4     | **redesign-skill**     | Upgrade proyectos existentes             | Legacy projects        |
-| 5     | **output-skill**       | Full output enforcement                  | Siempre                |
-
-### 07_Every/01_Plan (Planning)
-
-| #     | Skill             | Propósito                  |
-|-------|-------------------|----------------------------|
-| 1     | deep-research     | Investigación exhaustiva   |
-| 2     | brainstorming     | Generación de ideas        |
-| 3     | writing-plans     | Documentación de planes    |
-| 4     | executing-plans   | Ejecución sistemática      |
-| 5     | issue-creation    | Creación de issues         |
-
-### 07_Every/02_Work (Development)
-
-| #     | Skill            | Propósito                                          |
-|-------|------------------|----------------------------------------------------|
-| 1     | **react-19**     | React moderno con Server Components                |
-| 2     | **nextjs-15**    | Next.js App Router                                 |
-| 3     | **tailwind-4**   | Tailwind CSS v4                                    |
-| 4     | **zod-4**        | Validación de schemas                              |
-| 5     | **zustand-5**    | State management                                   |
-| 6     | **ai-sdk-5**     | AI SDK integration                                 |
-| 7     | **playwright**   | E2E testing                                        |
-| 8     | **angular**      | Angular (architecture, core, forms, performance)   |
-
-### 07_Every/03_Review (Quality)
-
-| #     | Skill                  | Propósito               |
-|-------|------------------------|-------------------------|
-| 1     | **technical-review**   | Code review técnico     |
-| 2     | **pr-review**          | Pull request review     |
-| 3     | **testing-coverage**   | Coverage optimization   |
-| 4     | **go-testing**         | Go testing patterns     |
-| 5     | **tui-quality**        | TUI quality standards   |
-
-### 07_Every/04_Compound (Compound Engineering)
-
-| #     | Skill                              | Propósito                  |
-|-------|------------------------------------|----------------------------|
-| 1     | **gentleman-trainer**              | Training workflows         |
-| 2     | **analytics-workflow**             | Analytics implementation   |
-| 3     | **dieter-rams-design**             | Design principles          |
-| 4     | **advanced-context-engineering**   | Context optimization       |
-| 5     | **memory-protocol**                | Memory patterns            |
-| 6     | **compound-engine**                | Compound engineering       |
-
-### 07_Every/05_Utilities (SOTA Tools)
-
-| #     | Skill                     | Propósito                   |
-|-------|---------------------------|-----------------------------|
-| 1     | **mcp-integration**       | MCP server setup            |
-| 2     | **e2e-testing-skill**     | E2E test automation         |
-| 3     | **edge-case-skill**       | Edge case handling          |
-| 4     | **evaluation-skill**      | Evaluation frameworks       |
-| 5     | **test-coverage-skill**   | Test coverage analysis      |
-| 6     | **observability-skill**   | Metrics, logging, tracing   |
+| #   | Skill                | Propósito             |
+|-----|----------------------|-----------------------|
+| 1   | **technical-review** | Code review técnico   |
+| 2   | **pr-review**        | Pull request review   |
+| 3   | **testing-coverage** | Coverage optimization |
+| 4   | **go-testing**       | Go testing patterns   |
+| 5   | **skill-auditor**    | Quality Guardian      |
 
 ---
 
@@ -141,57 +254,81 @@ python 08_Scripts_Os/55_Sync_Skills.py --confirm
 
 ---
 
-## 📊 Estadísticas (2026-03-25)
+## 📊 Estadísticas (2026-04-10)
 
-| Carpeta                | Skills     | Rol            |
-|------------------------|------------|----------------|
-| 01_Agent_Teams_Lite    | 9          | SDD            |
-| 02_Project_Manager     | 9          | PM             |
-| 03_Product_Manager     | 8          | Product        |
-| 04_Product_Design      | 11         | Design         |
-| 05_Vibe_Coding         | 21         | Dev            |
-| 06_Testing             | 18         | Testing+GGA    |
-| 07_DevOps              | 13         | DevOps         |
-| 08_Personal_Os         | 9          | OS             |
-| 09_Marketing           | 11         | Marketing      |
-| 10_Backup/05_Gentleman | 27         | Legacy         |
-| 11_Doc_Processing      | 4          | Docs           |
-| 12_N8N                 | 7          | Automation     |
+| Carpeta                        | Skills | Categoría Anthropic   |
+|--------------------------------|--------|-----------------------|
+| 00_Compound_Engineering        | 8      | Business Process      |
+| 00_Personal_Os_Stack           | —      | Core OS               |
+| 00_Skill_Auditor               | 1      | Quality               |
+| 01_Agent_Teams_Lite            | 10     | Business Process      |
+| 02_Project_Manager             | 8      | Business Process      |
+| 03_Product_Manager             | 8      | Product Verification  |
+| 04_Product_Design              | 12     | Code Quality          |
+| 05_Vibe_Coding                 | 17     | Library/API Reference |
+| 06_Testing                     | 17     | Code Quality          |
+| 07_DevOps                      | 12     | CI/CD                 |
+| 08_Personal_Os                 | 9      | Runbooks              |
+| 09_Marketing                   | 10     | Data Fetching         |
+| 10_Backup                      | 5      | Legacy                |
+| 11_Doc_Processing              | 3      | Data Fetching         |
+| 12_N8N                         | 7      | Infrastructure Ops    |
+| 13_System_Master               | 5      | Infrastructure Ops    |
+| 14_Anthropic_Harness           | 7      | All Categories        |
+| 15_Skill_Creator_Oficial       | 1      | Code Scaffolding      |
+| 16_Silicon_Valley_Data_Analyst | 1      | Data Fetching         |
+| 17_SEO_SOTA_Master             | 1      | Library/API Reference |
+| 18_Personal_Life_OS            | 5      | Runbooks              |
+| 19_Video_Intel                 | —      | Exploration           |
+| 20_Skill_Template              | 🆕     | Code Scaffolding      |
 
-**Total Activo:** 140 skills
-**Total con Backup:** 167 skills
-
----
-
-## 📚 Documentación
-
-- [03_Knowledge/01_Research_Knowledge/Skills_TOP_Rankings.md](../../03_Knowledge/01_Research_Knowledge/Skills_TOP_Rankings.md) — Rankings completos
-- [Sistema_SOTA_Skills.md](../../Sistema_SOTA_Skills.md) — Guía maestra
-- [Skills_Top_20.md](../../Skills_Top_20.md) — Rankings TOP 20
+**Total categorías:** 24 — **Total skills activas:** 165+
 
 ---
 
 ## 🚀 Uso de Skills
 
-Las skills se invocan automáticamente según el contexto o manualmente:
-
 ```bash
-/sdd:init        # Inicializar SDD
-/sdd:explore     # Explorar dominio
-/sdd:new [name]  # Crear nuevo cambio
+# Inicializar SDD
+/sdd:init
+
+# Explorar dominio
+/sdd:explore
+
+# Crear nuevo cambio
+/sdd:new [name]
+
+# Auditar skills
+/skillaudit
+
+# Crear skill
+/skillcreate
 ```
 
-### Reglas de Uso:
+---
 
-1. **Sincronización:** `.agent/07_Every/` → `.cursor/02_Skills/`
-2. **Taste-Skills:** Usar `06_Taste_Skills/` para TODO frontend
-3. **SDD:** Usar `03_Agent_Teams_Lite/` para desarrollo guiado por specs
-4. **Backup:** `05_Gentleman_System/` es referencia histórica — NO editar
+## 📚 Documentación
+
+- [03_Knowledge/01_Research_Knowledge/Skills_TOP_Rankings.md](../../03_Knowledge/01_Research_Knowledge/Skills_TOP_Rankings.md)
+- [Sistema_SOTA_Skills.md](../../Sistema_SOTA_Skills.md)
+- [Skills_Top_20.md](../../Skills_Top_20.md)
 
 ---
 
+## 🧠 El Modelo Mental (Aprendizaje Anthropic)
+
+| Entendimiento Anterior   | Entendimiento Correcto                |
+|--------------------------|---------------------------------------|
+| Skills = notas markdown  | Skills = carpetas (scripts incluidos) |
+| Set it and forget it     | Mantenimiento continuo                |
+| Info para Claude         | Tools que Claude puede ejecutar       |
+| Useful add-on            | Core workflow infrastructure          |
+
+> **La clave:** Skills se **cultivan**, no se construyen.
+> No escribas una skill perfecta el día uno. Empieza con un README, agrega Gotchas cuando hits edge cases, re-estructura con Progressive Disclosure cuando el archivo crece, inyecta scripts cuando te pillás dando las mismas instrucciones repetidamente.
+
 ---
 
-_"El poder sin control no sirve de nada. El poder con las skills correctas lo cambia todo."_
+*"El poder sin control no sirve de nada. El poder con las skills correctas lo cambia todo."*
 
-© 2026 PersonalOS
+© 2026 PersonalOS v6.1 — Powered by Anthropic Skill Framework

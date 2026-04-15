@@ -1,6 +1,6 @@
 ---
 name: nextjs-15
-description: > Triggers on: 02_Nextjs_15, patterns, coding.
+description: >
   Next.js 15 App Router patterns.
   Trigger: When working with Next.js - routing, Server Actions, data fetching.
 license: Apache-2.0
@@ -148,19 +148,3 @@ export async function getSecretData() {
 
 ## Keywords
 nextjs, next.js, app router, server components, server actions, streaming
-
-## Esencia Original
-> **Propósito:** Propósito del skill aquí
-> **Flujo:** Pasos principales del flujo
-
-## ⚠️ Gotchas (Errores Comunes a Evitar)
-
-- **[ERROR]**: Error común
-  - **Por qué**: Explicación
-  - **Solución**: Cómo evitar
-
-## 💾 State Persistence
-
-Guardar en:
-- `03_Knowledge/` — Documentación
-- `04_Operations/` — Estado activo
