@@ -1,100 +1,128 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useRef } from "react";
 
 interface HeroProps {
-  name: string;
+  name?: string;
   role?: string;
   tagline?: string;
 }
 
 export function Hero({
-  name = "Sofía Mayen",
-  role = "Product Designer & Creative Director",
+  name = "CREATOR",
+  role = "Product Designer",
   tagline = "Crafting experiences that feel inevitable.",
 }: HeroProps) {
-  const lineRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollY } = useScroll();
+  
+  // Parallax effects - subtle
+  const y = useTransform(scrollY, [0, 500], [0, 150]);
+  const opacity = useTransform(scrollY, [0, 400], [1, 0]);
+  
+  // Spring animation for smooth feel
+  const springY = useSpring(y, { stiffness: 80, damping: 25 });
+  const springOpacity = useSpring(opacity, { stiffness: 80, damping: 25 });
 
-  useEffect(() => {
-    const el = lineRef.current;
-    if (!el) return;
-    const onScroll = () => {
-      const p = Math.min(window.scrollY / (window.innerHeight * 0.6), 1);
-      el.style.opacity = String(1 - p);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const currentYear = new Date().getFullYear();
 
   return (
-    <section className="relative min-h-[100dvh] w-full flex flex-col justify-between px-6 md:px-12 pt-32 pb-12 overflow-hidden">
-
-      {/* Warm paper texture overlay */}
-      <div
+    <section 
+      ref={containerRef}
+      className="relative min-h-[100dvh] w-full flex flex-col justify-center px-6 md:px-12 lg:px-16 overflow-hidden"
+    >
+      {/* Background - clean minimal */}
+      <div 
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: "radial-gradient(ellipse 80% 60% at 60% 40%, rgba(200,184,154,0.18) 0%, transparent 70%)",
+          background: 'radial-gradient(ellipse 100% 80% at 50% 120%, rgba(9,9,11,0.03) 0%, transparent 50%)',
         }}
       />
 
-      {/* Top: name large — editorial */}
-      <div className="relative z-10">
-        <h1
-          className="serif anim-0"
+      {/* Main content */}
+      <motion.div 
+        style={{ y: springY, opacity: springOpacity }}
+        className="relative z-10 max-w-7xl"
+      >
+        {/* Role - minimal, uppercase */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="text-xs uppercase tracking-[0.3em] mb-6 md:mb-10 text-[var(--muted)] font-medium"
+        >
+          {role}
+        </motion.p>
+
+        {/* GIANT TYPOGRAPHY - Archivo 900 */}
+        <h1 
+          className="leading-[0.82] tracking-tight"
           style={{
-            fontSize: "clamp(3.5rem, 10vw, 9rem)",
-            lineHeight: 0.95,
-            letterSpacing: "-0.02em",
-            color: "var(--ink)",
+            fontSize: 'clamp(3.5rem, 14vw, 13rem)',
+            fontWeight: 900,
+            letterSpacing: '-0.04em',
+            color: 'var(--ink)',
+            fontFamily: "'Archivo', sans-serif",
           }}
         >
-          {name.split(" ").map((word, i) => (
-            <span key={i} className={i === 1 ? "italic" : ""}>
-              {word}{i < name.split(" ").length - 1 ? " " : ""}
-            </span>
-          ))}
+          <motion.span
+            initial={{ opacity: 0, y: 80 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="block"
+          >
+            {name}
+          </motion.span>
         </h1>
-      </div>
 
-      {/* Bottom row: role + tagline + scroll cue */}
-      <div className="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
-        <div className="anim-1">
-          <p
-            className="text-xs uppercase tracking-[0.22em] mb-2"
-            style={{ color: "var(--muted)" }}
-          >
-            {role}
-          </p>
-          <p
-            className="serif italic text-xl md:text-2xl"
-            style={{ color: "var(--ink)", maxWidth: "36ch" }}
-          >
-            {tagline}
-          </p>
-        </div>
-
-        <div
-          ref={lineRef}
-          className="anim-2 flex flex-col items-center gap-2 self-end md:self-auto"
+        {/* Tagline - clean, minimal */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-8 md:mt-12 text-base md:text-lg max-w-lg text-[var(--muted)] font-normal"
         >
-          <span className="text-xs uppercase tracking-[0.2em]" style={{ color: "var(--muted)" }}>
-            Scroll
-          </span>
-          <div
-            className="w-px"
-            style={{ height: "60px", background: "var(--accent)" }}
-          />
-        </div>
-      </div>
+          {tagline}
+        </motion.p>
+      </motion.div>
 
-      {/* Floating year tag — editorial detail */}
-      <div
-        className="anim-3 absolute top-40 right-6 md:right-12 text-xs tracking-widest uppercase"
-        style={{ color: "var(--muted)", writingMode: "vertical-lr", letterSpacing: "0.22em" }}
+      {/* Year - minimal, corners */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.1, duration: 0.6 }}
+        className="absolute top-8 right-6 md:right-16 text-xs tracking-[0.15em] uppercase text-[var(--muted)] font-medium"
       >
-        ©&nbsp;{new Date().getFullYear()}
-      </div>
+        {currentYear}
+      </motion.div>
 
+      {/* Scroll indicator - minimal line */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.3, duration: 0.6 }}
+        className="absolute bottom-10 left-6 md:left-16 flex items-center gap-4"
+      >
+        <span 
+          className="text-xs uppercase tracking-[0.2em] text-[var(--muted)]"
+        >
+          Scroll
+        </span>
+        <motion.div
+          animate={{ y: [0, 12, 0] }}
+          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+          className="w-px h-10"
+          style={{ 
+            background: 'var(--muted)',
+            opacity: 0.4
+          }}
+        />
+      </motion.div>
+
+      {/* Corner accents - subtle */}
+      <div className="absolute top-8 left-6 md:left-16 w-3 h-3 border-l border-t border-[var(--line)]" />
+      <div className="absolute bottom-10 right-6 md:right-16 w-3 h-3 border-r border-b border-[var(--line)]" />
     </section>
   );
 }

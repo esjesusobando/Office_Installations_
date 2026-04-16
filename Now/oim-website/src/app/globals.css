@@ -1,12 +1,15 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* OIM Design Tokens */
-  --color-primary:    #FF5F5E;
-  --color-surface:    #f8f9fa;
-  --color-surface-low:    #f3f4f5;
+  /* OIM Design Tokens — Navy + Yellow palette */
+  --color-primary:    #F5C518;
+  --color-primary-dark: #d4a800;
+  --color-navy:       #0d1b2a;
+  --color-navy-mid:   #1a2e42;
+  --color-surface:    #f4f6f8;
+  --color-surface-low:    #ebeef2;
   --color-surface-lowest: #ffffff;
-  --color-on-surface: #191c1d;
+  --color-on-surface: #0d1b2a;
 
   /* Typography */
   --font-sans: var(--font-geist-sans), 'Helvetica Neue', sans-serif;
@@ -18,8 +21,8 @@
 }
 
 :root {
-  --background: #f8f9fa;
-  --foreground: #191c1d;
+  --background: #f4f6f8;
+  --foreground: #0d1b2a;
 }
 
 html {

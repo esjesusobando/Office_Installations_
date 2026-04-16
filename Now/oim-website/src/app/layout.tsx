@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s | OIM Atlanta",
   },
   description:
-    "Professional office furniture installation, setup & relocation in Atlanta, GA. Bilingual service (EN/ES). Licensed & insured since 2018. Get a free quote today.",
+    "Professional office furniture installation in Atlanta, GA. Corporate space management engineering — cubicles, desks, workstations, TVs, whiteboards & full office setups. Licensed & insured since 2018. Call +1 (470) 595-0121.",
 
   keywords: [
     "office furniture installation Atlanta",
@@ -91,8 +91,8 @@ export const metadata: Metadata = {
   },
 
   icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    icon: "/favicon-drill.png",
+    apple: "/favicon-drill.png",
   },
 };
 
@@ -105,8 +105,8 @@ const structuredData = {
   description:
     "Professional office furniture installation, setup, and relocation services in Atlanta, GA since 2018.",
   url: siteUrl,
-  telephone: "+1-404-837-2951",
-  email: "info@oimatlanta.com",
+  telephone: "+1-470-595-0121",
+  email: "oiminstallllc@gmail.com",
   foundingDate: "2018",
   areaServed: {
     "@type": "GeoCircle",
@@ -150,6 +150,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
@@ -158,7 +159,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-[#f8f9fa] text-[#191c1d]">
+      <body className="min-h-full flex flex-col bg-[#f4f6f8] text-[#0d1b2a]">
         {children}
       </body>
     </html>

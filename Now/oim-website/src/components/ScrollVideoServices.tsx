@@ -13,26 +13,26 @@ const servicesData: Service[] = [
   {
     title: 'Office Furniture Installation',
     titleEs: 'Instalación de Muebles',
-    items: ['Desks & workstations', 'Cubicles & partitions', 'Conference tables', 'Chairs & storage units'],
-    itemsEs: ['Escritorios y estaciones', 'Cubículos y divisiones', 'Mesas de conferencia', 'Sillas y almacenamiento'],
+    items: ['Desks & workstations', 'Cubicles', 'Conference tables', 'Chairs & storage units'],
+    itemsEs: ['Escritorios y estaciones', 'Cubículos', 'Mesas de conferencia', 'Sillas y almacenamiento'],
   },
   {
     title: 'Office Setup & Reconfiguration',
     titleEs: 'Configuración y Rediseño',
-    items: ['New office setups', 'Workspace redesign', 'Furniture rearrangement', 'Layout optimization'],
-    itemsEs: ['Nuevas instalaciones', 'Rediseño de espacios', 'Reubicación de muebles', 'Optimización de layout'],
+    items: ['New Office Set up', 'Workstation Reconfiguration', 'Full furniture rearrangement'],
+    itemsEs: ['Nueva instalación de oficina', 'Reconfiguración de estaciones', 'Reubicación completa de muebles'],
   },
   {
     title: 'Disassembly & Moving',
     titleEs: 'Desmontaje y Traslado',
-    items: ['Safe disassembly', 'Professional packing', 'Relocation services', 'Reinstallation'],
-    itemsEs: ['Desmontaje seguro', 'Embalaje profesional', 'Servicio de traslado', 'Reinstalación'],
+    items: ['Safe disassembly', 'Relocation', 'Reinstallation'],
+    itemsEs: ['Desmontaje seguro', 'Traslado', 'Reinstalación'],
   },
   {
     title: 'Commercial Projects',
     titleEs: 'Proyectos Comerciales',
-    items: ['Small & large offices', 'Corporate environments', 'Fast turnaround', 'Full project management'],
-    itemsEs: ['Oficinas pequeñas y grandes', 'Ambientes corporativos', 'Entrega rápida', 'Gestión de proyecto'],
+    items: ['Small & large offices', 'Corporate environments', 'Fast turnaround projects'],
+    itemsEs: ['Oficinas pequeñas y grandes', 'Ambientes corporativos', 'Proyectos de entrega rápida'],
   },
 ];
 
@@ -139,7 +139,7 @@ export function ScrollVideoServices({ videoSrc, scrollHeight = 400, lang = 'en' 
         className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none"
         style={{
           height: '18vh',
-          background: 'linear-gradient(to top, #f8f9fa 0%, rgba(248,249,250,0.85) 35%, rgba(248,249,250,0) 100%)',
+          background: 'linear-gradient(to top, #f4f6f8 0%, rgba(244,246,248,0.85) 35%, rgba(244,246,248,0) 100%)',
         }}
       />
 
@@ -152,8 +152,9 @@ export function ScrollVideoServices({ videoSrc, scrollHeight = 400, lang = 'en' 
           src={videoSrc}
           playsInline
           muted
-          preload="auto"
+          preload="metadata"
           aria-hidden="true"
+          suppressHydrationWarning
           className="absolute inset-0 w-full h-full object-cover will-change-transform"
         />
 
@@ -186,7 +187,7 @@ export function ScrollVideoServices({ videoSrc, scrollHeight = 400, lang = 'en' 
             >
               {/* Label + counter */}
               <div className="flex items-center justify-between mb-6">
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#FF5F5E]">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#F5C518]">
                   {lang === 'en' ? 'Our Services' : 'Nuestros Servicios'}
                 </p>
                 <p className="text-xs text-white/30 tabular-nums font-medium">
@@ -215,7 +216,7 @@ export function ScrollVideoServices({ videoSrc, scrollHeight = 400, lang = 'en' 
                         transition: `opacity 0.35s cubic-bezier(0.16,1,0.3,1) ${i * 0.04}s`,
                       }}
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#FF5F5E] flex-shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#F5C518] flex-shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -226,7 +227,7 @@ export function ScrollVideoServices({ videoSrc, scrollHeight = 400, lang = 'en' 
               <div className="mt-8 space-y-2">
                 <div className="h-px w-full bg-white/8 overflow-hidden rounded-full">
                   <div
-                    className="h-full bg-[#FF5F5E] rounded-full"
+                    className="h-full bg-[#F5C518] rounded-full"
                     style={{
                       width: `${progress * 100}%`,
                       transition: 'width 0.08s linear',
@@ -243,7 +244,7 @@ export function ScrollVideoServices({ videoSrc, scrollHeight = 400, lang = 'en' 
                         height: '3px',
                         flex: i === activeIndex ? '2' : '1',
                         borderRadius: '9999px',
-                        background: i === activeIndex ? '#FF5F5E' : 'rgba(255,255,255,0.18)',
+                        background: i === activeIndex ? '#F5C518' : 'rgba(255,255,255,0.18)',
                         transition: 'flex 0.35s cubic-bezier(0.16,1,0.3,1), background 0.35s ease',
                       }}
                     />
@@ -268,7 +269,7 @@ export function ScrollVideoServices({ videoSrc, scrollHeight = 400, lang = 'en' 
         <div className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col items-center gap-1.5">
           <div className="w-px bg-white/10 overflow-hidden rounded-full" style={{ height: '80px' }}>
             <div
-              className="w-full bg-[#FF5F5E] rounded-full"
+              className="w-full bg-[#F5C518] rounded-full"
               style={{
                 height: `${progress * 100}%`,
                 transition: 'height 0.08s linear',

@@ -9,27 +9,39 @@ interface AboutSectionProps {
 const copy = {
   en: {
     label: 'About Us',
-    heading: 'Atlanta\'s trusted office furniture professionals',
-    body: 'Since 2018, Office Installations Mayen has helped businesses across Georgia move, assemble, and reconfigure their workspaces with precision and care. We show up on time, work clean, and leave your office ready to go.',
-    stats: [
-      { value: '8+', label: 'Years in business' },
-      { value: '500+', label: 'Projects completed' },
-      { value: '2', label: 'Languages spoken' },
-      { value: '100%', label: 'Licensed & insured' },
-    ],
+    founded: 'Founded 2018',
+    heading: 'Experience You Can Trust',
+    body1: 'With over 15 years of industry experience and 8 years in service, we take pride in delivering efficient, professional, and detail-driven results.',
+    body2: 'We handle every project with care, ensuring your office furniture is protected and installed to the highest standards—whether for small businesses or large-scale corporate environments.',
+    body3: 'In addition to relocation services, we provide full-service installation and reconfiguration of all office furniture systems, including cubicles, workstations, and complete office setups.',
+    badge: 'Fully Bonded & Insured',
+    badgeSub: 'Protecting your investment and our workplace.',
     cta: 'Get a Free Quote',
+    stats: [
+      { value: '8', label: 'Years of Service' },
+      { value: '15', label: 'Years of Experience' },
+      { value: 'Licensed', label: '& Insured' },
+      { value: 'Atlanta', label: 'Metro Service' },
+    ],
+    review: '"Very professional team, fast and reliable. Highly recommend!"',
   },
   es: {
     label: 'Nosotros',
-    heading: 'Los profesionales de muebles de oficina de confianza en Atlanta',
-    body: 'Desde 2018, Office Installations Mayen ha ayudado a empresas en Georgia a mover, ensamblar y reconfigurar sus espacios de trabajo con precisión y cuidado. Llegamos puntual, trabajamos limpio y dejamos tu oficina lista.',
-    stats: [
-      { value: '8+', label: 'Años en el negocio' },
-      { value: '500+', label: 'Proyectos completados' },
-      { value: '2', label: 'Idiomas' },
-      { value: '100%', label: 'Licenciados y asegurados' },
-    ],
+    founded: 'Fundada en 2018',
+    heading: 'Experiencia en la que Confiar',
+    body1: 'Con más de 15 años de experiencia en la industria y 8 años de servicio, nos enorgullecemos de entregar resultados eficientes, profesionales y orientados al detalle.',
+    body2: 'Manejamos cada proyecto con cuidado, asegurando que los muebles de oficina estén protegidos e instalados con los más altos estándares.',
+    body3: 'Además de los servicios de reubicación, brindamos instalación y reconfiguración completa de todos los sistemas de muebles de oficina.',
+    badge: 'Completamente Asegurados',
+    badgeSub: 'Protegiendo su inversión y nuestro lugar de trabajo.',
     cta: 'Cotización Gratis',
+    stats: [
+      { value: '8', label: 'Años de Servicio' },
+      { value: '15', label: 'Años de Experiencia' },
+      { value: 'Licenciados', label: 'y Asegurados' },
+      { value: 'Atlanta', label: 'Metro Service' },
+    ],
+    review: '"Equipo muy profesional, rápido y confiable. ¡Muy recomendado!"',
   },
 };
 
@@ -46,12 +58,12 @@ export default function AboutSection({ lang }: AboutSectionProps) {
               setTimeout(() => {
                 (el as HTMLElement).style.opacity = '1';
                 (el as HTMLElement).style.transform = 'translateY(0)';
-              }, i * 100);
+              }, i * 90);
             });
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.12 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
@@ -61,68 +73,101 @@ export default function AboutSection({ lang }: AboutSectionProps) {
     <section
       ref={sectionRef}
       id="about"
-      className="bg-[#f8f9fa] px-6 md:px-12 py-24 md:py-32"
+      className="bg-[#f4f6f8] px-6 md:px-10 py-24 md:py-32"
     >
       <div className="mx-auto max-w-7xl">
 
-        {/* Top: label + heading + body in 2 cols */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 mb-20">
+        {/* Top 2-col */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 mb-16">
 
-          {/* Left */}
+          {/* Left — label + heading + founded badge */}
           <div
             data-animate
-            style={{ opacity: 0, transform: 'translateY(24px)', transition: 'opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1)' }}
+            style={{ opacity: 0, transform: 'translateY(20px)', transition: 'opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1)' }}
           >
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#FF5F5E]">
+            {/* Section label — Apple HIG: 11px caps */}
+            <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-[#F5C518]">
               {t.label}
             </p>
+
+            {/* Founded tag */}
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-[#0d1b2a]/12 bg-[#0d1b2a]/5 px-3 py-1 mb-5">
+              <span className="text-[11px] font-semibold text-[#0d1b2a]/50 tracking-wide">{t.founded}</span>
+            </div>
+
+            {/* H2 — Apple HIG: Title1 ~28–34px, -0.02em */}
             <h2
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#191c1d] leading-[1.1]"
-              style={{ letterSpacing: '-0.03em', textWrap: 'balance' } as React.CSSProperties}
+              className="text-[32px] md:text-[38px] font-bold text-[#0d1b2a] leading-[1.1]"
+              style={{ letterSpacing: '-0.022em', textWrap: 'balance' } as React.CSSProperties}
             >
               {t.heading}
             </h2>
+
+            {/* Star review */}
+            <div className="mt-8 flex flex-col gap-2">
+              <div className="flex gap-0.5">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} width="14" height="14" viewBox="0 0 14 14" fill="#F5C518" aria-hidden="true">
+                    <path d="M7 1l1.545 3.13L12 4.635l-2.5 2.435.59 3.44L7 8.885l-3.09 1.625.59-3.44L2 4.635l3.455-.505L7 1z"/>
+                  </svg>
+                ))}
+              </div>
+              <p className="text-[14px] text-[#0d1b2a]/55 leading-[1.5] max-w-[36ch] italic">
+                {t.review}
+              </p>
+            </div>
           </div>
 
-          {/* Right */}
+          {/* Right — body paragraphs + insured badge */}
           <div
             data-animate
-            className="flex flex-col justify-end"
-            style={{ opacity: 0, transform: 'translateY(24px)', transition: 'opacity 0.65s cubic-bezier(0.16,1,0.3,1) 0.1s, transform 0.65s cubic-bezier(0.16,1,0.3,1) 0.1s' }}
+            className="flex flex-col justify-start gap-5"
+            style={{ opacity: 0, transform: 'translateY(20px)', transition: 'opacity 0.6s cubic-bezier(0.16,1,0.3,1) 0.08s, transform 0.6s cubic-bezier(0.16,1,0.3,1) 0.08s' }}
           >
-            <p className="text-base md:text-lg text-[#191c1d]/60 leading-relaxed mb-8">
-              {t.body}
-            </p>
+            {/* Body — Apple HIG: 17px, leading 1.47 */}
+            <p className="text-[17px] font-normal text-[#0d1b2a]/60 leading-[1.47]">{t.body1}</p>
+            <p className="text-[15px] font-normal text-[#0d1b2a]/50 leading-[1.5]">{t.body2}</p>
+            <p className="text-[15px] font-normal text-[#0d1b2a]/50 leading-[1.5]">{t.body3}</p>
+
+            {/* Insured badge */}
+            <div className="flex items-start gap-3 mt-2 p-4 rounded-xl border border-[#0d1b2a]/8 bg-white">
+              <div className="w-9 h-9 rounded-lg bg-[#F5C518]/15 flex items-center justify-center flex-shrink-0">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d4a800" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+              <div>
+                <p className="text-[14px] font-semibold text-[#0d1b2a]">{t.badge}</p>
+                <p className="text-[12px] text-[#0d1b2a]/45 mt-0.5">{t.badgeSub}</p>
+              </div>
+            </div>
+
+            {/* CTA */}
             <a
               href="#contact"
-              className="self-start inline-flex items-center gap-2 text-sm font-semibold text-[#191c1d] border-b-2 border-[#FF5F5E] pb-0.5 hover:text-[#FF5F5E] transition-colors"
+              className="self-start inline-flex items-center gap-2 text-[14px] font-semibold text-[#0d1b2a] border-b-2 border-[#F5C518] pb-px hover:text-[#d4a800] transition-colors mt-1"
             >
               {t.cta}
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                 <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </a>
           </div>
-
         </div>
 
-        {/* Stats row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[#e8e9ea] border border-[#e8e9ea] overflow-hidden rounded-2xl">
-          {t.stats.map((stat, i) => (
-            <div
-              key={stat.label}
-              data-animate
-              className="bg-[#f8f9fa] px-8 py-10 flex flex-col gap-1"
-              style={{
-                opacity: 0,
-                transform: 'translateY(24px)',
-                transition: `opacity 0.65s cubic-bezier(0.16,1,0.3,1) ${0.15 + i * 0.08}s, transform 0.65s cubic-bezier(0.16,1,0.3,1) ${0.15 + i * 0.08}s`,
-              }}
-            >
-              <span className="text-4xl md:text-5xl font-bold text-[#191c1d]" style={{ letterSpacing: '-0.04em' }}>
+        {/* Stats grid — Apple HIG: separadores, no cards pesadas */}
+        <div
+          data-animate
+          className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-[#dde1e6] border border-[#dde1e6] rounded-2xl overflow-hidden bg-white"
+          style={{ opacity: 0, transform: 'translateY(20px)', transition: 'opacity 0.6s cubic-bezier(0.16,1,0.3,1) 0.16s, transform 0.6s cubic-bezier(0.16,1,0.3,1) 0.16s' }}
+        >
+          {t.stats.map((stat) => (
+            <div key={stat.label} className="px-7 py-8 flex flex-col gap-1">
+              {/* Stat value — Apple HIG: Large Title, font-bold, tight tracking */}
+              <span className="text-[34px] font-bold text-[#0d1b2a]" style={{ letterSpacing: '-0.03em' }}>
                 {stat.value}
               </span>
-              <span className="text-xs text-[#191c1d]/50 font-medium uppercase tracking-widest">
+              <span className="text-[12px] font-medium text-[#0d1b2a]/42 uppercase tracking-[0.06em]">
                 {stat.label}
               </span>
             </div>

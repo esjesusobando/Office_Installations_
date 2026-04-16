@@ -26,6 +26,8 @@
     "autoprefixer": "10.4.20",
     "postcss": "8.5.1",
     "eslint": "8.57.1",
-    "eslint-config-next": "14.2.25"
+    "eslint-config-next": "14.2.25",
+    "vitest": "^2.1.0",
+    "jsdom": "^24.0.0"
   }
 }

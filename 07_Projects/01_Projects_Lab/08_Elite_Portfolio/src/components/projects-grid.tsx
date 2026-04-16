@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 interface Project {
   id: string;
   title: string;
   category: string;
   year: string;
-  // Replace src with real images when available
   bg: string;
   tall?: boolean;
 }
@@ -21,86 +21,61 @@ const projects: Project[] = [
   { id: "6", title: "Creative Agency NW", category: "Installation", year: "2022", bg: "#1a1015" },
 ];
 
-function ProjectCard({ project, delay }: { project: Project; delay: number }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = cardRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            el.style.opacity = "1";
-            el.style.transform = "translateY(0)";
-          }, delay);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.15 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [delay]);
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <div
-      ref={cardRef}
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ 
+        duration: 0.7, 
+        delay: index * 0.1,
+        ease: [0.16, 1, 0.3, 1] 
+      }}
+      whileHover={{ scale: 1.02, y: -4 }}
       className="group relative overflow-hidden cursor-pointer"
       style={{
-        opacity: 0,
-        transform: "translateY(32px)",
-        transition: "opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1)",
         background: project.bg,
         aspectRatio: project.tall ? "3/4" : "4/3",
-        borderRadius: "4px",
+        borderRadius: "2px",
       }}
     >
-      {/* Subtle inner light — editorial */}
+      {/* Subtle inner light */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: "radial-gradient(ellipse 60% 50% at 30% 20%, rgba(255,255,255,0.06) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse 60% 50% at 30% 20%, rgba(255,255,255,0.08) 0%, transparent 70%)",
         }}
       />
 
       {/* Hover overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none transition-opacity duration-500"
+      <motion.div
+        className="absolute inset-0 pointer-events-none"
+        initial={{ opacity: 0 }}
+        whileHover={{ opacity: 1 }}
+        transition={{ duration: 0.3 }}
         style={{
-          background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 55%)",
-          opacity: 0,
-        }}
-        ref={el => {
-          if (!el) return;
-          const parent = el.parentElement;
-          if (!parent) return;
-          parent.addEventListener("mouseenter", () => (el.style.opacity = "1"));
-          parent.addEventListener("mouseleave", () => (el.style.opacity = "0"));
+          background: "linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%)",
         }}
       />
 
-      {/* Meta — reveals on hover */}
-      <div
-        className="absolute bottom-0 left-0 right-0 p-5 translate-y-2 transition-transform duration-400"
-        style={{ opacity: 0 }}
-        ref={el => {
-          if (!el) return;
-          const parent = el.parentElement;
-          if (!parent) return;
-          parent.addEventListener("mouseenter", () => {
-            el.style.opacity = "1";
-            el.style.transform = "translateY(0)";
-          });
-          parent.addEventListener("mouseleave", () => {
-            el.style.opacity = "0";
-            el.style.transform = "translateY(8px)";
-          });
-        }}
+      {/* Meta - reveals on hover */}
+      <motion.div
+        className="absolute bottom-0 left-0 right-0 p-5"
+        initial={{ opacity: 0, y: 10 }}
+        whileHover={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
       >
-        <p className="text-xs uppercase tracking-[0.2em] text-white/50 mb-1">{project.category} · {project.year}</p>
-        <p className="text-sm font-medium text-white" style={{ letterSpacing: "-0.01em" }}>{project.title}</p>
-      </div>
+        <p className="text-xs uppercase tracking-[0.2em] text-white/50 mb-1">
+          {project.category} · {project.year}
+        </p>
+        <p className="text-sm font-medium text-white" style={{ letterSpacing: "-0.01em" }}>
+          {project.title}
+        </p>
+      </motion.div>
 
       {/* Grid lines detail */}
       <div
@@ -110,25 +85,35 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
           backgroundSize: "48px 48px",
         }}
       />
-    </div>
+    </motion.div>
   );
 }
 
 export function ProjectsGrid() {
+  const headerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(headerRef, { once: true });
+
   return (
-    <section id="work" className="px-6 md:px-12 py-24 md:py-32" style={{ background: "var(--paper)" }}>
+    <section id="work" className="px-6 md:px-16 py-24 md:py-40" style={{ background: "var(--paper)" }}>
       <div className="mx-auto max-w-7xl">
 
-        {/* Section header — editorial style */}
-        <div className="flex items-baseline justify-between mb-12 pb-5" style={{ borderBottom: "1px solid var(--line)" }}>
+        {/* Section header */}
+        <motion.div 
+          ref={headerRef}
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="flex items-baseline justify-between mb-12 pb-5" 
+          style={{ borderBottom: "1px solid var(--line)" }}
+        >
           <p className="text-xs uppercase tracking-[0.24em]" style={{ color: "var(--muted)" }}>Selected Work</p>
           <p className="text-xs" style={{ color: "var(--muted)" }}>{projects.length} projects</p>
-        </div>
+        </motion.div>
 
         {/* Asymmetric grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
           {projects.map((project, i) => (
-            <ProjectCard key={project.id} project={project} delay={i * 80} />
+            <ProjectCard key={project.id} project={project} index={i} />
           ))}
         </div>
 
