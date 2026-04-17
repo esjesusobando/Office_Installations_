@@ -73,7 +73,9 @@ def run_script(script_name):
         return
 
     print(f"{Fore.YELLOW}[RUNNING] Ejecutando: {script_name}...{Style.RESET_ALL}")
-    subprocess.run([sys.executable, str(script_path)])
+    scripts_dir = str(Path(__file__).parent)
+    env = {**__import__("os").environ, "PYTHONPATH": scripts_dir}
+    subprocess.run([sys.executable, str(script_path)], cwd=scripts_dir, env=env)
 
 
 def main():
