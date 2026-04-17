@@ -225,18 +225,168 @@
 
 ---
 
-## 12. RECURSOS
+## 13. GUÍA DE ESTILO DE ESCRITURA
 
-### Links Analizados
-- chrisorwig.com (portfolio principal)
-- chrisorwigphoto.com (familia)
-- learn.chrisorwig.com (cursos)
-- CreativeLive clases
-- Books: Visual Poetry, The Creative Fight
+### Características Generales del Escritura
 
-### Skills Relacionadas
-- content-creation (para marketing)
-- brand-voice-generator (para crear voz similar)
+| Aspecto | Descripción |
+|---------|-------------|
+| **Tono general** | Warm, personal, inspirador pero accesible |
+| **VOZ** | Segunda persona ("tú", "you") - cercano al lector |
+| **Largo de oración** | Variable - cortas para énfasis, largas para reflexión |
+| **Ritmo** | Fluido, como conversando con un amigo que te inspira |
+| **Profundidad** | Capas - literal + metaforico |
+
+### Estructura de Oraciones
+
+**Patrones identificados:**
+- Oraciones cortas declarativas: "Creativity is raw energy for life."
+- Oraciones reflexivas largas: "Books deepen our appreciation, awaken our senses, and strengthen our resolve to live in a meaningful way."
+- Preguntas retóricas: "What if?" - invitan a pensar
+- Imperativos suaves: "Pause, breathe" - guía sin ordenar
+
+### Palabras y Vocabulario
+
+#### Palabras Frecuentes
+| Categoría | Palabras |
+|-----------|----------|
+| **Autenticidad** | authentic, true, real, genuine, honest |
+| **Emociones** | soulful, depth, sparkle, feeling, meaning |
+| **Acción** | create, capture, discover, inspire, become |
+| **Vida** | life, meaningful, fully, alive, journey |
+| **Creatividad** | fight, spark, wild, untamed, practice |
+
+#### Phrases Características
+- "Capture the moment, savor life"
+- "Find your hidden truth"
+- "Create your best work"
+- "Lead a more meaningful life"
+- "Stay Stoked"
+- "The camera is a life saving device"
+- "Keep the edges wild"
+
+### Técnicas Narrativas
+
+#### 1. Anécdotos Personales
+Chris comienza con historias personales o de otros para ilustrar puntos:
+- Historia de su accidente de escalada → appreciate life
+- Historia de otros creativos (escritores, fotógrafos)
+- Ejemplos de estudiantes
+
+#### 2. Metáforas
+Usa metáforas potentes:
+- "Creatividad como fuego" - necesita alimentarse
+- "La cámara como pasaporte" - para conocer personas
+- "La creatividad es un tren" - tienes que subirte
+- "Raíces y frutas" - fundamentos vs técnicas
+
+#### 3. Citas de Otros
+Incluye citas de:
+- Fotógrafos: Marc Riboud, Steve McCurry, Rodney Smith
+- Escritores: Jack Kerouac, Anne Lamott
+- Artistas: Chuck Close, Edgar Allan Poe
+- Pensadores: Plutarch, Theodore Roosevelt
+
+#### 4. Ejercicios Prácticos
+Cada capítulo termina con ejercicios de reflexión:
+- Preguntas para pensar
+- Acciones concretas
+- Reflexión personal
+
+### Temas Recurrentes en su Escritura
+
+1. **Mortalidad / Carpe Diem**
+   - "We are all going to die"
+   - La cámara como herramienta para "savor" la vida
+
+2. **Autenticidad vs Técnica**
+   - "Still of hand cannot make up for emptiness of heart"
+   - La técnica sirve, pero el alma es lo que importa
+
+3. **El viaje > el destino**
+   - "Creativity is a practice to be enjoyed"
+   - "Like a good travel book, it will become better when you take the journey yourself"
+
+4. **Lucha pero no guerra**
+   - "Creative Fight" - no contra otros, sino contra uno mismo
+   - Perseverancia vs competencia
+
+5. **Reducir y simplificar**
+   - "Use less to say more"
+   - "Reduce, simplify, and deepen"
+
+### Formato de Libros y Artículos
+
+**Estructura típica:**
+1. **Introducción personal** - why this matters to him
+2. **Concepto central** - qué vas a aprender
+3. **Historia/ejemplo** - anécdota que ilustra
+4. **Entrevista** -观点 de otro creativo (en libros)
+5. **Ejercicio** - acción para el lector
+6. **Cierre** - resumen + siguiente paso
+
+**Libros:**
+- Visual Poetry (2009)
+- People Pictures
+- The Creative Fight (2015)
+- Lightroom series
+- Photoshop series
+
+### Ejemplo de Escritura
+
+> "I am writing this book because we are all going to die. I suppose that's why all books are written. Books, whether the study of seashells or Shakespearean verse, help us to live. Books deepen our appreciation, awaken our senses, and strengthen our resolve to live in a meaningful way."
+
+> "Creativity is raw energy for life. It is unpredictable and fierce. It is wild, elusive and untamed."
+
+> "The secret to success? You can't wait on the sidelines but have to jump in. You have to go after inspiration with a club."
+
+### Aplicaciones Prácticas para Escribir "al estilo de Chris Orwig"
+
+**✅ HACER:**
+- Usar "tú" / "you" - segunda persona
+- Comenzar con historia personal
+- Incluir citas de otros creativos
+- Terminar capítulos con ejercicio/acción
+- Mezclar oraciones cortas y largas
+- Usar metáforas de naturaleza/vida
+- Ser warm pero no cursi
+- Incluir valores: autenticidad, significado
+
+**❌ NO HACER:**
+- Lenguaje técnico innecesario
+- Oraciones demasiado largas o complicadas
+- Ser preachy o didactic
+- Usar jerga de industria
+- Ser superficial - siempre hay profundidad
+- Escribir solo sobre técnica
+
+---
+
+## 14. REFERENCIAS DE ADOBE MAX
+
+### Charlas/Talks Identificados
+
+| Evento | Título | Tema |
+|--------|--------|------|
+| Adobe MAX 2018 | Capturing Layers of Expression in Portraits | Retratos |
+| Adobe MAX 2016 | Cultivating the Creative Spark | Creatividad |
+| Adobe MAX | Multiple sessions (5x MAX Master) | Varios |
+
+### Frases de sus Charlas
+
+> "The foundation for creating better portraits isn't a sense of light. It isn't lenses. It isn't composition. The foundation is you. Who you are really shapes the photographs that you make."
+
+> "What we are changes the person in front of our lens. If you're sincere, your portraits will be, too."
+
+> "When you see something that really inspires you, pause, breathe. Ask yourself what is this picture saying to me. Ask yourself 'Why?' That can make all the difference."
+
+### Conceptos de sus Charlas
+
+1. **Look Inward** - La fotografía comienza dentro de ti
+2. **Capture Emotion** - Más que apariencia, capturar esencia
+3. **Edit with Purpose** - Claridad, lighting, storytelling
+4. **Reduce and Simplify** - Decir más con menos
+5. **Find Your Spark** - Descubrir tu verdad creativa
 
 ---
 
