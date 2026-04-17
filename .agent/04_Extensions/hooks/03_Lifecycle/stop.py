@@ -134,7 +134,7 @@ def main():
 
     print("--- STOP HOOK ---")
 
-    msg = "Sesion finalizada. Todos los procesos se han detenido correctamente."
+    msg = "Claude listo. Hasta luego."
     print(msg)
 
     # Notificacion de voz al finalizar (skip if quiet mode)
