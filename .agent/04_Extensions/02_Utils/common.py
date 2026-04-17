@@ -7,6 +7,7 @@ import json
 _STATE_FILE = os.path.join(".claude", "history", "sessions", "voice_state.json")
 _LAST_NOTIFICATION_TIME = 0
 
+
 def _load_state():
     """Load voice notification state from file."""
     try:
@@ -17,6 +18,7 @@ def _load_state():
         pass
     return {"task_count": 0}
 
+
 def _save_state(state):
     """Save voice notification state to file."""
     try:
@@ -25,6 +27,7 @@ def _save_state(state):
             json.dump(state, f, indent=2)
     except:
         pass
+
 
 def should_speak(priority="normal"):
     """
@@ -63,7 +66,7 @@ def should_speak(priority="normal"):
     state = _load_state()
     state["task_count"] = state.get("task_count", 0) + 1
 
-    should_notify = (state["task_count"] % 2 == 0)
+    should_notify = state["task_count"] % 2 == 0
 
     _save_state(state)
 
@@ -71,6 +74,7 @@ def should_speak(priority="normal"):
         _LAST_NOTIFICATION_TIME = current_time
 
     return should_notify
+
 
 def speak(text, priority="normal"):
     """
@@ -97,16 +101,21 @@ def speak(text, priority="normal"):
     )
 
     try:
-        subprocess.Popen(["powershell.exe", "-Command", ps_command],
-                         stdout=subprocess.DEVNULL,
-                         stderr=subprocess.DEVNULL)
+        subprocess.Popen(
+            ["powershell.exe", "-Command", ps_command],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
     except Exception as e:
         print(f"Error al intentar activar voz: {e}")
+
 
 def visual_alert(text):
     """Muestra una alerta visual (msg.exe o MessageBox fallback)."""
     # Use full path for msg.exe and run in background to avoid blocking
-    msg_path = os.path.join(os.environ.get('SystemRoot', 'C:\\Windows'), 'System32', 'msg.exe')
+    msg_path = os.path.join(
+        os.environ.get("SystemRoot", "C:\\Windows"), "System32", "msg.exe"
+    )
     if os.path.exists(msg_path):
         subprocess.Popen([msg_path, "*", text])
     else:
@@ -115,26 +124,41 @@ def visual_alert(text):
         ps_command = f"Add-Type -AssemblyName PresentationFramework; [System.Windows.MessageBox]::Show('{clean_text}', 'Claude Code Notification')"
         subprocess.Popen(["powershell.exe", "-Command", ps_command])
 
+
 def log_to_json(hook_name, data):
     """Registra datos del hook en un archivo JSON específico."""
     import json
     from datetime import datetime
 
     log_path = os.path.join(".claude", "history", "sessions", f"{hook_name}.json")
-    log_entry = {
-        "timestamp": datetime.now().isoformat(),
-        "data": data
-    }
+    log_entry = {"timestamp": datetime.now().isoformat(), "data": data}
 
-    # Append to JSON list
+    # Append to JSON list - modo robusto
     try:
+        logs = []
+
+        # Leer archivo existente SIEMPRE como lista
         if os.path.exists(log_path) and os.path.getsize(log_path) > 0:
-            with open(log_path, "r", encoding="utf-8") as f:
-                logs = json.load(f)
-        else:
-            logs = []
+            try:
+                with open(log_path, "r", encoding="utf-8") as f:
+                    content = f.read().strip()
+                    if content:
+                        # Intentar parsing - si falla, reiniciar
+                        existing = json.loads(content)
+                        if isinstance(existing, list):
+                            logs = existing
+                        else:
+                            # Archivo corrupto con objeto sueto, reiniciar
+                            logs = []
+            except (json.JSONDecodeError, Exception):
+                # Archivo corrupto, reiniciar
+                logs = []
 
         logs.append(log_entry)
+
+        # Mantener solo últimos 50 entries para no crecer infinitamente
+        if len(logs) > 50:
+            logs = logs[-50:]
 
         with open(log_path, "w", encoding="utf-8") as f:
             json.dump(logs, f, indent=2, ensure_ascii=False)

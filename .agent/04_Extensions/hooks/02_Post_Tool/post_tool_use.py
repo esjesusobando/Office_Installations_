@@ -127,6 +127,13 @@ def cleanup_empty_docs_dirs():
 
 def cleanup_nul_files():
     """Remove Windows nul device files accidentally created by redirect bugs."""
+    import sys
+
+    # On Windows, 'nul' and 'NUL' are reserved device names — Path.exists() returns True
+    # but they cannot be deleted. Skip cleanup on Windows to avoid the WinError 5.
+    if sys.platform == "win32":
+        return
+
     nul_files = [
         PROJECT_ROOT / "nul",
         PROJECT_ROOT / "NUL",
