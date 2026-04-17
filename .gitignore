@@ -126,3 +126,4 @@ claude-plugins-official/
 
 # Guardian Angel Entrypoint — keep tracked, needed for GGA hook
 # AGENTS.md
+.claude/history/sessions/stop.json
