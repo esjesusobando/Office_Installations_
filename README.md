@@ -8,7 +8,7 @@
 
 ---
 
-## 📊 Estado del Sistema (v6.1 - 2026-04-11)
+## 📊 Estado del Sistema (v6.1 - 2026-04-17)
 
 | Métrica            | Valor       |
 |:-------------------|:-----------:|
@@ -16,7 +16,7 @@
 | **Skills**         |    165+     |
 | **Rules**          |     23      |
 | **MCPs**           |   29 activos|
-| **HUBs**           |     10      |
+| **HUBs**           |     15      |
 | **SDD Workflows**  |      9      |
 
 ---
@@ -195,6 +195,9 @@ Code review automático integrado:
 | **Scripts INDEX**        | `08_Scripts_Os/SCRIPTS_INDEX.md`                    |
 | **OS Integration Audit** | `02_Knowledge/04_Docs/OS_Integration_Audit_v6.1.md` |
 | **Edge Cases**           | `02_Knowledge/04_Docs/OS_Edge_Cases_Analysis.md`    |
+| **Chris Orwig Style**    | `02_Knowledge/03_Research/CHRIS_ORWIG_STYLE_GUIDE.md` |
+| **Neural Networks Doc**  | `REDES_NEURONALES_TOKENS_VECTORES_EMBEDDINGS.md`     |
+| **Landing Template**     | `02_Knowledge/04_Templates/LANDING_WEBINAR_TEMPLATE.md` |
 
 - --
 

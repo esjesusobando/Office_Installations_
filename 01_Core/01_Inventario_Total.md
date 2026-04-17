@@ -1,7 +1,7 @@
 # 📦 INVENTARIO TOTAL — Think Different AI
 
-> **Fecha**: 2026-03-31
-> **Versión**: v6.1 — Post-Genesis Audit
+> **Fecha**: 2026-04-17
+> **Versión**: v6.1 — Post-Auditoría + Style Guides
 > **Estado**: ✅ ACTIVO — Documento de referencia principal
 
 ---
@@ -140,7 +140,7 @@ Cada skill ahora tiene:
 
 ---
 
-## 🆕 CAMBIOS v6.1 (2026-03-26)
+## 🆕 CAMBIOS v6.1 (2026-04-17)
 
 | Fix            | Descripción                                                       |
 |:---------------|:------------------------------------------------------------------|
@@ -149,5 +149,7 @@ Cada skill ahora tiene:
 | **Test zombie**| `test_audit_engineering.py` archivado (módulo Oil Drilling ID 42) |
 | **Armor Layer**| `conftest.py` actualizado con `LEGACY_SCRIPTS_DIR` centralizado   |
 | **Este archivo**| Auto-referencia LEGACY eliminada                                  |
+| **Style Guide** | Chris Orwig Visual + Writing Guide creados (400+ líneas)       |
+| **Docs**       | Landing template + Neural Networks example + Git session history ignored |
 
 © 2026 PersonalOS | Inventario v6.1 — Pure Green
