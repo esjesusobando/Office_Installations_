@@ -225,9 +225,21 @@
 
 ---
 
-## 13. GUÍA DE ESTILO DE ESCRITURA
+## 13. GUÍA DE ESTILO DE ESCRITURA (ADAPTABLE)
 
-### Características Generales del Escritura
+> ⚠️ **NOTA IMPORTANTE**: Esta guía es una **BASE adaptable**. La esencia Chris Orwig (calidez, autenticidad, profundidad) se mezcla con el contexto. Si es contenido profesional → profesional con corazón. Si es lifestyle → lifestyle con propósito.
+
+### Mix Base = Esencia Chris Orwig + Contexto
+
+| Contexto | Mix Aplicado |
+|---------|--------------|
+| **Profesional/Corporativo** | Profesional + calidez humana + propósito |
+| **Lifestyle/Personal** | Personal + inspirador + auténtico |
+| **Educativo/Cursos** | Instructor warm + ejercicios prácticos |
+| **Blog/Artículos** | Historia personal + concepto + acción |
+| **Redes Sociales** | Breve + inspirador + comunidad |
+
+### Características Generales del Escritura (Base)
 
 | Aspecto | Descripción |
 |---------|-------------|
@@ -345,20 +357,57 @@ Cada capítulo termina con ejercicios de reflexión:
 **✅ HACER:**
 - Usar "tú" / "you" - segunda persona
 - Comenzar con historia personal
-- Incluir citas de otros creativos
+- Incluir citas de otros creativas
 - Terminar capítulos con ejercicio/acción
 - Mezclar oraciones cortas y largas
 - Usar metáforas de naturaleza/vida
 - Ser warm pero no cursi
 - Incluir valores: autenticidad, significado
+- **Adaptar al contexto** manteniendo la esencia
 
 **❌ NO HACER:**
 - Lenguaje técnico innecesario
 - Oraciones demasiado largas o complicadas
-- Ser preachy o didactic
+- Ser preachy o didático
 - Usar jerga de industria
 - Ser superficial - siempre hay profundidad
 - Escribir solo sobre técnica
+- Perder la calidez por ser "muy formal"
+
+---
+
+## 15. MATRIZ DE ADAPTACIÓN POR CONTEXTO
+
+### Cómo aplicar la guía según el contexto:
+
+| Contexto | Tono | Longitud | Ejemplo de Opening |
+|----------|------|----------|-------------------|
+| **Corporativo/Empresa** | Profesional + warmth | Medio | "En [empresa], creemos que el éxito viene de..." |
+| **Startup/Tech** | Innovador + accesible | Corto-Medio | "El futuro se construye con personas que..." |
+| **Educativo/Cursos** | Instructor + inspirador | Largo | "Hace 10 años descubrí algo que cambió..." |
+| **Personal/Lifestyle** | Auténtico + vulnerable | Medio | "Esta es la historia de cómo aprendí..." |
+| **Blog/Artículo** | Narrativo + actionable | Largo | "Hace un año me pasó algo que..." |
+| **Redes/Social** | Cercano + breve | Corto | "Una verdad que aprendí..." |
+| **Presentaciones** | Energético + motivador | Medio | "Imagina que..." |
+
+### Fórmula de Adaptación
+
+```
+[ESTILO CHRIS ORWIG] + [CONTEXTO] = [TU VOZ]
+      ↓                    ↓
+Calidez +         + Profesional = Warm Professional
+Autenticidad       + Lifestyle    = Authentic Lifestyle
+Profundidad        + Educativo   = Instructor with Soul
+Inspiración        + Corporativo = Purpose-Driven Content
+```
+
+### Checklist Antes de Escribir
+
+- [ ] ¿Cuál es el contexto? (profesional, personal, educativo)
+- [ ] ¿Quién es mi audiencia? (expertise level)
+- [ ] ¿Cuál es el objetivo? (informar, inspirar, convertir)
+- [ ] ¿Cómo mantengo la ESENCIA (calidez + autenticidad) en este contexto?
+- [ ] ¿El tono es apropiado pero no pierde el alma de Chris Orwig?
 
 ---
 
@@ -392,3 +441,4 @@ Cada capítulo termina con ejercicios de reflexión:
 
 *Documento creado por ingeniería inversa - 2026-04-17*
 *Inspirado por el sistema Think Different PersonalOS*
+*Esta guía es adaptable - usar la esencia Chris Orwig (calidez + autenticidad + profundidad) en cualquier contexto*
