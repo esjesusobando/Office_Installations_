@@ -53,7 +53,7 @@ export default function Home() {
             { en: 'Services', es: 'Servicios', href: '#services' },
             { en: 'Projects', es: 'Proyectos', href: '#gallery' },
             { en: 'About Us', es: 'Nosotros', href: '#about' },
-            { en: 'Service Area', es: 'Área de Servicio', href: '#contact' },
+            { en: 'Service Area', es: 'Área de Servicio', href: '#area' },
           ].map((item) => (
             <a
               key={item.en}
@@ -275,12 +275,12 @@ export default function Home() {
               &copy; 2026 OIM Office Installations. Since 2018. All rights reserved.
             </p>
             <div className="flex gap-5">
-              <a href="#contact" className="text-[12px] text-white/22 hover:text-white/50 transition-colors">
+              <span className="text-[12px] text-white/22">
                 {lang === 'en' ? 'Privacy' : 'Privacidad'}
-              </a>
-              <a href="#contact" className="text-[12px] text-white/22 hover:text-white/50 transition-colors">
+              </span>
+              <span className="text-[12px] text-white/22">
                 {lang === 'en' ? 'Terms' : 'Términos'}
-              </a>
+              </span>
             </div>
           </div>
         </div>

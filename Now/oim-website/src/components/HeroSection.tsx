@@ -48,7 +48,7 @@ export function HeroSection({ videoSrc, posterSrc, children }: HeroSectionProps)
   }, [videoSrc]);
 
   return (
-    <section className="relative w-full min-h-[100dvh] overflow-hidden bg-[#0d1b2a]">
+    <section id="hero" className="relative w-full min-h-[100dvh] overflow-hidden bg-[#0d1b2a]">
 
       {/* Navy bg — visible while video loads, matches brand */}
       <div className="absolute inset-0 bg-[#0d1b2a]" />
@@ -90,7 +90,7 @@ export function HeroSection({ videoSrc, posterSrc, children }: HeroSectionProps)
       />
 
       {/* Scroll cue */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 animate-bounce" aria-hidden="true">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 animate-bounce z-20" aria-hidden="true">
         <div className="w-5 h-8 rounded-full border border-white/20 flex items-start justify-center pt-1.5">
           <div className="w-1 h-2 rounded-full bg-white/35" />
         </div>
