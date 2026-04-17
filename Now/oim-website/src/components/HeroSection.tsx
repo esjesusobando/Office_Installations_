@@ -66,7 +66,7 @@ export function HeroSection({ videoSrc, posterSrc, children }: HeroSectionProps)
         aria-hidden="true"
         suppressHydrationWarning
         className="absolute inset-0 w-full h-full object-cover will-change-transform"
-        style={{ opacity: 0, transition: 'opacity 1.2s cubic-bezier(0.16,1,0.3,1)' }}
+        style={{ opacity: 0, transition: 'opacity 0.4s ease-out' }}
       />
 
       {/* Cinematic overlays — NO backdrop-blur (ruins video) */}

@@ -3,10 +3,10 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@opencode-ai/plugin": "1.4.6"
+    "@opencode-ai/plugin": "1.4.7"
   },
   "devDependencies": {
-    "node-notifier": "10.0.1",
-    "detect-terminal": "2.0.0"
+    "detect-terminal": "2.0.0",
+    "node-notifier": "10.0.1"
   }
 }
