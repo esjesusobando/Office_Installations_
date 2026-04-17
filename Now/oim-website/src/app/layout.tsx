@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
 
+// Load only Geist Sans — Mono not used in UI, saves ~20KB
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
   display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
+  preload: true,
 });
 
 // ─── SEO SOTA ────────────────────────────────────────────────────────────────
@@ -25,16 +21,18 @@ export const metadata: Metadata = {
     template: "%s | OIM Atlanta",
   },
   description:
-    "Professional office furniture installation in Atlanta, GA. Corporate space management engineering — cubicles, desks, workstations, TVs, whiteboards & full office setups. Licensed & insured since 2018. Call +1 (470) 595-0121.",
+    "Professional office furniture installation in Atlanta, GA. Cubicles, desks, workstations, TVs, whiteboards & full office setups. Licensed & insured since 2018. Free quote: +1 (470) 595-0121.",
 
   keywords: [
     "office furniture installation Atlanta",
     "commercial furniture assembly Georgia",
-    "office setup Atlanta",
+    "office setup Atlanta GA",
     "furniture relocation Atlanta",
     "bilingual office installers Atlanta",
     "cubicle installation Atlanta",
+    "workstation setup Atlanta",
     "Office Installations Mayen",
+    "OIM Atlanta",
   ],
 
   authors: [{ name: "Office Installations Mayen" }],
@@ -57,6 +55,7 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: "OIM - Office Furniture Installation Atlanta",
+        type: "image/jpeg",
       },
     ],
   },
@@ -70,12 +69,13 @@ export const metadata: Metadata = {
     images: ["/og-image.jpg"],
   },
 
-  // ── Local Business ──
+  // ── Canonicals + hreflang ──
   alternates: {
     canonical: siteUrl,
     languages: {
       "en-US": siteUrl,
       "es-US": `${siteUrl}?lang=es`,
+      "x-default": siteUrl,
     },
   },
 
@@ -87,61 +87,101 @@ export const metadata: Metadata = {
       follow: true,
       "max-image-preview": "large",
       "max-snippet": -1,
+      "max-video-preview": -1,
     },
   },
 
   icons: {
-    icon: "/favicon-drill.png",
-    apple: "/apple-touch-icon.png",
-  },
-};
-
-// ─── Structured Data — Local Business ────────────────────────────────────────
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: "Office Installations Mayen",
-  alternateName: "OIM",
-  description:
-    "Professional office furniture installation, setup, and relocation services in Atlanta, GA since 2018.",
-  url: siteUrl,
-  telephone: "+1-470-595-0121",
-  email: "oiminstallllc@gmail.com",
-  foundingDate: "2018",
-  areaServed: {
-    "@type": "GeoCircle",
-    geoMidpoint: {
-      "@type": "GeoCoordinates",
-      latitude: 33.749,
-      longitude: -84.388,
-    },
-    geoRadius: "80000",
-  },
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Atlanta",
-    addressRegion: "GA",
-    addressCountry: "US",
-  },
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "07:00",
-      closes: "18:00",
-    },
-  ],
-  priceRange: "$$",
-  hasOfferCatalog: {
-    "@type": "OfferCatalog",
-    name: "Office Furniture Services",
-    itemListElement: [
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Office Furniture Installation" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Office Setup & Reconfiguration" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Furniture Disassembly & Moving" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Commercial Projects" } },
+    icon: [
+      { url: "/favicon-drill.png", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
   },
+
+  // ── Verification (add when available) ──
+  // verification: { google: "GOOGLE_SEARCH_CONSOLE_TOKEN" },
+
+  category: "business",
+};
+
+// ─── Structured Data — LocalBusiness + Service ───────────────────────────────
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "@id": `${siteUrl}/#business`,
+      name: "Office Installations Mayen",
+      alternateName: "OIM",
+      description:
+        "Professional office furniture installation, setup, and relocation services in Atlanta, GA since 2018.",
+      url: siteUrl,
+      telephone: "+1-470-595-0121",
+      email: "oiminstallllc@gmail.com",
+      foundingDate: "2018",
+      image: `${siteUrl}/og-image.jpg`,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteUrl}/favicon-drill.png`,
+      },
+      areaServed: [
+        { "@type": "City", name: "Atlanta", containedInPlace: { "@type": "State", name: "Georgia" } },
+        { "@type": "City", name: "Marietta" },
+        { "@type": "City", name: "Alpharetta" },
+        { "@type": "City", name: "Decatur" },
+        { "@type": "City", name: "Sandy Springs" },
+      ],
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "3715 Northcrest Rd Suite 19",
+        addressLocality: "Atlanta",
+        addressRegion: "GA",
+        postalCode: "30340",
+        addressCountry: "US",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 33.749,
+        longitude: -84.388,
+      },
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          opens: "07:00",
+          closes: "18:00",
+        },
+      ],
+      priceRange: "$$",
+      currenciesAccepted: "USD",
+      paymentAccepted: "Cash, Credit Card, Check",
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Office Furniture Services",
+        itemListElement: [
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Office Furniture Installation", provider: { "@id": `${siteUrl}/#business` } } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Office Setup & Reconfiguration", provider: { "@id": `${siteUrl}/#business` } } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Furniture Disassembly & Moving", provider: { "@id": `${siteUrl}/#business` } } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Commercial Projects", provider: { "@id": `${siteUrl}/#business` } } },
+        ],
+      },
+      sameAs: [
+        "https://www.instagram.com/oimayen",
+        "https://wa.me/14705950121",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: "OIM - Office Installations Mayen",
+      description: "Office furniture installation services in Atlanta, GA",
+      publisher: { "@id": `${siteUrl}/#business` },
+      inLanguage: ["en-US", "es-US"],
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -151,9 +191,12 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} h-full antialiased`}
     >
       <head>
+        {/* Preconnect to Google Fonts CDN */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

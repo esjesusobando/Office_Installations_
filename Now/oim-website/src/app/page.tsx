@@ -1,13 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { HeroSection } from '@/components/HeroSection';
 import { ScrollVideoServices } from '@/components/ScrollVideoServices';
-import ServicesSection from '@/components/ServicesSection';
-import AboutSection from '@/components/AboutSection';
-import ProjectGallery from '@/components/ProjectGallery';
-import ContactForm from '@/components/ContactForm';
-import ServiceArea from '@/components/ServiceArea';
+
+// Lazy load below-the-fold sections — reduces initial JS bundle
+const ServicesSection = lazy(() => import('@/components/ServicesSection'));
+const AboutSection    = lazy(() => import('@/components/AboutSection'));
+const ProjectGallery  = lazy(() => import('@/components/ProjectGallery'));
+const ContactForm     = lazy(() => import('@/components/ContactForm'));
+const ServiceArea     = lazy(() => import('@/components/ServiceArea'));
 
 export default function Home() {
   const [lang, setLang] = useState<'en' | 'es'>('en');
@@ -169,20 +171,30 @@ export default function Home() {
         lang={lang}
       />
 
-      {/* ── SERVICES — 4 cards con expertise ── */}
-      <ServicesSection lang={lang} />
+      {/* ── SERVICES — lazy loaded ── */}
+      <Suspense fallback={<div className="h-32 bg-white" />}>
+        <ServicesSection lang={lang} />
+      </Suspense>
 
       {/* ── ABOUT ── */}
-      <AboutSection lang={lang} />
+      <Suspense fallback={<div className="h-32 bg-[#f4f6f8]" />}>
+        <AboutSection lang={lang} />
+      </Suspense>
 
       {/* ── GALLERY ── */}
-      <ProjectGallery lang={lang} />
+      <Suspense fallback={<div className="h-32 bg-white" />}>
+        <ProjectGallery lang={lang} />
+      </Suspense>
 
       {/* ── CONTACT ── */}
-      <ContactForm lang={lang} />
+      <Suspense fallback={<div className="h-32 bg-[#f4f6f8]" />}>
+        <ContactForm lang={lang} />
+      </Suspense>
 
       {/* ── SERVICE AREA ── */}
-      <ServiceArea lang={lang} />
+      <Suspense fallback={<div className="h-32 bg-white" />}>
+        <ServiceArea lang={lang} />
+      </Suspense>
 
       {/* ── FOOTER ── */}
       <footer className="bg-[#0d1b2a] px-6 md:px-10 py-14">

@@ -64,30 +64,49 @@ export function ScrollVideoServices({ videoSrc, scrollHeight = 400, lang = 'en' 
     return () => video.removeEventListener('loadedmetadata', onMeta);
   }, []);
 
+  // Refs for DOM-direct progress bar updates (avoid re-render on every scroll tick)
+  const progressBarRef   = useRef<HTMLDivElement>(null);
+  const progressTrackRef = useRef<HTMLDivElement>(null);
+  const segmentsRef      = useRef<HTMLDivElement[]>([]);
+
   const tick = useCallback(() => {
     rafId.current = null;
     const container = containerRef.current;
     const video     = videoRef.current;
     if (!container || !video || durationRef.current === 0) return;
 
-    const rect      = container.getBoundingClientRect();
+    const rect       = container.getBoundingClientRect();
     const scrollable = container.offsetHeight - window.innerHeight;
     if (scrollable <= 0) return;
 
     const raw = Math.max(0, Math.min(1, -rect.top / scrollable));
+    if (Math.abs(raw - lastProgress.current) <= 0.0005) return;
 
-    if (Math.abs(raw - lastProgress.current) > 0.0005) {
-      lastProgress.current = raw;
-      video.currentTime = raw * durationRef.current;
+    lastProgress.current = raw;
 
-      const idx = Math.min(
-        Math.floor(raw * servicesData.length),
-        servicesData.length - 1
-      );
+    // Video scrub — always
+    video.currentTime = raw * durationRef.current;
 
-      setProgress(raw);
-      setActiveIndex(idx);
-    }
+    // Progress bars — DOM direct, zero re-render
+    if (progressBarRef.current)   progressBarRef.current.style.width  = `${raw * 100}%`;
+    if (progressTrackRef.current) progressTrackRef.current.style.height = `${raw * 100}%`;
+
+    const idx = Math.min(Math.floor(raw * servicesData.length), servicesData.length - 1);
+
+    // Segment dots — DOM direct
+    segmentsRef.current.forEach((seg, i) => {
+      if (!seg) return;
+      seg.style.flex = i === idx ? '2' : '1';
+      seg.style.background = i === idx ? '#F5C518' : 'rgba(255,255,255,0.18)';
+    });
+
+    // Only setState when section changes — O(1) re-renders per section, not per pixel
+    setActiveIndex((prev) => (prev !== idx ? idx : prev));
+    setProgress((prev) => {
+      // Only update React state every ~2% for the counter display
+      if (Math.abs(prev - raw) > 0.02) return raw;
+      return prev;
+    });
   }, []);
 
   const handleScroll = useCallback(() => {
@@ -227,11 +246,9 @@ export function ScrollVideoServices({ videoSrc, scrollHeight = 400, lang = 'en' 
               <div className="mt-8 space-y-2">
                 <div className="h-px w-full bg-white/8 overflow-hidden rounded-full">
                   <div
+                    ref={progressBarRef}
                     className="h-full bg-[#F5C518] rounded-full"
-                    style={{
-                      width: `${progress * 100}%`,
-                      transition: 'width 0.08s linear',
-                    }}
+                    style={{ width: '0%', transition: 'width 0.08s linear' }}
                   />
                 </div>
 
@@ -240,6 +257,7 @@ export function ScrollVideoServices({ videoSrc, scrollHeight = 400, lang = 'en' 
                   {servicesData.map((_, i) => (
                     <div
                       key={i}
+                      ref={(el) => { if (el) segmentsRef.current[i] = el; }}
                       style={{
                         height: '3px',
                         flex: i === activeIndex ? '2' : '1',
@@ -269,11 +287,9 @@ export function ScrollVideoServices({ videoSrc, scrollHeight = 400, lang = 'en' 
         <div className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col items-center gap-1.5">
           <div className="w-px bg-white/10 overflow-hidden rounded-full" style={{ height: '80px' }}>
             <div
+              ref={progressTrackRef}
               className="w-full bg-[#F5C518] rounded-full"
-              style={{
-                height: `${progress * 100}%`,
-                transition: 'height 0.08s linear',
-              }}
+              style={{ height: '0%', transition: 'height 0.08s linear' }}
             />
           </div>
         </div>
