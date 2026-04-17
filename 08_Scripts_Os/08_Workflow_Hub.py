@@ -62,7 +62,7 @@ def dynamic_speak(text):
 
 
 def run_script(script_name):
-    script_path = Path(__file__).parent / "Workflow_Fixed" / script_name
+    script_path = Path(__file__).parent / "04_Workflow" / script_name
     if not script_path.exists():
         print(f"{Fore.RED}[ERROR] Script no encontrado: {script_path}{Style.RESET_ALL}")
         return
