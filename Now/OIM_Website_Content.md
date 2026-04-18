@@ -90,11 +90,11 @@ Monday - Saturday [Indicar horario]
 
 ## 🛠️ Implementation Checklist
 
-| Elemento | Recomendación |
-|---------|---------------|
-| **Idioma** | Selector ES/EN (ventaja competitiva en Atlanta) |
-| **Fotografía** | Fotos reales con buena iluminación (evitar stock) |
-| **SEO Local** | "Office Furniture Installation Atlanta" en título |
+| Elemento       | Recomendación                                             |
+|----------------|-----------------------------------------------------------|
+| **Idioma**     | Selector ES/EN (ventaja competitiva en Atlanta)           |
+| **Fotografía** | Fotos reales con buena iluminación (evitar stock)         |
+| **SEO Local**  | "Office Furniture Installation Atlanta" en título         |
 | **Formulario** | Solo 4 datos: Nombre, Empresa, Teléfono, Tipo de Servicio |
 
 ---

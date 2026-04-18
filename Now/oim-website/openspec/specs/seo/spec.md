@@ -14,14 +14,14 @@ The system MUST expose `/sitemap.xml` via `src/app/sitemap.ts` using Next.js App
 
 The sitemap MUST include the following URLs with correct priorities:
 
-| URL | changeFrequency | priority |
-|-----|----------------|----------|
-| `https://oimatlanta.com` | weekly | 1.0 |
-| `https://oimatlanta.com/#services` | monthly | 0.8 |
-| `https://oimatlanta.com/#about` | monthly | 0.8 |
-| `https://oimatlanta.com/#gallery` | monthly | 0.7 |
-| `https://oimatlanta.com/#contact` | monthly | 0.9 |
-| `https://oimatlanta.com/#area` | monthly | 0.7 |
+| URL                                | changeFrequency  | priority   |
+|------------------------------------|------------------|------------|
+| `https://oimatlanta.com`           | weekly           | 1.0        |
+| `https://oimatlanta.com/#services` | monthly          | 0.8        |
+| `https://oimatlanta.com/#about`    | monthly          | 0.8        |
+| `https://oimatlanta.com/#gallery`  | monthly          | 0.7        |
+| `https://oimatlanta.com/#contact`  | monthly          | 0.9        |
+| `https://oimatlanta.com/#area`     | monthly          | 0.7        |
 
 #### Scenario: Sitemap accessible
 

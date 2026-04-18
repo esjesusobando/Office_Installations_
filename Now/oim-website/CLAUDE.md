@@ -8,13 +8,13 @@
 
 ## Stack
 
-| Tecnología     | Versión  | Notas                              |
-|----------------|----------|------------------------------------|
-| Next.js        | 16.2.2   | App Router + Turbopack             |
-| React          | 19       | Server + Client components         |
-| TypeScript     | strict   | `tsconfig.json` strict mode        |
-| Tailwind       | v4       | `@import "tailwindcss"` + `@theme` |
-| Font           | Geist    | `next/font/google`, display:swap   |
+| Tecnología       | Versión    | Notas                                |
+|------------------|------------|--------------------------------------|
+| Next.js          | 16.2.2     | App Router + Turbopack               |
+| React            | 19         | Server + Client components           |
+| TypeScript       | strict     | `tsconfig.json` strict mode          |
+| Tailwind         | v4         | `@import "tailwindcss"` + `@theme`   |
+| Font             | Geist      | `next/font/google`, display:swap     |
 
 ## Estructura de Componentes
 
@@ -39,11 +39,11 @@ src/
 
 ### Bugs pre-existentes corregidos (2026-04-17)
 
-| Archivo | Bug | Fix |
-|---------|-----|-----|
-| `next.config.ts` | Regex `/(.*\\.(ext))` con capture group — rompe build | Cambiado a `/:path*\\.(ext)` |
-| `page.tsx` | `setLang` dentro de `useEffect` body — React 19 warning | Movido a `useState(() => {...})` lazy initializer |
-| `ScrollVideoServices.tsx` | `progress` state declarado pero nunca leído | Renombrado a `[, setProgress]` |
+| Archivo                   | Bug                                                     | Fix                                               |
+|---------------------------|---------------------------------------------------------|---------------------------------------------------|
+| `next.config.ts`          | Regex `/(.*\\.(ext))` con capture group — rompe build   | Cambiado a `/:path*\\.(ext)`                      |
+| `page.tsx`                | `setLang` dentro de `useEffect` body — React 19 warning | Movido a `useState(() => {...})` lazy initializer |
+| `ScrollVideoServices.tsx` | `progress` state declarado pero nunca leído             | Renombrado a `[, setProgress]`                    |
 
 ### Reglas
 
@@ -57,15 +57,15 @@ src/
 
 ### ✅ Implementado (2026-04-17)
 
-| Elemento | Archivo | Estado |
-|----------|---------|--------|
-| Sitemap XML | `src/app/sitemap.ts` | ✅ 6 URLs, prioridades correctas |
-| Robots.txt | `src/app/robots.ts` | ✅ allow all + sitemap ref |
-| AggregateRating | `src/app/layout.tsx` | ✅ ratingValue:5, ratingCount:47 |
-| BreadcrumbList | `src/app/layout.tsx` | ✅ en @graph, ListItem homepage |
-| Nav contrast WCAG AA | `src/app/page.tsx` | ✅ text-white/60 → 5.1:1 |
-| SVG aria-hidden | `src/components/ContactForm.tsx` | ✅ 4 SVGs decorativos |
-| Nav aria-label | `src/app/page.tsx` | ✅ bilingual EN/ES, 4 links |
+| Elemento             | Archivo                          | Estado                          |
+|----------------------|----------------------------------|---------------------------------|
+| Sitemap XML          | `src/app/sitemap.ts`             | ✅ 6 URLs, prioridades correctas |
+| Robots.txt           | `src/app/robots.ts`              | ✅ allow all + sitemap ref       |
+| AggregateRating      | `src/app/layout.tsx`             | ✅ ratingValue:5, ratingCount:47 |
+| BreadcrumbList       | `src/app/layout.tsx`             | ✅ en @graph, ListItem homepage  |
+| Nav contrast WCAG AA | `src/app/page.tsx`               | ✅ text-white/60 → 5.1:1         |
+| SVG aria-hidden      | `src/components/ContactForm.tsx` | ✅ 4 SVGs decorativos            |
+| Nav aria-label       | `src/app/page.tsx`               | ✅ bilingual EN/ES, 4 links      |
 
 ### ⏳ Pendiente
 

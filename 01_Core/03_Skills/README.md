@@ -45,17 +45,17 @@
 
 ### Tabla de Categorías
 
-| #   | Categoría                   | Propósito                      | Ejemplo PersonalOS                                       |
-|-----|-----------------------------|--------------------------------|----------------------------------------------------------|
-| 1   | **Library / API Reference** | Enseñar a usar librerías       | `nextjs-15`, `react-19`, `zod-4`                         |
-| 2   | **Product Verification**    | Confirmar features funcionan   | `pr-review`, `technical-review`                          |
-| 3   | **Data Fetching**           | Obtener datos externos         | `analytics-tracking`, `agent-browser`                    |
-| 4   | **Business Process**        | Hacer cumplir reglas/workflows | `sdd-workflow`, `planning-tasks-ai`                      |
-| 5   | **Code Scaffolding**        | Generar boilerplate            | `skill-creator`, `angular-architecture`                  |
-| 6   | **Code Quality**            | Code review y linting          | `testing-coverage`, `security-review`                    |
-| 7   | **CI/CD**                   | Deploy y pipelines             | Observabilidad, deployment                               |
-| 8   | **Runbooks**                | Respuesta a incidentes         | `systematic-debugging`, `verification-before-completion` |
-| 9   | **Infrastructure Ops**      | Operaciones de servidor/DB     | `mcp-client`, `django-drf`                               |
+| #     | Categoría                     | Propósito                        | Ejemplo PersonalOS                                         |
+|-------|-------------------------------|----------------------------------|------------------------------------------------------------|
+| 1     | **Library / API Reference**   | Enseñar a usar librerías         | `nextjs-15`, `react-19`, `zod-4`                           |
+| 2     | **Product Verification**      | Confirmar features funcionan     | `pr-review`, `technical-review`                            |
+| 3     | **Data Fetching**             | Obtener datos externos           | `analytics-tracking`, `agent-browser`                      |
+| 4     | **Business Process**          | Hacer cumplir reglas/workflows   | `sdd-workflow`, `planning-tasks-ai`                        |
+| 5     | **Code Scaffolding**          | Generar boilerplate              | `skill-creator`, `angular-architecture`                    |
+| 6     | **Code Quality**              | Code review y linting            | `testing-coverage`, `security-review`                      |
+| 7     | **CI/CD**                     | Deploy y pipelines               | Observabilidad, deployment                                 |
+| 8     | **Runbooks**                  | Respuesta a incidentes           | `systematic-debugging`, `verification-before-completion`   |
+| 9     | **Infrastructure Ops**        | Operaciones de servidor/DB       | `mcp-client`, `django-drf`                                 |
 
 ### Mapping con PersonalOS
 
@@ -128,11 +128,11 @@ deploy-skill/
 
 ### 5. ✍️ Write Descriptions That Tell Claude WHEN to Use
 
-| ❌ BAD              | ✅ GOOD                                                           |
-|--------------------|------------------------------------------------------------------|
-| "deployment stuff" | "Production deploys, rollbacks, and health checks"               |
-| "DB operations"    | "PostgreSQL CRUD, migrations, and backups"                       |
-| "code review"      | "Type safety, error handling, and security vulnerability review" |
+| ❌ BAD                | ✅ GOOD                                                             |
+|----------------------|--------------------------------------------------------------------|
+| "deployment stuff"   | "Production deploys, rollbacks, and health checks"                 |
+| "DB operations"      | "PostgreSQL CRUD, migrations, and backups"                         |
+| "code review"        | "Type safety, error handling, and security vulnerability review"   |
 
 ---
 
@@ -144,22 +144,22 @@ El **Skill Auditor** audita skills contra estándares **Anthropic SOTA v5.1** + 
 
 ### Criterios de Auditoría
 
-| Criterio               | Descripción                    |
-|------------------------|--------------------------------|
-| YAML Frontmatter       | name, description con triggers |
-| Progressive Disclosure | < 200 líneas ideal, < 500 máx  |
-| Gotchas Section        | Mínimo 3 errores documentados  |
-| Esencia Original       | Propósito claro de la skill    |
-| State Persistence      | Dónde guardar estado           |
+| Criterio                 | Descripción                      |
+|--------------------------|----------------------------------|
+| YAML Frontmatter         | name, description con triggers   |
+| Progressive Disclosure   | < 200 líneas ideal, < 500 máx    |
+| Gotchas Section          | Mínimo 3 errores documentados    |
+| Esencia Original         | Propósito claro de la skill      |
+| State Persistence        | Dónde guardar estado             |
 
 ### Scoring
 
-| Score   | Rating                                     |
-|---------|--------------------------------------------|
-| 90-100% | ✅ Excellent - Ready for production         |
-| 70-89%  | 👍 Good - Minor improvements needed         |
-| 50-69%  | ⚠️ Needs Work - Significant fixes required |
-| <50%    | ❌ Failed - Do not integrate                |
+| Score     | Rating                                       |
+|-----------|----------------------------------------------|
+| 90-100%   | ✅ Excellent - Ready for production           |
+| 70-89%    | 👍 Good - Minor improvements needed           |
+| 50-69%    | ⚠️ Needs Work - Significant fixes required   |
+| <50%      | ❌ Failed - Do not integrate                  |
 
 ### Uso
 ```bash
@@ -180,12 +180,12 @@ El **Skill Creator** genera scaffolding de skills automáticamente mediante conv
 
 ### Features v2.0
 
-| Feature           | Descripción                           |
-|-------------------|---------------------------------------|
-| evals.json        | Skills que usan evaluación automática |
-| Benchmark results | Skills críticas del OS                |
-| agents/ folder    | Sub-agentes especializados            |
-| references/       | Docs pesadas separadas                |
+| Feature             | Descripción                             |
+|---------------------|-----------------------------------------|
+| evals.json          | Skills que usan evaluación automática   |
+| Benchmark results   | Skills críticas del OS                  |
+| agents/ folder      | Sub-agentes especializados              |
+| references/         | Docs pesadas separadas                  |
 
 ### Estructura Generada
 ```
@@ -206,37 +206,37 @@ skill-name/
 
 ### 01_Core (Priority #1)
 
-| #   | Skill                       | Propósito                      |
-|-----|-----------------------------|--------------------------------|
-| 1   | Fork Terminal               | Multiplexar terminal sessions  |
-| 2   | Parallel Orchestration      | Agent teams parallel execution |
-| 3   | Premium Git Manager         | Git workflows avanzados        |
-| 4   | Subagent Driven Development | Arquitectura multi-agent       |
-| 5   | **Skill Auditor**           | Auditoría de quality           |
-| 6   | **Skill Creator**           | Crear skills automáticamente   |
+| #     | Skill                         | Propósito                        |
+|-------|-------------------------------|----------------------------------|
+| 1     | Fork Terminal                 | Multiplexar terminal sessions    |
+| 2     | Parallel Orchestration        | Agent teams parallel execution   |
+| 3     | Premium Git Manager           | Git workflows avanzados          |
+| 4     | Subagent Driven Development   | Arquitectura multi-agent         |
+| 5     | **Skill Auditor**             | Auditoría de quality             |
+| 6     | **Skill Creator**             | Crear skills automáticamente     |
 
 ### 05_Vibe_Coding (Development Frameworks)
 
-| #   | Skill          | Propósito                           |
-|-----|----------------|-------------------------------------|
-| 1   | **react-19**   | React moderno con Server Components |
-| 2   | **nextjs-15**  | Next.js App Router                  |
-| 3   | **tailwind-4** | Tailwind CSS v4                     |
-| 4   | **zod-4**      | Validación de schemas               |
-| 5   | **zustand-5**  | State management                    |
-| 6   | **ai-sdk-5**   | AI SDK integration                  |
-| 7   | **playwright** | E2E testing                         |
-| 8   | **angular**    | Angular patterns                    |
+| #     | Skill            | Propósito                             |
+|-------|------------------|---------------------------------------|
+| 1     | **react-19**     | React moderno con Server Components   |
+| 2     | **nextjs-15**    | Next.js App Router                    |
+| 3     | **tailwind-4**   | Tailwind CSS v4                       |
+| 4     | **zod-4**        | Validación de schemas                 |
+| 5     | **zustand-5**    | State management                      |
+| 6     | **ai-sdk-5**     | AI SDK integration                    |
+| 7     | **playwright**   | E2E testing                           |
+| 8     | **angular**      | Angular patterns                      |
 
 ### 06_Testing (Quality)
 
-| #   | Skill                | Propósito             |
-|-----|----------------------|-----------------------|
-| 1   | **technical-review** | Code review técnico   |
-| 2   | **pr-review**        | Pull request review   |
-| 3   | **testing-coverage** | Coverage optimization |
-| 4   | **go-testing**       | Go testing patterns   |
-| 5   | **skill-auditor**    | Quality Guardian      |
+| #     | Skill                  | Propósito               |
+|-------|------------------------|-------------------------|
+| 1     | **technical-review**   | Code review técnico     |
+| 2     | **pr-review**          | Pull request review     |
+| 3     | **testing-coverage**   | Coverage optimization   |
+| 4     | **go-testing**         | Go testing patterns     |
+| 5     | **skill-auditor**      | Quality Guardian        |
 
 ---
 
@@ -256,31 +256,31 @@ python 08_Scripts_Os/55_Sync_Skills.py --confirm
 
 ## 📊 Estadísticas (2026-04-10)
 
-| Carpeta                        | Skills | Categoría Anthropic   |
-|--------------------------------|--------|-----------------------|
-| 00_Compound_Engineering        | 8      | Business Process      |
-| 00_Personal_Os_Stack           | —      | Core OS               |
-| 00_Skill_Auditor               | 1      | Quality               |
-| 01_Agent_Teams_Lite            | 10     | Business Process      |
-| 02_Project_Manager             | 8      | Business Process      |
-| 03_Product_Manager             | 8      | Product Verification  |
-| 04_Product_Design              | 12     | Code Quality          |
-| 05_Vibe_Coding                 | 17     | Library/API Reference |
-| 06_Testing                     | 17     | Code Quality          |
-| 07_DevOps                      | 12     | CI/CD                 |
-| 08_Personal_Os                 | 9      | Runbooks              |
-| 09_Marketing                   | 10     | Data Fetching         |
-| 10_Backup                      | 5      | Legacy                |
-| 11_Doc_Processing              | 3      | Data Fetching         |
-| 12_N8N                         | 7      | Infrastructure Ops    |
-| 13_System_Master               | 5      | Infrastructure Ops    |
-| 14_Anthropic_Harness           | 7      | All Categories        |
-| 15_Skill_Creator_Oficial       | 1      | Code Scaffolding      |
-| 16_Silicon_Valley_Data_Analyst | 1      | Data Fetching         |
-| 17_SEO_SOTA_Master             | 1      | Library/API Reference |
-| 18_Personal_Life_OS            | 5      | Runbooks              |
-| 19_Video_Intel                 | —      | Exploration           |
-| 20_Skill_Template              | 🆕     | Code Scaffolding      |
+| Carpeta                          | Skills   | Categoría Anthropic     |
+|----------------------------------|----------|-------------------------|
+| 00_Compound_Engineering          | 8        | Business Process        |
+| 00_Personal_Os_Stack             | —        | Core OS                 |
+| 00_Skill_Auditor                 | 1        | Quality                 |
+| 01_Agent_Teams_Lite              | 10       | Business Process        |
+| 02_Project_Manager               | 8        | Business Process        |
+| 03_Product_Manager               | 8        | Product Verification    |
+| 04_Product_Design                | 12       | Code Quality            |
+| 05_Vibe_Coding                   | 17       | Library/API Reference   |
+| 06_Testing                       | 17       | Code Quality            |
+| 07_DevOps                        | 12       | CI/CD                   |
+| 08_Personal_Os                   | 9        | Runbooks                |
+| 09_Marketing                     | 10       | Data Fetching           |
+| 10_Backup                        | 5        | Legacy                  |
+| 11_Doc_Processing                | 3        | Data Fetching           |
+| 12_N8N                           | 7        | Infrastructure Ops      |
+| 13_System_Master                 | 5        | Infrastructure Ops      |
+| 14_Anthropic_Harness             | 7        | All Categories          |
+| 15_Skill_Creator_Oficial         | 1        | Code Scaffolding        |
+| 16_Silicon_Valley_Data_Analyst   | 1        | Data Fetching           |
+| 17_SEO_SOTA_Master               | 1        | Library/API Reference   |
+| 18_Personal_Life_OS              | 5        | Runbooks                |
+| 19_Video_Intel                   | —        | Exploration             |
+| 20_Skill_Template                | 🆕        | Code Scaffolding        |
 
 **Total categorías:** 24 — **Total skills activas:** 165+
 
@@ -317,12 +317,12 @@ python 08_Scripts_Os/55_Sync_Skills.py --confirm
 
 ## 🧠 El Modelo Mental (Aprendizaje Anthropic)
 
-| Entendimiento Anterior   | Entendimiento Correcto                |
-|--------------------------|---------------------------------------|
-| Skills = notas markdown  | Skills = carpetas (scripts incluidos) |
-| Set it and forget it     | Mantenimiento continuo                |
-| Info para Claude         | Tools que Claude puede ejecutar       |
-| Useful add-on            | Core workflow infrastructure          |
+| Entendimiento Anterior     | Entendimiento Correcto                  |
+|----------------------------|-----------------------------------------|
+| Skills = notas markdown    | Skills = carpetas (scripts incluidos)   |
+| Set it and forget it       | Mantenimiento continuo                  |
+| Info para Claude           | Tools que Claude puede ejecutar         |
+| Useful add-on              | Core workflow infrastructure            |
 
 > **La clave:** Skills se **cultivan**, no se construyen.
 > No escribas una skill perfecta el día uno. Empieza con un README, agrega Gotchas cuando hits edge cases, re-estructura con Progressive Disclosure cuando el archivo crece, inyecta scripts cuando te pillás dando las mismas instrucciones repetidamente.

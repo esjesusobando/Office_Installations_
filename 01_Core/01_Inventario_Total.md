@@ -8,21 +8,21 @@
 
 ## 📊 RESUMEN EJECUTIVO — Skills System
 
-| Categoría              | Skills  | Estado                 | Notas                                 |
-|:-----------------------|:-------:|:-----------------------|:--------------------------------------|
-| **Agent_Teams_Lite**   |    9    | ✅ No tocado           | Por instrucción del usuario           |
-| **Project_Manager**    |    9    | ✅ Esencias reales     | 100% auditado                         |
-| **Product_Manager**    |    7    | ✅ Esencias reales     | 100% auditado                         |
-| **Product_Design**     |   11    | ✅ Esencias reales     | 100% auditado (Taste Skills)          |
-| **Gentleman**          |    1    | ✅ Real                | 07_Double_Code_Review                 |
-| **Vibe_Coding**        |   21    | ✅ Esencias reales     | 100% auditado                         |
-| **Testing**            |   13    | ✅ Esencias reales     | 100% auditado                         |
-| **DevOps**             |   12    | ✅ Esencias reales     | 100% auditado                         |
-| **Personal_Os**        |   10    | ✅ Esencias reales     | 100% auditado                         |
-| **Marketing**          |   32    | ✅ Esencias reales     | 100% auditado (15+10+7)               |
-| **Backup**             |  177    | ⏭️ SKIPPED             | Por instrucción del usuario           |
-| **Doc_Processing**     |    3    | ✅ Esencias reales     | 100% auditado                         |
-| **TOTAL**              | **305** | **99%**                | **Auditado a estándar Anthropic**     |
+| Categoría                | Skills    | Estado                   | Notas                                   |
+|--------------------------|-----------|--------------------------|-----------------------------------------|
+| **Agent_Teams_Lite**     | 9         | ✅ No tocado              | Por instrucción del usuario             |
+| **Project_Manager**      | 9         | ✅ Esencias reales        | 100% auditado                           |
+| **Product_Manager**      | 7         | ✅ Esencias reales        | 100% auditado                           |
+| **Product_Design**       | 11        | ✅ Esencias reales        | 100% auditado (Taste Skills)            |
+| **Gentleman**            | 1         | ✅ Real                   | 07_Double_Code_Review                   |
+| **Vibe_Coding**          | 21        | ✅ Esencias reales        | 100% auditado                           |
+| **Testing**              | 13        | ✅ Esencias reales        | 100% auditado                           |
+| **DevOps**               | 12        | ✅ Esencias reales        | 100% auditado                           |
+| **Personal_Os**          | 10        | ✅ Esencias reales        | 100% auditado                           |
+| **Marketing**            | 32        | ✅ Esencias reales        | 100% auditado (15+10+7)                 |
+| **Backup**               | 177       | ⏭️ SKIPPED               | Por instrucción del usuario             |
+| **Doc_Processing**       | 3         | ✅ Esencias reales        | 100% auditado                           |
+| **TOTAL**                | **305**   | **99%**                  | **Auditado a estándar Anthropic**       |
 
 ---
 
@@ -30,14 +30,14 @@
 
 Cada skill ahora tiene:
 
-| Componente                | Descripción                        | Estado |
-|:--------------------------|:-----------------------------------|:------:|
-| `## Esencia Original`     | Sección obligatoria                |   ✅   |
-| `> **Propósito:**`        | Descripción real (no genérica)     |   ✅   |
-| `> **Flujo:`              | Pasos del workflow                 |   ✅   |
-| `## ⚠️ Gotchas`           | Errores comunes                    |   ⏳   |
-| `references/`             | Documentación adicional            |   ✅   |
-| `scripts/`                | Scripts ejecutables                |   ✅   |
+| Componente                  | Descripción                          | Estado   |
+|-----------------------------|--------------------------------------|----------|
+| `## Esencia Original`       | Sección obligatoria                  | ✅        |
+| `> **Propósito:**`          | Descripción real (no genérica)       | ✅        |
+| `> **Flujo:`                | Pasos del workflow                   | ✅        |
+| `## ⚠️ Gotchas`             | Errores comunes                      | ⏳        |
+| `references/`               | Documentación adicional              | ✅        |
+| `scripts/`                  | Scripts ejecutables                  | ✅        |
 
 ---
 
@@ -66,26 +66,26 @@ Cada skill ahora tiene:
 
 ## 🔧 SCRIPTS UTILIZADOS EN AUDITORÍA
 
-| Script                               | Función                                    | Estado |
-|:-------------------------------------|:-------------------------------------------|:------:|
-| `fix_duplicate_lines.py`             | Limpiar líneas duplicadas en 07_DevOps     |   ✅   |
-| `restore_essences.py`                | Restaurar esencias eliminadas              |   ✅   |
-| `fix_personal_os_essences.py`        | Arreglar esencias placeholder              |   ✅   |
-| `fix_marketing_essences.py`          | Agregar esencias a Marketing               |   ✅   |
-| `fix_yaml_skills.py`                 | Arreglar skills solo YAML                  |   ✅   |
-| `fix_doc_processing_essences.py`     | Agregar esencias Doc_Processing            |   ✅   |
-| `02_Beautify_Tables.py`              | Embellecer tablas                          |   ✅   |
+| Script                                 | Función                                      | Estado   |
+|----------------------------------------|----------------------------------------------|----------|
+| `fix_duplicate_lines.py`               | Limpiar líneas duplicadas en 07_DevOps       | ✅        |
+| `restore_essences.py`                  | Restaurar esencias eliminadas                | ✅        |
+| `fix_personal_os_essences.py`          | Arreglar esencias placeholder                | ✅        |
+| `fix_marketing_essences.py`            | Agregar esencias a Marketing                 | ✅        |
+| `fix_yaml_skills.py`                   | Arreglar skills solo YAML                    | ✅        |
+| `fix_doc_processing_essences.py`       | Agregar esencias Doc_Processing              | ✅        |
+| `02_Beautify_Tables.py`                | Embellecer tablas                            | ✅        |
 
 ---
 
 ## 📚 ARCHIVOS ACTUALIZADOS EN ESTA SESIÓN
 
-| Archivo                                      | Cambio                                                |
-|:---------------------------------------------|:------------------------------------------------------|
-| `CLAUDE.md`                                  | Estructuras actualizadas, skill counts corregidos     |
-| `04_Inventario.md`                           | Estado actual del sistema                             |
-| `12_Skills_Improvement_Plan.md`              | Plan de mejoras post-audit                            |
-| `13_Anthropic_Skills_Implementation_Plan.md` | Plan de implementación Anthropic                      |
+| Archivo                                        | Cambio                                                  |
+|------------------------------------------------|---------------------------------------------------------|
+| `CLAUDE.md`                                    | Estructuras actualizadas, skill counts corregidos       |
+| `04_Inventario.md`                             | Estado actual del sistema                               |
+| `12_Skills_Improvement_Plan.md`                | Plan de mejoras post-audit                              |
+| `13_Anthropic_Skills_Implementation_Plan.md`   | Plan de implementación Anthropic                        |
 
 ---
 
@@ -98,11 +98,11 @@ Cada skill ahora tiene:
 
 ## 📋 HISTORIAL DE CAMBIOS
 
-| Fecha        | Versión         | Cambio                                                     |
-|:-------------|:----------------|:-----------------------------------------------------------|
-| 2026-03-21   | **v5.0 LEGACY** | Marcado como deprecated                                    |
-| 2026-03-21   | **v4.0**        | Nuevo inventario en 04_Inventario.md                       |
-| 2026-03-20   | **v5.0**        | Última actualización antes de reorganización               |
+| Fecha          | Versión           | Cambio                                                       |
+|----------------|-------------------|--------------------------------------------------------------|
+| 2026-03-21     | **v5.0 LEGACY**   | Marcado como deprecated                                      |
+| 2026-03-21     | **v4.0**          | Nuevo inventario en 04_Inventario.md                         |
+| 2026-03-20     | **v5.0**          | Última actualización antes de reorganización                 |
 
 ---
 
@@ -128,10 +128,10 @@ Cada skill ahora tiene:
 
 ## 📁 INVENTARIOS DEL SISTEMA
 
-| Archivo                              | Estado   | Ubicación                                    |
-|:-------------------------------------|:--------:|:---------------------------------------------|
-| **04_Inventario.md**                 | ✅ ACTIVO | `04_Operations/04_Memory_Brain/`             |
-| **01_Inventario_Total.md**           | ✅ ACTIVO | `01_Core/02_Knowledge_Brain/`                |
+| Archivo                                | Estado     | Ubicación                                      |
+|----------------------------------------|------------|------------------------------------------------|
+| **04_Inventario.md**                   | ✅ ACTIVO   | `04_Operations/04_Memory_Brain/`               |
+| **01_Inventario_Total.md**             | ✅ ACTIVO   | `01_Core/02_Knowledge_Brain/`                  |
 
 ---
 
@@ -142,14 +142,14 @@ Cada skill ahora tiene:
 
 ## 🆕 CAMBIOS v6.1 (2026-04-17)
 
-| Fix            | Descripción                                                       |
-|:---------------|:------------------------------------------------------------------|
-| **Tests P0**   | 5 tests corregidos — `SCRIPT_DIR` apunta a `Legacy_Backup/`       |
-| **Workflows**  | 5 workflows renombrados con IDs únicos (19-23)                    |
-| **Test zombie**| `test_audit_engineering.py` archivado (módulo Oil Drilling ID 42) |
-| **Armor Layer**| `conftest.py` actualizado con `LEGACY_SCRIPTS_DIR` centralizado   |
-| **Este archivo**| Auto-referencia LEGACY eliminada                                  |
-| **Style Guide** | Chris Orwig Visual + Writing Guide creados (400+ líneas)       |
-| **Docs**       | Landing template + Neural Networks example + Git session history ignored |
+| Fix              | Descripción                                                              |
+|------------------|--------------------------------------------------------------------------|
+| **Tests P0**     | 5 tests corregidos — `SCRIPT_DIR` apunta a `Legacy_Backup/`              |
+| **Workflows**    | 5 workflows renombrados con IDs únicos (19-23)                           |
+| **Test zombie**  | `test_audit_engineering.py` archivado (módulo Oil Drilling ID 42)        |
+| **Armor Layer**  | `conftest.py` actualizado con `LEGACY_SCRIPTS_DIR` centralizado          |
+| **Este archivo** | Auto-referencia LEGACY eliminada                                         |
+| **Style Guide**  | Chris Orwig Visual + Writing Guide creados (400+ líneas)                 |
+| **Docs**         | Landing template + Neural Networks example + Git session history ignored |
 
 © 2026 PersonalOS | Inventario v6.1 — Pure Green

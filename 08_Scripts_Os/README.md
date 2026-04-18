@@ -52,25 +52,25 @@ El **motor de automatización** del PersonalOS - scripts Python para operaciones
 
 ## 📊 Estadísticas
 
-| Área                        | Cantidad   | Estado        |
-|-----------------------------|------------|---------------|
-| Scripts en 01-09_Carpetas   | 26         | ✅ Funcionando |
-| Scripts en 10_Legacy        | 60+        | ⚠️ Legacy     |
-| HUBs principales (00-14)    | 15         | ✅ Activos     |
+| Área                          | Cantidad     | Estado          |
+|-------------------------------|--------------|-----------------|
+| Scripts en 01-09_Carpetas     | 26           | ✅ Funcionando   |
+| Scripts en 10_Legacy          | 60+          | ⚠️ Legacy       |
+| HUBs principales (00-14)      | 15           | ✅ Activos       |
 
 ---
 
 ## 🔧 Scripts Principales (01_Ritual)
 
-| Script                    | Función            | Skill Asociada     |
-|---------------------------|--------------------|--------------------|
-| `09_Backlog_Triage.py`    | Procesa backlog    | backlog-processing |
-| `14_Morning_Standup.py`   | Daily standup      | morning-standup    |
-| `15_Weekly_Review.py`     | Revisión semanal   | weekly-review      |
-| `08_Ritual_Cierre.py`     | Cierre de sesión   | ritual-cierre      |
-| `11_Sync_Notes.py`        | Sincroniza notas   | sync-notes         |
-| `13_Validate_Stack.py`    | Valida stack       | validate-stack     |
-| `19_Generate_Progress.py` | Dashboard progreso |--------------------|
+| Script                      | Función              | Skill Asociada       |
+|-----------------------------|----------------------|----------------------|
+| `09_Backlog_Triage.py`      | Procesa backlog      | backlog-processing   |
+| `14_Morning_Standup.py`     | Daily standup        | morning-standup      |
+| `15_Weekly_Review.py`       | Revisión semanal     | weekly-review        |
+| `08_Ritual_Cierre.py`       | Cierre de sesión     | ritual-cierre        |
+| `11_Sync_Notes.py`          | Sincroniza notas     | sync-notes           |
+| `13_Validate_Stack.py`      | Valida stack         | validate-stack       |
+| `19_Generate_Progress.py`   | Dashboard progreso   |----------------------|
 
 ---
 

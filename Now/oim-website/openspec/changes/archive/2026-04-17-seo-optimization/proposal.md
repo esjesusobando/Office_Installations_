@@ -26,20 +26,20 @@ Todos los cambios son **aditivos**. Dos archivos nuevos (sitemap + robots), tres
 
 ## Affected Areas
 
-| Área | Impacto | Descripción |
-|------|---------|-------------|
-| `src/app/sitemap.ts` | Nuevo | Sitemap con 6 URLs (home + 5 anchors) |
-| `src/app/robots.ts` | Nuevo | robots.txt + referencia a sitemap |
-| `src/app/layout.tsx` | Modificado | AggregateRating + BreadcrumbList en JSON-LD |
-| `src/app/page.tsx` | Modificado | Contrast fix + aria-label en nav links |
-| `src/components/ContactForm.tsx` | Modificado | aria-hidden en 4 SVGs decorativos |
+| Área                             | Impacto    | Descripción                                 |
+|----------------------------------|------------|---------------------------------------------|
+| `src/app/sitemap.ts`             | Nuevo      | Sitemap con 6 URLs (home + 5 anchors)       |
+| `src/app/robots.ts`              | Nuevo      | robots.txt + referencia a sitemap           |
+| `src/app/layout.tsx`             | Modificado | AggregateRating + BreadcrumbList en JSON-LD |
+| `src/app/page.tsx`               | Modificado | Contrast fix + aria-label en nav links      |
+| `src/components/ContactForm.tsx` | Modificado | aria-hidden en 4 SVGs decorativos           |
 
 ## Risks
 
-| Riesgo | Probabilidad | Mitigación |
-|--------|-------------|------------|
-| JSON-LD inválido rompe rich results | Baja | Validar con Google Rich Results Test post-deploy |
-| Contrast change altera diseño visual | Baja | white/60 sigue siendo sutil, solo más legible |
+| Riesgo                               | Probabilidad  | Mitigación                                       |
+|--------------------------------------|---------------|--------------------------------------------------|
+| JSON-LD inválido rompe rich results  | Baja          | Validar con Google Rich Results Test post-deploy |
+| Contrast change altera diseño visual | Baja          | white/60 sigue siendo sutil, solo más legible    |
 
 ## Rollback Plan
 

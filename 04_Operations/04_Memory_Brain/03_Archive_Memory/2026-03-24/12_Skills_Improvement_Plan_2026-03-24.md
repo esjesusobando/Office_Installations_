@@ -8,15 +8,15 @@
 
 ## 🎯 ANÁLISIS: Nuestro Estado vs Anthropic
 
-| Aspecto                          | Anthropic                   | Nosotros                | Gap           |
-|----------------------------------|-----------------------------|-------------------------|---------------|
-| **Gotchas Section**              | En cada skill               | Casi ninguna            | 🔴 CRÍTICO     |
-| **Scripts en Skills**            | Recomendado                 | Pocas                   | 🔴 CRÍTICO     |
-| **On-Demand Hooks**              | Usan activamente            | No implementado         | 🟡             |
-| **Progressive Disclosure**       | Referencias a otros .md     | Pocas                   | 🟡             |
-| **Memory/State**                 | Logs, JSON en skill         | No                      | 🟡             |
-| **TypeScript/Python Skills**     | 9 tipos categorizados       | 5 categorías            | 🟢             |
-| **Source-of-Truth**              | `01_Core/03_Skills/`        | `.agent/02_Skills/`     | 🟢             |
+| Aspecto                            | Anthropic                     | Nosotros                  | Gap             |
+|------------------------------------|-------------------------------|---------------------------|-----------------|
+| **Gotchas Section**                | En cada skill                 | Casi ninguna              | 🔴 CRÍTICO       |
+| **Scripts en Skills**              | Recomendado                   | Pocas                     | 🔴 CRÍTICO       |
+| **On-Demand Hooks**                | Usan activamente              | No implementado           | 🟡               |
+| **Progressive Disclosure**         | Referencias a otros .md       | Pocas                     | 🟡               |
+| **Memory/State**                   | Logs, JSON en skill           | No                        | 🟡               |
+| **TypeScript/Python Skills**       | 9 tipos categorizados         | 5 categorías              | 🟢               |
+| **Source-of-Truth**                | `01_Core/03_Skills/`          | `.agent/02_Skills/`       | 🟢               |
 
 ---
 
@@ -26,18 +26,18 @@
 
 **Objetivo:** Agregar sección "Gotchas" a las 38 skills activas
 
-| #       | Skill                      | Gotcha a documentar                                      | Prioridad     |
-|---------|----------------------------|----------------------------------------------------------|---------------|
-| 1       | `react-19`                 | No usar useMemo/useCallback (React Compiler lo hace)     | 🔴             |
-| 2       | `nextjs-15`                | Server Actions no son RPC, cuidado con revalidación      | 🔴             |
-| 3       | `typescript`               | Never usar `any`, siempre strict                         | 🔴             |
-| 4       | `tailwind-4`               | No usar `var()` en className                             | 🔴             |
-| 5       | `angular-core`             | Signals son el futuro, no Zone.js                        | 🟡             |
-| 6       | `pr-review`                | Revisar PRs en isolation                                 | 🟡             |
-| 7       | `systematic-debugging`     | 4 fases: Observe → Hypothesis → Test → Fix               | 🟡             |
-| 8       | `skill-creator`            | Siempre crear metadata.yaml + SKILL.md                   | 🟡             |
-| 9       | `sdd-*` (8 skills)         | SDD es metodología, no shortcut                          | 🟡             |
-| 10      | `analytics-workflow`       | DRY + KISS principles                                    | 🟡             |
+| #         | Skill                        | Gotcha a documentar                                        | Prioridad       |
+|-----------|------------------------------|------------------------------------------------------------|-----------------|
+| 1         | `react-19`                   | No usar useMemo/useCallback (React Compiler lo hace)       | 🔴               |
+| 2         | `nextjs-15`                  | Server Actions no son RPC, cuidado con revalidación        | 🔴               |
+| 3         | `typescript`                 | Never usar `any`, siempre strict                           | 🔴               |
+| 4         | `tailwind-4`                 | No usar `var()` en className                               | 🔴               |
+| 5         | `angular-core`               | Signals son el futuro, no Zone.js                          | 🟡               |
+| 6         | `pr-review`                  | Revisar PRs en isolation                                   | 🟡               |
+| 7         | `systematic-debugging`       | 4 fases: Observe → Hypothesis → Test → Fix                 | 🟡               |
+| 8         | `skill-creator`              | Siempre crear metadata.yaml + SKILL.md                     | 🟡               |
+| 9         | `sdd-*` (8 skills)           | SDD es metodología, no shortcut                            | 🟡               |
+| 10        | `analytics-workflow`         | DRY + KISS principles                                      | 🟡               |
 
 **Template de Gotcha:**
 
@@ -55,16 +55,16 @@
 
 **Objetivo:** Incluir scripts ejecutables dentro de skills que lo necesitan
 
-| #       | Skill                     | Script a incluir           | Propósito                              |
-|---------|---------------------------|----------------------------|----------------------------------------|
-| 1       | `skill-creator`           | `generate-skill.py`        | Generar estructura automáticamente     |
-| 2       | `sdd-*`                   | `sdd-init.sh`              | Boot de proyecto SDD                   |
-| 3       | `analytics-workflow`      | `clean-csv.py`             | Limpieza de datos                      |
-| 4       | `e2e-testing-skill`       | `setup-playwright.sh`      | Setup de Playwright                    |
-| 5       | `test-coverage-skill`     | `coverage-check.py`        | Verificar coverage                     |
-| 6       | `observability-skill`     | `setup-prometheus.sh`      | Setup de metrics                       |
-| 7       | `free-tool-strategy`      | `lead-gen-analyzer.py`     | Análisis de leads                      |
-| 8       | `programmatic-seo`        | `keyword-scraper.py`       | Scraping de keywords                   |
+| #         | Skill                       | Script a incluir             | Propósito                                |
+|-----------|-----------------------------|------------------------------|------------------------------------------|
+| 1         | `skill-creator`             | `generate-skill.py`          | Generar estructura automáticamente       |
+| 2         | `sdd-*`                     | `sdd-init.sh`                | Boot de proyecto SDD                     |
+| 3         | `analytics-workflow`        | `clean-csv.py`               | Limpieza de datos                        |
+| 4         | `e2e-testing-skill`         | `setup-playwright.sh`        | Setup de Playwright                      |
+| 5         | `test-coverage-skill`       | `coverage-check.py`          | Verificar coverage                       |
+| 6         | `observability-skill`       | `setup-prometheus.sh`        | Setup de metrics                         |
+| 7         | `free-tool-strategy`        | `lead-gen-analyzer.py`       | Análisis de leads                        |
+| 8         | `programmatic-seo`          | `keyword-scraper.py`         | Scraping de keywords                     |
 
 ---
 
@@ -72,34 +72,34 @@
 
 **Objetivo:** Implementar hooks que solo se activan con triggers específicos
 
-| #       | Hook           | Trigger                                                | Propósito           |
-|---------|----------------|--------------------------------------------------------|---------------------|
-| 1       | `/careful`     | Bloquear `rm -rf`, `DROP TABLE`, `force-push`          | Modo producción     |
-| 2       | `/freeze`      | Bloquear Edit/Write fuera de directorio específico     | Debugging           |
-| 3       | `/audit`       | Activar audit completo post-commit                     | Quality gate        |
-| 4       | `/design`      | Activar taste-skill automáticamente en UI              | Premium design      |
+| #         | Hook             | Trigger                                                  | Propósito             |
+|-----------|------------------|----------------------------------------------------------|-----------------------|
+| 1         | `/careful`       | Bloquear `rm -rf`, `DROP TABLE`, `force-push`            | Modo producción       |
+| 2         | `/freeze`        | Bloquear Edit/Write fuera de directorio específico       | Debugging             |
+| 3         | `/audit`         | Activar audit completo post-commit                       | Quality gate          |
+| 4         | `/design`        | Activar taste-skill automáticamente en UI                | Premium design        |
 
 ---
 
 ### FASE 4: MEJORAS CONTINUAS
 
-| #       | Mejora                         | Descripción                                                | Estado     |
-|---------|--------------------------------|------------------------------------------------------------|------------|
-| 1       | **Progressive Disclosure**     | Agregar refs a `references/*.md` en skills complejas       | ⏳          |
-| 2       | **Memory/State**               | Agregar `logs/` a skills de workflow (standup, weekly)     | ⏳          |
-| 3       | **Category Alignment**         | Re-categorizar según 9 tipos Anthropic                     | ⏳          |
-| 4       | **Measurement**                | Hook para trackear uso de skills                           | ⏳          |
+| #         | Mejora                           | Descripción                                                  | Estado       |
+|-----------|----------------------------------|--------------------------------------------------------------|--------------|
+| 1         | **Progressive Disclosure**       | Agregar refs a `references/*.md` en skills complejas         | ⏳            |
+| 2         | **Memory/State**                 | Agregar `logs/` a skills de workflow (standup, weekly)       | ⏳            |
+| 3         | **Category Alignment**           | Re-categorizar según 9 tipos Anthropic                       | ⏳            |
+| 4         | **Measurement**                  | Hook para trackear uso de skills                             | ⏳            |
 
 ---
 
 ## 📊 IMPACTO ESPERADO
 
-| Métrica                       | Antes       | Después       |
-|-------------------------------|-------------|---------------|
-| Skills con Gotchas            | ~5%         | 100%          |
-| Skills con Scripts            | ~10%        | 30%           |
-| On-Demand Hooks               | 0           | 4             |
-| Descripciones optimizadas     | 0           | 38            |
+| Métrica                         | Antes         | Después         |
+|---------------------------------|---------------|-----------------|
+| Skills con Gotchas              | ~5%           | 100%            |
+| Skills con Scripts              | ~10%          | 30%             |
+| On-Demand Hooks                 | 0             | 4               |
+| Descripciones optimizadas       | 0             | 38              |
 
 ---
 

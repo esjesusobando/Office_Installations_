@@ -6,10 +6,10 @@
 
 ## Specs Synced
 
-| Domain | Action | Details |
-|--------|--------|---------|
-| seo | Created | 4 requirements, 6 scenarios |
-| accessibility | Created | 3 requirements, 4 scenarios |
+| Domain        | Action   | Details                     |
+|---------------|----------|-----------------------------|
+| seo           | Created  | 4 requirements, 6 scenarios |
+| accessibility | Created  | 3 requirements, 4 scenarios |
 
 ## Archive Contents
 
