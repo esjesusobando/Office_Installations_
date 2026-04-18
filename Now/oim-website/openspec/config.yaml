@@ -1,0 +1,71 @@
+schema: spec-driven
+
+context: |
+  Tech stack: Next.js 16.2.2, React 19, TypeScript strict, Tailwind v4, Geist font
+  Architecture: App Router, client components with lazy loading, IntersectionObserver animations
+  SEO: LocalBusiness JSON-LD, full OG/Twitter meta, security headers, aggressive asset cache
+  Style: ESLint (eslint-config-next), no formatter detected
+  Domain: oimatlanta.com — bilingual (EN/ES) office furniture installation Atlanta
+
+strict_tdd: false
+
+rules:
+  proposal:
+    - Include rollback plan for risky changes
+    - Identify affected components/files
+    - Never break existing animations or bilingual support
+  specs:
+    - Use Given/When/Then format for scenarios
+    - Use RFC 2119 keywords (MUST, SHALL, SHOULD, MAY)
+  design:
+    - Preserve existing component export patterns (named vs default)
+    - Document SEO impact of every structural change
+  tasks:
+    - Group tasks by phase (infrastructure, implementation, testing)
+    - Use hierarchical numbering (1.1, 1.2, etc.)
+    - Keep tasks small enough to complete in one session
+  apply:
+    - Follow existing code patterns and conventions
+    - NEVER use h-screen — always min-h-[100dvh]
+    - NEVER add backdrop-blur on Hero overlay
+    - Tailwind v4 syntax: @import "tailwindcss", NOT @tailwind directives
+    - Named exports: HeroSection, ScrollVideoServices; Default: everything else
+  verify:
+    - No test runner — verify via build (npm run build) and lint (npm run lint)
+    - Check SEO metadata in browser DevTools after every layout change
+  archive:
+    - Warn before merging destructive deltas (large removals)
+
+testing:
+  strict_tdd: false
+  detected: "2026-04-17"
+  note: "No test runner installed — Strict TDD Mode unavailable"
+  test_runner:
+    available: false
+    framework: null
+  test_layers:
+    - layer: unit
+      available: false
+      tool: null
+    - layer: integration
+      available: false
+      tool: null
+    - layer: e2e
+      available: false
+      tool: null
+  coverage:
+    available: false
+    command: null
+  quality_tools:
+    - tool: linter
+      available: true
+      command: "npm run lint"
+    - tool: type_checker
+      available: true
+      command: "npx tsc --noEmit"
+    - tool: formatter
+      available: false
+      command: null
+    - tool: build_check
+      available: true
+      command: "npm run build"

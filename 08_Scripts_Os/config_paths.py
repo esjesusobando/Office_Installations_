@@ -18,12 +18,11 @@ import os
 
 
 def find_project_root():
-    """Detecta automáticamente la raíz buscando 01_Core (directorio real)"""
+    """Detecta automáticamente la raíz buscando 01_Core, ascendiendo desde __file__."""
     current = Path(__file__).resolve().parent
-    # Navegar desde 08_Scripts_Os -> raíz
-    project_root = current.parent
-    if (project_root / "01_Core").exists():
-        return project_root
+    for candidate in [current, *current.parents]:
+        if (candidate / "01_Core").exists():
+            return candidate
     return None
 
 
@@ -42,18 +41,20 @@ if not ROOT_DIR or not ROOT_DIR.exists():
     )
 
 # 8 Dimensiones del OS (estructura v6.1)
-CORE_DIR = ROOT_DIR / "01_Core"
-BRAIN_DIR = ROOT_DIR / "04_Operations"
+CORE_DIR       = ROOT_DIR / "01_Core"
 OPERATIONS_DIR = ROOT_DIR / "04_Operations"
-KNOWLEDGE_DIR = ROOT_DIR / "02_Knowledge"
-ENGINE_DIR = ROOT_DIR / "08_Scripts_Os"
-SYSTEM_DIR = ROOT_DIR / "01_Core"
+KNOWLEDGE_DIR  = ROOT_DIR / "02_Knowledge"
+ENGINE_DIR     = ROOT_DIR / "08_Scripts_Os"
+
+# Aliases legacy — usar los canónicos de arriba
+BRAIN_DIR  = OPERATIONS_DIR   # alias legacy → OPERATIONS_DIR
+SYSTEM_DIR = CORE_DIR         # alias legacy → CORE_DIR
 ARCHIVE_DIR = ROOT_DIR / "05_Archive"
 PROJECTS_DIR = ROOT_DIR / "07_Projects"
 PLAYGROUND_DIR = ROOT_DIR / "06_Playground"
 HOOKS_DIR = ROOT_DIR / ".agent" / "04_Extensions" / "hooks"
-SOUND_DIR = HOOKS_DIR / "04_Sound"
-# MCP_CONFIG_FILE = ROOT_DIR / "01_Core" / "05_Mcp" / "mcp.json"  # TODO: crear cuando se configure MCP
+SOUND_DIR = CORE_DIR / "07_Hooks" / "04_Sound"   # fuente canónica
+MCP_CONFIG_FILE = ROOT_DIR / ".mcp.json"           # config activa v6.1
 
 # =============================================================================
 # SUBDIRECTORIOS BRAIN/OPERATIONS (v6.1)
@@ -121,6 +122,7 @@ COMPOUND_ENGINE_HOME_DIR = (
 
 BASE_DIR = ROOT_DIR  # Alias para scripts que usan BASE_DIR
 PROJECT_ROOT = ROOT_DIR  # Alias para scripts que usan PROJECT_ROOT
+SCRIPTS_OS_DIR = ENGINE_DIR  # Alias de compatibilidad para recursive_improvement_engine
 
 # =============================================================================
 # RUTAS REALES DEL SISTEMA (estructura actual)

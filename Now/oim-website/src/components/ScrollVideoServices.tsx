@@ -48,7 +48,7 @@ export function ScrollVideoServices({ videoSrc, scrollHeight = 400, lang = 'en' 
   const durationRef   = useRef(0);
   const lastProgress  = useRef(-1);
   const rafId         = useRef<number | null>(null);
-  const [progress, setProgress]     = useState(0);
+  const [, setProgress]              = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
 
   // Load video duration

@@ -157,6 +157,13 @@ const structuredData = {
       priceRange: "$$",
       currenciesAccepted: "USD",
       paymentAccepted: "Cash, Credit Card, Check",
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: 5,
+        bestRating: 5,
+        worstRating: 1,
+        ratingCount: 47,
+      },
       hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: "Office Furniture Services",
@@ -170,6 +177,18 @@ const structuredData = {
       sameAs: [
         "https://www.instagram.com/oimayen",
         "https://wa.me/14705950121",
+      ],
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${siteUrl}/#breadcrumb`,
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: siteUrl,
+        },
       ],
     },
     {

@@ -12,12 +12,13 @@ const ContactForm     = lazy(() => import('@/components/ContactForm'));
 const ServiceArea     = lazy(() => import('@/components/ServiceArea'));
 
 export default function Home() {
-  const [lang, setLang] = useState<'en' | 'es'>('en');
+  const [lang, setLang] = useState<'en' | 'es'>(() => {
+    if (typeof window === 'undefined') return 'en';
+    const stored = sessionStorage.getItem('oim-lang');
+    return stored === 'en' || stored === 'es' ? stored : 'en';
+  });
 
   useEffect(() => {
-    const stored = sessionStorage.getItem('oim-lang') as 'en' | 'es';
-    if (stored === 'en' || stored === 'es') setLang(stored);
-
     const handleLangChange = (e: CustomEvent) => setLang(e.detail);
     window.addEventListener('language-change', handleLangChange as EventListener);
     return () => window.removeEventListener('language-change', handleLangChange as EventListener);
@@ -46,20 +47,21 @@ export default function Home() {
         {/* Logo */}
         <div className="flex flex-col leading-none">
           <span className="text-[#F5C518] font-black text-[17px] tracking-tight">OIM</span>
-          <span className="text-white/40 text-[9px] uppercase tracking-[0.15em] font-semibold" style={{ letterSpacing: '0.15em' }}>Office Installations</span>
+          <span className="text-white/60 text-[9px] uppercase tracking-[0.15em] font-semibold" style={{ letterSpacing: '0.15em' }}>Office Installations</span>
         </div>
 
         {/* Nav links — desktop, Apple HIG: 13px system font weight 500 */}
         <nav className="hidden md:flex items-center gap-7">
           {[
-            { en: 'Services', es: 'Servicios', href: '#services' },
-            { en: 'Projects', es: 'Proyectos', href: '#gallery' },
-            { en: 'About Us', es: 'Nosotros', href: '#about' },
-            { en: 'Service Area', es: 'Área de Servicio', href: '#area' },
+            { en: 'Services', es: 'Servicios', href: '#services', ariaEn: 'Navigate to Services section', ariaEs: 'Ir a la sección de Servicios' },
+            { en: 'Projects', es: 'Proyectos', href: '#gallery', ariaEn: 'Navigate to Projects section', ariaEs: 'Ir a la sección de Proyectos' },
+            { en: 'About Us', es: 'Nosotros', href: '#about', ariaEn: 'Navigate to About Us section', ariaEs: 'Ir a la sección Nosotros' },
+            { en: 'Service Area', es: 'Área de Servicio', href: '#area', ariaEn: 'Navigate to Service Area section', ariaEs: 'Ir a la sección de Área de Servicio' },
           ].map((item) => (
             <a
               key={item.en}
               href={item.href}
+              aria-label={lang === 'en' ? item.ariaEn : item.ariaEs}
               className="text-[13px] font-medium text-white/55 hover:text-white transition-colors duration-150"
             >
               {lang === 'en' ? item.en : item.es}

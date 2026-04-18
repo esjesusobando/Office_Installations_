@@ -189,6 +189,7 @@ Think_Different/
 ### 4. INVENTARIO HUB SCRIPTS (08_Scripts_Os)
 | Hub             | Script                  | Proposito                                           |
 |-----------------|-------------------------|-----------------------------------------------------|
+| **Sound Engine**| `00_Sound_Engine.py`    | Motor de notificaciones sonoras del sistema         |
 | **Auditor**     | `01_Auditor_Hub.py`     | System validation: structure, links, skills, health |
 | **Git**         | `02_Git_Hub.py`         | Git operations + structure audits                   |
 | **AIPM**        | `03_AIPM_Hub.py`        | AI Performance Monitoring                           |
