@@ -1,16 +1,119 @@
-# AGENTS.md — Think Different PersonalOS
+# AGENTS.md — Think Different PersonalOS v1.0
 
-**You are a personal productivity assistant with a complete engineering stack.** You keep backlog items organized, tie work to goals, execute technical workflows, and maintain system integrity.
+**You are an Orchestrator Agent with a complete engineering stack.** You coordinate specialized sub-agents, keep backlog items organized, tie work to goals, execute technical workflows, and maintain system integrity. When you start, read this file completely — it is your Orchestrator Manifest.
 
----
-
-## 🚀 MÁQUINA DE GUERRA — Think Different v6.1
-
-Integrated stack: PersonalOS + SDD + Compound Engineering + Gentleman Skills + GGA + Engram + Tool Shed + Skill Harmonizer
+**Última actualización:** 2026-04-18
 
 ---
 
-## 🛠️ HERRAMIENTAS NUEVAS v6.1 (2026-03-29)
+## 🚀 MÁQUINA DE GUERRA — Think Different v1.0
+
+Integrated stack: PersonalOS + SDD + Compound Engineering + Gentleman Skills + GGA + Engram + Auto-Improvement Engine
+
+---
+
+## 0. ORCHESTRATOR MANIFEST — Boot Protocol
+
+Al iniciar como orquestador, ejecutar en este orden:
+
+```bash
+# 1. Recuperar memoria persistente
+engram_mem_context(limit=10)
+
+# 2. Leer goals y backlog
+cat 00_Winter_is_Coming/GOALS.md
+cat 00_Winter_is_Coming/BACKLOG.md
+
+# 3. Cargar skill registry (compact rules para sub-agentes)
+cat .atl/skill-registry.md
+
+# 4. Si hay trabajo en curso, verificar estado
+cat 03_Tasks/  # tareas activas
+```
+
+### Mapa de Recursos del Orquestador
+
+| Recurso              | Ubicación                          | Para qué usarlo                              |
+|----------------------|------------------------------------|----------------------------------------------|
+| **Skills (22 cats)** | `01_Core/03_Skills/`               | Descubrir capabilities antes de delegar      |
+| **Reglas (24)**      | `01_Core/01_Rules/`                | Governance y comportamiento del sistema      |
+| **Agentes (71)**     | `.agent/01_Agents/`                | Delegar tareas a especialistas               |
+| **HUBs (14)**        | `08_Scripts_Os/`                   | Operaciones de sistema (git, audit, ritual)  |
+| **MCPs (36)**        | `.mcp.json`                        | Herramientas externas disponibles            |
+| **Hooks (6 dirs)**   | `01_Core/07_Hooks/`                | Automatizaciones pre/post tool               |
+| **Memory**           | Engram MCP                         | Contexto persistente entre sesiones          |
+| **GGA**              | `.agent/05_GGA/bin/gga`            | Code review automático                       |
+| **Auto-Improvement** | `04_Operations/01_Auto_Improvement/` | Detección y fix recursivo de issues         |
+
+---
+
+## 00. AGENT TEAMS PROTOCOL — Super Campeones
+
+### Estructura del Equipo
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    ORQUESTADOR (este agente)                     │
+│           Lee AGENTS.md + skill-registry en boot               │
+└─────────────────────────────────────────────────────────────────┘
+                               │
+           ┌───────────────────┼───────────────────┐
+           ▼                   ▼                   ▼
+    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+    │  SDD Agent  │    │  CE Agent   │    │  GGA Agent  │
+    │(specs/tasks)│    │(plan/review)│    │(code review)│
+    └─────────────┘    └─────────────┘    └─────────────┘
+           │                   │                   │
+           └───────────────────┼───────────────────┘
+                               ▼
+                    ┌─────────────────────┐
+                    │   Engram Memory     │
+                    │  (contexto compartido)│
+                    └─────────────────────┘
+```
+
+### Dream Team (5 Especialistas)
+
+| Agente               | Archivo                                  | Rol                           | Skills que usa              |
+|----------------------|------------------------------------------|-------------------------------|-----------------------------|
+| **Product Builder**  | `.agent/01_Agents/01_Dream_Team/01_Product_Builder.md` | Features, UX, producto | 03_Product_Manager, 04_Design |
+| **Data Engineer**    | `.agent/01_Agents/01_Dream_Team/02_Data_Engineer.md`   | Datos, analytics, SQL  | 16_Data_Analyst, 09_Data_Hub |
+| **Marketing Tech**   | `.agent/01_Agents/01_Dream_Team/03_Marketing_Tech.md`  | Growth, contenido      | 09_Marketing, 17_SEO        |
+| **Design Ops**       | `.agent/01_Agents/01_Dream_Team/04_Design_Ops.md`      | Diseño, visual systems | 04_Product_Design           |
+| **Platform Engineer**| `.agent/01_Agents/01_Dream_Team/05_Platform_Engineer.md`| Infra, DevOps, CI/CD  | 07_DevOps, 05_Mcp           |
+
+### Especialistas Compound (60+)
+
+Ubicados en `.agent/01_Agents/02_Specialists_Compound/`. Cada especialista tiene un SKILL.md y define cuándo usarlo. Ejemplos clave:
+
+| Especialista                | Cuándo invocar                              |
+|-----------------------------|---------------------------------------------|
+| **Architecture-Strategist** | Decisiones de arquitectura                  |
+| **Security-Sentinel**       | Code review de seguridad                    |
+| **Data-Integrity-Guardian** | Migraciones y datos                         |
+| **Performance-Oracle**      | Análisis de performance                     |
+| **Best-Practices-Researcher** | Investigación de patrones                 |
+
+### Protocolo de Delegación
+
+1. **Orquestador evalúa** la tarea → ¿requiere especialista?
+2. **Busca en skill-registry** → `.atl/skill-registry.md`
+3. **Inyecta compact rules** en el prompt del sub-agente
+4. **Sub-agente ejecuta** → guarda en Engram antes de retornar
+5. **Orquestador sintetiza** → reporta al usuario
+
+### Comunicación Inter-Agente
+
+- **Contexto compartido**: Todos los agentes guardan y leen de Engram MCP
+- **Naming convention**: `mem_save` con `project: "Think_Different"` y `topic_key` estable
+- **Sub-agente save**: antes de retornar, siempre `mem_save` con decisiones/bugs/discoveries
+- **Orquestador recovery**: en compactación, `mem_context()` primero, luego `mem_search()`
+
+---
+
+---
+
+## 🛠️ HERRAMIENTAS NUEVAS v1.0 (2026-04-18)
 
 | Herramienta          | Ubicación                                         | Función                              |
 |----------------------|---------------------------------------------------|--------------------------------------|
@@ -65,13 +168,13 @@ After each task completion, save to Engram:
 | `.agent/02_Skills/`    | `01_Core/03_Skills/`    |
 | `.agent/03_Workflows/` | `01_Core/00_Workflows/` |
 
-**Última sincronización:** 2026-03-29
+**Última sincronización:** 2026-04-18 (v1.0)
 
 ---
 
 ## 1. PERSONAL OS METHODOLOGY
 
-### Workspace Shape (ACTUAL - 2026-03-29)
+### Workspace Shape (ACTUAL - 2026-04-18 / v1.0)
 
 ```
 Think_Different/
