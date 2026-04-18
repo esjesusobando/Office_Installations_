@@ -9,7 +9,7 @@
 | #   | Título                          | URL / Tipo            | Tema Principal                                   | Fecha       |
 |-----|---------------------------------|-----------------------|--------------------------------------------------|-------------|
 | 01  | Creative Heroes — IA Generativa | YouTube (5v0Jj6s3DdA) | Midjourney, Prompt Engineering, IA para imágenes | 2026-04-18  |
-| 02  | [Por definir]                   | YouTube (b6hfk8k-UVk) | Recall 2.0 — Knowledge + AI                      | [Pendiente] |
+| 02  | Recall 2.0 — Knowledge AI   | YouTube (b6hfk8k-UVk) | Second Brain, AI, Knowledge Management            | 2026-04-18  |
 | 03  | [Por definir]                   | YouTube (N9RhW5pexrs) | Claude Computer Use                              | [Pendiente] |
 | 04  | [Por definir]                   | YouTube (kF2WQgk1LtY) | [Pendiente]                                      | [Pendiente] |
 | 05  | [Por definir]                   | YouTube (slCl7LrStTM) | [Pendiente]                                      | [Pendiente] |
@@ -63,4 +63,5 @@ Los insights de cada análisis van a → `02_Knowledge/06_Unicorn/`
 
 ## 📋 Changelog
 
+- **2026-04-18**: Added 02 — Recall 2.0 Knowledge AI (8 deliverables completos)
 - **2026-04-18**: Added 01 — Creative Heroes IA Generativa
