@@ -10,7 +10,7 @@
 |-----|---------------------------------|-----------------------|--------------------------------------------------|-------------|
 | 01  | Creative Heroes — IA Generativa | YouTube (5v0Jj6s3DdA) | Midjourney, Prompt Engineering, IA para imágenes | 2026-04-18  |
 | 02  | Recall 2.0 — Knowledge AI   | YouTube (b6hfk8k-UVk) | Second Brain, AI, Knowledge Management            | 2026-04-18  |
-| 03  | [Por definir]                   | YouTube (N9RhW5pexrs) | Claude Computer Use                              | [Pendiente] |
+| 03  | Claude Computer Use             | YouTube (N9RhW5pexrs) | AI que controla tu Mac, Dispatch, Cowork               | 2026-04-18  |
 | 04  | [Por definir]                   | YouTube (kF2WQgk1LtY) | [Pendiente]                                      | [Pendiente] |
 | 05  | [Por definir]                   | YouTube (slCl7LrStTM) | [Pendiente]                                      | [Pendiente] |
 | 06  | [Por definir]                   | YouTube (8FDjwGAJBts) | [Pendiente]                                      | [Pendiente] |
@@ -63,5 +63,6 @@ Los insights de cada análisis van a → `02_Knowledge/06_Unicorn/`
 
 ## 📋 Changelog
 
-- **2026-04-18**: Added 02 — Recall 2.0 Knowledge AI (8 deliverables completos)
+- **2026-04-18**: Added 03 — Claude Computer Use (8 deliverable completos)
+- **2026-04-18**: Added 02 — Recall 2.0 Knowledge AI (8 deliverable completos)
 - **2026-04-18**: Added 01 — Creative Heroes IA Generativa
