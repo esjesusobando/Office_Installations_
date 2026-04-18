@@ -2,9 +2,15 @@ import os
 import subprocess
 import time
 import json
+from pathlib import Path
+
+# Resolve project root from this file's location (CWD-independent)
+# common.py is at: .agent/04_Extensions/02_Utils/common.py
+# parents: 02_Utils -> 04_Extensions -> .agent -> Think_Different (root)
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
 
 # Global state file for task counter
-_STATE_FILE = os.path.join(".claude", "history", "sessions", "voice_state.json")
+_STATE_FILE = str(_PROJECT_ROOT / ".claude" / "history" / "sessions" / "voice_state.json")
 _LAST_NOTIFICATION_TIME = 0
 
 
@@ -130,7 +136,7 @@ def log_to_json(hook_name, data):
     import json
     from datetime import datetime
 
-    log_path = os.path.join(".claude", "history", "sessions", f"{hook_name}.json")
+    log_path = str(_PROJECT_ROOT / ".claude" / "history" / "sessions" / f"{hook_name}.json")
     log_entry = {"timestamp": datetime.now().isoformat(), "data": data}
 
     # Append to JSON list - modo robusto
