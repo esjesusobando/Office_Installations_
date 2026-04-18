@@ -275,7 +275,7 @@ Think_Different/
 | Estructura (00-08)           | ✅ PASS          | 9 carpetas válidas                                   |
 | HUBs (00-13)                 | ✅ ACTIVE        | 14 HUBs funcionales + PYTHONPATH fix                 |
 | Skills (22 categorías)       | ✅ OPERATIONAL   | 160+ sub-skills — SKILL.md en categorías core        |
-| Rules (24)                   | ✅ DEFINED       | +1 Token Economy rule                                |
+| Rules (25)                   | ✅ DEFINED       | +1 Token Economy +1 Agent Teams Protocol             |
 | MCPs (36 activos)            | ✅ ACTIVE        | +7 vs v6.1                                           |
 | Agentes (71)                 | ✅ ACTIVE        | Orchestrator + Dream Team + 60 Specialists           |
 | Agent Teams Protocol         | ✅ ACTIVE        | Super Campeones activado — comunicación inter-agente |

@@ -15,7 +15,7 @@
 |--------------------------|----------------|
 | **Overall Health**       | **100%** ✅     |
 | **Skills**               | 160+           |
-| **Rules**                | 24             |
+| **Rules**                | 25             |
 | **MCPs**                 | 36 activos     |
 | **HUBs**                 | 14             |
 | **SDD Workflows**        | 9              |
@@ -29,7 +29,7 @@
 ```
 Think_Different/
 ├── 00_Winter_is_Coming/     ✅ Goals, Backlog, AGENTS.md (ESTRATÉGICO)
-├── 01_Core/                 ✅ Motor: Skills (22 cats), Rules (24), MCPs, Agents (71)
+├── 01_Core/                 ✅ Motor: Skills (22 cats), Rules (25), MCPs, Agents (71)
 │   ├── 01_Rules/            # 24 reglas del sistema
 │   ├── 03_Skills/           # 160+ skills en 22 categorías
 │   ├── 05_Mcp/              # Configuración MCP (Claude Code + OpenCode)
@@ -41,7 +41,7 @@ Think_Different/
 ├── 06_Playground/           ✅ Área de pruebas y experimentos
 ├── 07_Projects/             ✅ Proyectos activos (8 historiales)
 ├── 08_Scripts_Os/           ✅ 14 HUBs operativos
-├── .agent/                  ✅ Backup estratégico (71 agentes, 23 reglas, GGA)
+├── .agent/                  ✅ Backup estratégico (71 agentes, 24 reglas, GGA)
 ├── .atl/                    ✅ SDD Registry + openspec changes
 └── .mcp.json                ✅ MCPs activos para Claude Code (36 servidores)
 ```

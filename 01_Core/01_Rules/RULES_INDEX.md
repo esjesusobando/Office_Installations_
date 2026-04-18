@@ -1,7 +1,7 @@
-# 📋 Índice de Reglas — PersonalOS v6.1
+# 📋 Índice de Reglas — PersonalOS v1.0
 
-**Versión:** 6.1
-**Última actualización:** 2026-03-29
+**Versión:** 1.0
+**Última actualización:** 2026-04-18
 **Ubicación:** `01_Core/01_Rules/`
 **Framework:** Anthropic SOTA 2026 + PersonalOS
 
@@ -106,6 +106,7 @@ Think_Different/
 | [22_Pencil_Design_Studio.mdc](./22_Pencil_Design_Studio.mdc)   | Pencil Design Studio         | Estudio de diseño premium                                                                   | ✅        |
 | [23_Skill_System_SOTA.mdc](./23_Skill_System_SOTA.mdc)         | **Skill System SOTA v2.0**   | Constitución del Sistema de Skills: 9 categorías Anthropic, anatomía, seguridad, scoring    | ✅        |
 | [24_Token_Economy.mdc](./24_Token_Economy.mdc)                 | **Token Economy**            | 10 leyes para extender Claude Code hasta 10x: MCPs, compacts, modelos, referencias precisas | ✅        |
+| [25_Agent_Teams_Protocol.mdc](./25_Agent_Teams_Protocol.mdc)   | **Agent Teams Protocol**     | Protocolo de orquestación multi-agente: boot, delegación, comunicación inter-agente, Super Campeones | ✅        |
 
 ---
 
@@ -128,6 +129,7 @@ Think_Different/
 
 ---
 
-_Total Reglas: 24_
-_Total Skills: ~160+_
-_Framework: Anthropic SOTA 2026 + PersonalOS v6.1_
+_Total Reglas: 25_
+_Total Skills: 160+_
+_Total Categorías: 22 (24 directorios)_
+_Framework: Anthropic SOTA 2026 + PersonalOS v1.0_
