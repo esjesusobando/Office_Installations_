@@ -148,8 +148,8 @@ const structuredData = {
       },
       geo: {
         "@type": "GeoCoordinates",
-        latitude: 33.749,
-        longitude: -84.388,
+        latitude: 33.8922,
+        longitude: -84.3244,
       },
       openingHoursSpecification: [
         {
@@ -162,13 +162,6 @@ const structuredData = {
       priceRange: "$$",
       currenciesAccepted: "USD",
       paymentAccepted: "Cash, Credit Card, Check",
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: 5,
-        bestRating: 5,
-        worstRating: 1,
-        ratingCount: 47,
-      },
       hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: "Office Furniture Services",
