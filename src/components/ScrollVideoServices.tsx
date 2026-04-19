@@ -189,7 +189,7 @@ export function ScrollVideoServices({ videoSrc, scrollHeight = 400, lang = 'en' 
 
         {/* ── Content panel — left-offset, vertically centered ── */}
         <div className="absolute inset-0 flex items-center">
-          <div className="ml-6 md:ml-16 lg:ml-24 w-full max-w-md">
+          <div className="ml-4 mr-4 md:ml-16 md:mr-0 lg:ml-24 w-full max-w-md">
 
             {/* Glass card */}
             <div
@@ -201,7 +201,7 @@ export function ScrollVideoServices({ videoSrc, scrollHeight = 400, lang = 'en' 
                 borderTop: '1px solid rgba(255,255,255,0.12)',
                 boxShadow: '0 32px 64px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06)',
                 borderRadius: '16px',
-                padding: '36px 36px 32px',
+                padding: 'clamp(20px, 4vw, 36px) clamp(18px, 4vw, 36px) clamp(18px, 4vw, 32px)',
               }}
             >
               {/* Label + counter */}
