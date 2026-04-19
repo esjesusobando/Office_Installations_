@@ -8,7 +8,7 @@
 
 | #   | Learning                    | Tema                           | Estado   |
 |-----|-----------------------------|--------------------------------|----------|
-| 01  | `01_LA_Creative_Heroes_IA/` | Midjourney, Prompt Engineering | ✅        |
+| 01  | `01_LA_Creative_Heroes_IA/` | Midjourney, Prompt Engineering | ✅       |
 
 ---
 
