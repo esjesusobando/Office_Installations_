@@ -1,7 +1,7 @@
 # 00_Context — Contexto Estratégico
 
-> **Versión:** 5.0
-> **Última actualización:** 2026-03-25
+> **Versión:** 6.0
+> **Última actualización:** 2026-04-18
 
 ---
 
@@ -23,6 +23,7 @@
 | 6     | 06_Tech/       | Documentación técnica y diagramas          |
 | 7     | 07_Template/   | Plantillas                                 |
 | 8     | 08_Learnings/  | Análisis de videos, webinars y casos       |
+| 9     | 00_Learning_Always/ | Learning compounding: 8 deliverable/URL |
 
 ---
 

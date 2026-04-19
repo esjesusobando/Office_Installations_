@@ -55,9 +55,9 @@ Los insights de cada análisis van a → `02_Knowledge/06_Unicorn/`
 
 | Métrica                | Valor       |
 |------------------------|-------------|
-| Total analizados       | 1           |
-| En progreso            | 5           |
-| Deliverables generados | 16 archivos |
+| Total analizados       | 3           |
+| Pendientes            | 3           |
+| Deliverables generados | 30 archivos |
 
 ---
 
