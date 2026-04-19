@@ -12,7 +12,6 @@ const ContactForm     = lazy(() => import('@/components/ContactForm'));
 const ServiceArea     = lazy(() => import('@/components/ServiceArea'));
 
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [lang, setLang] = useState<'en' | 'es'>(() => {
     if (typeof window === 'undefined') return 'en';
     const stored = sessionStorage.getItem('oim-lang');
@@ -70,7 +69,7 @@ export default function Home() {
           ))}
         </nav>
 
-        {/* Right — lang + CTA + hamburger */}
+        {/* Right — lang + CTA */}
         <div className="flex items-center gap-3">
           <button
             onClick={toggleLang}
@@ -84,57 +83,12 @@ export default function Home() {
           >
             {lang === 'en' ? 'Start Project' : 'Iniciar Proyecto'}
           </a>
-          {/* Hamburger — mobile only */}
-          <button
-            onClick={() => setMenuOpen((v) => !v)}
-            className="md:hidden flex flex-col justify-center items-center w-9 h-9 gap-[5px]"
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          >
-            <span className={`block w-5 h-[1.5px] bg-white transition-all duration-200 ${menuOpen ? 'rotate-45 translate-y-[6.5px]' : ''}`} />
-            <span className={`block w-5 h-[1.5px] bg-white transition-all duration-200 ${menuOpen ? 'opacity-0' : ''}`} />
-            <span className={`block w-5 h-[1.5px] bg-white transition-all duration-200 ${menuOpen ? '-rotate-45 -translate-y-[6.5px]' : ''}`} />
-          </button>
         </div>
       </header>
 
-      {/* ── Mobile menu drawer ── */}
-      {menuOpen && (
-        <div
-          className="fixed inset-0 z-40 md:hidden"
-          style={{ background: 'rgba(13,27,42,0.97)', backdropFilter: 'blur(20px)', paddingTop: '60px' }}
-          onClick={() => setMenuOpen(false)}
-        >
-          <nav className="flex flex-col items-center justify-center h-full gap-8">
-            {[
-              { en: 'Services', es: 'Servicios', href: '#services' },
-              { en: 'Projects', es: 'Proyectos', href: '#gallery' },
-              { en: 'About Us', es: 'Nosotros', href: '#about' },
-              { en: 'Service Area', es: 'Área de Servicio', href: '#area' },
-              { en: 'Contact', es: 'Contacto', href: '#contact' },
-            ].map((item) => (
-              <a
-                key={item.en}
-                href={item.href}
-                onClick={() => setMenuOpen(false)}
-                className="text-[22px] font-semibold text-white/80 hover:text-[#F5C518] transition-colors"
-              >
-                {lang === 'en' ? item.en : item.es}
-              </a>
-            ))}
-            <a
-              href="#contact"
-              onClick={() => setMenuOpen(false)}
-              className="mt-4 inline-flex items-center justify-center rounded-xl bg-[#F5C518] px-8 py-3 text-[16px] font-semibold text-[#0d1b2a]"
-            >
-              {lang === 'en' ? 'Get a Free Quote' : 'Cotización Gratis'}
-            </a>
-          </nav>
-        </div>
-      )}
-
       {/* ── HERO — video background, copy exacto ── */}
       <HeroSection videoSrc="/videos/Interior_Design.mp4">
-        <div className="max-w-[600px] pt-[72px] md:pt-0">
+        <div className="max-w-[600px]">
 
           {/* Badges — Apple HIG: 11px caps, tracking 0.06em */}
           <div className="animate-fade-up flex flex-wrap gap-2 mb-7">
