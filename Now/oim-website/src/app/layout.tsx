@@ -128,10 +128,15 @@ const structuredData = {
       },
       areaServed: [
         { "@type": "City", name: "Atlanta", containedInPlace: { "@type": "State", name: "Georgia" } },
-        { "@type": "City", name: "Marietta" },
-        { "@type": "City", name: "Alpharetta" },
-        { "@type": "City", name: "Decatur" },
-        { "@type": "City", name: "Sandy Springs" },
+        { "@type": "City", name: "Marietta", containedInPlace: { "@type": "State", name: "Georgia" } },
+        { "@type": "City", name: "Alpharetta", containedInPlace: { "@type": "State", name: "Georgia" } },
+        { "@type": "City", name: "Decatur", containedInPlace: { "@type": "State", name: "Georgia" } },
+        { "@type": "City", name: "Sandy Springs", containedInPlace: { "@type": "State", name: "Georgia" } },
+        { "@type": "City", name: "Roswell", containedInPlace: { "@type": "State", name: "Georgia" } },
+        { "@type": "City", name: "Duluth", containedInPlace: { "@type": "State", name: "Georgia" } },
+        { "@type": "City", name: "Norcross", containedInPlace: { "@type": "State", name: "Georgia" } },
+        { "@type": "City", name: "Kennesaw", containedInPlace: { "@type": "State", name: "Georgia" } },
+        { "@type": "City", name: "Smyrna", containedInPlace: { "@type": "State", name: "Georgia" } },
       ],
       address: {
         "@type": "PostalAddress",
@@ -177,6 +182,52 @@ const structuredData = {
       sameAs: [
         "https://www.instagram.com/oimayen",
         "https://wa.me/14705950121",
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${siteUrl}/#faq`,
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "How much does office furniture installation cost in Atlanta?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Office furniture installation costs in Atlanta vary by project size. Small setups (1–5 workstations) typically range from $150–$500. Full office builds or relocations are quoted individually. Contact OIM at +1 (470) 595-0121 for a free estimate.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "What areas does OIM serve in the Atlanta metro?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "OIM serves all of the Greater Atlanta metro area including Atlanta, Marietta, Alpharetta, Decatur, Sandy Springs, Roswell, Duluth, and surrounding Georgia communities.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Does OIM install cubicles and workstations?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes. OIM installs all major brands of cubicles, panel systems, open-plan workstations, benching, private office furniture, and executive suites. We also handle disassembly and relocation.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Is OIM licensed and insured?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes. Office Installations Mayen (OIM) is fully licensed and insured for commercial furniture installation in Georgia. We have been serving Atlanta businesses since 2018.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Do you offer bilingual office installation services?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes. OIM is a bilingual team fluent in English and Spanish, serving both English- and Spanish-speaking businesses in Atlanta and the surrounding metro area.",
+          },
+        },
       ],
     },
     {

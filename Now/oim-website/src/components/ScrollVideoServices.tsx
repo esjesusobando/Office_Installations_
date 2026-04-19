@@ -150,7 +150,7 @@ export function ScrollVideoServices({ videoSrc, scrollHeight = 400, lang = 'en' 
         className="absolute top-0 left-0 right-0 z-20 pointer-events-none"
         style={{
           height: '18vh',
-          background: 'linear-gradient(to bottom, #09090b 0%, rgba(9,9,11,0.85) 35%, rgba(9,9,11,0) 100%)',
+          background: 'linear-gradient(to bottom, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%)',
         }}
       />
       {/* Bottom mask: fades FROM transparent TO #f8f9fa (About bg) */}
