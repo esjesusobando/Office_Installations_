@@ -38,13 +38,13 @@ export function HeroSection({ videoSrc, posterSrc, children }: HeroSectionProps)
       try { await video.play(); } catch { /* autoplay blocked — silent fail */ }
     };
 
-    if (video.readyState >= 2) {
+    if (video.readyState >= 3) {
       onReady();
     } else {
-      video.addEventListener('canplaythrough', onReady, { once: true });
+      video.addEventListener('canplay', onReady, { once: true });
     }
 
-    return () => video.removeEventListener('canplaythrough', onReady);
+    return () => video.removeEventListener('canplay', onReady);
   }, [videoSrc]);
 
   return (
@@ -62,7 +62,7 @@ export function HeroSection({ videoSrc, posterSrc, children }: HeroSectionProps)
         muted
         loop
         autoPlay
-        preload="metadata"
+        preload="auto"
         aria-hidden="true"
         suppressHydrationWarning
         className="absolute inset-0 w-full h-full object-cover will-change-transform"
