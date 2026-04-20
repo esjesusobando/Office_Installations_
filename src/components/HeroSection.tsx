@@ -20,16 +20,19 @@ export function HeroSection({ videoSrc, posterSrc, children }: HeroSectionProps)
     video.loop = true;
 
     const onReady = async () => {
-      try { await video.play(); } catch { /* autoplay blocked */ }
+      if (videoRef.current) {
+        videoRef.current.style.opacity = '1';
+      }
+      try { await video.play(); } catch { /* autoplay blocked — silent fail */ }
     };
 
-    if (video.readyState >= 2) {
+    if (video.readyState >= 3) {
       onReady();
     } else {
-      video.addEventListener('canplaythrough', onReady, { once: true });
+      video.addEventListener('canplay', onReady, { once: true });
     }
 
-    return () => video.removeEventListener('canplaythrough', onReady);
+    return () => video.removeEventListener('canplay', onReady);
   }, [videoSrc]);
 
   return (
@@ -45,17 +48,18 @@ export function HeroSection({ videoSrc, posterSrc, children }: HeroSectionProps)
         muted
         loop
         autoPlay
-        preload="metadata"
+        preload="auto"
         aria-hidden="true"
         suppressHydrationWarning
         className="absolute inset-0 w-full h-full object-cover will-change-transform"
+        style={{ opacity: 0, transition: 'opacity 0.4s ease-out' }}
       />
 
       <div className="absolute inset-0 bg-gradient-to-r from-black/78 via-black/44 to-black/12" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/62 via-transparent to-transparent" />
 
       <div className="relative z-10 flex min-h-[100dvh] items-end pb-16 md:items-center md:pb-0">
-        <div className="w-full max-w-7xl mx-auto px-6 md:px-10 pt-[76px] md:pt-0">
+        <div className="w-full max-w-7xl mx-auto px-6 md:px-10">
           {children}
         </div>
       </div>
