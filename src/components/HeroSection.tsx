@@ -52,7 +52,7 @@ export function HeroSection({ videoSrc, posterSrc, children }: HeroSectionProps)
         aria-hidden="true"
         suppressHydrationWarning
         className="absolute inset-0 w-full h-full object-cover will-change-transform"
-        style={{ opacity: 0, transition: 'opacity 0.4s ease-out' }}
+        style={{ opacity: 1 }}
       />
 
       <div className="absolute inset-0 bg-gradient-to-r from-black/78 via-black/44 to-black/12" />
