@@ -20,19 +20,16 @@ export function HeroSection({ videoSrc, posterSrc, children }: HeroSectionProps)
     video.loop = true;
 
     const onReady = async () => {
-      if (videoRef.current) {
-        videoRef.current.style.opacity = '1';
-      }
-      try { await video.play(); } catch { /* autoplay blocked — silent fail */ }
+      try { await video.play(); } catch { /* autoplay blocked */ }
     };
 
-    if (video.readyState >= 3) {
+    if (video.readyState >= 2) {
       onReady();
     } else {
-      video.addEventListener('canplay', onReady, { once: true });
+      video.addEventListener('canplaythrough', onReady, { once: true });
     }
 
-    return () => video.removeEventListener('canplay', onReady);
+    return () => video.removeEventListener('canplaythrough', onReady);
   }, [videoSrc]);
 
   return (
@@ -48,11 +45,10 @@ export function HeroSection({ videoSrc, posterSrc, children }: HeroSectionProps)
         muted
         loop
         autoPlay
-        preload="auto"
+        preload="metadata"
         aria-hidden="true"
         suppressHydrationWarning
         className="absolute inset-0 w-full h-full object-cover will-change-transform"
-        style={{ opacity: 0, transition: 'opacity 0.4s ease-out' }}
       />
 
       <div className="absolute inset-0 bg-gradient-to-r from-black/78 via-black/44 to-black/12" />
