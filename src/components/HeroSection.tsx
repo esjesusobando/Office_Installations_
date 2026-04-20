@@ -59,7 +59,7 @@ export function HeroSection({ videoSrc, posterSrc, children }: HeroSectionProps)
       <div className="absolute inset-0 bg-gradient-to-t from-black/62 via-transparent to-transparent" />
 
       <div className="relative z-10 flex min-h-[100dvh] items-end pb-16 md:items-center md:pb-0">
-        <div className="w-full max-w-7xl mx-auto px-6 md:px-10 pt-[76px] md:pt-0">
+        <div className="w-full max-w-7xl mx-auto px-6 md:px-10">
           {children}
         </div>
       </div>
