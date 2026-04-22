@@ -41,11 +41,11 @@ const copy = {
   },
 };
 
-// Office-toned gradient placeholders — realistic dark tones
-const cardBgs = [
-  'linear-gradient(160deg, #1c2b3a 0%, #0f1e2d 60%, #0a1520 100%)',
-  'linear-gradient(160deg, #243040 0%, #141f2a 60%, #0d1b2a 100%)',
-  'linear-gradient(160deg, #1a2836 0%, #0e1c28 100%)',
+// Project photos — real images
+const projectImages = [
+  '/project1.jpg', // Tech Hub Installation
+  '/project2.jpg', // Executive Boardroom
+  '/project3.jpg', // Floor Reconfiguration
 ];
 
 export default function ProjectGallery({ lang }: ProjectGalleryProps) {
@@ -113,8 +113,9 @@ export default function ProjectGallery({ lang }: ProjectGalleryProps) {
             data-animate
             className="md:col-span-2 relative overflow-hidden rounded-2xl group cursor-pointer"
             style={{
-              height: '340px',
-              background: cardBgs[0],
+              backgroundImage: `url('${projectImages[0]}')`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
               opacity: 0,
               transform: 'translateY(16px)',
               transition: 'opacity 0.55s cubic-bezier(0.16,1,0.3,1) 0.06s, transform 0.55s cubic-bezier(0.16,1,0.3,1) 0.06s',
@@ -152,7 +153,9 @@ export default function ProjectGallery({ lang }: ProjectGalleryProps) {
                 className="relative overflow-hidden rounded-2xl flex-1 group cursor-pointer"
                 style={{
                   minHeight: '158px',
-                  background: cardBgs[idx],
+                  backgroundImage: `url('${projectImages[idx]}')`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
                   opacity: 0,
                   transform: 'translateY(16px)',
                   transition: `opacity 0.55s cubic-bezier(0.16,1,0.3,1) ${0.1 + idx * 0.07}s, transform 0.55s cubic-bezier(0.16,1,0.3,1) ${0.1 + idx * 0.07}s`,

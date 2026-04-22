@@ -3,11 +3,6 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   devIndicators: false,
 
-  // Turbopack root — top-level in Next.js 16.x (not experimental.turbo)
-  turbopack: {
-    root: ".",
-  },
-
   // Compression & image optimization
   compress: true,
 
