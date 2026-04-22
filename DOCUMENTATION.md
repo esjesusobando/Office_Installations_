@@ -142,6 +142,25 @@ public/
 - [ ] **Configurar formulario con Resend** (send emails)
 - [ ] **Deploy a Vercel/Netlify**
 
+---
+
+## Resend + Next.js (Investigación 2026)
+
+### Stack recomendado:
+```bash
+npm install resend @react-email/components
+```
+
+### Configuración:
+1. Crear cuenta en resend.com
+2. Agregar `RESEND_API_KEY=re_...` a .env.local
+3. Crear email component con React Email
+4. Conectar al ContactForm existente
+
+### Recursos:
+- https://resend.com/docs/send-with-nextjs
+- https://dev.to/.../resend-react-email
+
 ### Phase 6: Seguridad (Futuro - no crítico)
 
 - [ ] Sanitizar input ContactForm
