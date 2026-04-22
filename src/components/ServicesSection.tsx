@@ -94,6 +94,14 @@ const icons: Record<string, React.ReactNode> = {
   ),
 };
 
+// Service images (correct order: 1-2-3-4)
+const serviceImages = [
+  '/service1.jpg', // Office Furniture Installation
+  '/service2.jpg', // Office Setup & Reconfiguration  
+  '/service3.jpg', // Disassembly & Moving
+  '/service4.jpg', // Commercial Projects
+];
+
 // Photo-like gradient placeholders per service
 const serviceBgs = [
   'linear-gradient(135deg, #2d3a4a 0%, #1a2535 40%, #0d1b2a 100%)',
@@ -169,19 +177,14 @@ export default function ServicesSection({ lang }: ServicesSectionProps) {
                 transition: `opacity 0.55s cubic-bezier(0.16,1,0.3,1) ${0.06 + i * 0.07}s, transform 0.55s cubic-bezier(0.16,1,0.3,1) ${0.06 + i * 0.07}s`,
               }}
             >
-              {/* Photo placeholder bg */}
-              <div
-                className="h-44"
-                style={{ background: serviceBgs[i] }}
-              >
-                {/* Subtle grid overlay */}
-                <div
-                  className="w-full h-full opacity-[0.04]"
-                  style={{
-                    backgroundImage: 'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)',
-                    backgroundSize: '32px 32px',
-                  }}
+              {/* Service image with fallback */}
+              <div className="h-44 relative overflow-hidden">
+                <img
+                  src={serviceImages[i]}
+                  alt={service.title}
+                  className="w-full h-full object-cover"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
               </div>
 
               {/* Content */}

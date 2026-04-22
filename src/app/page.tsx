@@ -1,8 +1,17 @@
 'use client';
 
 import { useState, useEffect, lazy, Suspense } from 'react';
+import { motion, type Transition } from 'framer-motion';
+import { MessageCircle, MapPin, Shield, Clock, Award } from 'lucide-react';
 import { HeroSection } from '@/components/HeroSection';
 import { ScrollVideoServices } from '@/components/ScrollVideoServices';
+
+// Spring transition - taste-skill standard
+const spring: Transition = {
+  type: 'spring',
+  stiffness: 100,
+  damping: 20,
+};
 
 // Lazy load below-the-fold sections — reduces initial JS bundle
 const ServicesSection = lazy(() => import('@/components/ServicesSection'));
@@ -90,19 +99,22 @@ export default function Home() {
       <HeroSection videoSrc="/videos/Interior_Design.mp4">
         <div className="max-w-[600px]">
 
-          {/* Badges — Apple HIG: 11px caps, tracking 0.06em */}
-          <div className="animate-fade-up flex flex-wrap gap-2 mb-7">
+          {/* Badges — Lucide icons */}
+          <motion.div 
+            className="animate-fade-up flex flex-wrap gap-2 mb-7"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={spring}
+          >
             <span className="inline-flex items-center gap-2 rounded-full border border-white/16 bg-white/6 px-3.5 py-[7px] text-[11px] font-semibold uppercase tracking-[0.06em] text-white/70 backdrop-blur-sm">
               <span className="h-[5px] w-[5px] rounded-full bg-[#F5C518] flex-shrink-0" />
               Corporate Space Management Engineering
             </span>
             <span className="inline-flex items-center gap-1.5 rounded-full border border-white/16 bg-white/6 px-3.5 py-[7px] text-[11px] font-semibold uppercase tracking-[0.06em] text-white/70 backdrop-blur-sm">
-              <svg width="9" height="11" viewBox="0 0 9 11" fill="none" aria-hidden="true">
-                <path d="M4.5 0C2.57 0 1 1.57 1 3.5c0 2.63 3.5 6.5 3.5 6.5s3.5-3.87 3.5-6.5C8 1.57 6.43 0 4.5 0zm0 4.75a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z" fill="currentColor"/>
-              </svg>
+              <MapPin className="w-3 h-3" />
               Atlanta &amp; Surrounding Areas
             </span>
-          </div>
+          </motion.div>
 
           {/* H1 — Apple HIG: Large Title 34pt → web 52px desktop, font-bold, -0.02em */}
           <h1
@@ -137,32 +149,66 @@ export default function Home() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-[15px] font-medium text-white/55 hover:text-white transition-colors"
             >
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" className="text-[#F5C518]" aria-hidden="true">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-              </svg>
+              <MessageCircle className="w-[15px] h-[15px] text-[#F5C518]" aria-hidden="true" />
               Chat on WhatsApp
             </a>
           </div>
 
-          {/* Stats — Apple HIG: 12px labels, font-medium */}
-          <div className="animate-fade-up-3 mt-8 pt-7 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {(lang === 'en' ? [
-              { val: '8 Years', label: 'of Service' },
-              { val: '15 Years', label: 'of Experience' },
-              { val: 'Licensed', label: '& Insured' },
-              { val: 'Atlanta', label: 'Metro Service' },
-            ] : [
-              { val: '8 Años', label: 'de Servicio' },
-              { val: '15 Años', label: 'de Experiencia' },
-              { val: 'Licenciados', label: 'y Asegurados' },
-              { val: 'Atlanta', label: 'Metro Service' },
-            ]).map((s) => (
-              <div key={s.val} className="flex flex-col">
-                <span className="text-[15px] font-bold text-white leading-tight" style={{ letterSpacing: '-0.01em' }}>{s.val}</span>
-                <span className="text-[12px] font-medium text-white/40 mt-0.5">{s.label}</span>
+          {/* Stats — Taste Style: asymmetric grid 7/5 with Lucide icons */}
+          <motion.div 
+            className="animate-fade-up-3 mt-8 pt-7 border-t border-white/10 grid grid-cols-12 gap-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ...spring, delay: 0.32 }}
+          >
+            {/* Left: 7 cols with icons */}
+            <div className="col-span-12 sm:col-span-7">
+              <div className="grid grid-cols-2 gap-4">
+                {(lang === 'en' ? [
+                  { val: '8', label: 'Years of Service', icon: Clock },
+                  { val: '15', label: 'Years of Experience', icon: Award },
+                ] : [
+                  { val: '8', label: 'Años de Servicio', icon: Clock },
+                  { val: '15', label: 'Años de Experiencia', icon: Award },
+                ]).map((s) => {
+                  const Icon = s.icon;
+                  return (
+                    <div key={s.val} className="flex items-center gap-3">
+                      <Icon className="w-5 h-5 text-[#F5C518] flex-shrink-0" />
+                      <div className="flex flex-col">
+                        <span className="text-[15px] font-bold text-white leading-tight" style={{ letterSpacing: '-0.01em' }}>{s.val}</span>
+                        <span className="text-[12px] font-medium text-white/40 mt-0.5">{s.label}</span>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
-            ))}
-          </div>
+            </div>
+            
+            {/* Right: 5 cols */}
+            <div className="col-span-12 sm:col-span-5 border-t border-white/10 pt-4 sm:border-t-0 sm:pt-0">
+              <div className="flex flex-col gap-3">
+                {(lang === 'en' ? [
+                  { val: 'Licensed', label: '& Insured', icon: Shield },
+                  { val: 'Atlanta', label: 'Metro Service', icon: MapPin },
+                ] : [
+                  { val: 'Licenciados', label: 'y Asegurados', icon: Shield },
+                  { val: 'Atlanta', label: 'Metro Service', icon: MapPin },
+                ]).map((s) => {
+                  const Icon = s.icon;
+                  return (
+                    <div key={s.val} className="flex items-center gap-3">
+                      <Icon className="w-4 h-4 text-[#F5C518] flex-shrink-0" />
+                      <div className="flex flex-col">
+                        <span className="text-[15px] font-medium text-white/80">{s.val}</span>
+                        <span className="text-[12px] font-medium text-white/40">{s.label}</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </motion.div>
         </div>
       </HeroSection>
 
