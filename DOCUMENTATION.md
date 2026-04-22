@@ -131,3 +131,18 @@ public/
 ---
 
 *Documentado: 2026-04-22*
+
+---
+
+## Próximos Pasos (Backlog)
+
+### Phase 5: Integraciones (Pendiente)
+
+- [ ] **Agregar 3 fotos restantes** (About, Gallery, Service Area)
+- [ ] **Configurar formulario con Resend** (send emails)
+- [ ] **Deploy a Vercel/Netlify**
+
+### Phase 6: Seguridad (Futuro - no crítico)
+
+- [ ] Sanitizar input ContactForm
+- [ ] Agregar error messages específicos
