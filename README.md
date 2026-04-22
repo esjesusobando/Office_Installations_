@@ -28,7 +28,7 @@
 
 ```
 Think_Different/
-├── 00_Winter_is_Coming/     ✅ Goals, Backlog, AGENTS.md (ESTRATÉGICO)
+├── 00_Winter_is_Coming/     ✅ Goals, Backlog, 01_Personal_Os/11_AGENTS.md (ESTRATÉGICO)
 ├── 01_Core/                 ✅ Motor: Skills (22 cats), Rules (25), MCPs, Agents (71)
 │   ├── 01_Rules/            # 24 reglas del sistema
 │   ├── 03_Skills/           # 160+ skills en 22 categorías
@@ -53,7 +53,7 @@ Think_Different/
 ```bash
 # En tu AI assistant (OpenCode, Claude Code, etc.)
 
-1. Leer AGENTS.md
+1. Leer 01_Personal_Os/11_AGENTS.md
 2. Ejecutar engram_mem_context(limit: 10)
 3. ¡Listo para trabajar!
 ```
@@ -218,7 +218,7 @@ Code review automático integrado:
 
 | Documento                  | Ubicación                                               |
 |----------------------------|---------------------------------------------------------|
-| **AGENTS.md**              | `00_Winter_is_Coming/AGENTS.md`                         |
+| **01_Personal_Os/11_AGENTS.md**              | `00_Winter_is_Coming/01_Personal_Os/11_AGENTS.md`                         |
 | **RULES_INDEX**            | `01_Core/01_Rules/RULES_INDEX.md`                       |
 | **Skills README**          | `01_Core/03_Skills/README.md`                           |
 | **Scripts INDEX**          | `08_Scripts_Os/SCRIPTS_INDEX.md`                        |
@@ -248,7 +248,7 @@ Code review automático integrado:
 USUARIO
   │
   ▼
-ORQUESTADOR (lee AGENTS.md + skill-registry.md)
+ORQUESTADOR (lee 01_Personal_Os/11_AGENTS.md + skill-registry.md)
   │
   ├──► Sub-Agente SDD    (specs, design, tasks)
   ├──► Sub-Agente CE     (plan, work, review)
@@ -265,7 +265,7 @@ ORQUESTADOR (lee AGENTS.md + skill-registry.md)
 engram_mem_context(limit=10)
 
 # 2. Leer manifiesto
-cat 00_Winter_is_Coming/AGENTS.md
+cat 00_Winter_is_Coming/01_Personal_Os/11_AGENTS.md
 
 # 3. Leer skill registry
 cat .atl/skill-registry.md
