@@ -55,8 +55,18 @@ export function HeroSection({ videoSrc, posterSrc, children }: HeroSectionProps)
         style={{ opacity: 1 }}
       />
 
-      <div className="absolute inset-0 bg-gradient-to-r from-black/78 via-black/44 to-black/12" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/62 via-transparent to-transparent" />
+      {/* Premium layered gradients */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-black/10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0d1b2a]/30" />
+
+      {/* Subtle animated grain overlay */}
+      <div
+        className="absolute inset-0 opacity-[0.015] pointer-events-none"
+        style={{
+          backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 400 400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")',
+        }}
+      />
 
       <div className="relative z-10 flex min-h-[100dvh] items-end pb-16 md:items-center md:pb-0">
         <div className="w-full max-w-7xl mx-auto px-6 md:px-10">
@@ -64,14 +74,14 @@ export function HeroSection({ videoSrc, posterSrc, children }: HeroSectionProps)
         </div>
       </div>
 
+      {/* Bottom fade to white — premium yellow tint */}
       <div
         className="absolute bottom-0 left-0 right-0 pointer-events-none z-10"
         style={{
-          height: '20vh',
-          background: 'linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.65) 55%, #ffffff 100%)',
+          height: '22vh',
+          background: 'linear-gradient(to bottom, transparent 0%, rgba(245,197,24,0.12) 35%, rgba(255,255,255,0.8) 60%, #ffffff 100%)',
         }}
       />
-
 
     </section>
   );
