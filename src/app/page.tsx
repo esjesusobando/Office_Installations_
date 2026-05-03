@@ -130,8 +130,8 @@ export default function Home() {
             )}
           </h1>
 
-          {/* Body — Apple HIG: 17px, leading 1.47, weight 400 */}
-          <p className="animate-fade-up-2 text-[17px] font-normal text-white/60 mb-8 max-w-[46ch] leading-[1.47]">
+          {/* Body — Apple HIG: 17px, leading 1.47, weight 400 — slightly darker for readability over white windows */}
+          <p className="animate-fade-up-2 text-[17px] font-normal text-white/75 mb-8 max-w-[46ch] leading-[1.47]">
             {lang === 'en'
               ? 'Professional installation of office furniture, cubicles, desks, monitor arms, TVs, whiteboards, glass boards, and full workstation setups.'
               : 'Instalación profesional de muebles de oficina, cubículos, escritorios, brazos para monitores, TVs, pizarras y estaciones de trabajo completas.'}
