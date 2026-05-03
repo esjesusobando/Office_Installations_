@@ -55,10 +55,10 @@ export function HeroSection({ videoSrc, posterSrc, children }: HeroSectionProps)
         style={{ opacity: 1 }}
       />
 
-      {/* Premium layered gradients */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-black/10" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0d1b2a]/30" />
+      {/* Premium layered gradients — stronger for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/15" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0d1b2a]/40" />
 
       {/* Subtle animated grain overlay */}
       <div
@@ -69,6 +69,8 @@ export function HeroSection({ videoSrc, posterSrc, children }: HeroSectionProps)
       />
 
       <div className="relative z-10 flex min-h-[100dvh] items-end pb-16 md:items-center md:pb-0">
+        {/* Dark backdrop behind text for extra contrast */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/20 to-transparent pointer-events-none" />
         <div className="w-full max-w-7xl mx-auto px-6 md:px-10">
           {children}
         </div>

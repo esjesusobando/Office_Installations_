@@ -182,7 +182,7 @@ export default function Home() {
                       </div>
                       <div className="flex flex-col">
                         <span className="text-[15px] font-bold text-white leading-tight" style={{ letterSpacing: '-0.01em' }}>{s.val}</span>
-                        <span className="text-[12px] font-medium text-white/50 mt-0.5">{s.label}</span>
+                        <span className="text-[12px] font-medium text-white/65 mt-0.5">{s.label}</span>
                       </div>
                     </div>
                   );
@@ -209,7 +209,7 @@ export default function Home() {
                       </div>
                       <div className="flex flex-col">
                         <span className="text-[15px] font-medium text-white/80">{s.val}</span>
-                        <span className="text-[12px] font-medium text-white/50">{s.label}</span>
+                        <span className="text-[12px] font-medium text-white/65">{s.label}</span>
                       </div>
                     </div>
                   );
