@@ -53,3 +53,8 @@ CLAUDE.md
 Learning_Always.md
 Plan_Claude.md
 README_PersonalOS.md
+
+# Large media (serve from CDN)
+public/expertise-display.jpg
+public/service*.jpg
+public/project*.jpg
