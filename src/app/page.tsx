@@ -98,7 +98,7 @@ export default function Home() {
       </header>
 
       {/* ── HERO — video background, copy exacto ── */}
-      <HeroSection videoSrc="/videos/Interior_Design.mp4">
+      <HeroSection videoSrc="/videos/3D_interior_design.mp4">
         <div className="max-w-[600px]">
 
           {/* Badges — Lucide icons, premium glassmorphism */}
