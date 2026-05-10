@@ -209,10 +209,7 @@ export default function ServiceArea({ lang }: ServiceAreaProps) {
               {/* Pulsing dot — taste-skill MOTION_INTENSITY:6 */}
               <div className="relative flex-shrink-0">
                 <div className="w-3 h-3 rounded-full bg-[#F5C518]" />
-                <div
-                  className="absolute inset-0 rounded-full bg-[#F5C518]"
-                  style={{ animation: 'ping 1.8s cubic-bezier(0,0,0.2,1) infinite', opacity: 0.4 }}
-                />
+                <div className="absolute inset-0 rounded-full bg-[#F5C518] animate-ping opacity-40" />
               </div>
               <p className="text-[14px] font-semibold text-[#F5C518]">{t.active}</p>
             </div>
@@ -222,12 +219,6 @@ export default function ServiceArea({ lang }: ServiceAreaProps) {
 
       </div>
 
-      {/* ping keyframe inline */}
-      <style>{`
-        @keyframes ping {
-          75%, 100% { transform: scale(2.2); opacity: 0; }
-        }
-      `}</style>
     </section>
   );
 }

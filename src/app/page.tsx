@@ -1,17 +1,9 @@
 'use client';
 
 import { useState, useEffect, lazy, Suspense } from 'react';
-import { motion, type Transition } from 'framer-motion';
 import { MessageCircle, MapPin, Shield, Clock, Award } from 'lucide-react';
 import { HeroSection } from '@/components/HeroSection';
 import { ScrollVideoServices } from '@/components/ScrollVideoServices';
-
-// Spring transition - taste-skill standard
-const spring: Transition = {
-  type: 'spring',
-  stiffness: 100,
-  damping: 20,
-};
 
 // Lazy load below-the-fold sections — reduces initial JS bundle
 const ServicesSection = lazy(() => import('@/components/ServicesSection'));
@@ -98,27 +90,9 @@ export default function Home() {
       </header>
 
       {/* ── HERO — video background, copy exacto ── */}
-      <HeroSection videoSrc="/videos/3D_interior_design.mp4">
+      <HeroSection videoSrc="/videos/3D_interior_design.mp4" lang={lang}>
         <div className="max-w-[600px]">
 
-          {/* Badges — Lucide icons, premium glassmorphism */}
-          <motion.div 
-            className="animate-fade-up flex flex-wrap gap-2 mb-7"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={spring}
-          >
-            <span className="inline-flex items-center gap-2 rounded-full border border-[rgba(245,197,24,0.25)] bg-[rgba(245,197,24,0.08)] px-3.5 py-[7px] text-[11px] font-semibold uppercase tracking-[0.06em] text-white/80 backdrop-blur-sm transition-all duration-300 hover:bg-[rgba(245,197,24,0.12)] hover:border-[rgba(245,197,24,0.4)]">
-              <span className="h-[5px] w-[5px] rounded-full bg-[#F5C518] flex-shrink-0 animate-pulse" />
-              Corporate Space Management Engineering
-            </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/16 bg-white/6 px-3.5 py-[7px] text-[11px] font-semibold uppercase tracking-[0.06em] text-white/70 backdrop-blur-sm">
-              <MapPin className="w-3 h-3 text-[#F5C518]" />
-              Atlanta &amp; Surrounding Areas
-            </span>
-          </motion.div>
-
-          {/* H1 — Apple HIG: Large Title 34pt → web 52px desktop, font-bold, -0.02em */}
           <h1
             className="animate-fade-up-1 text-[38px] md:text-[50px] lg:text-[58px] font-black leading-[1.07] text-white mb-5"
             style={{ letterSpacing: '-0.03em', textWrap: 'balance' } as React.CSSProperties}
@@ -152,17 +126,12 @@ export default function Home() {
               className="group inline-flex items-center gap-2 text-[15px] font-medium text-white/55 hover:text-white transition-colors"
             >
               <MessageCircle className="w-[15px] h-[15px] text-[#F5C518] transition-transform duration-300 group-hover:scale-110" aria-hidden="true" />
-              Chat on WhatsApp
+              {lang === 'en' ? 'Chat on WhatsApp' : 'Chatea por WhatsApp'}
             </a>
           </div>
 
           {/* Stats — Taste Style: asymmetric grid 7/5 with Lucide icons, premium styling */}
-          <motion.div 
-            className="animate-fade-up-3 mt-8 pt-7 border-t border-white/10 grid grid-cols-12 gap-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ...spring, delay: 0.32 }}
-          >
+          <div className="animate-fade-up-3 mt-8 pt-7 border-t border-white/10 grid grid-cols-12 gap-6">
             {/* Left: 7 cols with icons */}
             <div className="col-span-12 sm:col-span-7">
               <div className="grid grid-cols-2 gap-4">
@@ -216,7 +185,7 @@ export default function Home() {
                 })}
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </HeroSection>
 

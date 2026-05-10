@@ -50,18 +50,44 @@ export function ScrollVideoServices({ videoSrc, scrollHeight = 400, lang = 'en' 
   const rafId         = useRef<number | null>(null);
   const [, setProgress]              = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [videoReady, setVideoReady]    = useState(false);
 
-  // Load video duration
+  // ── IntersectionObserver: preload video when section approaches viewport ──
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting || entry.intersectionRatio > 0) {
+          // Video starts loading when section is near viewport
+          if (videoRef.current) {
+            videoRef.current.preload = 'metadata';
+          }
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.05, rootMargin: '150px' }
+    );
+    const container = containerRef.current;
+    if (container) observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
+
+  // ── Load video metadata + track ready state ──
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
     const onMeta = () => { durationRef.current = video.duration; };
+    const onLoaded = () => setVideoReady(true);
     if (video.readyState >= 1) {
       durationRef.current = video.duration;
+      setVideoReady(true);
     } else {
       video.addEventListener('loadedmetadata', onMeta, { once: true });
     }
-    return () => video.removeEventListener('loadedmetadata', onMeta);
+    video.addEventListener('canplay', onLoaded, { once: true });
+    return () => {
+      video.removeEventListener('loadedmetadata', onMeta);
+      video.removeEventListener('canplay', onLoaded);
+    };
   }, []);
 
   // Refs for DOM-direct progress bar updates (avoid re-render on every scroll tick)
@@ -165,7 +191,7 @@ export function ScrollVideoServices({ videoSrc, scrollHeight = 400, lang = 'en' 
       {/* ── Sticky viewport wrapper — everything lives here ── */}
       <div className="sticky top-0 w-full overflow-hidden" style={{ height: '100vh' }}>
 
-        {/* Video — fills sticky viewport */}
+        {/* Video — fills sticky viewport, loads on intersection approach */}
         <video
           ref={videoRef}
           src={videoSrc}

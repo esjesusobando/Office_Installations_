@@ -1,14 +1,44 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
+import { MapPin } from 'lucide-react';
 
 interface HeroSectionProps {
   videoSrc: string;
   posterSrc?: string;
   children?: React.ReactNode;
+  lang?: 'en' | 'es';
 }
 
-export function HeroSection({ videoSrc, posterSrc, children }: HeroSectionProps) {
+const badges = {
+  en: [
+    { icon: 'dot', text: 'Corporate Space Management Engineering' },
+    { icon: 'pin', text: 'Atlanta & Surrounding Areas' },
+  ],
+  es: [
+    { icon: 'dot', text: 'Gestión de Espacios Corporativos' },
+    { icon: 'pin', text: 'Atlanta y Área Circundante' },
+  ],
+};
+
+function Badge({ icon, text }: { icon: string; text: string }) {
+  if (icon === 'pin') {
+    return (
+      <span className="inline-flex items-center gap-1.5 rounded-full border border-white/16 bg-white/6 px-3.5 py-[7px] text-[11px] font-semibold uppercase tracking-[0.06em] text-white/70 backdrop-blur-sm">
+        <MapPin className="w-3 h-3 text-[#F5C518]" />
+        {text}
+      </span>
+    );
+  }
+  return (
+    <span className="inline-flex items-center gap-2 rounded-full border border-[rgba(245,197,24,0.25)] bg-[rgba(245,197,24,0.08)] px-3.5 py-[7px] text-[11px] font-semibold uppercase tracking-[0.06em] text-white/80 backdrop-blur-sm transition-all duration-300 hover:bg-[rgba(245,197,24,0.12)] hover:border-[rgba(245,197,24,0.4)]">
+      <span className="h-[5px] w-[5px] rounded-full bg-[#F5C518] flex-shrink-0 animate-pulse" />
+      {text}
+    </span>
+  );
+}
+
+export function HeroSection({ videoSrc, posterSrc, children, lang = 'en' }: HeroSectionProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
@@ -78,7 +108,8 @@ export function HeroSection({ videoSrc, posterSrc, children }: HeroSectionProps)
           muted
           loop
           autoPlay
-          preload="auto"
+          preload="metadata"
+          poster="/expertise-display.jpg"
           aria-hidden="true"
           suppressHydrationWarning
         >
@@ -103,6 +134,14 @@ export function HeroSection({ videoSrc, posterSrc, children }: HeroSectionProps)
         {/* Dark backdrop behind text for extra contrast */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/20 to-transparent pointer-events-none" />
         <div className="w-full max-w-7xl mx-auto px-6 md:px-10">
+
+          {/* Badges — translated per lang */}
+          <div className="flex flex-wrap gap-2 mb-5">
+            {badges[lang].map((b) => (
+              <Badge key={b.text} icon={b.icon} text={b.text} />
+            ))}
+          </div>
+
           {children}
         </div>
       </div>
