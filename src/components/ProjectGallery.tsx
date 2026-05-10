@@ -8,7 +8,7 @@
  * Apple HIG: 30px H2, 17px body, 11px labels
  */
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface ProjectGalleryProps {
   lang: 'en' | 'es';
@@ -51,9 +51,14 @@ const projectImages = [
 export default function ProjectGallery({ lang }: ProjectGalleryProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const t = copy[lang];
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    const visibilityObserver = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
+      { threshold: 0.05, rootMargin: '200px' }
+    );
+    const animationObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -68,8 +73,14 @@ export default function ProjectGallery({ lang }: ProjectGalleryProps) {
       },
       { threshold: 0.08 }
     );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
+    if (sectionRef.current) {
+      visibilityObserver.observe(sectionRef.current);
+      animationObserver.observe(sectionRef.current);
+    }
+    return () => {
+      visibilityObserver.disconnect();
+      animationObserver.disconnect();
+    };
   }, []);
 
   return (
@@ -113,7 +124,7 @@ export default function ProjectGallery({ lang }: ProjectGalleryProps) {
             data-animate
             className="md:col-span-2 relative overflow-hidden rounded-2xl group cursor-pointer"
             style={{
-              backgroundImage: `url('${projectImages[0]}')`,
+              backgroundImage: isVisible ? `url('${projectImages[0]}')` : undefined,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               opacity: 0,
@@ -153,7 +164,7 @@ export default function ProjectGallery({ lang }: ProjectGalleryProps) {
                 className="relative overflow-hidden rounded-2xl flex-1 group cursor-pointer"
                 style={{
                   minHeight: '158px',
-                  backgroundImage: `url('${projectImages[idx]}')`,
+                  backgroundImage: isVisible ? `url('${projectImages[idx]}')` : undefined,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   opacity: 0,

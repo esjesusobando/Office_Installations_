@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 interface HeroSectionProps {
   videoSrc: string;
@@ -10,50 +10,81 @@ interface HeroSectionProps {
 
 export function HeroSection({ videoSrc, posterSrc, children }: HeroSectionProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
 
+  // Intersection Observer: only load video when hero is near viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting || entry.intersectionRatio > 0) {
+          setShouldLoadVideo(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1, rootMargin: '100px' }
+    );
+
+    const hero = document.getElementById('hero');
+    if (hero) observer.observe(hero);
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Play video once loaded and visible
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    if (!video || !shouldLoadVideo) return;
 
     video.muted = true;
     video.playsInline = true;
     video.loop = true;
+    video.preload = 'auto';
 
-    const onReady = async () => {
-      if (videoRef.current) {
-        videoRef.current.style.opacity = '1';
-      }
-      try { await video.play(); } catch { /* autoplay blocked — silent fail */ }
+    const onCanPlay = () => {
+      setIsLoaded(true);
+      video.play().catch(() => {/* autoplay blocked - silent fail */});
     };
 
     if (video.readyState >= 3) {
-      onReady();
+      onCanPlay();
     } else {
-      video.addEventListener('canplay', onReady, { once: true });
+      video.addEventListener('canplay', onCanPlay, { once: true });
     }
 
-    return () => video.removeEventListener('canplay', onReady);
-  }, [videoSrc]);
+    return () => video.removeEventListener('canplay', onCanPlay);
+  }, [shouldLoadVideo, videoSrc]);
 
   return (
     <section id="hero" className="relative w-full min-h-[100dvh] overflow-hidden bg-[#0d1b2a]">
 
+      {/* Background with poster - shows immediately */}
+      <div
+        className="absolute inset-0 bg-cover bg-center transition-opacity duration-700"
+        style={{
+          backgroundImage: posterSrc ? `url(${posterSrc})` : undefined,
+          opacity: isLoaded ? 0 : 1,
+        }}
+      />
       <div className="absolute inset-0 bg-[#0d1b2a]" />
 
-      <video
-        ref={videoRef}
-        src={videoSrc}
-        poster={posterSrc}
-        playsInline
-        muted
-        loop
-        autoPlay
-        preload="auto"
-        aria-hidden="true"
-        suppressHydrationWarning
-        className="absolute inset-0 w-full h-full object-cover will-change-transform"
-        style={{ opacity: 1 }}
-      />
+      {/* Video - only loads when in view */}
+      {shouldLoadVideo && (
+        <video
+          ref={videoRef}
+          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+          style={{ opacity: isLoaded ? 1 : 0 }}
+          playsInline
+          muted
+          loop
+          autoPlay
+          preload="auto"
+          aria-hidden="true"
+          suppressHydrationWarning
+        >
+          <source src={videoSrc} type="video/mp4" />
+        </video>
+      )}
 
       {/* Premium layered gradients — stronger for text readability */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/15" />
@@ -76,12 +107,12 @@ export function HeroSection({ videoSrc, posterSrc, children }: HeroSectionProps)
         </div>
       </div>
 
-      {/* Bottom fade to white — premium yellow tint */}
+      {/* Bottom fade to hero bg — seamless blend */}
       <div
         className="absolute bottom-0 left-0 right-0 pointer-events-none z-10"
         style={{
           height: '22vh',
-          background: 'linear-gradient(to bottom, transparent 0%, rgba(245,197,24,0.12) 35%, rgba(255,255,255,0.8) 60%, #ffffff 100%)',
+          background: 'linear-gradient(to bottom, transparent 0%, rgba(13,27,42,0.5) 50%, #0d1b2a 100%)',
         }}
       />
 

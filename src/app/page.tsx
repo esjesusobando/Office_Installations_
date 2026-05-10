@@ -198,7 +198,7 @@ export default function Home() {
                   { val: 'Atlanta', label: 'Metro Service', icon: MapPin },
                 ] : [
                   { val: 'Licenciados', label: 'y Asegurados', icon: Shield },
-                  { val: 'Atlanta', label: 'Metro Service', icon: MapPin },
+                  { val: 'Atlanta', label: 'Servicio Metro', icon: MapPin },
                 ]).map((s) => {
                   const Icon = s.icon;
                   return (
