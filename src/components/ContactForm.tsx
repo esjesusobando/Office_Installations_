@@ -123,11 +123,24 @@ export default function ContactForm({ lang }: ContactFormProps) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus('sending');
-    await new Promise((r) => setTimeout(r, 1000));
-    setStatus('success');
+    const { name, company, phone, service, message } = form;
+    const langText = lang === 'en'
+      ? `Hello! I'm interested in your services.`
+      : `Hola! Estoy interesado en sus servicios.`;
+
+    const bodyParts = [
+      langText,
+      name ? `*Name:* ${name}` : '',
+      company ? `*Company:* ${company}` : '',
+      phone ? `*Phone:* ${phone}` : '',
+      service ? `*Service:* ${service}` : '',
+      message ? `*Message:* ${message}` : '',
+    ].filter(Boolean);
+
+    const whatsappUrl = `https://wa.me/14705950121?text=${encodeURIComponent(bodyParts.join('\n'))}`;
+    window.open(whatsappUrl, '_blank');
   };
 
   // Apple HIG: label 12px above, input 15px, focus ring yellow
