@@ -162,12 +162,12 @@ export default function AboutSection({ lang }: AboutSectionProps) {
           style={{ opacity: 0, transform: 'translateY(20px)', transition: 'opacity 0.6s cubic-bezier(0.16,1,0.3,1) 0.16s, transform 0.6s cubic-bezier(0.16,1,0.3,1) 0.16s' }}
         >
           {t.stats.map((stat) => (
-            <div key={stat.label} className="px-7 py-8 flex flex-col gap-1">
+            <div key={stat.label} className="px-4 sm:px-7 py-6 sm:py-8 flex flex-col gap-1">
               {/* Stat value — Apple HIG: Large Title, font-bold, tight tracking */}
-              <span className="text-[34px] font-bold text-[#0d1b2a]" style={{ letterSpacing: '-0.03em' }}>
+              <span className="text-[28px] sm:text-[34px] font-bold text-[#0d1b2a] leading-none" style={{ letterSpacing: '-0.03em' }}>
                 {stat.value}
               </span>
-              <span className="text-[12px] font-medium text-[#0d1b2a]/42 uppercase tracking-[0.06em]">
+              <span className="text-[11px] sm:text-[12px] font-medium text-[#0d1b2a]/42 uppercase tracking-[0.06em] leading-tight">
                 {stat.label}
               </span>
             </div>
