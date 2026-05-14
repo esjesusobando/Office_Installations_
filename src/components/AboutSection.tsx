@@ -97,7 +97,7 @@ export default function AboutSection({ lang }: AboutSectionProps) {
 
             {/* H2 — Apple HIG: Title1 ~28–34px, -0.02em */}
             <h2
-              className="text-[32px] md:text-[38px] font-bold text-[#0d1b2a] leading-[1.1]"
+              className="text-[26px] xs:text-[28px] sm:text-[32px] md:text-[38px] font-bold text-[#0d1b2a] leading-[1.1]"
               style={{ letterSpacing: '-0.022em', textWrap: 'balance' } as React.CSSProperties}
             >
               {t.heading}

@@ -104,7 +104,7 @@ export default function ProjectGallery({ lang }: ProjectGalleryProps) {
             </p>
             {/* H2 — Apple HIG Title1: ~30-36px */}
             <h2
-              className="text-[30px] md:text-[36px] font-bold text-[#0d1b2a] leading-[1.1]"
+              className="text-[24px] xs:text-[28px] sm:text-[30px] md:text-[36px] font-bold text-[#0d1b2a] leading-[1.1]"
               style={{ letterSpacing: '-0.02em' }}
             >
               {t.heading}

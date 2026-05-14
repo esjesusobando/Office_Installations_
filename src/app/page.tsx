@@ -94,7 +94,7 @@ export default function Home() {
         <div className="max-w-[600px]">
 
           <h1
-            className="animate-fade-up-1 text-[38px] md:text-[50px] lg:text-[58px] font-black leading-[1.07] text-white mb-5"
+            className="animate-fade-up-1 text-[28px] xs:text-[32px] sm:text-[38px] md:text-[50px] lg:text-[58px] font-black leading-[1.07] text-white mb-5"
             style={{ letterSpacing: '-0.03em', textWrap: 'balance' } as React.CSSProperties}
           >
             {lang === 'en' ? (
@@ -105,14 +105,14 @@ export default function Home() {
           </h1>
 
           {/* Body — Apple HIG: 17px, leading 1.47, weight 400 — slightly darker for readability over white windows */}
-          <p className="animate-fade-up-2 text-[17px] font-normal text-white/75 mb-8 max-w-[46ch] leading-[1.47]">
+          <p className="animate-fade-up-2 text-[15px] sm:text-[17px] font-normal text-white/75 mb-6 sm:mb-8 max-w-[46ch] leading-[1.47]">
             {lang === 'en'
               ? 'Professional installation of office furniture, cubicles, desks, monitor arms, TVs, whiteboards, glass boards, and full workstation setups.'
               : 'Instalación profesional de muebles de oficina, cubículos, escritorios, brazos para monitores, TVs, pizarras y estaciones de trabajo completas.'}
           </p>
 
           {/* CTAs — Apple HIG: min 44px touch target, premium glow */}
-          <div className="animate-fade-up-3 flex flex-col sm:flex-row gap-3 items-start sm:items-center">
+          <div className="animate-fade-up-3 flex flex-col xs:flex-row gap-3 items-start xs:items-center">
             <a
               href="#contact"
               className="relative overflow-hidden inline-flex items-center gap-2 justify-center rounded-xl bg-[#F5C518] px-6 py-[11px] text-[15px] font-semibold text-[#0d1b2a] transition-all duration-300 hover:shadow-[0_0_30px_rgba(245,197,24,0.5)] hover:scale-105 active:scale-[0.98] gradient-shimmer-btn"

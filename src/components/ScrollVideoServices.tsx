@@ -215,7 +215,7 @@ export function ScrollVideoServices({ videoSrc, scrollHeight = 400, lang = 'en' 
 
         {/* ── Content panel — left-offset, vertically centered ── */}
         <div className="absolute inset-0 flex items-center">
-          <div className="ml-4 mr-4 sm:ml-6 md:ml-16 lg:ml-24 w-full max-w-md">
+          <div className="ml-3 mr-3 xs:ml-4 xs:mr-4 sm:ml-6 md:ml-16 lg:ml-24 w-full max-w-[290px] xs:max-w-md">
 
             {/* Glass card */}
             <div
@@ -227,23 +227,23 @@ export function ScrollVideoServices({ videoSrc, scrollHeight = 400, lang = 'en' 
                 borderTop: '1px solid rgba(255,255,255,0.12)',
                 boxShadow: '0 32px 64px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06)',
                 borderRadius: '16px',
-                padding: '24px 20px 22px',
+                padding: '18px 16px 18px',
               }}
             >
               {/* Label + counter */}
-              <div className="flex items-center justify-between mb-6">
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#F5C518]">
+              <div className="flex items-center justify-between mb-4">
+                <p className="text-[10px] xs:text-xs font-semibold uppercase tracking-[0.22em] text-[#F5C518]">
                   {lang === 'en' ? 'Our Services' : 'Nuestros Servicios'}
                 </p>
-                <p className="text-xs text-white/30 tabular-nums font-medium">
+                <p className="text-[10px] xs:text-xs text-white/30 tabular-nums font-medium">
                   {String(activeIndex + 1).padStart(2, '0')} / {String(servicesData.length).padStart(2, '0')}
                 </p>
               </div>
 
-              {/* Service content — fixed height to avoid layout jump */}
-              <div style={{ minHeight: '180px' }}>
+              {/* Service content — reduced minHeight for smaller screens */}
+              <div style={{ minHeight: '120px' }}>
                 <h2
-                  className="text-2xl md:text-3xl font-bold text-white leading-tight mb-5"
+                  className="text-[18px] xs:text-xl sm:text-2xl md:text-3xl font-bold text-white leading-tight mb-3 xs:mb-5"
                   style={{
                     letterSpacing: '-0.028em',
                     transition: 'opacity 0.4s cubic-bezier(0.16,1,0.3,1)',
@@ -256,7 +256,7 @@ export function ScrollVideoServices({ videoSrc, scrollHeight = 400, lang = 'en' 
                   {(lang === 'en' ? service.items : service.itemsEs).map((item, i) => (
                     <li
                       key={item}
-                      className="flex items-center gap-3 text-sm text-zinc-300/90"
+                      className="flex items-center gap-2 text-[12px] xs:text-sm text-zinc-300/90"
                       style={{
                         transition: `opacity 0.35s cubic-bezier(0.16,1,0.3,1) ${i * 0.04}s`,
                       }}

@@ -153,7 +153,7 @@ export default function ServicesSection({ lang }: ServicesSectionProps) {
           </p>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <h2
-              className="text-[30px] md:text-[36px] font-bold text-[#0d1b2a] leading-[1.1]"
+              className="text-[24px] xs:text-[28px] sm:text-[30px] md:text-[36px] font-bold text-[#0d1b2a] leading-[1.1]"
               style={{ letterSpacing: '-0.02em' }}
             >
               {t.heading}
