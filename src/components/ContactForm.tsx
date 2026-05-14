@@ -148,7 +148,7 @@ export default function ContactForm({ lang }: ContactFormProps) {
           {/* LEFT — Form on light bg */}
           <div
             data-animate
-            className="bg-[#f4f6f8] px-8 md:px-12 py-12"
+            className="bg-[#f4f6f8] px-6 sm:px-8 md:px-12 py-10 sm:py-12"
             style={{ opacity: 0, transform: 'translateY(16px)', transition: 'opacity 0.55s cubic-bezier(0.16,1,0.3,1), transform 0.55s cubic-bezier(0.16,1,0.3,1)' }}
           >
             <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-[#F5C518]">
@@ -225,7 +225,7 @@ export default function ContactForm({ lang }: ContactFormProps) {
           {/* RIGHT — Dark navy info + map */}
           <div
             data-animate
-            className="bg-[#0d1b2a] px-8 md:px-12 py-12 flex flex-col gap-8"
+            className="bg-[#0d1b2a] px-6 sm:px-8 md:px-12 py-10 sm:py-12 flex flex-col gap-8"
             style={{ opacity: 0, transform: 'translateY(16px)', transition: 'opacity 0.55s cubic-bezier(0.16,1,0.3,1) 0.08s, transform 0.55s cubic-bezier(0.16,1,0.3,1) 0.08s' }}
           >
             {/* Contact info rows */}

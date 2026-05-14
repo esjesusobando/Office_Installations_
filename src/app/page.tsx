@@ -131,58 +131,52 @@ export default function Home() {
           </div>
 
           {/* Stats — Taste Style: asymmetric grid 7/5 with Lucide icons, premium styling */}
-          <div className="animate-fade-up-3 mt-8 pt-7 border-t border-white/10 grid grid-cols-12 gap-6">
-            {/* Left: 7 cols with icons */}
-            <div className="col-span-12 sm:col-span-7">
-              <div className="grid grid-cols-2 gap-4">
-                {(lang === 'en' ? [
-                  { val: '8', label: 'Years of Service', icon: Clock },
-                  { val: '15', label: 'Years of Experience', icon: Award },
-                ] : [
-                  { val: '8', label: 'Años de Servicio', icon: Clock },
-                  { val: '15', label: 'Años de Experiencia', icon: Award },
-                ]).map((s) => {
-                  const Icon = s.icon;
-                  return (
-                    <div key={s.val} className="flex items-center gap-3 group">
-                      <div className="relative">
-                        <Icon className="w-5 h-5 text-[#F5C518] flex-shrink-0 transition-transform duration-300 group-hover:scale-110" />
-                        <span className="absolute inset-0 blur-sm bg-[#F5C518]/20 rounded-full animate-pulse" />
-                      </div>
-                      <div className="flex flex-col">
-                        <span className="text-[15px] font-bold text-white leading-tight" style={{ letterSpacing: '-0.01em' }}>{s.val}</span>
-                        <span className="text-[12px] font-medium text-white/65 mt-0.5">{s.label}</span>
-                      </div>
-                    </div>
-                  );
-                })}
+          <div className="animate-fade-up-3 mt-8 pt-7 border-t border-white/10">
+            {/* Mobile: 2x2 grid — Desktop: asymmetric 7/5 */}
+            <div className="grid grid-cols-2 gap-x-6 gap-y-4">
+              {/* 8 Years */}
+              <div className="flex items-center gap-3 group">
+                <div className="relative">
+                  <Clock className="w-5 h-5 text-[#F5C518] flex-shrink-0 transition-transform duration-300 group-hover:scale-110" />
+                  <span className="absolute inset-0 blur-sm bg-[#F5C518]/20 rounded-full animate-pulse" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[17px] sm:text-[15px] font-bold text-white leading-tight" style={{ letterSpacing: '-0.01em' }}>{lang === 'en' ? '8' : '8'}</span>
+                  <span className="text-[11px] font-medium text-white/65">{lang === 'en' ? 'Years of Service' : 'Años de Servicio'}</span>
+                </div>
               </div>
-            </div>
-            
-            {/* Right: 5 cols */}
-            <div className="col-span-12 sm:col-span-5 border-t border-white/10 pt-4 sm:border-t-0 sm:pt-0">
-              <div className="flex flex-col gap-3">
-                {(lang === 'en' ? [
-                  { val: 'Licensed', label: '& Insured', icon: Shield },
-                  { val: 'Atlanta', label: 'Metro Service', icon: MapPin },
-                ] : [
-                  { val: 'Licenciados', label: 'y Asegurados', icon: Shield },
-                  { val: 'Atlanta', label: 'Servicio Metro', icon: MapPin },
-                ]).map((s) => {
-                  const Icon = s.icon;
-                  return (
-                    <div key={s.val} className="flex items-center gap-3 group">
-                      <div className="relative">
-                        <Icon className="w-4 h-4 text-[#F5C518] flex-shrink-0 transition-transform duration-300 group-hover:scale-110" />
-                        <span className="absolute inset-0 blur-sm bg-[#F5C518]/20 rounded-full animate-pulse" />
-                      </div>
-                      <div className="flex flex-col">
-                        <span className="text-[15px] font-medium text-white/80">{s.val}</span>
-                        <span className="text-[12px] font-medium text-white/65">{s.label}</span>
-                      </div>
-                    </div>
-                  );
-                })}
+              {/* 15 Years */}
+              <div className="flex items-center gap-3 group">
+                <div className="relative">
+                  <Award className="w-5 h-5 text-[#F5C518] flex-shrink-0 transition-transform duration-300 group-hover:scale-110" />
+                  <span className="absolute inset-0 blur-sm bg-[#F5C518]/20 rounded-full animate-pulse" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[17px] sm:text-[15px] font-bold text-white leading-tight" style={{ letterSpacing: '-0.01em' }}>{lang === 'en' ? '15' : '15'}</span>
+                  <span className="text-[11px] font-medium text-white/65">{lang === 'en' ? 'Years of Experience' : 'Años de Experiencia'}</span>
+                </div>
+              </div>
+              {/* Licensed */}
+              <div className="flex items-center gap-3 group border-t border-white/10 pt-4">
+                <div className="relative">
+                  <Shield className="w-4 h-4 text-[#F5C518] flex-shrink-0 transition-transform duration-300 group-hover:scale-110" />
+                  <span className="absolute inset-0 blur-sm bg-[#F5C518]/20 rounded-full animate-pulse" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[14px] sm:text-[15px] font-medium text-white/80">{lang === 'en' ? 'Licensed' : 'Licenciados'}</span>
+                  <span className="text-[11px] font-medium text-white/65">{lang === 'en' ? '& Insured' : 'y Asegurados'}</span>
+                </div>
+              </div>
+              {/* Atlanta */}
+              <div className="flex items-center gap-3 group border-t border-white/10 pt-4">
+                <div className="relative">
+                  <MapPin className="w-4 h-4 text-[#F5C518] flex-shrink-0 transition-transform duration-300 group-hover:scale-110" />
+                  <span className="absolute inset-0 blur-sm bg-[#F5C518]/20 rounded-full animate-pulse" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[14px] sm:text-[15px] font-medium text-white/80">{lang === 'en' ? 'Atlanta' : 'Atlanta'}</span>
+                  <span className="text-[11px] font-medium text-white/65">{lang === 'en' ? 'Metro Service' : 'Servicio Metro'}</span>
+                </div>
               </div>
             </div>
           </div>

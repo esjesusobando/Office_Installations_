@@ -189,7 +189,7 @@ export default function ProjectGallery({ lang }: ProjectGalleryProps) {
         {/* CTA strip — bottom, yellow bg — taste-skill: bold accent */}
         <div
           data-animate
-          className="mt-4 rounded-2xl bg-[#F5C518] px-8 py-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+          className="mt-4 rounded-2xl bg-[#F5C518] px-5 sm:px-8 py-6 sm:py-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
           style={{ opacity: 0, transform: 'translateY(16px)', transition: 'opacity 0.55s cubic-bezier(0.16,1,0.3,1) 0.28s, transform 0.55s cubic-bezier(0.16,1,0.3,1) 0.28s' }}
         >
           <div>
