@@ -130,7 +130,7 @@ export function HeroSection({ videoSrc, posterSrc, children, lang = 'en' }: Hero
         }}
       />
 
-      <div className="relative z-10 flex min-h-[100dvh] items-center pb-16 md:items-center md:pb-0">
+      <div className="relative z-10 flex flex-col justify-end min-h-[calc(100dvh-60px)] pb-14 md:min-h-[100dvh] md:items-center md:pb-0">
         {/* Dark backdrop behind text for extra contrast */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/20 to-transparent pointer-events-none" />
         <div className="w-full max-w-7xl mx-auto px-6 md:px-10">

@@ -91,7 +91,7 @@ export default function Home() {
 
       {/* ── HERO — video background, copy exacto ── */}
       <HeroSection videoSrc="/videos/3D_interior_design.mp4" lang={lang}>
-        <div className="max-w-[600px]">
+        <div className="max-w-[600px] px-5 sm:px-0">
 
           <h1
             className="animate-fade-up-1 text-[28px] xs:text-[32px] sm:text-[38px] md:text-[50px] lg:text-[58px] font-black leading-[1.07] text-white mb-5"
@@ -131,7 +131,7 @@ export default function Home() {
           </div>
 
           {/* Stats — Taste Style: asymmetric grid 7/5 with Lucide icons, premium styling */}
-          <div className="animate-fade-up-3 mt-8 pt-7 border-t border-white/10">
+          <div className="animate-fade-up-3 mt-5 sm:mt-6 pt-5 sm:pt-6 border-t border-white/10">
             {/* Mobile: 2x2 grid — Desktop: asymmetric 7/5 */}
             <div className="grid grid-cols-2 gap-x-6 gap-y-4">
               {/* 8 Years */}
