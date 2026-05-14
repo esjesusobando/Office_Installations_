@@ -96,10 +96,10 @@ const icons: Record<string, React.ReactNode> = {
 
 // Service images (correct order: 1-2-3-4)
 const serviceImages = [
-  '/service1.jpg', // Office Furniture Installation
-  '/service2.jpg', // Office Setup & Reconfiguration  
-  '/service3.jpg', // Disassembly & Moving
-  '/service4.jpg', // Commercial Projects
+  '/service1.webp', // Office Furniture Installation
+  '/service2.webp', // Office Setup & Reconfiguration
+  '/service3.webp', // Disassembly & Moving
+  '/service4.webp', // Commercial Projects
 ];
 
 // Photo-like gradient placeholders per service

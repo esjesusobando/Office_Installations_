@@ -109,7 +109,7 @@ export function HeroSection({ videoSrc, posterSrc, children, lang = 'en' }: Hero
           loop
           autoPlay
           preload="metadata"
-          poster="/expertise-display.jpg"
+          poster="/expertise-display.webp"
           aria-hidden="true"
           suppressHydrationWarning
         >

@@ -41,11 +41,11 @@ const copy = {
   },
 };
 
-// Project photos — real images
+// Project photos — WebP for performance
 const projectImages = [
-  '/project1.jpg', // Tech Hub Installation
-  '/project2.jpg', // Executive Boardroom
-  '/project3.jpg', // Floor Reconfiguration
+  '/project1.webp', // Tech Hub Installation
+  '/project2.webp', // Executive Boardroom
+  '/project3.webp', // Floor Reconfiguration
 ];
 
 export default function ProjectGallery({ lang }: ProjectGalleryProps) {
