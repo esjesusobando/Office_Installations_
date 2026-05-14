@@ -91,7 +91,7 @@ export default function Home() {
 
       {/* ── HERO — video background, copy exacto ── */}
       <HeroSection videoSrc="/videos/3D_interior_design.mp4" lang={lang}>
-        <div className="max-w-[600px] px-5 sm:px-0">
+        <div className="max-w-[600px]">
 
           <h1
             className="animate-fade-up-1 text-[28px] xs:text-[32px] sm:text-[38px] md:text-[50px] lg:text-[58px] font-black leading-[1.07] text-white mb-5"
@@ -131,51 +131,39 @@ export default function Home() {
           </div>
 
           {/* Stats — Taste Style: asymmetric grid 7/5 with Lucide icons, premium styling */}
-          <div className="animate-fade-up-3 mt-5 sm:mt-6 pt-5 sm:pt-6 border-t border-white/10">
-            {/* Mobile: 2x2 grid — Desktop: asymmetric 7/5 */}
-            <div className="grid grid-cols-2 gap-x-6 gap-y-4">
+          <div className="animate-fade-up-3 mt-6 pt-4 border-t border-white/10">
+            {/* Mobile: 2x2 tight grid */}
+            <div className="grid grid-cols-2 gap-x-4 gap-y-3">
               {/* 8 Years */}
-              <div className="flex items-center gap-3 group">
-                <div className="relative">
-                  <Clock className="w-5 h-5 text-[#F5C518] flex-shrink-0 transition-transform duration-300 group-hover:scale-110" />
-                  <span className="absolute inset-0 blur-sm bg-[#F5C518]/20 rounded-full animate-pulse" />
-                </div>
+              <div className="flex items-center gap-2 group">
+                <Clock className="w-4 h-4 text-[#F5C518] flex-shrink-0" />
                 <div className="flex flex-col">
-                  <span className="text-[17px] sm:text-[15px] font-bold text-white leading-tight" style={{ letterSpacing: '-0.01em' }}>{lang === 'en' ? '8' : '8'}</span>
-                  <span className="text-[11px] font-medium text-white/65">{lang === 'en' ? 'Years of Service' : 'Años de Servicio'}</span>
+                  <span className="text-[15px] font-bold text-white leading-tight" style={{ letterSpacing: '-0.01em' }}>8</span>
+                  <span className="text-[10px] font-medium text-white/65">Years of Service</span>
                 </div>
               </div>
               {/* 15 Years */}
-              <div className="flex items-center gap-3 group">
-                <div className="relative">
-                  <Award className="w-5 h-5 text-[#F5C518] flex-shrink-0 transition-transform duration-300 group-hover:scale-110" />
-                  <span className="absolute inset-0 blur-sm bg-[#F5C518]/20 rounded-full animate-pulse" />
-                </div>
+              <div className="flex items-center gap-2 group">
+                <Award className="w-4 h-4 text-[#F5C518] flex-shrink-0" />
                 <div className="flex flex-col">
-                  <span className="text-[17px] sm:text-[15px] font-bold text-white leading-tight" style={{ letterSpacing: '-0.01em' }}>{lang === 'en' ? '15' : '15'}</span>
-                  <span className="text-[11px] font-medium text-white/65">{lang === 'en' ? 'Years of Experience' : 'Años de Experiencia'}</span>
+                  <span className="text-[15px] font-bold text-white leading-tight" style={{ letterSpacing: '-0.01em' }}>15</span>
+                  <span className="text-[10px] font-medium text-white/65">Years of Experience</span>
                 </div>
               </div>
               {/* Licensed */}
-              <div className="flex items-center gap-3 group border-t border-white/10 pt-4">
-                <div className="relative">
-                  <Shield className="w-4 h-4 text-[#F5C518] flex-shrink-0 transition-transform duration-300 group-hover:scale-110" />
-                  <span className="absolute inset-0 blur-sm bg-[#F5C518]/20 rounded-full animate-pulse" />
-                </div>
+              <div className="flex items-center gap-2 group">
+                <Shield className="w-4 h-4 text-[#F5C518] flex-shrink-0" />
                 <div className="flex flex-col">
-                  <span className="text-[14px] sm:text-[15px] font-medium text-white/80">{lang === 'en' ? 'Licensed' : 'Licenciados'}</span>
-                  <span className="text-[11px] font-medium text-white/65">{lang === 'en' ? '& Insured' : 'y Asegurados'}</span>
+                  <span className="text-[13px] font-medium text-white/80">Licensed</span>
+                  <span className="text-[10px] font-medium text-white/65">& Insured</span>
                 </div>
               </div>
               {/* Atlanta */}
-              <div className="flex items-center gap-3 group border-t border-white/10 pt-4">
-                <div className="relative">
-                  <MapPin className="w-4 h-4 text-[#F5C518] flex-shrink-0 transition-transform duration-300 group-hover:scale-110" />
-                  <span className="absolute inset-0 blur-sm bg-[#F5C518]/20 rounded-full animate-pulse" />
-                </div>
+              <div className="flex items-center gap-2 group">
+                <MapPin className="w-4 h-4 text-[#F5C518] flex-shrink-0" />
                 <div className="flex flex-col">
-                  <span className="text-[14px] sm:text-[15px] font-medium text-white/80">{lang === 'en' ? 'Atlanta' : 'Atlanta'}</span>
-                  <span className="text-[11px] font-medium text-white/65">{lang === 'en' ? 'Metro Service' : 'Servicio Metro'}</span>
+                  <span className="text-[13px] font-medium text-white/80">Atlanta</span>
+                  <span className="text-[10px] font-medium text-white/65">Metro Service</span>
                 </div>
               </div>
             </div>

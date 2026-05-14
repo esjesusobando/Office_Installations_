@@ -130,7 +130,7 @@ export function HeroSection({ videoSrc, posterSrc, children, lang = 'en' }: Hero
         }}
       />
 
-      <div className="relative z-10 flex flex-col justify-end min-h-[calc(100dvh-60px)] pb-14 md:min-h-[100dvh] md:items-center md:pb-0">
+      <div className="relative z-10 flex min-h-[100dvh] items-center pb-10 md:items-center md:pb-0 pt-[70px] md:pt-0">
         {/* Dark backdrop behind text for extra contrast */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/20 to-transparent pointer-events-none" />
         <div className="w-full max-w-7xl mx-auto px-6 md:px-10">
@@ -148,7 +148,14 @@ export function HeroSection({ videoSrc, posterSrc, children, lang = 'en' }: Hero
 
       {/* Bottom fade to hero bg — seamless blend */}
       <div
-        className="absolute bottom-0 left-0 right-0 pointer-events-none z-10"
+        className="absolute bottom-0 left-0 right-0 pointer-events-none z-10 md:hidden"
+        style={{
+          height: '80px',
+          background: 'linear-gradient(to bottom, transparent 0%, rgba(13,27,42,0.6) 100%)',
+        }}
+      />
+      <div
+        className="absolute bottom-0 left-0 right-0 pointer-events-none z-10 hidden md:block"
         style={{
           height: '22vh',
           background: 'linear-gradient(to bottom, transparent 0%, rgba(13,27,42,0.5) 50%, #0d1b2a 100%)',
