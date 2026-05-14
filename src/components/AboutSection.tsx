@@ -158,7 +158,7 @@ export default function AboutSection({ lang }: AboutSectionProps) {
         {/* Stats grid — Apple HIG: separadores, no cards pesadas */}
         <div
           data-animate
-          className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-[#dde1e6] border border-[#dde1e6] rounded-2xl overflow-hidden bg-white"
+          className="stats-grid grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-[#dde1e6] border border-[#dde1e6] rounded-2xl overflow-hidden bg-white"
           style={{ opacity: 0, transform: 'translateY(20px)', transition: 'opacity 0.6s cubic-bezier(0.16,1,0.3,1) 0.16s, transform 0.6s cubic-bezier(0.16,1,0.3,1) 0.16s' }}
         >
           {t.stats.map((stat) => (

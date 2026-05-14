@@ -283,17 +283,19 @@ export default function ContactForm({ lang }: ContactFormProps) {
             </div>
 
             {/* Map embed */}
-            <div className="rounded-xl overflow-hidden border border-white/8 flex-1" style={{ minHeight: '200px' }}>
+            <div className="rounded-xl overflow-hidden border border-white/8 flex-1 relative" style={{ minHeight: '200px' }}>
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3311.5!2d-84.3244!3d33.8922!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f508b!2s3715+Northcrest+Rd%2C+Atlanta%2C+GA+30340!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
                 width="100%"
                 height="100%"
-                style={{ border: 0, minHeight: '200px', filter: 'invert(0.85) hue-rotate(180deg) saturate(0.6)' }}
+                style={{ border: 0, minHeight: '200px' }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 title="OIM Office — 3715 Northcrest Rd, Atlanta GA 30340"
               />
+              {/* Dark overlay for brand consistency - map loads behind */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#0d1b2a]/20 to-transparent pointer-events-none" />
             </div>
 
           </div>
